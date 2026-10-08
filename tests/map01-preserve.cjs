@@ -1,14 +1,19 @@
 // MAP-01 preservation gate against the verified FIX-01 pre-edit snapshot.
 const assert=require('assert/strict'),fs=require('fs'),path=require('path'),crypto=require('crypto');
 const original=path.resolve(process.argv[2]||(()=>{throw Error('Provide pre-MAP-01 directory');})());
-const map=require('../map-data.js'),before=require(path.join(original,'map-data.js')),results=[];
+const geo=require('./geo01-contract.cjs'),current=require('../map-data.js');
+// The exact GEO allowlist must pass before projecting to the fixed pre-FIX-A model.
+// Historical MAP-01 checks below remain strict, including source-byte and FIX-01 checks.
+geo.validatePreservation();
+const map=geo.preFixAModel(current),before=require(path.join(original,'map-data.js')),results=[];
 function test(name,fn){try{const evidence=fn();results.push({name,status:'PASS',evidence});}catch(e){results.push({name,status:'FAIL',error:e.stack});}console.log(results.at(-1).status,name);}
 const clean=p=>p.filter((point,i)=>i===0||point[0]!==p[i-1][0]||point[1]!==p[i-1][1]);
 const area=p=>Math.abs(p.reduce((sum,a,i)=>{const b=p[(i+1)%p.length];return sum+a[0]*b[1]-b[0]*a[1]},0))/2;
+test('Only enumerated GEO-002/GEO-003 changes against fixed pre-FIX-A commit',()=>geo.validatePreservation());
 test('Exactly 194 original space identities, order and floors are preserved',()=>{assert.equal(map.floors.reduce((n,f)=>n+f.spaces.length,0),194);assert.deepEqual(map.floors.map(f=>[f.id,f.spaces.map(s=>s.id)]),before.floors.map(f=>[f.id,f.spaces.map(s=>s.id)]));assert.deepEqual(map.floors.map(f=>f.level),[2,3,4,5,6,7]);assert.deepEqual(map.plannedFloors,before.plannedFloors);});
 test('Full model equals baseline after only removing consecutive duplicate points',()=>{const expected=structuredClone(before);expected.floors.forEach(f=>f.spaces.forEach(s=>s.polygon=clean(s.polygon)));assert.deepEqual(map,expected);});
 test('Exactly four existing polygons lose one redundant vertex each; areas unchanged',()=>{const changed=[];map.floors.forEach((f,i)=>f.spaces.forEach((s,j)=>{const old=before.floors[i].spaces[j];assert.equal(area(s.polygon),area(old.polygon));if(s.polygon.length!==old.polygon.length){assert.equal(s.polygon.length,old.polygon.length-1);changed.push(s.id);}}));assert.deepEqual(changed,['B3-F2-N08','B3-F3-N08','B3-F4-N08','B3-F5-N07']);return changed;});
-test('Source bytes contain precisely four point removals and no regenerated JSON',()=>{const old=fs.readFileSync(path.join(original,'map-data.js'),'utf8'),now=fs.readFileSync(path.join(__dirname,'../map-data.js'),'utf8');assert.equal(old.split('[504.0,0],[504.0,0]').length-1,4);assert.equal(now,old.replaceAll('[504.0,0],[504.0,0]','[504.0,0]'));});
+test('Pre-FIX-A source contains precisely four MAP-01 point removals and no regenerated JSON',()=>{const old=fs.readFileSync(path.join(original,'map-data.js'),'utf8').replaceAll('\r\n','\n'),now=geo.baselineText('map-data.js');assert.equal(old.split('[504.0,0],[504.0,0]').length-1,4);assert.equal(now,old.replaceAll('[504.0,0],[504.0,0]','[504.0,0]'));});
 test('All polygons are finite, nonzero, with no zero-length edges or proper self-intersections',()=>{
   const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
   let count=0;

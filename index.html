@@ -121,6 +121,11 @@
   .vert.elevator .box{fill:var(--lift)}
   .vert.sel .box{stroke:var(--sel);stroke-width:3}
   .vert .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.55}
+  .vert .geo-enclosure{fill:transparent;stroke:none}
+  .vert.sel .geo-enclosure{stroke:var(--sel);stroke-width:3}
+  .geo-stair-art{pointer-events:none}
+  .geo-flight,.geo-landing{fill:var(--stair);stroke:var(--stair-ink);stroke-width:.8}
+  .geo-stair-art .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.85}
   .vert .x{stroke:var(--lift-ink);stroke-width:1.1}
   .vlabel{font-size:8.5px;font-weight:700;fill:var(--stair-ink);pointer-events:none;text-anchor:middle}
   .vlabel.el{fill:var(--lift-ink)}
@@ -453,12 +458,22 @@
       gg.__id = v.id;
       var b = bbox(v.polygon);
       if (v.type === "stair") {
-        drawStairBox(gg, v.polygon, "v");
+        if (v.visualStair) {
+          // Identity hit region stays unchanged; photo artwork may extend into the hall.
+          el("polygon", { points: pts(v.polygon), "class": "geo-enclosure" }, gg);
+          var art = el("g", { "class": "geo-stair-art", "data-stair-art": v.id, "aria-hidden": "true", "pointer-events": "none" }, L.feat);
+          el("polygon", { points: pts(v.visualStair.landing), "class": "geo-landing" }, art);
+          v.visualStair.flights.forEach(function (flight) {
+            el("polygon", { points: pts(flight), "class": "geo-flight" }, art);
+            var fb = bbox(flight);
+            for (var sx = fb.x + 3; sx < fb.x + fb.w; sx += 3) el("line", { x1: sx, y1: fb.y, x2: sx, y2: fb.y + fb.h, "class": "treads" }, art);
+          });
+        } else drawStairBox(gg, v.polygon, "v");
         if (v.innerShaft) { var ib = bbox(v.innerShaft); drawX(gg, ib, "#fff"); }
         // проём входа
         if (v.entries) v.entries.forEach(function (x) { el("rect", { x: x - 6, y: b.y - 1.6, width: 12, height: 3.2, fill: "var(--corridor)" }, L.doors); });
-        if (v.entry) el("rect", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: "var(--room-hall)" }, L.doors);
-        var lbl = el("text", { x: b.cx, y: b.y + b.h - 4, "class": "vlabel" }, gg);
+        if (v.entry && !v.visualStair) el("rect", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: "var(--room-hall)" }, L.doors);
+        var lbl = el("text", { x: b.cx, y: v.visualStair ? b.y + 15 : b.y + b.h - 4, "class": "vlabel" }, v.visualStair ? art : gg);
         lbl.textContent = v.shaft === "B3-STAIR-W" ? "Лестница W" : "Лестница M";
       } else {
         drawX(gg, b, "var(--lift)");
