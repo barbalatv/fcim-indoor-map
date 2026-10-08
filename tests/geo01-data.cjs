@@ -1,5 +1,5 @@
 const assert=require('assert/strict'),fs=require('fs');
-const map=require('../map-data.js'),gate=require('./geo01-contract.cjs'),before=gate.baselineModel();
+const map=require('./geo02-contract.cjs').preGeoModel(require('../map-data.js')),gate=require('./geo01-contract.cjs'),before=gate.baselineModel();
 const room=require('../room-contract.js'),semantics=require('../map-semantics.js'),results=[];
 const floor=(m,n)=>m.floors.find(f=>f.level===n),f3=floor(map,3),f7=floor(map,7);
 const cells=f3.spaces.filter(s=>/^B3-F3-S0[123]$/.test(s.id));

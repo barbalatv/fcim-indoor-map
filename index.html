@@ -430,9 +430,10 @@
     });
     el("polygon", { points: pts(g.outline), "class": "outline" }, L.base);
     el("polygon", { points: pts(g.corridor), "class": "corr" }, L.base);
-    var t1 = el("text", { x: 2, y: g.corridorBand[0] - (g.corridorBand[0] - g.corridorBand[1]) / 2 + 3, "class": "compass" }, L.base);
+    var compass = g.compassPoints || [[2, g.corridorBand[0] - (g.corridorBand[0] - g.corridorBand[1]) / 2 + 3], [998, g.corridorBand[1] - 4]];
+    var t1 = el("text", { x: compass[0][0], y: compass[0][1], "class": "compass" }, L.base);
     t1.textContent = "◄ запад (усл.)";
-    var t2 = el("text", { x: 998, y: g.corridorBand[1] - 4, "class": "compass", "text-anchor": "end" }, L.base);
+    var t2 = el("text", { x: compass[1][0], y: compass[1][1], "class": "compass", "text-anchor": "end" }, L.base);
     t2.textContent = "восток (усл.) ►";
 
     f.spaces.forEach(function (s) {
@@ -443,7 +444,7 @@
     });
     // двери: разрыв в стене + засечки
     g.doors.forEach(function (d) {
-      var w = 7, internal = !!d.internal, vertical = internal || d.y !== g.corridorBand[0] && d.y !== g.corridorBand[1];
+      var w = 7, internal = !!d.internal, vertical = d.orientation ? d.orientation === "vertical" : internal || d.y !== g.corridorBand[0] && d.y !== g.corridorBand[1];
       if (!vertical) {
         el("rect", { x: d.x - w / 2, y: d.y - 1.6, width: w, height: 3.2, "class": "door-gap" }, L.doors);
         el("line", { x1: d.x - w / 2, y1: d.y - 2.2, x2: d.x - w / 2, y2: d.y + 2.2, "class": "door-mk" }, L.doors);
@@ -458,7 +459,20 @@
       gg.__id = v.id;
       var b = bbox(v.polygon);
       if (v.type === "stair") {
-        if (v.visualStair) {
+        if (v.stairDrawing) {
+          el("polygon", { points: pts(v.polygon), "class": "box", fill: "var(--stair)", stroke: "var(--wall)", "stroke-width": 1.6 }, gg);
+          var drawing = el("g", { "class": "geo-stair-art", "data-stair-art": v.id, "aria-hidden": "true", "pointer-events": "none" }, gg);
+          el("polygon", { points: pts(v.stairDrawing.landing), "class": "geo-landing" }, drawing);
+          v.stairDrawing.flights.forEach(function (flight, index) {
+            el("polygon", { points: pts(flight), "class": "geo-flight" }, drawing);
+            var fb = bbox(flight), axis = v.stairDrawing.treadAxes[index];
+            if (axis === "y") {
+              for (var sy = fb.y + 3; sy < fb.y + fb.h; sy += 3) el("line", { x1: fb.x, y1: sy, x2: fb.x + fb.w, y2: sy, "class": "treads" }, drawing);
+            } else {
+              for (var sx = fb.x + 3; sx < fb.x + fb.w; sx += 3) el("line", { x1: sx, y1: fb.y, x2: sx, y2: fb.y + fb.h, "class": "treads" }, drawing);
+            }
+          });
+        } else if (v.visualStair) {
           // Identity hit region stays unchanged; photo artwork may extend into the hall.
           el("polygon", { points: pts(v.polygon), "class": "geo-enclosure" }, gg);
           var art = el("g", { "class": "geo-stair-art", "data-stair-art": v.id, "aria-hidden": "true", "pointer-events": "none" }, L.feat);
@@ -474,7 +488,7 @@
         if (v.entries) v.entries.forEach(function (x) { el("rect", { x: x - 6, y: b.y - 1.6, width: 12, height: 3.2, fill: "var(--corridor)" }, L.doors); });
         if (v.entry && !v.visualStair) el("rect", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: "var(--room-hall)" }, L.doors);
         var lbl = el("text", { x: b.cx, y: v.visualStair ? b.y + 15 : b.y + b.h - 4, "class": "vlabel" }, v.visualStair ? art : gg);
-        lbl.textContent = v.shaft === "B3-STAIR-W" ? "Лестница W" : "Лестница M";
+        lbl.textContent = v.mapLabel || v.label || (v.shaft === "B3-STAIR-W" ? "Лестница W" : "Лестница M");
       } else {
         drawX(gg, b, "var(--lift)");
         var l2 = el("text", { x: b.cx, y: b.cy + 3, "class": "vlabel el", style: "font-size:6.5px" }, gg);
@@ -487,6 +501,10 @@
           style: ft.type === "corridorMarker" ? "stroke:#9aa5b1" : null }, L.feat);
         var t = el("text", { x: ft.x + 3, y: g.corridorBand[1] - 3, "class": "feat-note", "text-anchor": "start" }, L.feat);
         t.textContent = ft.type === "corridorDoor" ? "перегородка?" : "метка?";
+      } else if (ft.type === "wallLine") {
+        el("polyline", { points: pts(ft.line), fill: "none", stroke: "var(--wall)", "stroke-width": 1.6, "pointer-events": "none" }, L.feat);
+      } else if (ft.type === "opening") {
+        el("line", { x1: ft.line[0][0], y1: ft.line[0][1], x2: ft.line[1][0], y2: ft.line[1][1], stroke: "var(--corridor)", "stroke-width": 3.4, "pointer-events": "none" }, L.feat);
       } else if (ft.type === "stairGlyph") {
         drawStairBox(L.feat, ft.polygon, "v", true);
       }
@@ -782,7 +800,7 @@
   function vertCardHtml(v) {
     var lvl = levelOfFloorId(v.floorId);
     var facility = facilityLayer.filter(function (f) { return f.id === v.id; })[0];
-    var name = v.type === "elevator" ? "Лифтовая шахта (" + v.id.slice(-3) + ")" : (v.shaft === "B3-STAIR-W" ? "Западная лестница (W)" : "Центральная лестница (M)");
+    var name = v.label || (v.type === "elevator" ? "Лифтовая шахта (" + v.id.slice(-3) + ")" : (v.shaft === "B3-STAIR-W" ? "Западная лестница (W)" : "Центральная лестница (M)"));
     return "<div class='card'><h3>" + esc(name) + "</h3><dl class='kv'>" +
       "<dt>ID</dt><dd><code>" + esc(v.id) + "</code></dd><dt>Этаж</dt><dd>" + lvl + "</dd>" +
       "<dt>Вертикаль</dt><dd><code>" + esc(v.shaft) + "</code></dd>" +

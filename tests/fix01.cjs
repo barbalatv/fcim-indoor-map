@@ -201,7 +201,8 @@ async function test(name, fn) {
     });
     await test('Unchanged map selection, floors 2–7, pending floors and search; MAP-01 routing UI absent',async () => {
       for(let n=2;n<=7;n++){await floor(n);assert.equal(await page.locator('#layerSpaces polygon').count(),await page.evaluate(n=>FCIM_MAP_DATA.floors.find(f=>f.level===n).spaces.length,n));}
-      for(const n of ['1','D']){await floor(n);assert.equal(await page.locator('#floorNav .active').innerText(),'7');}
+      await floor('1');assert.equal(await page.locator('#floorNav .active').innerText(),'1');
+      await floor('D');assert.equal(await page.locator('#floorNav .active').innerText(),'1');
       await floor(4);await select('B3-F4-N01');assert.equal(await page.locator('[data-id="B3-F4-N01"].sel').count(),1);
       await bind('B3-F4-N01','405');await floor(7);await search('3-405');assert.equal(await page.locator('#floorNav .active').innerText(),'4');
       assert.equal(await page.locator('[data-id="B3-F4-N01"].sel').count(),1);await search('D01-03');assert.match(await page.locator('#panel').innerText(),/подвала/);

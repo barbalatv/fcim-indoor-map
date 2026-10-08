@@ -1,0 +1,651 @@
+{
+  "task": "GEO-02",
+  "authoritativeGeometry": "map-data.js",
+  "ordering": "N/S west-to-east, then HW LH HC HE",
+  "spaces": [
+    {
+      "id": "B3-F1-N01",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        309,
+        413,
+        607,
+        561
+      ],
+      "modelBounds": [
+        0,
+        0,
+        154,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(32,75) horizontal → corridor; medium; (112,75) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N02",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        604,
+        410,
+        903,
+        559
+      ],
+      "modelBounds": [
+        154,
+        0,
+        307,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(170,75) horizontal → corridor; medium; (265,75) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N03",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        901,
+        406,
+        1205,
+        556
+      ],
+      "modelBounds": [
+        307,
+        0,
+        461,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(333,75) horizontal → corridor; medium; (418,75) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N04",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1204,
+        405,
+        1302,
+        553
+      ],
+      "modelBounds": [
+        461,
+        0,
+        510,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(480,75) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N05",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1301,
+        404,
+        1362,
+        553
+      ],
+      "modelBounds": [
+        510,
+        0,
+        540,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(540,57) vertical → B3-F1-N06; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N06",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1361,
+        403,
+        1422,
+        552
+      ],
+      "modelBounds": [
+        540,
+        0,
+        570,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(550,75) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N07",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1421,
+        400,
+        1724,
+        552
+      ],
+      "modelBounds": [
+        570,
+        0,
+        720,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(700,75) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N08",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1724,
+        399,
+        1785,
+        549
+      ],
+      "modelBounds": [
+        720,
+        0,
+        750,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(734,75) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N09",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1919,
+        395,
+        2155,
+        531
+      ],
+      "modelBounds": [
+        816,
+        0,
+        930,
+        67
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(851,67) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-N10",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        2154,
+        470,
+        2300,
+        529
+      ],
+      "modelBounds": [
+        930,
+        38,
+        1000,
+        67
+      ],
+      "confidence": "low",
+      "geometryStatus": "source-traced, schematic; locally qualified",
+      "doorEvidence": "(946,67) horizontal → corridor; low",
+      "identity": "unknown",
+      "notes": "Пожарные пиктограммы закрывают часть нижней стены; функция неизвестна."
+    },
+    {
+      "id": "B3-F1-S01",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        314,
+        618,
+        435,
+        752
+      ],
+      "modelBounds": [
+        0,
+        105,
+        62,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(44,105) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S02",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        432,
+        616,
+        672,
+        752
+      ],
+      "modelBounds": [
+        62,
+        105,
+        186,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(116,105) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S03",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        904,
+        614,
+        970,
+        750
+      ],
+      "modelBounds": [
+        307,
+        105,
+        340,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(328,105) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S04",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        968,
+        614,
+        1025,
+        750
+      ],
+      "modelBounds": [
+        340,
+        105,
+        368,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(351,105) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S05",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1023,
+        613,
+        1140,
+        749
+      ],
+      "modelBounds": [
+        368,
+        105,
+        427,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(391,105) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S06",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1139,
+        612,
+        1203,
+        749
+      ],
+      "modelBounds": [
+        427,
+        105,
+        459,
+        175
+      ],
+      "confidence": "low",
+      "geometryStatus": "source-traced, schematic; locally qualified",
+      "doorEvidence": "(434,105) horizontal → corridor; low",
+      "identity": "unknown",
+      "notes": "Наблюдаемый боковой отсек с верхней нишей. Концы коротких стен и проёмы частично закрыты стрелками. Функция неизвестна; не WC."
+    },
+    {
+      "id": "B3-F1-S07",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1164,
+        612,
+        1228,
+        667
+      ],
+      "modelBounds": [
+        440,
+        105,
+        472,
+        133
+      ],
+      "confidence": "low",
+      "geometryStatus": "source-traced, schematic; locally qualified",
+      "doorEvidence": "(449,105) horizontal → corridor; low; (465,105) horizontal → corridor; low",
+      "identity": "unknown",
+      "notes": "Мелкий средний отсек; короткие перегородки видны, функция неизвестна; не WC."
+    },
+    {
+      "id": "B3-F1-S08",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1202,
+        612,
+        1264,
+        749
+      ],
+      "modelBounds": [
+        459,
+        105,
+        490,
+        175
+      ],
+      "confidence": "low",
+      "geometryStatus": "source-traced, schematic; locally qualified",
+      "doorEvidence": "(480,105) horizontal → corridor; low",
+      "identity": "unknown",
+      "notes": "Второй боковой отсек с верхней нишей; назначение и доступ неизвестны."
+    },
+    {
+      "id": "B3-F1-S09",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1305,
+        611,
+        1363,
+        748
+      ],
+      "modelBounds": [
+        511,
+        105,
+        540,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(524,105) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S10",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1362,
+        611,
+        1423,
+        748
+      ],
+      "modelBounds": [
+        540,
+        105,
+        570,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(550,105) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S11",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1422,
+        610,
+        1482,
+        748
+      ],
+      "modelBounds": [
+        570,
+        105,
+        600,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(581,105) horizontal → corridor; medium; (600,156) vertical → B3-F1-S12; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S12",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1482,
+        610,
+        1544,
+        748
+      ],
+      "modelBounds": [
+        600,
+        105,
+        631,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "Открытый холл; отдельная дверь не назначена",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S13",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1544,
+        608,
+        1784,
+        747
+      ],
+      "modelBounds": [
+        631,
+        105,
+        750,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "(657,105) horizontal → corridor; medium",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-S14",
+      "kind": "room",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        2152,
+        594,
+        2298,
+        669
+      ],
+      "modelBounds": [
+        930,
+        100,
+        1000,
+        137
+      ],
+      "confidence": "low",
+      "geometryStatus": "source-traced, schematic; locally qualified",
+      "doorEvidence": "(946,100) horizontal → corridor; low",
+      "identity": "unknown",
+      "notes": "Часть стены закрыта пожарным знаком; функция неизвестна."
+    },
+    {
+      "id": "B3-F1-HW",
+      "kind": "hall",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        787,
+        614,
+        906,
+        750
+      ],
+      "modelBounds": [
+        247,
+        105,
+        307,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "Открытый холл; отдельная дверь не назначена",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-LH",
+      "kind": "hall",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1785,
+        397,
+        1920,
+        549
+      ],
+      "modelBounds": [
+        750,
+        0,
+        816,
+        75
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "Открытый холл; отдельная дверь не назначена",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    },
+    {
+      "id": "B3-F1-HC",
+      "kind": "hall",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1263,
+        611,
+        1306,
+        781
+      ],
+      "modelBounds": [
+        490,
+        105,
+        511,
+        192
+      ],
+      "confidence": "low",
+      "geometryStatus": "source-traced, schematic; locally qualified",
+      "doorEvidence": "Открытый холл; отдельная дверь не назначена",
+      "identity": "unknown",
+      "notes": "Южный выступ/тамбур со ступенями рядом. Это не подтверждённый вход."
+    },
+    {
+      "id": "B3-F1-HE",
+      "kind": "hall",
+      "source": "floor1.jpg",
+      "sourceSha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+      "sourceRegionPixels": [
+        1916,
+        595,
+        2153,
+        746
+      ],
+      "modelBounds": [
+        815,
+        100,
+        930,
+        175
+      ],
+      "confidence": "medium",
+      "geometryStatus": "source-traced, schematic",
+      "doorEvidence": "Открытый холл; отдельная дверь не назначена",
+      "identity": "unknown",
+      "notes": "Назначение и номер неизвестны."
+    }
+  ]
+}
