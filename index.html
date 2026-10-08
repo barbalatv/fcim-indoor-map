@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FCIM Indoor Map — корпус №3 UTM</title>
+<style>
+  :root{
+    --bg:#f4f6f8; --panel:#ffffff; --ink:#1d2733; --muted:#6b7785; --line:#dfe4ea;
+    --accent:#0f7b5f; --accent-soft:#e3f3ee; --warn:#b35c00; --warn-soft:#fff3e2; --danger:#b42318;
+    --room:#ffffff; --room-service:#eef1f4; --room-hall:#f1f6fb; --corridor:#e9eef3; --wall:#3b4652;
+    --stair:#dbe7ff; --stair-ink:#2f5bd3; --lift:#f3e8ff; --lift-ink:#7a3fc4;
+    --sel:#0f7b5f; --sel-fill:#c9ecdf; --bound:#e9f7f1; --scheduled:#dbeafe; --mine:#a7e7ce;
+    --radius:14px; --shadow:0 6px 24px rgba(20,30,45,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
+    font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%}
+  button,input,select{font:inherit;color:inherit}
+  .app{display:flex;flex-direction:column;height:100%;height:100dvh}
+  header{display:flex;gap:10px;align-items:center;padding:10px 14px;padding-top:max(10px,env(safe-area-inset-top));
+    background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{display:flex;flex-direction:column;min-width:0;margin-right:auto}
+  .brand b{font-size:16px;letter-spacing:.2px}
+  .brand span{font-size:12px;color:var(--muted)}
+  .search{display:flex;flex:1 1 260px;max-width:440px;background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .search input{flex:1;border:0;background:transparent;padding:9px 12px;outline:none;min-width:0}
+  .search button{border:0;background:var(--accent);color:#fff;padding:0 14px;cursor:pointer}
+  .btn{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 12px;cursor:pointer;white-space:nowrap}
+  .btn:hover{border-color:#c5ced8}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.danger{color:var(--danger)}
+  .btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .tools{display:flex;gap:8px;flex-wrap:wrap}
+  .ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-4px}
+  .btn .ic{margin-right:6px}
+  .zoom .ic{width:20px;height:20px;vertical-align:middle}
+  main{position:relative;flex:1;min-height:0;display:flex}
+  .mapwrap{position:relative;flex:1;min-width:0;overflow:hidden;touch-action:none;
+    background:radial-gradient(circle at 1px 1px,#dfe5eb 1px,transparent 0) 0 0/22px 22px}
+  svg#map{width:100%;height:100%;display:block;user-select:none;-webkit-user-select:none;cursor:grab}
+  svg#map.dragging{cursor:grabbing}
+  .floors{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px;z-index:5;
+    background:var(--panel);padding:6px;border-radius:14px;box-shadow:var(--shadow)}
+  .floors button{width:44px;height:40px;border-radius:10px;border:0;background:transparent;cursor:pointer;font-weight:600}
+  .floors button.active{background:var(--accent);color:#fff}
+  .floors button.pending{color:#a9b2bc;cursor:not-allowed;font-weight:500}
+  .zoom{position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;gap:6px;z-index:5}
+  .zoom button{width:44px;height:44px;border-radius:12px;border:0;background:var(--panel);box-shadow:var(--shadow);font-size:20px;cursor:pointer}
+  .floorbadge{position:absolute;left:12px;top:12px;z-index:5;background:var(--panel);border-radius:12px;padding:8px 12px;box-shadow:var(--shadow);max-width:min(460px,calc(100% - 90px))}
+  .floorbadge b{font-size:18px}
+  .floorbadge .meta{font-size:12px;color:var(--muted)}
+  .floorbadge details{font-size:12.5px;margin-top:4px}
+  .floorbadge summary{cursor:pointer;color:var(--accent)}
+  .floorbadge ul{margin:6px 0 0;padding-left:18px}
+  .mode-banner{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;z-index:6;background:var(--ink);color:#fff;
+    padding:8px 14px;border-radius:999px;font-size:13px;box-shadow:var(--shadow);display:none;white-space:nowrap}
+  .mode-banner.show{display:block}
+  aside.sheet{width:380px;max-width:100%;background:var(--panel);border-left:1px solid var(--line);overflow:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+  .card{border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .card h3{margin:0 0 8px;font-size:15px}
+  .muted{color:var(--muted)}
+  .small{font-size:12.5px}
+  dl.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0;font-size:14px}
+  dl.kv dt{color:var(--muted)}
+  dl.kv dd{margin:0;word-break:break-word}
+  .pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+  .pill.ok{background:var(--accent-soft);border-color:#a8dcc9;color:var(--accent)}
+  .pill.warn{background:var(--warn-soft);border-color:#f3c98f;color:var(--warn)}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .editor input{flex:1;min-width:120px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;font-size:16px}
+  .msg{font-size:13px;padding:8px 10px;border-radius:10px;background:var(--bg)}
+  .msg.err{background:#fdecea;color:var(--danger)}
+  .msg.ok{background:var(--accent-soft);color:var(--accent)}
+  .msg.warn{background:var(--warn-soft);color:var(--warn)}
+  .legend{display:grid;grid-template-columns:22px 1fr;gap:6px 8px;align-items:center;font-size:13px}
+  .sw{width:20px;height:14px;border-radius:3px;border:1.5px solid var(--wall)}
+  .toast{position:fixed;left:50%;top:70px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;
+    z-index:50;font-size:14px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s;max-width:92vw;text-align:center}
+  .toast.show{opacity:1}
+  .grip{display:none}
+  #panel,#scheduleSummary,.schedule-controls{flex:none}
+  .schedule-controls p{margin:8px 0}
+  .schedule-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+  .schedule-fields label,.period-label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);min-width:0}
+  .schedule-fields input,.schedule-fields select,.period-label select{width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-size:14px}
+  #scheduleContext{margin-top:8px}
+  #scheduleSummary .card{margin:0}
+  .lesson{margin:10px 0;padding:9px;border-left:3px solid var(--accent);background:var(--bg);border-radius:6px;font-size:13px}
+  .lesson p{margin:3px 0}
+  .schedule-room{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+  .demo-label{fill:#145e9c;stroke:#fff}
+  /* SVG */
+  .sp{stroke:var(--wall);stroke-width:1.6;stroke-linejoin:round;cursor:pointer;transition:fill .12s}
+  .sp.t-unknown,.sp.t-classroom,.sp.t-office{fill:var(--room)}
+  .sp.t-service{fill:var(--room-service)}
+  .sp.t-circulation{fill:var(--room-hall);stroke-dasharray:0}
+  .sp.bound{fill:var(--bound)}
+  .sp.lowconf{stroke-dasharray:5 2.5}
+  .sp:hover{fill:#f0faf6}
+  .sp.sel{fill:var(--sel-fill)!important;stroke:var(--sel);stroke-width:3}
+  .sp.flash{animation:flash 1.1s ease-in-out 2}
+  /* Schedule fills follow the base room styles so unselected highlights remain visible. */
+  .sp.scheduled-other{fill:var(--scheduled)}
+  .sp.scheduled-mine{fill:var(--mine)}
+  .sp.schedule-next{fill:#eefbf6;stroke:var(--accent);stroke-width:2.5;stroke-dasharray:6 3}
+  .sp.schedule-shared{stroke:#b35c00;stroke-width:2.5}
+  .sp.sel.scheduled-other{fill:var(--scheduled)!important}
+  .sp.sel.scheduled-mine{fill:var(--mine)!important}
+  .sp.sel.schedule-next{fill:#eefbf6!important}
+  @keyframes flash{50%{fill:#9ddcc5}}
+  .outline{fill:#fff;stroke:var(--wall);stroke-width:4;stroke-linejoin:round}
+  .corr{fill:var(--corridor);stroke:none}
+  .door-gap{fill:var(--corridor)}
+  .door-gap.int{fill:#fff}
+  .door-mk{stroke:#7f8a96;stroke-width:1}
+  .vert{cursor:pointer}
+  .vert .box{stroke:var(--wall);stroke-width:1.6}
+  .vert.stair .box{fill:var(--stair)}
+  .vert.elevator .box{fill:var(--lift)}
+  .vert.sel .box{stroke:var(--sel);stroke-width:3}
+  .vert .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.55}
+  .vert .x{stroke:var(--lift-ink);stroke-width:1.1}
+  .vlabel{font-size:8.5px;font-weight:700;fill:var(--stair-ink);pointer-events:none;text-anchor:middle}
+  .vlabel.el{fill:var(--lift-ink)}
+  .lbl{font-size:10.5px;font-weight:700;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:central;paint-order:stroke;stroke:#fff;stroke-width:3px}
+  .lbl.hall{font-size:7px;font-weight:500;fill:var(--muted);stroke-width:2px}
+  .feat{fill:none;stroke:#5a7fa8;stroke-width:1.2;stroke-dasharray:3 2}
+  .feat-gal{fill:#f6f8fa;stroke:var(--wall);stroke-width:1.6}
+  .feat-note{font-size:7px;fill:var(--muted);text-anchor:middle;pointer-events:none}
+  .compass{font-size:9px;fill:var(--muted)}
+  @media (max-width:900px){
+    main{flex-direction:column}
+    .mapwrap{min-height:0}
+    aside.sheet{position:relative;width:100%;height:46%;flex:0 0 46%;min-height:56px;max-height:none;border-left:0;border-top:1px solid var(--line);
+      border-radius:18px 18px 0 0;box-shadow:0 -4px 18px rgba(20,30,45,.10);z-index:20;padding:10px 14px max(14px,env(safe-area-inset-bottom));transition:flex-basis .25s,height .25s}
+    aside.sheet.collapsed{height:56px;flex-basis:56px;overflow:hidden}
+    .grip{display:block;position:sticky;top:0;z-index:2;width:100%;height:30px;border:0;border-radius:8px;background:#f4f6f8;color:var(--muted);margin:0;cursor:pointer;flex:none;font-size:12px}
+    .zoom{bottom:auto;top:12px;right:68px;flex-direction:row}
+    .zoom button{width:40px;height:40px}
+    .floors{top:auto;bottom:8px;left:12px;right:12px;flex-direction:row;justify-content:space-between;gap:2px}
+    .floors button{width:calc((100% - 14px)/8);height:34px}
+    .floorbadge{top:12px;bottom:auto;max-width:calc(100% - 166px);padding:6px 8px}
+    .floorbadge .meta{display:none}
+    .floorbadge b{font-size:14px}
+    .floorbadge details{font-size:11px}
+    header{gap:8px;padding:8px 10px}
+    .brand span{display:none}
+    .search{order:3;flex-basis:100%;max-width:none}
+    header .tools{flex-wrap:nowrap}
+    header .tools .btn{padding:7px 9px;font-size:13px}
+    header .tools .btn span{display:none}
+    header .tools .btn .ic{margin-right:0}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><b>FCIM · Корпус №3 UTM</b><span>Академическая карта · синтетическое расписание</span></div>
+    <form class="search" id="searchForm" autocomplete="off">
+      <input id="searchInput" type="search" inputmode="text" placeholder="Аудитория: 3-405 или 405" aria-label="Поиск аудитории">
+      <button type="submit" aria-label="Найти">Найти</button>
+    </form>
+    <div class="tools">
+      <button class="btn" id="editToggle" aria-pressed="false" title="Режим ручной привязки номеров"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4"/></svg><span>Разметка</span></button>
+      <button class="btn" id="exportBtn" title="Экспорт привязок в JSON"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Экспорт</span></button>
+      <button class="btn" id="importBtn" title="Импорт привязок из JSON"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V9M7 14l5-5 5 5M5 4h14"/></svg><span>Импорт</span></button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+  </header>
+  <main>
+    <div class="mapwrap" id="mapwrap">
+      <svg id="map" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="План этажа">
+        <defs></defs>
+        <g id="layerBase"></g><g id="layerSpaces"></g><g id="layerVert"></g><g id="layerDoors"></g>
+        <g id="layerFeat"></g><g id="layerLabels"></g>
+      </svg>
+      <div class="floorbadge" id="floorBadge"></div>
+      <nav class="floors" id="floorNav" aria-label="Этажи"></nav>
+      <div class="zoom">
+        <button id="zoomIn" aria-label="Приблизить">+</button>
+        <button id="zoomOut" aria-label="Отдалить">−</button>
+        <button id="zoomReset" aria-label="Сбросить масштаб"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      </div>
+      <div class="mode-banner" id="modeBanner"></div>
+    </div>
+    <aside class="sheet" id="sheet">
+      <button class="grip" id="grip" aria-expanded="true" aria-label="Свернуть или развернуть панель">Расписание и помещение ↕</button>
+      <div class="card schedule-controls" id="scheduleControls">
+        <div class="pill warn">Синтетическое демо · не расписание UTM</div>
+        <p class="small muted">Планируемые занятия, а не посещаемость. Номера демо не проверены на месте.</p>
+        <div class="row modes" aria-label="Режим расписания">
+          <button class="btn on" id="myMode" aria-pressed="true">Моя группа</button>
+          <button class="btn" id="allMode" aria-pressed="false">Все занятия</button>
+        </div>
+        <div class="schedule-fields">
+          <label>Группа<select id="groupSelect"></select></label>
+          <label>Подгруппа<select id="subgroupSelect"></select></label>
+        </div>
+        <div class="row modes">
+          <button class="btn on" id="selectedTime" aria-pressed="true">Выбранное время</button>
+          <button class="btn" id="currentTime" aria-pressed="false">Сейчас</button>
+        </div>
+        <div class="schedule-fields">
+          <label>День<input id="scheduleDate" type="date" required></label>
+          <label>Время<input id="scheduleTime" type="time" required></label>
+        </div>
+        <label class="period-label">Демо-интервал<select id="periodSelect" aria-label="Демо-интервал"></select></label>
+        <div class="small muted" id="scheduleContext" role="status" aria-live="polite"></div>
+      </div>
+      <div id="scheduleSummary" aria-live="polite"></div>
+      <div id="panel"></div>
+    </aside>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="map-data.js"></script>
+<script src="room-contract.js"></script>
+<script src="schedule-engine.js"></script>
+<script src="schedule-fixture.js"></script>
+<script src="map-semantics.js"></script>
+<script>
+(function () {
+  "use strict";
+  var DATA = window.FCIM_MAP_DATA;
+  var SVGNS = "http://www.w3.org/2000/svg";
+  var STORE_KEY = "fcim-indoor-map/" + DATA.id + "/bindings";
+  var STORE_SCHEMA = 1;
+  var BUILDING_PREFIX = "3";
+  var parseRoomInput = window.FCIM_ROOM_CONTRACT.createParser(DATA, BUILDING_PREFIX);
+  var resolveRoom = window.FCIM_ROOM_CONTRACT.createResolver(DATA, parseRoomInput);
+  var fixture = window.FCIM_SCHEDULE_FIXTURE;
+  var facilityLayer = window.FCIM_MAP_SEMANTICS.facilities(DATA);
+
+  // ---------- индексы данных ----------
+  var floorsByLevel = Object.create(null), spaceById = Object.create(null), vertById = Object.create(null);
+  DATA.floors.forEach(function (f) {
+    floorsByLevel[f.level] = f;
+    f.spaces.forEach(function (s) { spaceById[s.id] = s; });
+    f.geometry.verticals.forEach(function (v) { vertById[v.id] = Object.assign({}, v, { floorId: f.id }); });
+  });
+  var allFloorEntries = DATA.floors.map(function (f) { return { level: f.level, label: f.label, short: String(f.level), ready: true }; })
+    .concat(DATA.plannedFloors.map(function (p) { return { level: p.level, label: p.label, short: p.level < 0 ? "D" : String(p.level), ready: false, notes: p.notes }; }))
+    .sort(function (a, b) { return b.level - a.level; });
+
+  // ---------- состояние ----------
+  var state = {
+    level: DATA.floors[0].level,
+    selected: null,          // id помещения или вертикали
+    edit: false,
+    msg: null,
+    view: null
+  };
+
+  var schedule = { mode: "my", group: fixture.groups[0].id, subgroup: "", timeMode: "selected", date: fixture.initialSelection.date,
+    time: fixture.initialSelection.time, evaluation: null, occupancy: [], focus: [], focusLocations: [], upcoming: false };
+
+  // ---------- хранилище привязок ----------
+  function isRecord(v) { return v !== null && typeof v === "object" && !Array.isArray(v); }
+  function owns(v, k) { return Object.prototype.hasOwnProperty.call(v, k); }
+  function validSpaceId(id) { return typeof id === "string" && owns(spaceById, id); }
+  function emptyStore() { return { schemaVersion: STORE_SCHEMA, buildingId: DATA.id, mapDataVersion: DATA.dataVersion, bindings: Object.create(null) }; }
+  function versionErrors(st, importing) {
+    var errors = [];
+    if (!isRecord(st)) return ["Ожидается объект"];
+    if (st.schemaVersion !== STORE_SCHEMA) errors.push("Неподдерживаемая schemaVersion");
+    if (st.buildingId !== DATA.id) errors.push("Несовместимый buildingId");
+    if (st.mapDataVersion !== DATA.dataVersion) errors.push("Несовместимый mapDataVersion");
+    if ((importing || owns(st, "mapSchemaVersion")) && st.mapSchemaVersion !== DATA.schemaVersion) errors.push("Несовместимый mapSchemaVersion");
+    return errors;
+  }
+  // Единый валидатор для формы, импорта и хранилища. Исключение этажа требует подтверждения.
+  function validateBinding(b, id, allowFloorOverride) {
+    if (!isRecord(b)) throw new Error("Запись должна быть объектом");
+    if (!validSpaceId(id) || b.spaceId !== id) throw new Error("Недопустимый или отсутствующий spaceId");
+    var s = spaceById[id], lvl = levelOfFloorId(s.floorId);
+    if (s.kind !== "room") throw new Error("Холлы и проходы не получают номеров аудиторий");
+    if (typeof b.roomNumber !== "string") throw new Error("roomNumber должен быть строкой");
+    var p = parseRoomInput(b.roomNumber);
+    if (!p.ok) throw new Error(p.error);
+    if (p.basement) throw new Error("Это помещение подвала; план подвала ещё не добавлен");
+    if (owns(b, "floorId") && b.floorId !== s.floorId) throw new Error("floorId не совпадает с помещением");
+    if (owns(b, "floorLevel") && b.floorLevel !== lvl) throw new Error("floorLevel не совпадает с помещением");
+    if (owns(b, "fullNumber")) {
+      var full = typeof b.fullNumber === "string" && parseRoomInput(b.fullNumber);
+      if (!full || !full.ok || full.full !== p.full) throw new Error("fullNumber не совпадает с roomNumber");
+    }
+    if (owns(b, "method") && (typeof b.method !== "string" || !b.method.trim())) throw new Error("Некорректный method");
+    if (owns(b, "updatedAt") && (typeof b.updatedAt !== "string" || !Number.isFinite(Date.parse(b.updatedAt)))) throw new Error("Некорректный updatedAt");
+    if (owns(b, "previous") && (typeof b.previous !== "string" || !parseRoomInput(b.previous).ok)) throw new Error("Некорректный previous");
+    if (owns(b, "floorOverride") && typeof b.floorOverride !== "boolean") throw new Error("Некорректный floorOverride");
+    if (p.floorGuess !== lvl && !allowFloorOverride) throw new Error("Номер " + p.full + " указывает на " + p.floorGuess + " этаж, помещение — на " + lvl);
+    var clean = { spaceId: id, floorLevel: lvl, roomNumber: p.number, fullNumber: p.full,
+      method: b.method || "manual", updatedAt: b.updatedAt || new Date().toISOString() };
+    if (owns(b, "previous")) clean.previous = parseRoomInput(b.previous).number;
+    if (p.floorGuess !== lvl) clean.floorOverride = true;
+    return clean;
+  }
+  function validateStore(st) {
+    var errors = versionErrors(st, false), clean = emptyStore(), numbers = Object.create(null);
+    if (isRecord(st) && owns(st, "orphans") && (!isRecord(st.orphans) || Object.keys(st.orphans).length)) errors.push("Есть прежние orphan-записи; сохраните исходное хранилище для разбора");
+    if (!isRecord(st) || !isRecord(st.bindings)) errors.push("bindings должен быть словарём, не массивом/null");
+    else Object.keys(st.bindings).forEach(function (id) {
+      try {
+        var b = st.bindings[id], c = validateBinding(b, id, isRecord(b) && b.floorOverride === true);
+        if (owns(numbers, c.roomNumber)) throw new Error("Повтор номера " + c.fullNumber + " у " + numbers[c.roomNumber]);
+        numbers[c.roomNumber] = id; clean.bindings[id] = c;
+      } catch (e) { errors.push(id + ": " + e.message); }
+    });
+    return { store: clean, errors: errors };
+  }
+  var RECOVERY_KEY = STORE_KEY + "/recovery", recovery = null, recoveryBackupPending = false;
+  var storageOk = true;
+  function preserveRecovery() {
+    if (!recoveryBackupPending) return;
+    // Не перезаписывать прежнюю резервную копию: сохранить её вместе с новой.
+    var previous = localStorage.getItem(RECOVERY_KEY);
+    localStorage.setItem(RECOVERY_KEY, JSON.stringify({ raw: recovery.raw, reason: recovery.reason, previous: previous }));
+    recoveryBackupPending = false;
+  }
+  function loadStore() {
+    var raw = null;
+    try {
+      var backup = localStorage.getItem(RECOVERY_KEY);
+      if (backup) recovery = { raw: backup, reason: "Есть резервная копия повреждённого хранилища", candidates: [] };
+      raw = localStorage.getItem(STORE_KEY);
+      if (raw === null) return emptyStore();
+      var st = JSON.parse(raw);
+      var checked = validateStore(st);
+      if (!checked.errors.length) return checked.store;
+      throw new Error(checked.errors.join("; "));
+    } catch (e) {
+      storageOk = false;
+      if (raw !== null) {
+        var candidates = [];
+        // Совместимые записи доступны только через явное восстановление; исходный объект не используется.
+        try {
+          var source = JSON.parse(raw);
+          if (!versionErrors(source, false).length && isRecord(source.bindings)) {
+            Object.keys(source.bindings).forEach(function (id) {
+              try { candidates.push(validateBinding(source.bindings[id], id, true)); } catch (_) { /* остаётся в raw */ }
+            });
+          }
+        } catch (_) { /* raw доступен для экспорта */ }
+        recovery = { raw: raw, reason: e.message, candidates: candidates };
+        recoveryBackupPending = true;
+        try { preserveRecovery(); } catch (_) { /* до резервирования исходный ключ не перезаписывается */ }
+      }
+      return emptyStore();
+    }
+  }
+  var store = loadStore();
+  function copyStore() { return validateStore(store).store; }
+  function saveStore(candidate, keepInMemory) {
+    try {
+      var checked = validateStore(candidate);
+      if (checked.errors.length) throw new Error(checked.errors.join("; "));
+      var serialized = JSON.stringify(checked.store);
+      if (validateStore(JSON.parse(serialized)).errors.length) throw new Error("Ошибка сериализации");
+      preserveRecovery();
+      localStorage.setItem(STORE_KEY, serialized);
+      store = checked.store; storageOk = true; return true;
+    } catch (e) {
+      storageOk = false;
+      if (keepInMemory && checked && !checked.errors.length) store = checked.store;
+      toast("Не удалось сохранить в localStorage. Сделайте экспорт. " + e.message);
+      return false;
+    }
+  }
+  function bindingOf(id) { return owns(store.bindings, id) ? store.bindings[id] : null; }
+  function numberOf(id) {
+    var b = bindingOf(id); if (b) return b.roomNumber;
+    var s = spaceById[id]; return s && s.roomNumber ? s.roomNumber : null;
+  }
+  function findByNumber(num) {
+    var out = [];
+    Object.keys(store.bindings).forEach(function (id) { if (store.bindings[id].roomNumber === num) out.push(id); });
+    DATA.floors.forEach(function (f) { f.spaces.forEach(function (s) { if (s.roomNumber === num && out.indexOf(s.id) < 0) out.push(s.id); }); });
+    return out;
+  }
+
+  // Canonical FIX-01 parser lives in room-contract.js and is shared with resolution/tests.
+
+  // ---------- SVG утилиты ----------
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(SVGNS, tag);
+    if (attrs) for (var k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function pts(poly) { return poly.map(function (p) { return p[0] + "," + p[1]; }).join(" "); }
+  function bbox(poly) {
+    var x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    poly.forEach(function (p) { x0 = Math.min(x0, p[0]); y0 = Math.min(y0, p[1]); x1 = Math.max(x1, p[0]); y1 = Math.max(y1, p[1]); });
+    return { x: x0, y: y0, w: x1 - x0, h: y1 - y0, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2 };
+  }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+
+  var svg = document.getElementById("map");
+  var L = {
+    base: document.getElementById("layerBase"), spaces: document.getElementById("layerSpaces"),
+    vert: document.getElementById("layerVert"), doors: document.getElementById("layerDoors"),
+    feat: document.getElementById("layerFeat"), labels: document.getElementById("layerLabels")
+  };
+  function clear(g) { while (g.firstChild) g.removeChild(g.firstChild); }
+
+  // ---------- рендер этажа ----------
+  function renderFloor() {
+    var f = floorsByLevel[state.level];
+    Object.keys(L).forEach(function (k) { clear(L[k]); });
+    var g = f.geometry;
+    // особенности за контуром (галерея 2 этажа) рисуются под контуром
+    g.features.forEach(function (ft) {
+      if (ft.type === "gallery") {
+        var gg = el("g", null, L.base);
+        el("polygon", { points: pts(ft.polygon), "class": "feat-gal" }, gg);
+        ft.flights.forEach(function (fl) { drawStairBox(gg, fl, "h"); });
+        var b = bbox(ft.polygon);
+        var t = el("text", { x: b.cx, y: b.y + b.h / 2 - 50, "class": "feat-note" }, gg);
+        t.textContent = "переход?";
+      }
+    });
+    el("polygon", { points: pts(g.outline), "class": "outline" }, L.base);
+    el("polygon", { points: pts(g.corridor), "class": "corr" }, L.base);
+    var t1 = el("text", { x: 2, y: g.corridorBand[0] - (g.corridorBand[0] - g.corridorBand[1]) / 2 + 3, "class": "compass" }, L.base);
+    t1.textContent = "◄ запад (усл.)";
+    var t2 = el("text", { x: 998, y: g.corridorBand[1] - 4, "class": "compass", "text-anchor": "end" }, L.base);
+    t2.textContent = "восток (усл.) ►";
+
+    f.spaces.forEach(function (s) {
+      var cls = "sp t-" + s.type + (s.confidence === "low" ? " lowconf" : "") + (numberOf(s.id) ? " bound" : "") + (state.selected === s.id ? " sel" : "");
+      var p = el("polygon", { points: pts(s.polygon), "class": cls, "data-id": s.id, tabindex: "0", role: "button",
+        "aria-label": (numberOf(s.id) ? "Аудитория " + numberOf(s.id) : "Помещение " + s.id) }, L.spaces);
+      p.__id = s.id;
+    });
+    // двери: разрыв в стене + засечки
+    g.doors.forEach(function (d) {
+      var w = 7, internal = !!d.internal, vertical = internal || d.y !== g.corridorBand[0] && d.y !== g.corridorBand[1];
+      if (!vertical) {
+        el("rect", { x: d.x - w / 2, y: d.y - 1.6, width: w, height: 3.2, "class": "door-gap" }, L.doors);
+        el("line", { x1: d.x - w / 2, y1: d.y - 2.2, x2: d.x - w / 2, y2: d.y + 2.2, "class": "door-mk" }, L.doors);
+        el("line", { x1: d.x + w / 2, y1: d.y - 2.2, x2: d.x + w / 2, y2: d.y + 2.2, "class": "door-mk" }, L.doors);
+      } else {
+        el("rect", { x: d.x - 1.6, y: d.y - w / 2, width: 3.2, height: w, "class": "door-gap int" }, L.doors);
+      }
+    });
+    // вертикальные связи
+    g.verticals.forEach(function (v) {
+      var gg = el("g", { "class": "vert " + v.type + (state.selected === v.id ? " sel" : ""), "data-id": v.id, tabindex: "0", role: "button" }, L.vert);
+      gg.__id = v.id;
+      var b = bbox(v.polygon);
+      if (v.type === "stair") {
+        drawStairBox(gg, v.polygon, "v");
+        if (v.innerShaft) { var ib = bbox(v.innerShaft); drawX(gg, ib, "#fff"); }
+        // проём входа
+        if (v.entries) v.entries.forEach(function (x) { el("rect", { x: x - 6, y: b.y - 1.6, width: 12, height: 3.2, fill: "var(--corridor)" }, L.doors); });
+        if (v.entry) el("rect", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: "var(--room-hall)" }, L.doors);
+        var lbl = el("text", { x: b.cx, y: b.y + b.h - 4, "class": "vlabel" }, gg);
+        lbl.textContent = v.shaft === "B3-STAIR-W" ? "Лестница W" : "Лестница M";
+      } else {
+        drawX(gg, b, "var(--lift)");
+        var l2 = el("text", { x: b.cx, y: b.cy + 3, "class": "vlabel el", style: "font-size:6.5px" }, gg);
+        l2.textContent = "шахта";
+      }
+    });
+    g.features.forEach(function (ft) {
+      if (ft.type === "corridorDoor" || ft.type === "corridorMarker") {
+        el("line", { x1: ft.x, y1: g.corridorBand[0] + 1, x2: ft.x, y2: g.corridorBand[1] - 1, "class": "feat",
+          style: ft.type === "corridorMarker" ? "stroke:#9aa5b1" : null }, L.feat);
+        var t = el("text", { x: ft.x + 3, y: g.corridorBand[1] - 3, "class": "feat-note", "text-anchor": "start" }, L.feat);
+        t.textContent = ft.type === "corridorDoor" ? "перегородка?" : "метка?";
+      } else if (ft.type === "stairGlyph") {
+        drawStairBox(L.feat, ft.polygon, "v", true);
+      }
+    });
+    renderLabels();
+    refreshClasses();
+    applyView();
+  }
+  function drawStairBox(parent, poly, dir, light) {
+    var b = bbox(poly);
+    el("rect", { x: b.x, y: b.y, width: b.w, height: b.h, "class": "box", fill: light ? "#eef3ff" : "var(--stair)", stroke: light ? "#7c93c9" : "var(--wall)", "stroke-width": light ? 0.8 : 1.6 }, parent);
+    var step = 4.2, i;
+    if (dir === "v") for (i = b.x + step; i < b.x + b.w - 1; i += step) el("line", { x1: i, y1: b.y + 2, x2: i, y2: b.y + b.h - (light ? 2 : 14), "class": "treads" }, parent);
+    else for (i = b.y + step; i < b.y + b.h - 1; i += step) el("line", { x1: b.x + 2, y1: i, x2: b.x + b.w - 2, y2: i, "class": "treads" }, parent);
+  }
+  function drawX(parent, b, fill) {
+    el("rect", { x: b.x, y: b.y, width: b.w, height: b.h, "class": "box", fill: fill, stroke: "var(--wall)", "stroke-width": 1.2 }, parent);
+    el("line", { x1: b.x + 1.5, y1: b.y + 1.5, x2: b.x + b.w - 1.5, y2: b.y + b.h - 1.5, "class": "x", stroke: "var(--lift-ink)" }, parent);
+    el("line", { x1: b.x + b.w - 1.5, y1: b.y + 1.5, x2: b.x + 1.5, y2: b.y + b.h - 1.5, "class": "x", stroke: "var(--lift-ink)" }, parent);
+  }
+  function renderLabels() {
+    clear(L.labels);
+    var f = floorsByLevel[state.level];
+    f.spaces.forEach(function (s) {
+      var n = numberOf(s.id);
+      if (n) {
+        var t = el("text", { x: s.labelPoint[0], y: s.labelPoint[1], "class": "lbl" }, L.labels);
+        t.textContent = n;
+      } else if (s.kind === "hall" && s.label) {
+        var t2 = el("text", { x: s.labelPoint[0], y: s.labelPoint[1] + 2, "class": "lbl hall" }, L.labels);
+        t2.textContent = "холл";
+      }
+      var demo = schedule.occupancy.filter(function (o) { return o.spaceId === s.id && scheduleClasses(s.id); })[0];
+      if (!demo && schedule.mode === "my" && schedule.upcoming) demo = schedule.focusLocations.filter(function (o) { return o.spaceId === s.id; })[0];
+      if (demo) {
+        var dt = el("text", { x: s.labelPoint[0], y: s.labelPoint[1] + (n ? 13 : 0), "class": "lbl demo-label", style: "font-size:8px" }, L.labels);
+        dt.textContent = "демо " + demo.roomCode.replace(/^3-/, "");
+      }
+    });
+  }
+  function refreshClasses() {
+    Array.prototype.forEach.call(L.spaces.children, function (p) {
+      var s = spaceById[p.__id];
+      p.setAttribute("class", "sp t-" + s.type + (s.confidence === "low" ? " lowconf" : "") + (numberOf(s.id) ? " bound" : "") + (state.selected === s.id ? " sel" : "") + scheduleClasses(s.id));
+    });
+    Array.prototype.forEach.call(L.vert.children, function (g) {
+      var v = vertById[g.__id]; g.setAttribute("class", "vert " + v.type + (state.selected === v.id ? " sel" : ""));
+    });
+  }
+
+  // ---------- масштаб и перемещение ----------
+  var wrap = document.getElementById("mapwrap");
+  function fitView() {
+    var vb = floorsByLevel[state.level].viewBox, r = wrap.getBoundingClientRect();
+    var padR = r.width > 820 ? 80 : 64, padL = 12; // справа — переключатель этажей
+    var usable = Math.max(r.width - padR - padL, 100);
+    var w = vb[2] * r.width / usable;
+    state.view = { x: vb[0] - padL * w / r.width, y: vb[1], w: w, h: vb[3] };
+    applyView(true);
+  }
+  function applyView(fit) {
+    if (!state.view) { var vb = floorsByLevel[state.level].viewBox; state.view = { x: vb[0], y: vb[1], w: vb[2], h: vb[3] }; }
+    var r = wrap.getBoundingClientRect(), v = state.view;
+    if (r.width && r.height) {
+      // сохраняем соотношение сторон контейнера
+      var ar = r.width / r.height, cx = v.x + v.w / 2, cy = v.y + v.h / 2;
+      if (v.w / v.h > ar) v.h = v.w / ar; else v.w = v.h * ar;
+      v.x = cx - v.w / 2; v.y = cy - v.h / 2;
+    }
+    svg.setAttribute("viewBox", [v.x, v.y, v.w, v.h].join(" "));
+  }
+  function zoomAt(factor, clientX, clientY) {
+    var r = wrap.getBoundingClientRect(), v = state.view;
+    var px = clientX == null ? 0.5 : (clientX - r.left) / r.width, py = clientY == null ? 0.5 : (clientY - r.top) / r.height;
+    var mx = v.x + px * v.w, my = v.y + py * v.h;
+    var nw = Math.min(Math.max(v.w / factor, 60), 2600), k = nw / v.w;
+    v.x = mx - (mx - v.x) * k; v.y = my - (my - v.y) * k; v.w = nw; v.h = v.h * k;
+    applyView();
+  }
+  function centerOn(poly, minW) {
+    var b = bbox(poly), r = wrap.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    var mobile = window.matchMedia("(max-width:900px)").matches;
+    var badge = document.getElementById("floorBadge").getBoundingClientRect();
+    var nav = document.getElementById("floorNav").getBoundingClientRect();
+    var top = Math.max(r.top + 12, Math.min(badge.bottom + 12, r.top + r.height * .35));
+    var bottom = mobile ? Math.max(top + 40, nav.top - 12) : r.bottom - 20;
+    var left = r.left + 12, right = mobile ? r.right - 12 : r.right - 80;
+    var w = Math.max(minW || 380, b.w * 1.5 * r.width / Math.max(right - left, 1), b.h * 1.5 * r.width / Math.max(bottom - top, 1));
+    state.view = { w: w, h: w * r.height / r.width,
+      x: b.cx - ((left + right) / 2 - r.left) * w / r.width,
+      y: b.cy - ((top + bottom) / 2 - r.top) * w / r.width };
+    applyView();
+  }
+  function centerSelected() {
+    var selected = spaceById[state.selected] || vertById[state.selected];
+    if (selected) centerOn(selected.polygon);
+  }
+  wrap.addEventListener("wheel", function (e) { e.preventDefault(); zoomAt(Math.pow(1.0018, -e.deltaY), e.clientX, e.clientY); }, { passive: false });
+  var pointers = {}, drag = null, pinch = null, moved = false;
+  wrap.addEventListener("pointerdown", function (e) {
+    if (e.target.closest && e.target.closest(".floors,.zoom,.floorbadge")) return;
+    pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+    var ids = Object.keys(pointers);
+    if (ids.length === 1) { drag = { x: e.clientX, y: e.clientY, vx: state.view.x, vy: state.view.y }; moved = false; }
+    else if (ids.length === 2) {
+      var a = pointers[ids[0]], b = pointers[ids[1]];
+      pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), w: state.view.w }; drag = null; moved = true;
+    }
+    try { wrap.setPointerCapture(e.pointerId); } catch (_) {}
+  });
+  wrap.addEventListener("pointermove", function (e) {
+    if (!pointers[e.pointerId]) return;
+    pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+    var ids = Object.keys(pointers), r = wrap.getBoundingClientRect();
+    if (pinch && ids.length >= 2) {
+      var a = pointers[ids[0]], b = pointers[ids[1]], d = Math.hypot(a.x - b.x, a.y - b.y);
+      var target = pinch.w * pinch.d / Math.max(d, 1);
+      zoomAt(state.view.w / target, (a.x + b.x) / 2, (a.y + b.y) / 2);
+    } else if (drag) {
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (Math.abs(dx) + Math.abs(dy) > 6) { moved = true; svg.classList.add("dragging"); }
+      if (moved) {
+        state.view.x = drag.vx - dx * state.view.w / r.width;
+        state.view.y = drag.vy - dy * state.view.h / r.height;
+        applyView();
+      }
+    }
+  });
+  function endPointer(e) {
+    var wasDrag = moved;
+    delete pointers[e.pointerId];
+    if (Object.keys(pointers).length < 2) pinch = null;
+    if (Object.keys(pointers).length === 0) {
+      svg.classList.remove("dragging"); drag = null;
+      if (!wasDrag && e.type === "pointerup") {
+        var t = document.elementFromPoint(e.clientX, e.clientY);
+        var target = t && t.closest ? t.closest("[data-id]") : null;
+        onMapClick(target ? target.getAttribute("data-id") : null);
+      }
+    }
+  }
+  wrap.addEventListener("pointerup", endPointer);
+  wrap.addEventListener("pointercancel", endPointer);
+  svg.addEventListener("keydown", function (e) {
+    if ((e.key === "Enter" || e.key === " ") && e.target.getAttribute("data-id")) { e.preventDefault(); onMapClick(e.target.getAttribute("data-id")); }
+  });
+  document.getElementById("zoomIn").onclick = function () { zoomAt(1.4); };
+  document.getElementById("zoomOut").onclick = function () { zoomAt(1 / 1.4); };
+  document.getElementById("zoomReset").onclick = fitView;
+  window.addEventListener("resize", function () { applyView(); });
+
+  // ---------- выбор ----------
+  function onMapClick(id) {
+    if (!id) { state.selected = null; state.msg = null; refreshClasses(); renderPanel(); return; }
+    state.selected = id; state.msg = null;
+    refreshClasses(); renderPanel();
+    expandSheet(); centerSelected(); revealSelectedPanel();
+    if (state.edit && spaceById[id]) setTimeout(function () { var i = document.getElementById("numInput"); if (i) i.focus(); }, 30);
+  }
+  function selectSpace(id, opts) {
+    var s = spaceById[id] || vertById[id]; if (!s) return;
+    var lvl = levelOfFloorId(s.floorId);
+    if (lvl !== state.level) setLevel(lvl, true);
+    state.selected = id; refreshClasses(); renderPanel();
+    expandSheet(); centerOn(s.polygon);
+    if (opts && opts.flash) {
+      var p = L.spaces.querySelector('[data-id="' + id + '"]');
+      if (p) { p.classList.remove("flash"); void p.getBBox(); p.classList.add("flash"); }
+    }
+    expandSheet();
+    if (!opts || opts.revealPanel !== false) revealSelectedPanel();
+  }
+  function levelOfFloorId(fid) { for (var k in floorsByLevel) if (floorsByLevel[k].id === fid) return +k; return null; }
+
+  // ---------- переключение этажей ----------
+  var floorNav = document.getElementById("floorNav");
+  function renderFloorNav() {
+    floorNav.innerHTML = "";
+    allFloorEntries.forEach(function (fe) {
+      var b = document.createElement("button");
+      b.textContent = fe.short;
+      b.title = fe.ready ? fe.label : fe.label + " — план ещё не добавлен";
+      b.setAttribute("aria-label", b.title);
+      if (!fe.ready) { b.className = "pending"; b.onclick = function () { toast(fe.label + ": план ещё не получен. Геометрия не создавалась."); }; }
+      else {
+        b.className = (fe.level === state.level ? "active" : "");
+        if (fe.level === state.level) b.setAttribute("aria-current", "true");
+        b.onclick = function () { setLevel(fe.level); };
+      }
+      floorNav.appendChild(b);
+    });
+  }
+  function setLevel(level, keepView) {
+    if (!floorsByLevel[level]) return;
+    var changed = level !== state.level;
+    state.level = level;
+    if (changed && state.selected && !belongsToLevel(state.selected, level)) state.selected = null;
+    if (!keepView || !state.view) state.view = null;
+    renderFloorNav(); renderBadge(); renderFloor(); if (!keepView) fitView(); renderPanel();
+    if (schedule.evaluation) renderScheduleSummary();
+  }
+  function belongsToLevel(id, level) { var s = spaceById[id] || vertById[id]; return s && levelOfFloorId(s.floorId) === level; }
+  function renderBadge() {
+    var f = floorsByLevel[state.level];
+    var bound = f.spaces.filter(function (s) { return numberOf(s.id); }).length;
+    var rooms = f.spaces.filter(function (s) { return s.kind !== "hall"; }).length;
+    var notes = (f.notes || []).map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("");
+    document.getElementById("floorBadge").innerHTML =
+      "<b>" + esc(f.label) + "</b> <span class='meta'>· помещений: " + rooms + " · размечено: " + bound + "</span>" +
+      "<div class='meta'>Источник: " + esc(f.source.photo) + "</div>" +
+      (notes ? "<details><summary>Особенности этажа</summary><ul>" + notes + "</ul></details>" : "");
+  }
+
+  // ---------- панель ----------
+  var panel = document.getElementById("panel");
+  var sheet = document.getElementById("sheet");
+  document.getElementById("grip").onclick = function () {
+    sheet.classList.toggle("collapsed"); this.setAttribute("aria-expanded", String(!sheet.classList.contains("collapsed")));
+  };
+  function expandSheet() { sheet.classList.remove("collapsed"); document.getElementById("grip").setAttribute("aria-expanded", "true"); }
+  function revealSelectedPanel() {
+    var gap = window.matchMedia("(max-width:900px)").matches ? 44 : 16;
+    sheet.scrollTop += panel.getBoundingClientRect().top - sheet.getBoundingClientRect().top - gap;
+  }
+  new ResizeObserver(function () {
+    if (window.matchMedia("(max-width:900px)").matches) { if (state.selected) centerSelected(); else fitView(); }
+    else applyView();
+  }).observe(wrap);
+  var VERIF = { verified: "проверено на месте", observed: "видно на плане эвакуации", unverified: "не подтверждено", probable: "вероятно" };
+  var TYPE = { classroom: "аудитория", office: "кабинет", service: "служебное (вероятно)", unknown: "назначение неизвестно", circulation: "холл / проход" };
+  function msgHtml() { return state.msg ? "<div class='msg " + (state.msg.kind || "") + "'>" + state.msg.html + "</div>" : ""; }
+
+  function renderPanel() {
+    var h = "";
+    var id = state.selected;
+    if (id && spaceById[id]) h += spaceCardHtml(spaceById[id]);
+    else if (id && vertById[id]) h += vertCardHtml(vertById[id]);
+    else h += introHtml();
+    if (!id && state.msg) h = msgHtml() + h;
+    h += recoveryHtml() + legendHtml();
+    panel.innerHTML = h;
+    wirePanel();
+    wireScheduleLinks(panel);
+    document.getElementById("modeBanner").className = "mode-banner" + (state.edit ? " show" : "");
+    document.getElementById("modeBanner").textContent = "Режим разметки: нажмите на помещение";
+  }
+  function recoveryHtml() {
+    if (!recovery) return "";
+    return "<div class='card'><h3>Восстановление хранилища</h3><div class='msg warn'>" + esc(recovery.reason) +
+      "</div><p class='small'>Исходное содержимое сохранено " + (recoveryBackupPending ? "в памяти этой вкладки; скачайте его до закрытия" : "в резервном ключе localStorage") +
+      ". Корректных записей для восстановления: " + recovery.candidates.length + ".</p><div class='row'><button class='btn' id='recoveryExport'>Экспорт исходного хранилища</button>" +
+      (recovery.candidates.length ? "<button class='btn' id='recoveryRestore'>Восстановить корректные записи</button>" : "") + "</div></div>";
+  }
+  function introHtml() {
+    var total = Object.keys(store.bindings).length;
+    return "<div class='card'><h3>Как пользоваться</h3><div class='small muted'>" +
+      "Нажмите на помещение, чтобы увидеть сведения. Номера аудиторий на планах эвакуации не указаны, поэтому почти все помещения пока имеют статус «Номер не установлен».<br><br>" +
+      "Чтобы привязать номер после обхода, включите <b>«Разметка»</b>, выберите помещение и введите номер. Привязки хранятся в этом браузере; сделайте <b>Экспорт</b>, чтобы передать их в проект." +
+      "</div><div class='row' style='margin-top:10px'><span class='pill " + (total ? "ok" : "") + "'>Привязок вручную: " + total + "</span>" +
+      (storageOk ? "" : "<span class='pill warn'>localStorage недоступен</span>") + "</div></div>";
+  }
+  function spaceCardHtml(s) {
+    var lvl = levelOfFloorId(s.floorId), b = bindingOf(s.id), n = numberOf(s.id);
+    var canBind = s.kind === "room";
+    var h = "<div class='card'><h3>" + (n ? "Аудитория " + esc(BUILDING_PREFIX + "-" + n) : (s.label ? esc(s.label) : "Номер не установлен")) + "</h3>";
+    if (!state.edit) h += scheduledSpaceHtml(s.id);
+    h += "<dl class='kv'>" +
+      "<dt>ID</dt><dd><code>" + esc(s.id) + "</code></dd>" +
+      "<dt>Этаж</dt><dd>" + lvl + "</dd>" +
+      "<dt>Номер</dt><dd>" + (n ? "<b>" + esc(n) + "</b> (" + esc(BUILDING_PREFIX + "-" + n) + ")" : "<span class='muted'>Номер не установлен</span>") + "</dd>" +
+      "<dt>Привязка</dt><dd>" + (b ? "<span class='pill ok'>вручную</span> <span class='small muted'>" + esc(new Date(b.updatedAt).toLocaleString("ru-RU")) + "</span>" : (s.roomNumber ? "<span class='pill ok'>в наборе данных</span>" : "<span class='pill'>нет</span>")) + "</dd>" +
+      "<dt>Тип</dt><dd>" + esc(TYPE[s.type] || s.type) + "</dd>" +
+      "<dt>Геометрия</dt><dd>" + esc(VERIF[s.verification] || s.verification) + (s.confidence === "low" ? " · <span class='pill warn'>низкая точность</span>" : "") + "</dd>" +
+      "<dt>Источник</dt><dd class='small'>" + esc(s.source) + "</dd>" +
+      (s.notes ? "<dt>Примечание</dt><dd class='small'>" + esc(s.notes) + "</dd>" : "") +
+      "</dl>";
+    if (state.edit && canBind) {
+      h += "<form class='editor' id='bindForm' style='margin-top:12px'><div class='row'>" +
+        "<input id='numInput' inputmode='numeric' autocomplete='off' placeholder='например 405' value='" + esc(n || "") + "' aria-label='Номер аудитории'>" +
+        "<button class='btn primary' type='submit'>" + (b ? "Исправить" : "Привязать") + "</button></div>" +
+        (b ? "<div class='row' style='margin-top:8px'><button class='btn danger' type='button' id='unbindBtn'>Удалить привязку</button></div>" : "") +
+        "<div class='small muted' style='margin-top:6px'>Вводите только номер, подтверждённый табличкой на двери. Не назначайте номера по порядку помещений.</div></form>";
+    } else if (canBind) {
+      h += "<div class='row' style='margin-top:12px'><button class='btn' id='startEdit'>" + (b ? "Исправить номер" : "Указать номер") + "</button></div>";
+    } else if (!canBind) {
+      h += "<div class='small muted' style='margin-top:10px'>Холлы и проходы не получают номеров аудиторий.</div>";
+    }
+    if (state.edit) h += scheduledSpaceHtml(s.id);
+    h += msgHtml() ? "<div style='margin-top:10px'>" + msgHtml() + "</div>" : "";
+    return h + "</div>";
+  }
+  function vertCardHtml(v) {
+    var lvl = levelOfFloorId(v.floorId);
+    var facility = facilityLayer.filter(function (f) { return f.id === v.id; })[0];
+    var name = v.type === "elevator" ? "Лифтовая шахта (" + v.id.slice(-3) + ")" : (v.shaft === "B3-STAIR-W" ? "Западная лестница (W)" : "Центральная лестница (M)");
+    return "<div class='card'><h3>" + esc(name) + "</h3><dl class='kv'>" +
+      "<dt>ID</dt><dd><code>" + esc(v.id) + "</code></dd><dt>Этаж</dt><dd>" + lvl + "</dd>" +
+      "<dt>Вертикаль</dt><dd><code>" + esc(v.shaft) + "</code></dd>" +
+      "<dt>Доступность</dt><dd>Не проверена; действующий лифт или проход не подтверждён.</dd>" +
+      "<dt>Статус объекта</dt><dd>" + esc(facility.evidence) + " · operation: unknown</dd>" +
+      "<dt>Геометрия</dt><dd>" + esc(VERIF[v.verification]) + "</dd>" +
+      "<dt>Источник</dt><dd class='small'>" + esc(v.source) + "</dd>" +
+      "<dt>Примечание</dt><dd class='small'>" + esc(v.notes || "") + "</dd></dl></div>";
+  }
+  function legendHtml() {
+    return "<div class='card'><h3>Обозначения</h3><div class='legend'>" +
+      "<div class='sw' style='background:var(--mine)'></div><div>Занятие выбранной группы по плану</div>" +
+      "<div class='sw' style='background:var(--scheduled)'></div><div>Занятия других групп по плану</div>" +
+      "<div class='sw' style='border-color:#b35c00;border-width:2.5px'></div><div>Общий слот или возможный конфликт записей</div>" +
+      "<div class='sw' style='background:#eefbf6;border-style:dashed;border-color:var(--accent)'></div><div>Следующее занятие моей группы</div>" +
+      "<div class='sw' style='background:#fff'></div><div>Нет известного занятия; доступность неизвестна</div>" +
+      "<div class='pill warn'>?</div><div>Не нанесённый номер: без подсветки</div>" +
+      "<div class='sw' style='background:var(--bound)'></div><div>Номер привязан вручную</div>" +
+      "<div class='sw' style='background:var(--room-service);border-style:dashed'></div><div>Малые/служебные помещения (низкая точность)</div>" +
+      "<div class='sw' style='background:var(--room-hall)'></div><div>Холл, открытый в коридор</div>" +
+      "<div class='sw' style='background:var(--stair)'></div><div>Лестница</div>" +
+      "<div class='sw' style='background:var(--lift)'></div><div>Лифтовая шахта</div>" +
+      "</div><div class='small muted' style='margin-top:8px'>Пожарная символика с планов намеренно не воспроизводится. Карта показывает план занятий. Туалеты, входы и работа лифтов не подтверждены. Фото сейчас отсутствуют; физическая точность не проверена.</div></div>";
+  }
+  function wirePanel() {
+    var re = document.getElementById("recoveryExport");
+    if (re) re.onclick = function () {
+      downloadText(recovery.raw, "fcim-bindings-recovery-" + Date.now() + ".txt", "text/plain");
+    };
+    var rr = document.getElementById("recoveryRestore");
+    if (rr) rr.onclick = function () {
+      importBindings({ format: "fcim-indoor-map/room-bindings", schemaVersion: STORE_SCHEMA, buildingId: DATA.id,
+        mapSchemaVersion: DATA.schemaVersion, mapDataVersion: DATA.dataVersion, bindings: recovery.candidates });
+    };
+    var f = document.getElementById("bindForm");
+    if (f) f.onsubmit = function (e) { e.preventDefault(); bindCurrent(document.getElementById("numInput").value); };
+    var u = document.getElementById("unbindBtn");
+    if (u) u.onclick = function () { unbind(state.selected); };
+    var se = document.getElementById("startEdit");
+    if (se) se.onclick = function () { setEdit(true); setTimeout(function () { var i = document.getElementById("numInput"); if (i) i.focus(); }, 30); };
+    Array.prototype.forEach.call(panel.querySelectorAll("[data-goto]"), function (b) {
+      b.onclick = function () { setLevel(+b.getAttribute("data-goto")); };
+    });
+  }
+
+  // ---------- привязка ----------
+  function bindCurrent(raw) {
+    var s = spaceById[state.selected]; if (!s || s.kind !== "room") return;
+    var lvl = levelOfFloorId(s.floorId);
+    var p = parseRoomInput(raw);
+    if (!p.ok || p.basement) { state.msg = { kind: "err", html: esc(p.basement ? "Это помещение подвала. План подвала ещё не добавлен." : p.error) }; renderPanel(); return; }
+    if (p.floorGuess !== lvl && !confirm("Номер " + p.full + " по правилу нумерации относится к " + p.floorGuess + " этажу, а помещение находится на " + lvl + " этаже.\nВсё равно привязать?")) return;
+    var others = findByNumber(p.number).filter(function (x) { return x !== s.id; });
+    var candidate = copyStore();
+    if (others.length) {
+      if (!confirm("Номер " + p.full + " уже привязан к " + others.join(", ") + ".\nПеренести привязку на " + s.id + "?")) return;
+      others.forEach(function (o) { delete candidate.bindings[o]; });
+    }
+    var prev = bindingOf(s.id), b = {
+      spaceId: s.id, floorLevel: lvl, roomNumber: p.number, fullNumber: p.full,
+      method: "manual", updatedAt: new Date().toISOString()
+    };
+    if (prev) b.previous = prev.roomNumber;
+    candidate.bindings[s.id] = validateBinding(b, s.id, p.floorGuess !== lvl);
+    var saved = saveStore(candidate, true);
+    state.msg = { kind: saved ? "ok" : "warn", html: (saved ? "Сохранено: " : "Только в памяти; сделайте экспорт: ") + esc(s.id) + " → " + esc(p.full) };
+    refreshClasses(); renderLabels(); renderBadge(); renderPanel();
+  }
+  function unbind(id) {
+    var b = store.bindings[id]; if (!b) return;
+    if (!confirm("Удалить привязку " + b.fullNumber + " у помещения " + id + "?")) return;
+    var candidate = copyStore(); delete candidate.bindings[id];
+    var saved = saveStore(candidate, true);
+    state.msg = { kind: saved ? "ok" : "warn", html: saved ? "Привязка удалена." : "Удалено только в памяти; сделайте экспорт." };
+    refreshClasses(); renderLabels(); renderBadge(); renderPanel();
+  }
+  function setEdit(on) {
+    state.edit = on;
+    var b = document.getElementById("editToggle"); b.classList.toggle("on", on); b.setAttribute("aria-pressed", String(on));
+    renderPanel();
+  }
+  document.getElementById("editToggle").onclick = function () { setEdit(!state.edit); };
+
+  // ---------- поиск ----------
+  document.getElementById("searchForm").onsubmit = function (e) {
+    e.preventDefault();
+    var raw = document.getElementById("searchInput").value;
+    var p = parseRoomInput(raw);
+    if (!p.ok || p.basement) { state.selected = null; state.msg = { kind: "err", html: esc(p.basement ? "Это помещение подвала (" + p.full + "). План подвала ещё не добавлен." : p.error) }; refreshClasses(); renderPanel(); expandSheet(); return; }
+    var ids = findByNumber(p.number);
+    if (ids.length) {
+      state.msg = { kind: "ok", html: "Аудитория " + esc(p.full) + " найдена." };
+      selectSpace(ids[0], { flash: true });
+      state.msg = { kind: "ok", html: "Аудитория " + esc(p.full) + " найдена (привязка вручную)." }; renderPanel();
+    } else {
+      var known = (DATA.knownButUnlocated || []).filter(function (k) { return k.fullNumber === p.full; })[0];
+      var html = "Расположение аудитории <b>" + esc(p.full) + "</b> ещё не установлено: номер не привязан ни к одному помещению на карте.";
+      if (known) html += "<br><span class='small'>" + esc(known.note) + "</span>";
+      if (floorsByLevel[p.floorGuess]) html += "<br><span class='small'>По правилу нумерации это, вероятно, " + p.floorGuess + " этаж — но конкретное помещение неизвестно.</span><div class='row' style='margin-top:8px'><button class='btn' data-goto='" + p.floorGuess + "'>Открыть " + p.floorGuess + " этаж</button></div>";
+      else html += "<br><span class='small'>План " + p.floorGuess + " этажа ещё не добавлен.</span>";
+      state.selected = null; state.msg = { kind: "warn", html: html };
+      refreshClasses(); renderPanel(); expandSheet();
+    }
+  };
+
+  // ---------- экспорт / импорт ----------
+  function downloadText(text, name, type) {
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], { type: type })); a.download = name;
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  document.getElementById("exportBtn").onclick = function () {
+    var list = Object.keys(store.bindings).sort().map(function (id) {
+      var b = store.bindings[id], s = spaceById[id], bb = bbox(s.polygon);
+      return { spaceId: id, floorId: s.floorId, floorLevel: b.floorLevel, roomNumber: b.roomNumber, fullNumber: b.fullNumber,
+        method: b.method || "manual", updatedAt: b.updatedAt, spaceCentroid: [Math.round(bb.cx * 10) / 10, Math.round(bb.cy * 10) / 10],
+        ...(b.floorOverride ? { floorOverride: true } : {}) };
+    });
+    var payload = { format: "fcim-indoor-map/room-bindings", schemaVersion: STORE_SCHEMA, buildingId: DATA.id,
+      mapSchemaVersion: DATA.schemaVersion, mapDataVersion: DATA.dataVersion, exportedAt: new Date().toISOString(),
+      count: list.length, bindings: list };
+    downloadText(JSON.stringify(payload, null, 2), "fcim-b3-room-bindings-" + new Date().toISOString().slice(0, 10) + ".json", "application/json");
+    toast(list.length ? "Экспортировано привязок: " + list.length : "Привязок пока нет — экспортирован пустой файл.");
+  };
+  function previewImport(j) {
+    var errors = versionErrors(j, true), records = [], ids = Object.create(null), numbers = Object.create(null);
+    var additions = [], updates = [], transfers = [], conflicts = [], floors = [];
+    if (!isRecord(j) || j.format !== "fcim-indoor-map/room-bindings") errors.push("Неподходящий формат файла");
+    if (!isRecord(j) || !Array.isArray(j.bindings)) errors.push("bindings должен быть массивом");
+    else j.bindings.forEach(function (b, i) {
+      var tag = "Запись " + (i + 1) + (isRecord(b) ? " (" + String(b.spaceId) + ")" : "");
+      try {
+        var c = validateBinding(b, isRecord(b) ? b.spaceId : null, true);
+        if (owns(ids, c.spaceId)) throw new Error("Повтор spaceId " + c.spaceId);
+        if (owns(numbers, c.roomNumber)) throw new Error("Повтор канонического номера " + c.fullNumber);
+        ids[c.spaceId] = true; numbers[c.roomNumber] = c.spaceId; records.push(c);
+        var old = bindingOf(c.spaceId), description = c.spaceId + ": " + (old ? old.fullNumber + " → " : "") + c.fullNumber;
+        (old ? updates : additions).push(description);
+        if (old && old.roomNumber !== c.roomNumber) conflicts.push("Замена " + description);
+        if (c.floorOverride) floors.push(c.spaceId + " → " + c.fullNumber + ": номер указывает на " + parseRoomInput(c.roomNumber).floorGuess + " этаж, помещение — на " + c.floorLevel);
+      } catch (e) { errors.push(tag + ": " + e.message); }
+    });
+    var candidate = copyStore();
+    records.forEach(function (c) {
+      findByNumber(c.roomNumber).filter(function (id) { return id !== c.spaceId; }).forEach(function (id) {
+        var transfer = c.fullNumber + ": " + id + " → " + c.spaceId;
+        transfers.push(transfer); conflicts.push("Перенос " + transfer);
+        delete candidate.bindings[id];
+      });
+    });
+    records.forEach(function (c) { candidate.bindings[c.spaceId] = c; });
+    var checked = validateStore(candidate);
+    errors = errors.concat(checked.errors);
+    var summary = "Добавления: " + additions.length + "; обновления: " + updates.length + "; переносы: " + transfers.length +
+      "; конфликты: " + conflicts.length + "; отклонено: " + errors.length + ".";
+    var details = [].concat(additions.map(function (s) { return "Добавление " + s; }), updates.map(function (s) { return "Обновление " + s; }), conflicts, floors, errors);
+    return { candidate: checked.store, errors: errors, floors: floors, summary: summary, details: details, count: records.length };
+  }
+  function importBindings(j) {
+    var preview = previewImport(j);
+    state.msg = { kind: preview.errors.length ? "err" : "warn", html: "<b>Предпросмотр импорта</b><br>" + esc(preview.summary) +
+      "<details open><summary>Изменения и отклонённые записи</summary><ul>" + preview.details.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul></details>" };
+    renderPanel(); expandSheet();
+    if (preview.errors.length) { toast("Ошибка импорта: файл отклонён целиком. " + preview.summary); return; }
+    if (!preview.count) { toast("Пустой импорт. " + preview.summary); return; }
+    if (!confirm("Импорт — " + preview.summary + "\n" + preview.details.join("\n") + "\nПрименить все перечисленные изменения и переносы?")) {
+      state.msg.html += "<br>Импорт отменён; привязки сохранены."; renderPanel(); return;
+    }
+    if (preview.floors.length && !confirm("Исключения этажей (сохранятся как floorOverride):\n" + preview.floors.join("\n") + "\nПодтвердить эти исключения отдельно?")) {
+      state.msg.html += "<br>Импорт отменён; привязки сохранены."; renderPanel(); return;
+    }
+    // Единственная запись в storage; при ошибке активный набор остаётся прежним.
+    if (!saveStore(preview.candidate, false)) { state.msg.kind = "err"; state.msg.html += "<br>Импорт не применён: ошибка сохранения."; renderPanel(); return; }
+    state.msg = { kind: "ok", html: "Импортировано: " + preview.count + ". " + esc(preview.summary) };
+    refreshClasses(); renderLabels(); renderBadge(); renderPanel(); toast("Импортировано: " + preview.count);
+  }
+  var importFile = document.getElementById("importFile");
+  document.getElementById("importBtn").onclick = function () { importFile.value = ""; importFile.click(); };
+  importFile.onchange = function () {
+    var file = importFile.files[0]; if (!file) return;
+    var rd = new FileReader();
+    rd.onload = function () {
+      try {
+        importBindings(JSON.parse(rd.result));
+      } catch (err) { toast("Ошибка импорта: " + err.message); }
+    };
+    rd.onerror = function () { toast("Ошибка импорта: не удалось прочитать файл"); };
+    rd.readAsText(file);
+  };
+
+  // ---------- расписание: state -> evaluation -> room resolution -> highlight ----------
+  function demoResolve(lesson) { return resolveRoom(lesson, { demoAssociations: fixture.demoAssociations }); }
+  function isMyLesson(lesson) { return lesson.group === schedule.group && (!schedule.subgroup || !lesson.subgroup || lesson.subgroup === schedule.subgroup); }
+  function scheduleClasses(id) {
+    var active = schedule.occupancy.filter(function (o) { return o.spaceId === id; })[0];
+    if (active && (schedule.mode === "all" || active.lessons.some(isMyLesson))) {
+      return (active.lessons.some(isMyLesson) ? " scheduled-mine" : " scheduled-other") + (active.lessons.length > 1 ? " schedule-shared" : "");
+    }
+    if (schedule.mode === "my" && schedule.upcoming && schedule.focusLocations.some(function (o) { return o.spaceId === id; })) return " schedule-next";
+    return "";
+  }
+  var LOCATION_MESSAGES = {
+    unmapped: "Расположение ещё не нанесено · Location not mapped yet",
+    "missing-room": "Аудитория не указана; подсветка отсутствует",
+    "outside-building": "Другой корпус; на карте корпуса 3 не отображается",
+    "unknown-building": "Корпус неизвестен; расположение не назначается",
+    "pending-floor": "План этажа ещё не добавлен · Location not mapped yet",
+    "invalid-room": "Некорректный код аудитории; расположение неизвестно",
+    "ambiguous-binding": "Конфликт привязок; расположение не выбирается",
+    "invalid-binding": "Привязка не соответствует помещению",
+    "unverified-binding": "Расположение не подтверждено проверенной привязкой"
+  };
+  function lessonHtml(lesson, date) {
+    var location = demoResolve(lesson);
+    return "<div class='lesson' data-lesson-id='" + esc(lesson.id) + "'><b>" + esc(lesson.subject) + "</b><p>" + esc(lesson.group) +
+      (lesson.subgroup ? " · подгруппа " + esc(lesson.subgroup) : " · вся группа") + "</p><p>" + esc(date || schedule.date) + " · " + esc(lesson.startTime) + "–" + esc(lesson.endTime) + "</p>" +
+      (lesson.teacher ? "<p>" + esc(lesson.teacher) + "</p>" : "<p class='muted'>Преподаватель не указан</p>") +
+      "<p>Аудитория: <b>" + esc(location.roomCode || "не указана") + "</b></p>" +
+      (location.spaceId ? "<button class='btn small' data-schedule-space='" + esc(location.spaceId) + "'>Показать · " + location.floorLevel + " этаж</button>" : "<p class='msg warn'>" + esc(LOCATION_MESSAGES[location.status] || LOCATION_MESSAGES.unmapped) + "</p>") +
+      "<p class='small muted'>" + (lesson.source === "mock" ? "Синтетические данные · временная демо-привязка" : "Опубликованное расписание · не посещаемость") + "</p></div>";
+  }
+  function wireScheduleLinks(container) {
+    Array.prototype.forEach.call(container.querySelectorAll("[data-schedule-space]"), function (button) {
+      button.onclick = function () { selectSpace(button.getAttribute("data-schedule-space"), { flash: true }); };
+    });
+  }
+  function scheduledSpaceHtml(id) {
+    var occupants = schedule.occupancy.filter(function (o) { return o.spaceId === id; });
+    var h = "<div class='schedule-room'><b>План занятий на выбранное время</b>";
+    if (!occupants.length) h += "<p class='small muted'>Нет известного занятия. Покрытие демо неполное; доступность помещения неизвестна.</p>";
+    occupants.forEach(function (o) {
+      h += "<p><b>" + esc(o.roomCode) + "</b> · синтетический номер, физически не проверен</p>";
+      if (o.lessons.length > 1) h += "<div class='msg warn'>Несколько записей в одном помещении: общий слот или возможный конфликт. Все записи сохранены.</div>";
+      h += o.lessons.map(function (l) { return lessonHtml(l); }).join("");
+    });
+    if (schedule.mode === "my" && schedule.upcoming) schedule.focus.forEach(function (entry) {
+      if (demoResolve(entry.lesson).spaceId === id) h += "<p class='small'>Следующее занятие, не активное сейчас:</p>" + lessonHtml(entry.lesson, entry.date);
+    });
+    return h + "</div>";
+  }
+  function renderScheduleSummary() {
+    var e = schedule.evaluation, h = "<div class='card'><h3>" + (schedule.mode === "my" ? "Моя группа · " + esc(schedule.group) : "Все занятия · корпус 3") + "</h3>";
+    if (e.contextStatus === "outside-coverage") h += "<div class='msg warn'>Дата вне заданного периода демо. Записей для неё нет.</div>";
+    else if (e.contextStatus === "invalid") h += "<div class='msg warn'>Выберите корректные день и время. Контекст расписания недоступен.</div>";
+    if (schedule.mode === "my") {
+      if (!e.groupActive.length) h += "<p class='small'>Нет активного занятия по доступным данным.</p>";
+      if (schedule.upcoming) h += "<p class='small'><b>Следующее занятие</b> · пунктир на карте</p>";
+      h += schedule.focus.map(function (entry) { return lessonHtml(entry.lesson, entry.date); }).join("");
+      if (!schedule.focus.length) h += "<p class='small muted'>Следующее занятие в заданном периоде не найдено.</p>";
+    } else {
+      var visible = e.active.filter(function (l) { return demoResolve(l).status !== "outside-building"; });
+      h += "<p class='small'>Записей на это время: " + visible.length + ". На карте этого этажа: " + schedule.occupancy.filter(function (o) { return o.spaceId && o.floorLevel === state.level; }).length + ".</p>";
+      h += visible.map(function (l) { return lessonHtml(l); }).join("");
+      if (!visible.length) h += "<p class='small muted'>Нет известных занятий. Это не означает, что аудитории свободны.</p>";
+      var outside = e.active.length - visible.length;
+      if (outside) h += "<p class='small muted'>Записей другого корпуса, исключённых из карты: " + outside + ".</p>";
+    }
+    if (e.issues.length) h += "<details><summary>Неполные или конфликтующие записи: " + e.issues.length + "</summary><ul>" + e.issues.map(function (issue) { return "<li>" + esc(issue.id || "Без ID") + ": " + esc(issue.message) + "</li>"; }).join("") + "</ul></details>";
+    h += "<div class='small muted'>Покрытие синтетическое и неполное. Подсветка показывает план, а не физическое присутствие.</div></div>";
+    var summary = document.getElementById("scheduleSummary"); summary.innerHTML = h; wireScheduleLinks(summary);
+    document.getElementById("scheduleContext").textContent = schedule.date + " " + schedule.time + " · Europe/Chisinau" +
+      (e.week ? " · демо-неделя " + e.week.number + " (" + (e.week.parity === "odd" ? "нечётная" : "чётная") + ")" : " · чётность неизвестна") + ". Контекст вымышленный.";
+  }
+  function updateSchedule(autoSelect) {
+    if (schedule.timeMode === "current") {
+      var local = window.FCIM_SCHEDULE.localTime(Date.now(), fixture.context.timeZone);
+      schedule.date = local.date; schedule.time = local.time;
+    }
+    document.getElementById("scheduleDate").value = schedule.date;
+    document.getElementById("scheduleTime").value = schedule.time;
+    schedule.evaluation = window.FCIM_SCHEDULE.evaluate(fixture, schedule);
+    schedule.occupancy = window.FCIM_SCHEDULE.aggregate(schedule.evaluation.active, demoResolve).rooms;
+    schedule.upcoming = !schedule.evaluation.groupActive.length && schedule.evaluation.next.length > 0;
+    schedule.focus = schedule.upcoming ? schedule.evaluation.next : schedule.evaluation.groupActive.map(function (lesson) { return { date: schedule.date, lesson: lesson }; });
+    schedule.focusLocations = schedule.focus.map(function (entry) { return demoResolve(entry.lesson); });
+    if (autoSelect && schedule.mode === "my" && !state.edit) {
+      var first = schedule.focusLocations.filter(function (location) { return location.spaceId; })[0];
+      if (first) selectSpace(first.spaceId, { revealPanel: false });
+      else { state.selected = null; state.msg = null; }
+    }
+    refreshClasses(); renderLabels(); renderScheduleSummary(); renderPanel();
+    var period = fixture.periods.findIndex(function (p) { return p.startTime === schedule.time; });
+    document.getElementById("periodSelect").value = period < 0 ? "" : String(period);
+  }
+  function setTimeMode(mode) {
+    schedule.timeMode = mode;
+    ["scheduleDate", "scheduleTime", "periodSelect"].forEach(function (id) { document.getElementById(id).disabled = mode === "current"; });
+    ["selectedTime", "currentTime"].forEach(function (id) { var on = id === (mode === "current" ? "currentTime" : "selectedTime"), button = document.getElementById(id); button.classList.toggle("on", on); button.setAttribute("aria-pressed", String(on)); });
+    updateSchedule(true);
+  }
+  function initScheduleControls() {
+    var groups = document.getElementById("groupSelect"), subgroups = document.getElementById("subgroupSelect");
+    groups.innerHTML = fixture.groups.map(function (group) { return "<option value='" + esc(group.id) + "'>" + esc(group.id) + " · курс " + group.courseYear + "</option>"; }).join("");
+    function fillSubgroups() {
+      var group = fixture.groups.filter(function (g) { return g.id === schedule.group; })[0];
+      subgroups.innerHTML = "<option value=''>Все подгруппы</option>" + group.subgroups.map(function (subgroup) { return "<option>" + esc(subgroup) + "</option>"; }).join("");
+      subgroups.disabled = !group.subgroups.length;
+    }
+    fillSubgroups();
+    groups.onchange = function () { schedule.group = groups.value; schedule.subgroup = ""; fillSubgroups(); updateSchedule(true); };
+    subgroups.onchange = function () { schedule.subgroup = subgroups.value; updateSchedule(true); };
+    ["my", "all"].forEach(function (mode) {
+      document.getElementById(mode + "Mode").onclick = function () {
+        schedule.mode = mode;
+        ["my", "all"].forEach(function (m) { var button = document.getElementById(m + "Mode"); button.classList.toggle("on", m === mode); button.setAttribute("aria-pressed", String(m === mode)); });
+        updateSchedule(true);
+      };
+    });
+    document.getElementById("currentTime").onclick = function () { setTimeMode("current"); };
+    document.getElementById("selectedTime").onclick = function () { setTimeMode("selected"); };
+    document.getElementById("scheduleDate").onchange = function () { schedule.date = this.value; updateSchedule(true); };
+    document.getElementById("scheduleTime").onchange = function () { schedule.time = this.value; updateSchedule(true); };
+    document.getElementById("periodSelect").innerHTML = "<option value=''>Произвольное время</option>" + fixture.periods.map(function (p, i) { return "<option value='" + i + "'>" + p.startTime + "–" + p.endTime + "</option>"; }).join("");
+    document.getElementById("periodSelect").onchange = function () { if (this.value !== "") { schedule.time = fixture.periods[Number(this.value)].startTime; updateSchedule(true); } };
+    setInterval(function () {
+      if (schedule.timeMode !== "current") return;
+      var local = window.FCIM_SCHEDULE.localTime(Date.now(), fixture.context.timeZone);
+      if (local.date !== schedule.date || local.time !== schedule.time) updateSchedule(true);
+    }, 15000);
+  }
+
+  // ---------- уведомления ----------
+  var toastTimer;
+  function toast(t) { var e = document.getElementById("toast"); e.textContent = t; e.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(function () { e.classList.remove("show"); }, 3200); }
+
+  // ---------- старт ----------
+  var startLevel = parseInt((location.hash.match(/floor=(-?\d+)/) || [])[1], 10);
+  initScheduleControls();
+  updateSchedule(false);
+  setLevel(floorsByLevel[startLevel] ? startLevel : 4);
+  if (!floorsByLevel[startLevel]) updateSchedule(true);
+  window.addEventListener("hashchange", function () { var m = location.hash.match(/floor=(-?\d+)/); if (m && floorsByLevel[+m[1]]) setLevel(+m[1]); });
+  // минимальный API для отладки/будущей интеграции
+  window.FCIM_MAP_APP = { selectSpace: selectSpace, setLevel: setLevel, parseRoomInput: parseRoomInput, getBindings: function () { return JSON.parse(JSON.stringify(store)); },
+    getScheduleState: function () { return JSON.parse(JSON.stringify(schedule)); },
+    getFacilities: function () { return JSON.parse(JSON.stringify(facilityLayer)); } };
+})();
+</script>
+</body>
+</html>
