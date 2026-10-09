@@ -1,0 +1,88 @@
+{
+  "task": "GEO-01-FIX-B",
+  "baselineCommit": "53e0d069f846dacca6a7be24442e5120ba49a6f7",
+  "branch": "codex/geo-01-fix-b",
+  "verdict": "BLOCKED — insufficient or conflicting evidence",
+  "productionGeometryChanged": false,
+  "modifiedSpaceIds": [],
+  "polygonChanges": [],
+  "modifiedDoorIds": [],
+  "unchangedStructuralAnchors": {
+    "floor": "B3-F2",
+    "westStairX": [
+      183,
+      243
+    ],
+    "centralStairX": [
+      746,
+      806
+    ],
+    "elevatorShaftX": [
+      750,
+      777.5
+    ],
+    "notchX": [
+      479,
+      504
+    ],
+    "eastOutlineX": 1000
+  },
+  "unchangedSourceHashes": {
+    "map-data.js": "61083b778dd7fe5ee891357b845efe8c69b3841b3152906ca8d345c24e40983d",
+    "index.html": "c91338d75b514dd6257d533a284ca4e806a9942afc9c72f904ea51ef65834614"
+  },
+  "sourceEvidence": {
+    "floor2PhotoSha256": "868F8D010D5D6F20FFA84ACF4C50DD926064E229C9AEDFCE98B6A266774E708D",
+    "privateGEO01Directory": "C:/Users/user/.codex/visualizations/2026/10/08/01a11d0e-8cc7-72f1-8011-6ee2f75d27ae/GEO-01",
+    "privateReassessmentDirectory": "C:/Users/user/.codex/visualizations/2026/10/08/01a11d4b-e610-7653-8a2c-f9aa786fdc6f/GEO-01-FIX-B",
+    "references": [
+      "photo-manifest.json",
+      "registration.json",
+      "partition-comparisons.json",
+      "heldout-structural-landmarks.json",
+      "source-observations.json",
+      "space-correspondence.json",
+      "strategy-diagnostics.json",
+      "ratio-sensitivity.json",
+      "source-verification.json",
+      "black-core-recheck.json"
+    ]
+  },
+  "changeRationale": "No production patch passed the evidence gate. Fixed east envelopes have a surplus of about 41–42 schematic units. Strategy A redistributes it; B transfers it into LH or N10; C moves unsupported structural anchors. Preserve the baseline and supply diagnostics and focused validation.",
+  "confidence": {
+    "observedDiagramDiscrepancy": "MEDIUM",
+    "arithmeticConservationWithinFixedEnvelopes": "HIGH",
+    "physicalStructuralAlignment": "UNVERIFIED"
+  },
+  "remainingUnresolvedDiscrepancies": [
+    "GEO-001 remains open; N12/N11 approximately 1.43 versus source 1.01",
+    "Major F2 internal source/model X mismatch persists",
+    "GEO-004 and GEO-005 topology and doors remain unresolved",
+    "Canonical shared physical axes and elevator operation remain UNKNOWN"
+  ],
+  "bindingMigration": null,
+  "manualBindingReverificationDueToThisPatch": [],
+  "physicalSourceOfTruth": false,
+  "baselineWorkingTreeHashes": {
+    "FIX-01_REPORT.md": "882d8d9d9ce99193430e838e397f4b04dde65db4fa1991c32145f2e855c2648f",
+    "GEO-01-FIX-A_REPORT.md": "40af402dd6161fe6b133fc9c1b7dc3d64ad7afc8800636f1750fe95c0b07f801",
+    "MAP-01_REPORT.md": "3a0212e39cdb54ef1b5206b251d31dc9f0b4d8648ea807cb9d5a770ae5d48387",
+    "README.md": "0a0611aae859794c4a3a95e2e1218fcb19de1240cb367da090bb8d62568e3cf6",
+    "TIMETABLE_CONTRACT.md": "36dd3f97b80dddfa0f749cacf79b60e7731d66fbe11cfb17ec8fd45e0762fd47",
+    "index.html": "c91338d75b514dd6257d533a284ca4e806a9942afc9c72f904ea51ef65834614",
+    "map-data.js": "61083b778dd7fe5ee891357b845efe8c69b3841b3152906ca8d345c24e40983d",
+    "map-semantics.js": "4659d314cdfc943db2e0760708737f4cf8dc995156ea38844b7428b99f6d84a1",
+    "room-contract.js": "964bf15c918e9f62a0b121f520c2a5f01c0e52ff964f00b892abbf652875575d",
+    "schedule-engine.js": "e2bf53f16d93aed906c3e545ce69c6ead09d22dd343bc1b40cae8e686998696f",
+    "schedule-fixture.js": "6e6cc46215f6e51e638240481c711f5013544bc460faa048d30134b6ee410323",
+    "tests/fix01.cjs": "1c71e498cceb695750dcf175de930fce51ce8ced9fb6ed41b7f1b0ef1474df90",
+    "tests/geo01-browser.cjs": "073c097211d3143377a8bdf2ab52e50c085ff2a5384c5566bb678a57fc95bdac",
+    "tests/geo01-changes.json": "34c5302ecc4ba62aeccc190360a35b1cde815ff2d46d2497b8708ede97ad6bf2",
+    "tests/geo01-contract.cjs": "d1fd382ad47198ac8920f54f135872b61eee5960631a4d7ba295960ff4bf54df",
+    "tests/geo01-data.cjs": "d0618350f5dc141993fad58436fffeca5d46aac66f7a4d80113a62daab36b879",
+    "tests/map01-browser.cjs": "690e33b3c9bb6e23dc42eca4e05a361b5ab5c7fe8ace2fe59e58cbb7ba71a1c4",
+    "tests/map01-data.cjs": "6538c96b010989e1ff4db2001ac6e09b2fce73f424216e1e485cf50242f51a13",
+    "tests/map01-preserve.cjs": "c093878f3725c5d8fb0795ef96d37888716c8da94854f155c69e69f281f2ef29",
+    "tests/preserve-map.cjs": "cb9563e29bedf5033ed4596518b943fe2e8425597c43ca15570c9c8785ab4812"
+  }
+}

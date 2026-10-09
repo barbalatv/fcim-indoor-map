@@ -92,6 +92,20 @@
   .schedule-room{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
   .demo-label{fill:#145e9c;stroke:#fff}
   /* SVG */
+  .room01-floor .sp{stroke:none}
+  .room01-floor .sp.sel{stroke:var(--sel);stroke-width:3}
+  .room01-floor .sp.t-circulation{fill:var(--corridor);pointer-events:none}
+  .room01-floor .sp[data-facility]{fill:#f3f1ec}
+  .room01-floor .sp[data-facility="storage"]{fill:var(--room-service);pointer-events:none}
+  .room01-floor .vert.stair .box{stroke:none}
+  .room01-floor .vert.stair.sel .box{stroke:var(--sel);stroke-width:3}
+  .room01-floor .geo-landing,.room01-floor .geo-flight{stroke:none}
+  .physical-wall{stroke:var(--wall);stroke-width:1.6;fill:none}
+  .room01-floor .outline{stroke:none}
+  .exterior-wall,.back-wc-wall{fill:none;stroke:var(--wall);stroke-width:4;stroke-linejoin:round;pointer-events:none}
+  .back-wc-wall{stroke-width:1.6}
+  .room01-floor .facility-label{fill:#584a35}
+  .entrance-label{font-size:12px;font-weight:600;fill:var(--accent);paint-order:stroke;stroke:#fff;stroke-width:3;pointer-events:none}
   .sp{stroke:var(--wall);stroke-width:1.6;stroke-linejoin:round;cursor:pointer;transition:fill .12s}
   .sp.t-unknown,.sp.t-classroom,.sp.t-office{fill:var(--room)}
   .sp.t-service{fill:var(--room-service)}
@@ -109,6 +123,15 @@
   .sp.sel.scheduled-other{fill:var(--scheduled)!important}
   .sp.sel.scheduled-mine{fill:var(--mine)!important}
   .sp.sel.schedule-next{fill:#eefbf6!important}
+  .room01-floor .sp.logical-component,.room01-floor .vert.flat .box{stroke:none}
+  .room01-floor .vert.flat.sel .box{stroke:var(--sel);stroke-width:3}
+  .room01-floor .vert.integrated .box{fill:#f3f1ec;stroke:none}
+  .room01-floor .vert.integrated-hidden{pointer-events:none}
+  .room01-floor .vert.integrated-hidden .box{fill:var(--room-service);stroke:none}
+  .logical-outline{fill:none;stroke:var(--sel);stroke-width:3;stroke-linejoin:round;pointer-events:none}
+  .logical-outline.schedule-shared{stroke:#b35c00;stroke-width:2.5}
+  .logical-outline.schedule-next{stroke:var(--accent);stroke-width:2.5;stroke-dasharray:6 3}
+  .room01-floor .vert.integrated.sel .box,.room01-floor .sp.sel[data-facility="reception"]{stroke:none}
   @keyframes flash{50%{fill:#9ddcc5}}
   .outline{fill:#fff;stroke:var(--wall);stroke-width:4;stroke-linejoin:round}
   .corr{fill:var(--corridor);stroke:none}
@@ -121,6 +144,11 @@
   .vert.elevator .box{fill:var(--lift)}
   .vert.sel .box{stroke:var(--sel);stroke-width:3}
   .vert .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.55}
+  .vert .geo-enclosure{fill:transparent;stroke:none}
+  .vert.sel .geo-enclosure{stroke:var(--sel);stroke-width:3}
+  .geo-stair-art{pointer-events:none}
+  .geo-flight,.geo-landing{fill:var(--stair);stroke:var(--stair-ink);stroke-width:.8}
+  .geo-stair-art .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.85}
   .vert .x{stroke:var(--lift-ink);stroke-width:1.1}
   .vlabel{font-size:8.5px;font-weight:700;fill:var(--stair-ink);pointer-events:none;text-anchor:middle}
   .vlabel.el{fill:var(--lift-ink)}
@@ -174,7 +202,7 @@
     <div class="mapwrap" id="mapwrap">
       <svg id="map" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="План этажа">
         <defs></defs>
-        <g id="layerBase"></g><g id="layerSpaces"></g><g id="layerVert"></g><g id="layerDoors"></g>
+        <g id="layerBase"></g><g id="layerSpaces"></g><g id="layerVert"></g><g id="layerWalls" pointer-events="none"></g><g id="layerDoors"></g>
         <g id="layerFeat"></g><g id="layerLabels"></g>
       </svg>
       <div class="floorbadge" id="floorBadge"></div>
@@ -219,6 +247,7 @@
 
 <script src="map-data.js"></script>
 <script src="room-contract.js"></script>
+<script src="room-identification.js"></script>
 <script src="schedule-engine.js"></script>
 <script src="schedule-fixture.js"></script>
 <script src="map-semantics.js"></script>
@@ -231,9 +260,10 @@
   var STORE_SCHEMA = 1;
   var BUILDING_PREFIX = "3";
   var parseRoomInput = window.FCIM_ROOM_CONTRACT.createParser(DATA, BUILDING_PREFIX);
-  var resolveRoom = window.FCIM_ROOM_CONTRACT.createResolver(DATA, parseRoomInput);
   var fixture = window.FCIM_SCHEDULE_FIXTURE;
-  var facilityLayer = window.FCIM_MAP_SEMANTICS.facilities(DATA);
+  var roomCatalog = window.FCIM_ROOM_IDENTIFICATION.createCatalog(DATA, parseRoomInput);
+  var resolveRoom = window.FCIM_ROOM_CONTRACT.createResolver(DATA, parseRoomInput, roomCatalog);
+  var facilityLayer = window.FCIM_MAP_SEMANTICS.facilities(DATA, roomCatalog);
 
   // ---------- индексы данных ----------
   var floorsByLevel = Object.create(null), spaceById = Object.create(null), vertById = Object.create(null);
@@ -242,6 +272,8 @@
     f.spaces.forEach(function (s) { spaceById[s.id] = s; });
     f.geometry.verticals.forEach(function (v) { vertById[v.id] = Object.assign({}, v, { floorId: f.id }); });
   });
+  var westernStair=vertById["B3-F1-STW"];
+  vertById["B3-F1-STW-INNER"]=Object.assign({},westernStair,{id:"B3-F1-STW-INNER",type:"elevator",polygon:westernStair.innerShaft,innerShaft:null});
   var allFloorEntries = DATA.floors.map(function (f) { return { level: f.level, label: f.label, short: String(f.level), ready: true }; })
     .concat(DATA.plannedFloors.map(function (p) { return { level: p.level, label: p.label, short: p.level < 0 ? "D" : String(p.level), ready: false, notes: p.notes }; }))
     .sort(function (a, b) { return b.level - a.level; });
@@ -371,18 +403,24 @@
     }
   }
   function bindingOf(id) { return owns(store.bindings, id) ? store.bindings[id] : null; }
+  function manualRecords() { return Object.keys(store.bindings).map(function (id) { return store.bindings[id]; }); }
   function numberOf(id) {
-    var b = bindingOf(id); if (b) return b.roomNumber;
+    var b = roomCatalog.effective(manualRecords()).find(function (entry) { return entry.spaceIds.includes(id); });
+    if (b) return parseRoomInput(b.roomCode).number;
+    if (roomCatalog.conflicts(manualRecords()).some(function (c) { return c.manualSpaceId === id || (c.sourceSpaceIds || []).includes(id); }) || roomCatalog.identity(id)) return null;
     var s = spaceById[id]; return s && s.roomNumber ? s.roomNumber : null;
   }
   function findByNumber(num) {
     var out = [];
-    Object.keys(store.bindings).forEach(function (id) { if (store.bindings[id].roomNumber === num) out.push(id); });
+    roomCatalog.effective(manualRecords()).forEach(function (b) { if (parseRoomInput(b.roomCode).number === num) out.push(b.primarySpaceId); });
     DATA.floors.forEach(function (f) { f.spaces.forEach(function (s) { if (s.roomNumber === num && out.indexOf(s.id) < 0) out.push(s.id); }); });
     return out;
   }
 
   // Canonical FIX-01 parser lives in room-contract.js and is shared with resolution/tests.
+  function manualFindByNumber(num) { return manualRecords().filter(function (b) { return parseRoomInput(b.fullNumber || b.roomNumber).number === num; }).map(function (b) { return b.spaceId; }); }
+  function selectedIds() { return state.selected ? roomCatalog.selectionIds(state.selected) : []; }
+  function locationContains(location,id) { return (location.spaceIds || (location.spaceId ? [location.spaceId] : [])).includes(id); }
 
   // ---------- SVG утилиты ----------
   function el(tag, attrs, parent) {
@@ -403,13 +441,15 @@
   var L = {
     base: document.getElementById("layerBase"), spaces: document.getElementById("layerSpaces"),
     vert: document.getElementById("layerVert"), doors: document.getElementById("layerDoors"),
-    feat: document.getElementById("layerFeat"), labels: document.getElementById("layerLabels")
+    feat: document.getElementById("layerFeat"), labels: document.getElementById("layerLabels"), walls: document.getElementById("layerWalls")
   };
+  L.highlights=el("g",{id:"layerLogicalHighlights","pointer-events":"none"},svg);
   function clear(g) { while (g.firstChild) g.removeChild(g.firstChild); }
 
   // ---------- рендер этажа ----------
   function renderFloor() {
     var f = floorsByLevel[state.level];
+    svg.classList.toggle("room01-floor", f.level === 1);
     Object.keys(L).forEach(function (k) { clear(L[k]); });
     var g = f.geometry;
     // особенности за контуром (галерея 2 этажа) рисуются под контуром
@@ -424,46 +464,99 @@
       }
     });
     el("polygon", { points: pts(g.outline), "class": "outline" }, L.base);
+    if (f.level === 1) {
+      var backWc=g.features.find(function (ft) { return ft.id === roomCatalog.presentation.backWcFeatureId; });
+      el("polygon",{points:pts(backWc.polygon),fill:"var(--corridor)","pointer-events":"none","data-neutral-back-wc":"true"},L.base);
+      window.FCIM_ROOM_IDENTIFICATION.exteriorWallPaths(f).forEach(function (path) { el("polyline",{points:pts(path.points),"class":path.kind},L.base); });
+    }
     el("polygon", { points: pts(g.corridor), "class": "corr" }, L.base);
-    var t1 = el("text", { x: 2, y: g.corridorBand[0] - (g.corridorBand[0] - g.corridorBand[1]) / 2 + 3, "class": "compass" }, L.base);
-    t1.textContent = "◄ запад (усл.)";
-    var t2 = el("text", { x: 998, y: g.corridorBand[1] - 4, "class": "compass", "text-anchor": "end" }, L.base);
-    t2.textContent = "восток (усл.) ►";
+    var compass = g.compassPoints || [[2, g.corridorBand[0] - (g.corridorBand[0] - g.corridorBand[1]) / 2 + 3], [998, g.corridorBand[1] - 4]];
+    var t1 = el("text", { x: compass[0][0], y: compass[0][1], "class": "compass" }, L.base);
+    t1.textContent = f.level === 1 ? "" : "◄ запад (усл.)";
+    var t2 = el("text", { x: compass[1][0], y: compass[1][1], "class": "compass", "text-anchor": "end" }, L.base);
+    t2.textContent = f.level === 1 ? "" : "восток (усл.) ►";
 
     f.spaces.forEach(function (s) {
+      var identity = roomCatalog.identity(s.id);
       var cls = "sp t-" + s.type + (s.confidence === "low" ? " lowconf" : "") + (numberOf(s.id) ? " bound" : "") + (state.selected === s.id ? " sel" : "");
       var p = el("polygon", { points: pts(s.polygon), "class": cls, "data-id": s.id, tabindex: "0", role: "button",
-        "aria-label": (numberOf(s.id) ? "Аудитория " + numberOf(s.id) : "Помещение " + s.id) }, L.spaces);
+        "data-facility": identity ? identity.kind : null,
+        "aria-label": (numberOf(s.id) ? "Аудитория 3-" + numberOf(s.id) : identity && identity.label ? identity.label : "Помещение " + s.id) }, L.spaces);
+      if (identity && !identity.public) { p.removeAttribute("tabindex"); p.removeAttribute("role"); p.removeAttribute("aria-label"); p.setAttribute("aria-hidden", "true"); }
       p.__id = s.id;
     });
+    if (f.level === 1) window.FCIM_ROOM_IDENTIFICATION.physicalWalls(f).forEach(function (line) {
+      el("line", { x1: line[0][0], y1: line[0][1], x2: line[1][0], y2: line[1][1], "class": "physical-wall" }, L.walls);
+    });
     // двери: разрыв в стене + засечки
-    g.doors.forEach(function (d) {
-      var w = 7, internal = !!d.internal, vertical = internal || d.y !== g.corridorBand[0] && d.y !== g.corridorBand[1];
+    (f.level === 1 ? roomCatalog.displayDoors(f) : g.doors).forEach(function (d) {
+      if (f.level === 1 && !roomCatalog.showDoor(d)) return;
+      var qualification=d.coordinateAccuracy ? d : window.FCIM_ROOM_IDENTIFICATION.doorQualifications.find(function (q) { return q.id === d.id; });
+      var doorGroup=el("g",{"data-door-id":d.id,"data-coordinate-accuracy":d.coordinateAccuracy || null,"data-connectivity-status":qualification ? qualification.connectivityStatus : null},L.doors);
+      if (qualification) el("title",null,doorGroup).textContent=qualification.notes;
+      var w = d.gapLength || 7, internal = !!d.internal, vertical = d.orientation ? d.orientation === "vertical" : internal || d.y !== g.corridorBand[0] && d.y !== g.corridorBand[1];
       if (!vertical) {
-        el("rect", { x: d.x - w / 2, y: d.y - 1.6, width: w, height: 3.2, "class": "door-gap" }, L.doors);
-        el("line", { x1: d.x - w / 2, y1: d.y - 2.2, x2: d.x - w / 2, y2: d.y + 2.2, "class": "door-mk" }, L.doors);
-        el("line", { x1: d.x + w / 2, y1: d.y - 2.2, x2: d.x + w / 2, y2: d.y + 2.2, "class": "door-mk" }, L.doors);
+        el("rect", { x: d.x - w / 2, y: d.y - 1.6, width: w, height: 3.2, "class": "door-gap" }, doorGroup);
+        el("line", { x1: d.x - w / 2, y1: d.y - 2.2, x2: d.x - w / 2, y2: d.y + 2.2, "class": "door-mk" }, doorGroup);
+        el("line", { x1: d.x + w / 2, y1: d.y - 2.2, x2: d.x + w / 2, y2: d.y + 2.2, "class": "door-mk" }, doorGroup);
       } else {
-        el("rect", { x: d.x - 1.6, y: d.y - w / 2, width: 3.2, height: w, "class": "door-gap int" }, L.doors);
+        el("rect", { x: d.x - 1.6, y: d.y - w / 2, width: 3.2, height: w, "class": "door-gap int" }, doorGroup);
       }
     });
     // вертикальные связи
     g.verticals.forEach(function (v) {
+      if (f.level === 1) {
+        var identity=roomCatalog.identity(v.id), integrated=identity && identity.displayParentId;
+        var flat=el("g",{"class":"vert flat "+v.type+(integrated ? " "+identity.display : ""),"data-id":v.id,"data-display-parent":integrated || null,tabindex:integrated ? null : "0",role:integrated ? null : "button","aria-label":integrated ? null : identity && identity.label},L.vert);
+        flat.__id=v.id;
+        el("polygon",{points:pts(v.polygon),"class":"box",fill: v.type === "stair" ? "var(--stair)" : "var(--lift)"},flat);
+        if (integrated) flat.setAttribute("aria-hidden","true");
+        if (v.innerShaft) {
+          var inner=el("g",{"class":"vert flat elevator","data-id":v.id+"-INNER",tabindex:"0",role:"button","aria-label":"Западный лифт: по сообщению пользователя не работает"},L.vert); inner.__id=v.id+"-INNER";
+          el("polygon",{points:pts(v.innerShaft),"class":"box",fill:"var(--lift)"},inner);
+        }
+        if (v.entries) v.entries.forEach(function (x) { el("rect",{x:x-6,y:bbox(v.polygon).y-1.6,width:12,height:3.2,fill:"var(--corridor)"},L.doors); });
+        if (v.entry && !v.visualStair) el("rect",{x:v.entry[0]-1.6,y:v.entry[1]-7,width:3.2,height:14,fill:"var(--room-hall)"},L.doors);
+        return;
+      }
       var gg = el("g", { "class": "vert " + v.type + (state.selected === v.id ? " sel" : ""), "data-id": v.id, tabindex: "0", role: "button" }, L.vert);
       gg.__id = v.id;
       var b = bbox(v.polygon);
       if (v.type === "stair") {
-        drawStairBox(gg, v.polygon, "v");
+        if (v.stairDrawing) {
+          el("polygon", { points: pts(v.polygon), "class": "box", fill: "var(--stair)", stroke: "var(--wall)", "stroke-width": 1.6 }, gg);
+          var drawing = el("g", { "class": "geo-stair-art", "data-stair-art": v.id, "aria-hidden": "true", "pointer-events": "none" }, gg);
+          el("polygon", { points: pts(v.stairDrawing.landing), "class": "geo-landing" }, drawing);
+          v.stairDrawing.flights.forEach(function (flight, index) {
+            el("polygon", { points: pts(flight), "class": "geo-flight" }, drawing);
+            var fb = bbox(flight), axis = v.stairDrawing.treadAxes[index];
+            if (axis === "y") {
+              for (var sy = fb.y + 3; sy < fb.y + fb.h; sy += 3) el("line", { x1: fb.x, y1: sy, x2: fb.x + fb.w, y2: sy, "class": "treads" }, drawing);
+            } else {
+              for (var sx = fb.x + 3; sx < fb.x + fb.w; sx += 3) el("line", { x1: sx, y1: fb.y, x2: sx, y2: fb.y + fb.h, "class": "treads" }, drawing);
+            }
+          });
+        } else if (v.visualStair) {
+          // Identity hit region stays unchanged; photo artwork may extend into the hall.
+          el("polygon", { points: pts(v.polygon), "class": "geo-enclosure" }, gg);
+          var art = el("g", { "class": "geo-stair-art", "data-stair-art": v.id, "aria-hidden": "true", "pointer-events": "none" }, L.feat);
+          el("polygon", { points: pts(v.visualStair.landing), "class": "geo-landing" }, art);
+          v.visualStair.flights.forEach(function (flight) {
+            el("polygon", { points: pts(flight), "class": "geo-flight" }, art);
+            var fb = bbox(flight);
+            for (var sx = fb.x + 3; sx < fb.x + fb.w; sx += 3) el("line", { x1: sx, y1: fb.y, x2: sx, y2: fb.y + fb.h, "class": "treads" }, art);
+          });
+        } else drawStairBox(gg, v.polygon, "v");
         if (v.innerShaft) { var ib = bbox(v.innerShaft); drawX(gg, ib, "#fff"); }
         // проём входа
         if (v.entries) v.entries.forEach(function (x) { el("rect", { x: x - 6, y: b.y - 1.6, width: 12, height: 3.2, fill: "var(--corridor)" }, L.doors); });
-        if (v.entry) el("rect", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: "var(--room-hall)" }, L.doors);
-        var lbl = el("text", { x: b.cx, y: b.y + b.h - 4, "class": "vlabel" }, gg);
-        lbl.textContent = v.shaft === "B3-STAIR-W" ? "Лестница W" : "Лестница M";
+        if (v.entry && !v.visualStair) el("rect", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: "var(--room-hall)" }, L.doors);
+        var lbl = el("text", { x: b.cx, y: v.visualStair ? b.y + 15 : b.y + b.h - 4, "class": "vlabel" }, v.visualStair ? art : gg);
+        lbl.textContent = f.level === 1 && (v.id === "B3-F1-STEN" || v.id === "B3-F1-STES") ? "" : f.level === 1 && v.id === "B3-F1-STW" ? "Лестница" : f.level === 1 && v.id === "B3-F1-STM" ? "Главная" : v.mapLabel || v.label || (v.shaft === "B3-STAIR-W" ? "Лестница W" : "Лестница M");
       } else {
         drawX(gg, b, "var(--lift)");
         var l2 = el("text", { x: b.cx, y: b.cy + 3, "class": "vlabel el", style: "font-size:6.5px" }, gg);
-        l2.textContent = "шахта";
+        l2.textContent = roomCatalog.identity(v.id) ? "лифт" : "шахта";
       }
     });
     g.features.forEach(function (ft) {
@@ -472,8 +565,13 @@
           style: ft.type === "corridorMarker" ? "stroke:#9aa5b1" : null }, L.feat);
         var t = el("text", { x: ft.x + 3, y: g.corridorBand[1] - 3, "class": "feat-note", "text-anchor": "start" }, L.feat);
         t.textContent = ft.type === "corridorDoor" ? "перегородка?" : "метка?";
+      } else if (ft.type === "wallLine") {
+        if (f.level !== 1) el("polyline", { points: pts(ft.line), fill: "none", stroke: "var(--wall)", "stroke-width": 1.6, "pointer-events": "none" }, L.feat);
+      } else if (ft.type === "opening") {
+        if (f.level === 1 && !roomCatalog.showOpening(ft)) return;
+        el("line", { x1: ft.line[0][0], y1: ft.line[0][1], x2: ft.line[1][0], y2: ft.line[1][1], stroke: "var(--corridor)", "stroke-width": 3.4, "pointer-events": "none", "data-opening-id":ft.id }, L.feat);
       } else if (ft.type === "stairGlyph") {
-        drawStairBox(L.feat, ft.polygon, "v", true);
+        if (f.level !== 1) drawStairBox(L.feat, ft.polygon, "v", true);
       }
     });
     renderLabels();
@@ -496,30 +594,51 @@
     clear(L.labels);
     var f = floorsByLevel[state.level];
     f.spaces.forEach(function (s) {
-      var n = numberOf(s.id);
-      if (n) {
-        var t = el("text", { x: s.labelPoint[0], y: s.labelPoint[1], "class": "lbl" }, L.labels);
+      var n = numberOf(s.id), identity = roomCatalog.identity(s.id);
+      var logical=roomCatalog.roomForSpace(s.id), labelPoint=logical && logical.labelPoint || s.labelPoint;
+      if (n && (!logical || logical.primarySpaceId === s.id)) {
+        var t = el("text", { x: labelPoint[0], y: labelPoint[1], "class": "lbl", "data-room-label":logical ? logical.roomCode : null }, L.labels);
         t.textContent = n;
+        if (f.level === 1) t.style.fontSize = bbox(s.polygon).w < 40 ? "7px" : "10px";
+      } else if (identity && identity.public) {
+        var facilityText = el("text", { x: s.labelPoint[0], y: identity.kind === "reception" ? 139 : s.labelPoint[1] + 2, "class": "lbl facility-label", "data-facility-label": identity.kind }, L.labels);
+        facilityText.textContent = identity.label;
+        facilityText.style.fontSize = identity.kind === "toilet" ? "8px" : "10px";
       } else if (s.kind === "hall" && s.label) {
+        if (f.level === 1 && s.id !== "B3-F1-HE") return;
         var t2 = el("text", { x: s.labelPoint[0], y: s.labelPoint[1] + 2, "class": "lbl hall" }, L.labels);
         t2.textContent = "холл";
       }
-      var demo = schedule.occupancy.filter(function (o) { return o.spaceId === s.id && scheduleClasses(s.id); })[0];
-      if (!demo && schedule.mode === "my" && schedule.upcoming) demo = schedule.focusLocations.filter(function (o) { return o.spaceId === s.id; })[0];
-      if (demo) {
+      var demo = schedule.occupancy.filter(function (o) { return locationContains(o,s.id) && scheduleClasses(s.id); })[0];
+      if (!demo && schedule.mode === "my" && schedule.upcoming) demo = schedule.focusLocations.filter(function (o) { return locationContains(o,s.id); })[0];
+      if (demo && (demo.primarySpaceId || demo.spaceId) === s.id && !(f.level === 1 && logical && n)) {
         var dt = el("text", { x: s.labelPoint[0], y: s.labelPoint[1] + (n ? 13 : 0), "class": "lbl demo-label", style: "font-size:8px" }, L.labels);
         dt.textContent = "демо " + demo.roomCode.replace(/^3-/, "");
       }
     });
+    if (f.level === 1) {
+      var entrance = roomCatalog.identity("B3-F1-OPEN-E");
+      var mobileEntrance = window.matchMedia("(max-width:900px)").matches;
+      if (mobileEntrance) el("polyline", { points: "1000,88 1030,88 1030,222 1000,222", fill: "none", stroke: "var(--accent)", "stroke-width": 1.4, "pointer-events": "none", "data-entrance-leader": "true" }, L.labels);
+      var entranceText = el("text", { x: mobileEntrance ? 1000 : entrance.labelPoint[0], y: mobileEntrance ? 250 : entrance.labelPoint[1], "class": "entrance-label", "data-main-entrance": entrance.id, "text-anchor": mobileEntrance ? "end" : "start" }, L.labels);
+      entranceText.textContent = "↤ " + entrance.label;
+    }
   }
   function refreshClasses() {
     Array.prototype.forEach.call(L.spaces.children, function (p) {
       var s = spaceById[p.__id];
-      p.setAttribute("class", "sp t-" + s.type + (s.confidence === "low" ? " lowconf" : "") + (numberOf(s.id) ? " bound" : "") + (state.selected === s.id ? " sel" : "") + scheduleClasses(s.id));
+      p.setAttribute("class", "sp t-" + s.type + (s.confidence === "low" ? " lowconf" : "") + (numberOf(s.id) ? " bound" : "") + (selectedIds().includes(s.id) ? " sel" : "") + (roomCatalog.roomForSpace(s.id) ? " logical-component" : "") + scheduleClasses(s.id));
     });
     Array.prototype.forEach.call(L.vert.children, function (g) {
-      var v = vertById[g.__id]; g.setAttribute("class", "vert " + v.type + (state.selected === v.id ? " sel" : ""));
+      var v = vertById[g.__id], identity=roomCatalog.identity(v.id); g.setAttribute("class", "vert " + v.type + (state.level === 1 ? " flat" : "") + (identity && identity.display ? " "+identity.display : "") + (selectedIds().includes(v.id) ? " sel" : ""));
     });
+    clear(L.highlights);
+    if (state.level === 1) roomCatalog.mappings.forEach(function (r) {
+      var selected=r.spaceIds.includes(state.selected), classes=scheduleClasses(r.primarySpaceId);
+      var outlineClass=selected ? "" : classes.includes("schedule-shared") ? " schedule-shared" : classes.includes("schedule-next") ? " schedule-next" : null;
+      if (selected || outlineClass !== null) window.FCIM_ROOM_IDENTIFICATION.unionOutline(r.spaceIds.map(function (id) { return spaceById[id].polygon; })).forEach(function (p) { el("polygon",{points:pts(p),"class":"logical-outline"+(outlineClass || ""),"data-logical-room":r.roomCode},L.highlights); });
+    });
+    if (state.level === 1 && state.selected === "B3-F1-S14") window.FCIM_ROOM_IDENTIFICATION.unionOutline(selectedIds().map(function (id) { return (spaceById[id] || vertById[id]).polygon; })).forEach(function (p) { el("polygon",{points:pts(p),"class":"logical-outline"},L.highlights); });
   }
 
   // ---------- масштаб и перемещение ----------
@@ -542,6 +661,8 @@
       v.x = cx - v.w / 2; v.y = cy - v.h / 2;
     }
     svg.setAttribute("viewBox", [v.x, v.y, v.w, v.h].join(" "));
+    var entranceLabel = L.labels.querySelector("[data-main-entrance]");
+    if (entranceLabel && r.width) entranceLabel.style.fontSize = Math.max(12, 9 * v.w / r.width) + "px";
   }
   function zoomAt(factor, clientX, clientY) {
     var r = wrap.getBoundingClientRect(), v = state.view;
@@ -568,7 +689,7 @@
   }
   function centerSelected() {
     var selected = spaceById[state.selected] || vertById[state.selected];
-    if (selected) centerOn(selected.polygon);
+    if (selected) centerOn(state.level === 1 ? selectedIds().flatMap(function (id) { return (spaceById[id] || vertById[id]).polygon; }) : selected.polygon);
   }
   wrap.addEventListener("wheel", function (e) { e.preventDefault(); zoomAt(Math.pow(1.0018, -e.deltaY), e.clientX, e.clientY); }, { passive: false });
   var pointers = {}, drag = null, pinch = null, moved = false;
@@ -626,6 +747,8 @@
 
   // ---------- выбор ----------
   function onMapClick(id) {
+    if (roomCatalog.identity(id) && roomCatalog.identity(id).public === false) return;
+    if (roomCatalog.identity(id) && roomCatalog.identity(id).displayParentId) id=roomCatalog.identity(id).displayParentId;
     if (!id) { state.selected = null; state.msg = null; refreshClasses(); renderPanel(); return; }
     state.selected = id; state.msg = null;
     refreshClasses(); renderPanel();
@@ -633,14 +756,18 @@
     if (state.edit && spaceById[id]) setTimeout(function () { var i = document.getElementById("numInput"); if (i) i.focus(); }, 30);
   }
   function selectSpace(id, opts) {
+    if (roomCatalog.identity(id) && roomCatalog.identity(id).public === false) return;
+    if (roomCatalog.identity(id) && roomCatalog.identity(id).displayParentId) id=roomCatalog.identity(id).displayParentId;
     var s = spaceById[id] || vertById[id]; if (!s) return;
     var lvl = levelOfFloorId(s.floorId);
     if (lvl !== state.level) setLevel(lvl, true);
     state.selected = id; refreshClasses(); renderPanel();
-    expandSheet(); centerOn(s.polygon);
+    expandSheet(); centerSelected();
     if (opts && opts.flash) {
-      var p = L.spaces.querySelector('[data-id="' + id + '"]');
-      if (p) { p.classList.remove("flash"); void p.getBBox(); p.classList.add("flash"); }
+      selectedIds().forEach(function (componentId) {
+        var p = L.spaces.querySelector('[data-id="' + componentId + '"]');
+        if (p) { p.classList.remove("flash"); void p.getBBox(); p.classList.add("flash"); }
+      });
     }
     expandSheet();
     if (!opts || opts.revealPanel !== false) revealSelectedPanel();
@@ -677,9 +804,10 @@
   function belongsToLevel(id, level) { var s = spaceById[id] || vertById[id]; return s && levelOfFloorId(s.floorId) === level; }
   function renderBadge() {
     var f = floorsByLevel[state.level];
-    var bound = f.spaces.filter(function (s) { return numberOf(s.id); }).length;
+    var bound = f.level === 1 ? roomCatalog.effective(manualRecords()).filter(function (r) { return r.primarySpaceId.startsWith("B3-F1-"); }).length : f.spaces.filter(function (s) { return numberOf(s.id); }).length;
     var rooms = f.spaces.filter(function (s) { return s.kind !== "hall"; }).length;
-    var notes = (f.notes || []).map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("");
+    var displayNotes = f.level === 1 ? (f.notes || []).filter(function (n) { return n.indexOf("Номера, WC, входы") < 0; }).concat(["Все 15 аудиторий определены пользователем; 101, 103 и 106 включают по два региона. Западный лифт, по сообщению пользователя, не работает. Доступ и состояние остальных лифтов неизвестны. Осмотра на месте не было. GEO-001 не исправлен."]) : f.notes || [];
+    var notes = displayNotes.map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("");
     document.getElementById("floorBadge").innerHTML =
       "<b>" + esc(f.label) + "</b> <span class='meta'>· помещений: " + rooms + " · размечено: " + bound + "</span>" +
       "<div class='meta'>Источник: " + esc(f.source.photo) + "</div>" +
@@ -712,7 +840,7 @@
     else if (id && vertById[id]) h += vertCardHtml(vertById[id]);
     else h += introHtml();
     if (!id && state.msg) h = msgHtml() + h;
-    h += recoveryHtml() + legendHtml();
+    h += sourceConflictsHtml() + recoveryHtml() + legendHtml();
     panel.innerHTML = h;
     wirePanel();
     wireScheduleLinks(panel);
@@ -726,25 +854,35 @@
       ". Корректных записей для восстановления: " + recovery.candidates.length + ".</p><div class='row'><button class='btn' id='recoveryExport'>Экспорт исходного хранилища</button>" +
       (recovery.candidates.length ? "<button class='btn' id='recoveryRestore'>Восстановить корректные записи</button>" : "") + "</div></div>";
   }
+  function sourceConflictsHtml() {
+    var conflicts = roomCatalog.conflicts(manualRecords());
+    if (!conflicts.length) return "";
+    return "<div class='card'><h3>Конфликт привязки с источником</h3><p class='small'>Ручные записи сохранены; подсветка конфликтующих соответствий приостановлена. Сначала сделайте экспорт. После проверки удалите ошибочную ручную запись либо передайте исправление источника для отдельного рассмотрения.</p>" + conflicts.map(function (c) {
+      return "<p class='small'>" + esc(c.manualSpaceId + ": " + c.roomCode + ". " + c.reason) + "</p><button class='btn danger' data-remove-conflict='" + esc(c.manualSpaceId) + "'>Удалить ручную запись " + esc(c.roomCode) + "</button>";
+    }).join("") + "</div>";
+  }
   function introHtml() {
     var total = Object.keys(store.bindings).length;
     return "<div class='card'><h3>Как пользоваться</h3><div class='small muted'>" +
-      "Нажмите на помещение, чтобы увидеть сведения. Номера аудиторий на планах эвакуации не указаны, поэтому почти все помещения пока имеют статус «Номер не установлен».<br><br>" +
+      "Нажмите на помещение, чтобы увидеть сведения. " + (state.level === 1 ? "Номера и функции первого этажа взяты из пользовательской разметки; пропорции сохранены по фото." : "Номера аудиторий на планах эвакуации не указаны, поэтому почти все помещения пока имеют статус «Номер не установлен».") + "<br><br>" +
       "Чтобы привязать номер после обхода, включите <b>«Разметка»</b>, выберите помещение и введите номер. Привязки хранятся в этом браузере; сделайте <b>Экспорт</b>, чтобы передать их в проект." +
-      "</div><div class='row' style='margin-top:10px'><span class='pill " + (total ? "ok" : "") + "'>Привязок вручную: " + total + "</span>" +
-      (storageOk ? "" : "<span class='pill warn'>localStorage недоступен</span>") + "</div></div>";
+      "</div>" + (state.level === 1 ? "<p class='small'>Все 15 аудиторий сопоставлены. Выбор любой части 101, 103 или 106 выделяет аудиторию целиком.</p>" : "") + "<div class='row' style='margin-top:10px'><span class='pill " + (total ? "ok" : "") + "'>Привязок вручную: " + total + "</span>" +
+      (storageOk ? "" : "<span class='pill warn'>localStorage недоступен</span>") + "</div>" + (state.level === 1 ? "<details><summary>Аудитории первого этажа</summary><div class='row' style='margin-top:8px'>" + roomCatalog.inventory.map(function (r) { return "<button class='btn' data-room-search='" + esc(r.roomCode) + "'>" + esc(r.roomCode) + (r.status === "unresolved" ? " ?" : "") + "</button>"; }).join("") + "</div></details>" : "") + "</div>";
   }
   function spaceCardHtml(s) {
     var lvl = levelOfFloorId(s.floorId), b = bindingOf(s.id), n = numberOf(s.id);
-    var canBind = s.kind === "room";
-    var h = "<div class='card'><h3>" + (n ? "Аудитория " + esc(BUILDING_PREFIX + "-" + n) : (s.label ? esc(s.label) : "Номер не установлен")) + "</h3>";
+    var identity = roomCatalog.identity(s.id), sourceMapping = roomCatalog.roomForSpace(s.id);
+    var canBind = roomCatalog.classroomCandidate(s.id);
+    var h = "<div class='card'><h3>" + (identity && identity.label ? esc(identity.label) : n ? "Аудитория " + esc(BUILDING_PREFIX + "-" + n) : (s.label ? esc(s.label) : "Номер не установлен")) + "</h3>";
+    if (identity || sourceMapping) h += "<details class='small'><summary>Источник идентификации</summary><p>Подтверждено пользователем: " + esc(identity && identity.evidenceSource || roomCatalog.source.file) + "; уточнения ROOM-01B/C. Геометрия: floor1.jpg. Осмотр на месте: неизвестен.</p><p>" + esc(sourceMapping && sourceMapping.roomCode === "3-103" ? roomCatalog.presentation.room103Notes : (identity || sourceMapping).notes) + "</p><code>SHA-256: " + esc(identity && identity.evidenceSource ? roomCatalog.presentation.sha256 : roomCatalog.source.sha256) + "</code><p class='small'>Уточнение: " + esc(roomCatalog.source.correctionSha256) + "</p>" + (sourceMapping && sourceMapping.roomCode === "3-103" ? "<p class='small'>Фрагмент 103: " + esc(roomCatalog.presentation.room103Source.sha256) + "</p>" : "") + "</details>";
     if (!state.edit) h += scheduledSpaceHtml(s.id);
     h += "<dl class='kv'>" +
-      "<dt>ID</dt><dd><code>" + esc(s.id) + "</code></dd>" +
+      "<dt>ID</dt><dd><code>" + esc(sourceMapping ? sourceMapping.spaceIds.join(" + ") : s.id) + "</code></dd>" +
+      (sourceMapping && sourceMapping.spaceIds.length > 1 ? "<dt>Выбранная часть</dt><dd><code>" + esc(s.id) + "</code>; ручная запись относится только к этой части.</dd>" : "") +
       "<dt>Этаж</dt><dd>" + lvl + "</dd>" +
       "<dt>Номер</dt><dd>" + (n ? "<b>" + esc(n) + "</b> (" + esc(BUILDING_PREFIX + "-" + n) + ")" : "<span class='muted'>Номер не установлен</span>") + "</dd>" +
-      "<dt>Привязка</dt><dd>" + (b ? "<span class='pill ok'>вручную</span> <span class='small muted'>" + esc(new Date(b.updatedAt).toLocaleString("ru-RU")) + "</span>" : (s.roomNumber ? "<span class='pill ok'>в наборе данных</span>" : "<span class='pill'>нет</span>")) + "</dd>" +
-      "<dt>Тип</dt><dd>" + esc(TYPE[s.type] || s.type) + "</dd>" +
+      "<dt>Привязка</dt><dd>" + (b ? "<span class='pill ok'>вручную</span> <span class='small muted'>" + esc(new Date(b.updatedAt).toLocaleString("ru-RU")) + "</span>" : (sourceMapping ? "<span class='pill ok'>разметка пользователя</span>" : s.roomNumber ? "<span class='pill ok'>в наборе данных</span>" : "<span class='pill'>нет</span>")) + "</dd>" +
+      "<dt>Тип</dt><dd>" + esc(identity ? identity.label : sourceMapping ? "аудитория (по разметке пользователя)" : TYPE[s.type] || s.type) + "</dd>" +
       "<dt>Геометрия</dt><dd>" + esc(VERIF[s.verification] || s.verification) + (s.confidence === "low" ? " · <span class='pill warn'>низкая точность</span>" : "") + "</dd>" +
       "<dt>Источник</dt><dd class='small'>" + esc(s.source) + "</dd>" +
       (s.notes ? "<dt>Примечание</dt><dd class='small'>" + esc(s.notes) + "</dd>" : "") +
@@ -758,7 +896,7 @@
     } else if (canBind) {
       h += "<div class='row' style='margin-top:12px'><button class='btn' id='startEdit'>" + (b ? "Исправить номер" : "Указать номер") + "</button></div>";
     } else if (!canBind) {
-      h += "<div class='small muted' style='margin-top:10px'>Холлы и проходы не получают номеров аудиторий.</div>";
+      h += "<div class='small muted' style='margin-top:10px'>Этот объект не получает номеров аудиторий.</div>";
     }
     if (state.edit) h += scheduledSpaceHtml(s.id);
     h += msgHtml() ? "<div style='margin-top:10px'>" + msgHtml() + "</div>" : "";
@@ -767,15 +905,16 @@
   function vertCardHtml(v) {
     var lvl = levelOfFloorId(v.floorId);
     var facility = facilityLayer.filter(function (f) { return f.id === v.id; })[0];
-    var name = v.type === "elevator" ? "Лифтовая шахта (" + v.id.slice(-3) + ")" : (v.shaft === "B3-STAIR-W" ? "Западная лестница (W)" : "Центральная лестница (M)");
+    var identity = roomCatalog.identity(v.id);
+    var name = identity ? identity.label : v.label || (v.type === "elevator" ? "Лифтовая шахта (" + v.id.slice(-3) + ")" : (v.shaft === "B3-STAIR-W" ? "Западная лестница (W)" : "Центральная лестница (M)"));
     return "<div class='card'><h3>" + esc(name) + "</h3><dl class='kv'>" +
       "<dt>ID</dt><dd><code>" + esc(v.id) + "</code></dd><dt>Этаж</dt><dd>" + lvl + "</dd>" +
       "<dt>Вертикаль</dt><dd><code>" + esc(v.shaft) + "</code></dd>" +
       "<dt>Доступность</dt><dd>Не проверена; действующий лифт или проход не подтверждён.</dd>" +
-      "<dt>Статус объекта</dt><dd>" + esc(facility.evidence) + " · operation: unknown</dd>" +
+      "<dt>Статус объекта</dt><dd>" + esc(facility.evidence) + " · operation: " + esc(facility.operational) + (facility.operational === "reported-out-of-service" ? ". По сообщению пользователя не работает; независимая проверка не проводилась." : "") + "</dd>" +
       "<dt>Геометрия</dt><dd>" + esc(VERIF[v.verification]) + "</dd>" +
-      "<dt>Источник</dt><dd class='small'>" + esc(v.source) + "</dd>" +
-      "<dt>Примечание</dt><dd class='small'>" + esc(v.notes || "") + "</dd></dl></div>";
+      "<dt>Источник</dt><dd class='small'>" + esc(v.source) + (identity ? "; идентичность: " + esc(identity.evidenceSource || roomCatalog.source.file) + "; осмотр неизвестен" : "") + "</dd>" +
+      "<dt>Примечание</dt><dd class='small'>" + esc(identity && identity.notes || v.notes || "") + "</dd></dl></div>";
   }
   function legendHtml() {
     return "<div class='card'><h3>Обозначения</h3><div class='legend'>" +
@@ -790,9 +929,11 @@
       "<div class='sw' style='background:var(--room-hall)'></div><div>Холл, открытый в коридор</div>" +
       "<div class='sw' style='background:var(--stair)'></div><div>Лестница</div>" +
       "<div class='sw' style='background:var(--lift)'></div><div>Лифтовая шахта</div>" +
-      "</div><div class='small muted' style='margin-top:8px'>Пожарная символика с планов намеренно не воспроизводится. Карта показывает план занятий. Туалеты, входы и работа лифтов не подтверждены. Фото сейчас отсутствуют; физическая точность не проверена.</div></div>";
+      "</div><div class='small muted' style='margin-top:8px'>Пожарная символика с планов намеренно не воспроизводится. Карта показывает план занятий. " + (state.level === 1 ? "WC, Orange Cafe, Вахта и восточный главный вход определены пользователем. Осмотр, работа лифтов и доступ не проверены." : "Туалеты, входы и работа лифтов не подтверждены. Фото сейчас отсутствуют; физическая точность не проверена.") + "</div></div>";
   }
   function wirePanel() {
+    Array.prototype.forEach.call(panel.querySelectorAll("[data-room-search]"), function (button) { button.onclick = function () { document.getElementById("searchInput").value = button.getAttribute("data-room-search"); document.getElementById("searchForm").requestSubmit(); }; });
+    Array.prototype.forEach.call(panel.querySelectorAll("[data-remove-conflict]"), function (button) { button.onclick = function () { unbind(button.getAttribute("data-remove-conflict")); }; });
     var re = document.getElementById("recoveryExport");
     if (re) re.onclick = function () {
       downloadText(recovery.raw, "fcim-bindings-recovery-" + Date.now() + ".txt", "text/plain");
@@ -816,11 +957,13 @@
   // ---------- привязка ----------
   function bindCurrent(raw) {
     var s = spaceById[state.selected]; if (!s || s.kind !== "room") return;
+    var sourceError = roomCatalog.checkNewBinding(s.id, raw);
+    if (sourceError) { state.msg = { kind: "err", html: esc(sourceError) }; renderPanel(); return; }
     var lvl = levelOfFloorId(s.floorId);
     var p = parseRoomInput(raw);
     if (!p.ok || p.basement) { state.msg = { kind: "err", html: esc(p.basement ? "Это помещение подвала. План подвала ещё не добавлен." : p.error) }; renderPanel(); return; }
     if (p.floorGuess !== lvl && !confirm("Номер " + p.full + " по правилу нумерации относится к " + p.floorGuess + " этажу, а помещение находится на " + lvl + " этаже.\nВсё равно привязать?")) return;
-    var others = findByNumber(p.number).filter(function (x) { return x !== s.id; });
+    var others = manualFindByNumber(p.number).filter(function (x) { return x !== s.id; });
     var candidate = copyStore();
     if (others.length) {
       if (!confirm("Номер " + p.full + " уже привязан к " + others.join(", ") + ".\nПеренести привязку на " + s.id + "?")) return;
@@ -858,14 +1001,18 @@
     var p = parseRoomInput(raw);
     if (!p.ok || p.basement) { state.selected = null; state.msg = { kind: "err", html: esc(p.basement ? "Это помещение подвала (" + p.full + "). План подвала ещё не добавлен." : p.error) }; refreshClasses(); renderPanel(); expandSheet(); return; }
     var ids = findByNumber(p.number);
+    var sourceConflicts = roomCatalog.conflicts(manualRecords()).filter(function (c) { return c.roomCode === p.full || c.sourceRoomCode === p.full; });
+    if (sourceConflicts.length) { state.selected = null; state.msg = { kind: "warn", html: "Конфликт ручной привязки с пользовательским источником для " + esc(p.full) + ". Подсветка приостановлена. Экспортируйте запись и разрешите конфликт ниже." }; refreshClasses(); renderPanel(); expandSheet(); return; }
     if (ids.length) {
       state.msg = { kind: "ok", html: "Аудитория " + esc(p.full) + " найдена." };
       selectSpace(ids[0], { flash: true });
-      state.msg = { kind: "ok", html: "Аудитория " + esc(p.full) + " найдена (привязка вручную)." }; renderPanel();
+      state.msg = { kind: "ok", html: "Аудитория " + esc(p.full) + " найдена." }; renderPanel();
     } else {
       var known = (DATA.knownButUnlocated || []).filter(function (k) { return k.fullNumber === p.full; })[0];
       var html = "Расположение аудитории <b>" + esc(p.full) + "</b> ещё не установлено: номер не привязан ни к одному помещению на карте.";
       if (known) html += "<br><span class='small'>" + esc(known.note) + "</span>";
+      var unresolved = roomCatalog.inventory.find(function (r) { return r.roomCode === p.full && r.status === "unresolved"; });
+      if (unresolved) html += "<br><span class='small'>Номер подтверждён пользовательской разметкой. " + esc(unresolved.notes) + "</span>";
       if (floorsByLevel[p.floorGuess]) html += "<br><span class='small'>По правилу нумерации это, вероятно, " + p.floorGuess + " этаж — но конкретное помещение неизвестно.</span><div class='row' style='margin-top:8px'><button class='btn' data-goto='" + p.floorGuess + "'>Открыть " + p.floorGuess + " этаж</button></div>";
       else html += "<br><span class='small'>План " + p.floorGuess + " этажа ещё не добавлен.</span>";
       state.selected = null; state.msg = { kind: "warn", html: html };
@@ -902,6 +1049,8 @@
       var tag = "Запись " + (i + 1) + (isRecord(b) ? " (" + String(b.spaceId) + ")" : "");
       try {
         var c = validateBinding(b, isRecord(b) ? b.spaceId : null, true);
+        var sourceError = roomCatalog.checkNewBinding(c.spaceId, c.roomNumber);
+        if (sourceError) throw new Error(sourceError);
         if (owns(ids, c.spaceId)) throw new Error("Повтор spaceId " + c.spaceId);
         if (owns(numbers, c.roomNumber)) throw new Error("Повтор канонического номера " + c.fullNumber);
         ids[c.spaceId] = true; numbers[c.roomNumber] = c.spaceId; records.push(c);
@@ -913,7 +1062,7 @@
     });
     var candidate = copyStore();
     records.forEach(function (c) {
-      findByNumber(c.roomNumber).filter(function (id) { return id !== c.spaceId; }).forEach(function (id) {
+      manualFindByNumber(c.roomNumber).filter(function (id) { return id !== c.spaceId; }).forEach(function (id) {
         var transfer = c.fullNumber + ": " + id + " → " + c.spaceId;
         transfers.push(transfer); conflicts.push("Перенос " + transfer);
         delete candidate.bindings[id];
@@ -960,14 +1109,21 @@
   };
 
   // ---------- расписание: state -> evaluation -> room resolution -> highlight ----------
-  function demoResolve(lesson) { return resolveRoom(lesson, { demoAssociations: fixture.demoAssociations }); }
+  function demoResolve(lesson) {
+    var location = resolveRoom(lesson, { demoAssociations: fixture.demoAssociations });
+    var ids=location.spaceIds || (location.spaceId ? [location.spaceId] : []);
+    var partial=ids.some(function (id) { var r=roomCatalog.roomForSpace(id); return r && r.spaceIds.length > 1 && JSON.stringify(r.spaceIds.slice().sort()) !== JSON.stringify(ids.slice().sort()); });
+    if (partial || ids.some(function (id) { return !roomCatalog.classroomCandidate(id); })) return Object.assign({}, location, { spaceId: null, spaceIds:[], primarySpaceId:null, floorLevel: null, status: "invalid-binding" });
+    return location;
+  }
   function isMyLesson(lesson) { return lesson.group === schedule.group && (!schedule.subgroup || !lesson.subgroup || lesson.subgroup === schedule.subgroup); }
   function scheduleClasses(id) {
-    var active = schedule.occupancy.filter(function (o) { return o.spaceId === id; })[0];
+    if (roomCatalog.identity(id)) return "";
+    var active = schedule.occupancy.filter(function (o) { return locationContains(o,id); })[0];
     if (active && (schedule.mode === "all" || active.lessons.some(isMyLesson))) {
       return (active.lessons.some(isMyLesson) ? " scheduled-mine" : " scheduled-other") + (active.lessons.length > 1 ? " schedule-shared" : "");
     }
-    if (schedule.mode === "my" && schedule.upcoming && schedule.focusLocations.some(function (o) { return o.spaceId === id; })) return " schedule-next";
+    if (schedule.mode === "my" && schedule.upcoming && schedule.focusLocations.some(function (o) { return locationContains(o,id); })) return " schedule-next";
     return "";
   }
   var LOCATION_MESSAGES = {
@@ -996,7 +1152,8 @@
     });
   }
   function scheduledSpaceHtml(id) {
-    var occupants = schedule.occupancy.filter(function (o) { return o.spaceId === id; });
+    if (roomCatalog.identity(id)) return "";
+    var occupants = schedule.occupancy.filter(function (o) { return locationContains(o,id); });
     var h = "<div class='schedule-room'><b>План занятий на выбранное время</b>";
     if (!occupants.length) h += "<p class='small muted'>Нет известного занятия. Покрытие демо неполное; доступность помещения неизвестна.</p>";
     occupants.forEach(function (o) {
@@ -1005,7 +1162,7 @@
       h += o.lessons.map(function (l) { return lessonHtml(l); }).join("");
     });
     if (schedule.mode === "my" && schedule.upcoming) schedule.focus.forEach(function (entry) {
-      if (demoResolve(entry.lesson).spaceId === id) h += "<p class='small'>Следующее занятие, не активное сейчас:</p>" + lessonHtml(entry.lesson, entry.date);
+      if (locationContains(demoResolve(entry.lesson),id)) h += "<p class='small'>Следующее занятие, не активное сейчас:</p>" + lessonHtml(entry.lesson, entry.date);
     });
     return h + "</div>";
   }
@@ -1104,6 +1261,7 @@
   // минимальный API для отладки/будущей интеграции
   window.FCIM_MAP_APP = { selectSpace: selectSpace, setLevel: setLevel, parseRoomInput: parseRoomInput, getBindings: function () { return JSON.parse(JSON.stringify(store)); },
     getScheduleState: function () { return JSON.parse(JSON.stringify(schedule)); },
+    getLogicalSelection: function () { var r=roomCatalog.roomForSpace(state.selected); return {roomCode:r ? r.roomCode : null,spaceIds:selectedIds(),clickedSpaceId:state.selected}; },
     getFacilities: function () { return JSON.parse(JSON.stringify(facilityLayer)); } };
 })();
 </script>

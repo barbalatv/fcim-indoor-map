@@ -1,0 +1,41 @@
+{
+  "baselineCommit": "8636c4aa6c0f49a4b5a49bdfa04e656634e93db5",
+  "sourcePatches": {
+    "map-data.js": [
+      {
+        "old": "            {\"id\":\"B3-F3-S01-D1\",\"spaceId\":\"B3-F3-S01\",\"x\":30.5,\"y\":108,\"to\":\"corridor\"},\n            {\"id\":\"B3-F3-S02-D1\",\"spaceId\":\"B3-F3-S02\",\"x\":41.0,\"y\":125.0,\"to\":\"B3-F3-S01\"},\n            {\"id\":\"B3-F3-S03-D1\",\"spaceId\":\"B3-F3-S03\",\"x\":41.0,\"y\":158.0,\"to\":\"B3-F3-S01\"},\n",
+        "new": "            {\"id\":\"B3-F3-S01-D1\",\"spaceId\":\"B3-F3-S01\",\"x\":30.5,\"y\":108,\"to\":\"corridor\",\"verification\":\"observed\",\"access\":\"unknown\",\"notes\":\"GEO-002: разрыв верхней стены виден; координата сохранена. Публичный доступ не подтверждён.\"},\n            {\"id\":\"B3-F3-S02-D1\",\"spaceId\":\"B3-F3-S02\",\"x\":49,\"y\":119,\"to\":\"B3-F3-S01\",\"verification\":\"observed\",\"connectionVerification\":\"unverified\",\"access\":\"unknown\",\"notes\":\"GEO-002: разрыв чёрной западной стены ячейки, не зелёная стрелка. to — унаследованная ссылка; между ячейкой и S01 остаётся неразрешённая область, прямое соединение не подтверждено.\"},\n            {\"id\":\"B3-F3-S03-D1\",\"spaceId\":\"B3-F3-S03\",\"x\":49,\"y\":144,\"to\":\"B3-F3-S01\",\"verification\":\"observed\",\"connectionVerification\":\"unverified\",\"access\":\"unknown\",\"notes\":\"GEO-002: разрыв чёрной западной стены ячейки, не зелёная стрелка. to — унаследованная ссылка; между ячейкой и S01 остаётся неразрешённая область, прямое соединение не подтверждено.\"},\n"
+      },
+      {
+        "old": "            \"notes\": \"Западный блок малых помещений с внутренним проходом. Разбиение приблизительное.\"\n",
+        "new": "            \"notes\": \"GEO-002: соседнее западное пространство сохранено без смены роли и контура. Его внутреннее разбиение приблизительное; правая граница не аттестована. Проход X41–49/Y108–161 и нижняя полоса X41–71/Y161–175 не присвоены S01 и не являются новым помещением. Для уточнения топологии требуется отдельное решение об идентичности; публичный доступ и назначение неизвестны.\"\n"
+      },
+      {
+        "old": "          {\"id\":\"B3-F3-S02\",\"floorId\":\"B3-F3\",\"kind\":\"room\",\"type\":\"service\",\"polygon\":[[41.0,108],[71.0,108],[71.0,141.5],[41.0,141.5]],\"labelPoint\":[56.0,125.0],\"roomNumber\":null,\"label\":null,\"verification\":\"observed\",\"confidence\":\"low\",\"source\":\"photo_2_2026-10-08_17-50-42.jpg (план эвакуации, этаж 3); визуальная оцифровка\",\"notes\":\"Малое помещение, вход из внутреннего прохода (по стрелкам на плане).\"},\n          {\"id\":\"B3-F3-S03\",\"floorId\":\"B3-F3\",\"kind\":\"room\",\"type\":\"service\",\"polygon\":[[41.0,141.5],[71.0,141.5],[71.0,175],[41.0,175]],\"labelPoint\":[56.0,158.0],\"roomNumber\":null,\"label\":null,\"verification\":\"observed\",\"confidence\":\"low\",\"source\":\"photo_2_2026-10-08_17-50-42.jpg (план эвакуации, этаж 3); визуальная оцифровка\",\"notes\":\"Малое помещение, вход из внутреннего прохода (по стрелкам на плане).\"},\n",
+        "new": "          {\"id\":\"B3-F3-S02\",\"floorId\":\"B3-F3\",\"kind\":\"room\",\"type\":\"service\",\"polygon\":[[49,108],[71,108],[71,134],[49,134]],\"labelPoint\":[60,121],\"roomNumber\":null,\"label\":null,\"verification\":\"observed\",\"confidence\":\"low\",\"source\":\"photo_2_2026-10-08_17-50-42.jpg (план эвакуации, этаж 3); визуальная оцифровка\",\"notes\":\"GEO-002: верхняя наблюдаемая ячейка. Ширина около 22; восточная стена закреплена на существующей границе S04 X71 (фото ≈68), поэтому западная X49. Разрыв стены наблюдается отдельно от стрелки; назначение, номер и доступ неизвестны. Регистрация схематическая.\"},\n          {\"id\":\"B3-F3-S03\",\"floorId\":\"B3-F3\",\"kind\":\"room\",\"type\":\"service\",\"polygon\":[[49,134],[71,134],[71,161],[49,161]],\"labelPoint\":[60,147.5],\"roomNumber\":null,\"label\":null,\"verification\":\"observed\",\"confidence\":\"low\",\"source\":\"photo_2_2026-10-08_17-50-42.jpg (план эвакуации, этаж 3); визуальная оцифровка\",\"notes\":\"GEO-002: нижняя наблюдаемая ячейка, заканчивается около Y161, не Y175. Восточная стена согласована с S04, ширина около 22. Нижняя полоса и соседний проход не получили ID или назначение. Разрыв стены наблюдается отдельно от стрелки; назначение, номер и доступ неизвестны.\"},\n"
+      },
+      {
+        "old": "            {\"id\":\"B3-F7-STW\",\"type\":\"stair\",\"shaft\":\"B3-STAIR-W\",\"polygon\":[[183.0,108],[243.0,108],[243.0,175],[183.0,175]],\"verification\":\"observed\",\"source\":\"photo_6_2026-10-08_17-50-42.jpg (план эвакуации, этаж 7); визуальная оцифровка\",\"entry\":[243.0,138.0],\"notes\":\"Западная лестничная клетка (7 этаж): шахта внутри не показана, конфигурация маршей отличается от нижних этажей.\"},\n",
+        "new": "            {\"id\":\"B3-F7-STW\",\"type\":\"stair\",\"shaft\":\"B3-STAIR-W\",\"polygon\":[[183.0,108],[243.0,108],[243.0,175],[183.0,175]],\"verification\":\"observed\",\"source\":\"photo_6_2026-10-08_17-50-42.jpg (план эвакуации, этаж 7); визуальная оцифровка\",\"entry\":[243.0,138.0],\"notes\":\"Западная лестничная клетка (7 этаж): шахта внутри не показана, конфигурация маршей отличается от нижних этажей.\",\"visualStair\":{\"flights\":[[[201,154],[243,154],[243,173],[201,173]],[[259,108],[271,108],[271,133],[259,133]]],\"landing\":[[183,108],[259,108],[259,133],[243,133],[243,154],[201,154],[201,173],[183,173]],\"notes\":\"GEO-003: только рисунок по фото, привязанный к существующей границе STW X243. Длинный нижний и короткий верхний марш, поворотная площадка; часть рисунка находится в HW. Контуры выбора, направление, доступность, работа и связь этажей не определяются рисунком.\"}},\n"
+      }
+    ],
+    "index.html": [
+      {
+        "old": "  .vert .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.55}\n",
+        "new": "  .vert .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.55}\n  .vert .geo-enclosure{fill:transparent;stroke:none}\n  .vert.sel .geo-enclosure{stroke:var(--sel);stroke-width:3}\n  .geo-stair-art{pointer-events:none}\n  .geo-flight,.geo-landing{fill:var(--stair);stroke:var(--stair-ink);stroke-width:.8}\n  .geo-stair-art .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.85}\n"
+      },
+      {
+        "old": "        drawStairBox(gg, v.polygon, \"v\");\n",
+        "new": "        if (v.visualStair) {\n          // Identity hit region stays unchanged; photo artwork may extend into the hall.\n          el(\"polygon\", { points: pts(v.polygon), \"class\": \"geo-enclosure\" }, gg);\n          var art = el(\"g\", { \"class\": \"geo-stair-art\", \"data-stair-art\": v.id, \"aria-hidden\": \"true\", \"pointer-events\": \"none\" }, L.feat);\n          el(\"polygon\", { points: pts(v.visualStair.landing), \"class\": \"geo-landing\" }, art);\n          v.visualStair.flights.forEach(function (flight) {\n            el(\"polygon\", { points: pts(flight), \"class\": \"geo-flight\" }, art);\n            var fb = bbox(flight);\n            for (var sx = fb.x + 3; sx < fb.x + fb.w; sx += 3) el(\"line\", { x1: sx, y1: fb.y, x2: sx, y2: fb.y + fb.h, \"class\": \"treads\" }, art);\n          });\n        } else drawStairBox(gg, v.polygon, \"v\");\n"
+      },
+      {
+        "old": "        if (v.entry) el(\"rect\", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: \"var(--room-hall)\" }, L.doors);\n        var lbl = el(\"text\", { x: b.cx, y: b.y + b.h - 4, \"class\": \"vlabel\" }, gg);\n",
+        "new": "        if (v.entry && !v.visualStair) el(\"rect\", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: \"var(--room-hall)\" }, L.doors);\n        var lbl = el(\"text\", { x: b.cx, y: v.visualStair ? b.y + 15 : b.y + b.h - 4, \"class\": \"vlabel\" }, v.visualStair ? art : gg);\n"
+      }
+    ]
+  },
+  "baselineHashes": {
+    "map-data.js": "88e6fc2d7a66a6b09fda2ba3821cf18344cda924870dbc90e4fb48a04e728d8d",
+    "index.html": "e4c2049cca9aaf6438c4a29628806cfd1a5d39a44742eba31d2e9e597427810e"
+  }
+}

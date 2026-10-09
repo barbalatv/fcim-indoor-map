@@ -1,0 +1,59 @@
+{
+  "task": "GEO-02",
+  "uncertainties": [
+    {
+      "id": "GEO02-U01",
+      "topic": "entrances",
+      "status": "UNKNOWN",
+      "features": [
+        "B3-F1-OPEN-W",
+        "B3-F1-OPEN-E",
+        "B3-F1-OPEN-S"
+      ],
+      "needs": "Осмотр наружных связей, табличек, назначения и публичного доступа. EXIT не доказывает главный вход."
+    },
+    {
+      "id": "GEO02-U02",
+      "topic": "shafts",
+      "status": "UNKNOWN",
+      "features": [
+        "B3-F1-SH1",
+        "B3-F1-SH2",
+        "B3-F1-STW-INNER"
+      ],
+      "needs": "Установить функцию квадратных символов; работа и доступ лифта отдельно."
+    },
+    {
+      "id": "GEO02-U03",
+      "topic": "small compartments",
+      "status": "QUALIFICATION REQUIRED",
+      "spaces": [
+        "B3-F1-N10",
+        "B3-F1-S06",
+        "B3-F1-S07",
+        "B3-F1-S08",
+        "B3-F1-S14",
+        "B3-F1-HC"
+      ],
+      "needs": "Сверить малые стены и проёмы центрального/восточного блока. Функция, WC и номера неизвестны."
+    },
+    {
+      "id": "GEO02-U04",
+      "topic": "stairs",
+      "status": "UNKNOWN",
+      "needs": "Направление, межэтажная связь и доступ каждого лестничного символа; граф не создан."
+    },
+    {
+      "id": "GEO02-U05",
+      "topic": "scale and alignment",
+      "status": "UNKNOWN",
+      "needs": "Физические размеры, реальные стороны света, искажение листа/объектива. GEO-001 F2 остаётся нерешённым."
+    },
+    {
+      "id": "GEO02-U06",
+      "topic": "rooms and timetable",
+      "status": "UNKNOWN",
+      "needs": "Таблички и независимая квалификация room bindings. Реальное расписание не подключено."
+    }
+  ]
+}

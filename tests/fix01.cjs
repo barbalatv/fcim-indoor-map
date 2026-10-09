@@ -50,7 +50,7 @@ async function test(name, fn) {
   const server = http.createServer((req,res) => {
     const file = new URL(req.url,'http://localhost').pathname.slice(1) || 'index.html';
     if (file === 'favicon.ico') { res.writeHead(204); return res.end(); }
-    if (!['index.html','map-data.js','room-contract.js','schedule-engine.js','schedule-fixture.js','map-semantics.js'].includes(file)) { res.writeHead(404); return res.end(); }
+    if (!['index.html','map-data.js','room-contract.js','schedule-engine.js','schedule-fixture.js','map-semantics.js','room-identification.js'].includes(file)) { res.writeHead(404); return res.end(); }
     res.setHeader('Content-Type',file.endsWith('.js') ? 'text/javascript; charset=utf-8' : 'text/html; charset=utf-8'); res.end(fs.readFileSync(path.join(root,file)));
   });
   await new Promise(r => server.listen(0,'127.0.0.1',r)); url = 'http://127.0.0.1:'+server.address().port+'/index.html';
@@ -201,7 +201,8 @@ async function test(name, fn) {
     });
     await test('Unchanged map selection, floors 2–7, pending floors and search; MAP-01 routing UI absent',async () => {
       for(let n=2;n<=7;n++){await floor(n);assert.equal(await page.locator('#layerSpaces polygon').count(),await page.evaluate(n=>FCIM_MAP_DATA.floors.find(f=>f.level===n).spaces.length,n));}
-      for(const n of ['1','D']){await floor(n);assert.equal(await page.locator('#floorNav .active').innerText(),'7');}
+      await floor('1');assert.equal(await page.locator('#floorNav .active').innerText(),'1');
+      await floor('D');assert.equal(await page.locator('#floorNav .active').innerText(),'1');
       await floor(4);await select('B3-F4-N01');assert.equal(await page.locator('[data-id="B3-F4-N01"].sel').count(),1);
       await bind('B3-F4-N01','405');await floor(7);await search('3-405');assert.equal(await page.locator('#floorNav .active').innerText(),'4');
       assert.equal(await page.locator('[data-id="B3-F4-N01"].sel').count(),1);await search('D01-03');assert.match(await page.locator('#panel').innerText(),/подвала/);
