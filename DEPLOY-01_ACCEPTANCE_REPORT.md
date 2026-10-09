@@ -3,7 +3,8 @@
 10 октября 2026, Europe/Chisinau.
 **READY FOR DEPLOYMENT — HUMAN APPROVAL REQUIRED.**
 Подготовка к Gate A завершена. Production acceptance новой карты/CORS — PENDING.
-Push/PR/merge/deploy, Render env и Pages settings не менялись.
+Push, PR creation, GitHub merge/deploy, Render env и Pages settings не выполнялись.
+Локальный consumer ancestry merge выполнен в разрешённом preparation scope.
 
 ## Deployment / Git / CI
 
@@ -34,9 +35,10 @@ CI/config/test/manifest files и 4 docs. Safe merge изменил 0 source file
 ## Production API и CORS, до deployment
 
 Capture **2026-10-10 00:21:25 Europe/Chisinau**, `2026-10-09T21:21:25.557Z`.
-11 bounded requests: 4 course reads, denied origin, invalid course, 2 public OPTIONS,
+Script public-check выполнил 11 bounded requests: 4 course reads, denied origin, invalid course, 2 public OPTIONS,
 admin OPTIONS без записи, producer landing, expected Pages URL. Admin POST, PDF
 scraping, source refresh и publication не выполнялись.
+Отдельные read-only browser UI/CORS checks не входят в эти 11 script requests.
 
 | Курс | schedule/status | Groups | Weekly events | Memberships | Potential mapped F1 |
 |---|---|---:|---:|---:|---:|
@@ -90,7 +92,16 @@ production default остаётся 15 секунд. После deployment ну�
 | Current API schema/revisions | PASS | PRODUCTION LIVE before release |
 | Public map/new CORS/live acceptance | PENDING | Pages нет, CORS до релиза |
 
-**Fresh clone / rollback artifact: PENDING final verification.**
+**Fresh consumer clones / rollback artifact: PASS.** Два новых локальных Git clones
+проверенного commit `e173d1cd9ff1357648b7975d1ba1fb6fd82fbd36`: checkout с LF и CRLF,
+по 69/69 portable tests PASS. Browser из LF clone с явно заданным standalone
+Playwright module: 24/24 replay и 17/17 package/failure/recovery PASS. External
+Codex baseline directories для этих clone tests не используются. Это fresh local
+Git clones, не GitHub-hosted/Linux CI. Final docs-only update не меняет source/CI.
+Actual UI rollback source `e142733...`: 9-file artifact, standalone demo PASS,
+0 runtime errors/remote requests. Operational rollback не выполнялся.
+Fresh producer clone exact `badad94fbf6e2a2caf87e028cda029f993eaadd8`:
+npm ci PASS, npm test 743/743 PASS (34 files). Логи в final evidence directory.
 Local Node v22.23.1; Chrome 154.0.8037.98. Новый workflow предназначен для Node
 22/Linux, hosted execution не заявляется. Historical source/assertions/preloads
 не редактировались DEPLOY-01. Новый frozen gate не создаёт baseline directories;
@@ -147,8 +158,8 @@ Evidence: `C:/Users/user/.codex/visualizations/2026/10/10/DEPLOY-01/`.
 | Actual production API read blocked in local browser | `extra-browser/local-production-cors-denied.png` | LOCAL |
 | Independent demo/file | `project-path-final/local-demo-1440.png`, `local-file-demo.png` | LOCAL |
 
-Просмотрены mapped mobile 320, desktop unmapped, demo и actual producer Anul II;
-extra disclaimer/upper-floor frames проходят final visual QA. Скриншота работающей
+Просмотрены mapped mobile 320, desktop unmapped, demo, actual producer Anul II,
+mobile disclaimer и captured upper-floor 401; visual QA этих frames PASS. Скриншота работающей
 public map нет: local/replay нельзя выдавать за этот production scenario.
 
 ## Security / rollback / outstanding facts

@@ -8,8 +8,9 @@ PASS ограничен указанной средой; production PENDING не
 | 1. Source readiness | Git inventory/fetch/current ancestry | PASS | Safe merge main без source changes; accepted UI history включена |
 | 1 | 222 ID / 15 mappings / critical files / storage | PASS | Raw-byte local + frozen portable checks |
 | 1 | Static artifact/base path/runtime dependencies | PASS | 13 allowlisted files; project path browser |
-| 1 | Fresh-clone reproducibility | PENDING | Final clone verification в report |
+| 1 | Fresh-clone consumer reproducibility | PASS | LF/CRLF по 69; LF browser 24+17; LOCAL, не hosted/Linux CI |
 | 2. Producer CI | npm ci / 743 tests / 21 included CORS | PASS | LOCAL, 34 test files |
+| 2 | Fresh-clone npm ci / tests | PASS | LOCAL exact badad94 source, 743/743, не hosted CI |
 | 2 | App/Worker/publisher typechecks | PASS | LOCAL |
 | 2 | lint/build/Worker dry-run/publisher build | PASS | LOCAL; dry-run не deployment |
 | 2 | Chromium E2E | PASS | LOCAL 4, fixture APIs |
@@ -28,6 +29,7 @@ PASS ограничен указанной средой; production PENDING не
 | 6. Pages | Manual immutable-SHA workflow/permissions/package | PASS | LOCAL reviewed config, official action refs verified |
 | 6 | Settings/environment/actual URL/Gate C/publication | PENDING | has_pages=false; API/site 404 |
 | 6 | Previous production map SHA | NOT APPLICABLE | Initial publication отсутствует |
+| 6 | UI-01-FIX-B rollback artifact | PASS | Actual accepted Git SHA, 9 files, offline demo; LOCAL, не operational rollback |
 | 7. Live integration | Existing producer Anul I/II UI | PASS | PRODUCTION LIVE before release |
 | 7 | Current API schema/course/revision consistency | PASS | PRODUCTION LIVE before release, 4 HTTP 200 |
 | 7 | Current production CORS map access | FAIL | Нет ACAO; deployed producer до MAP-02B |

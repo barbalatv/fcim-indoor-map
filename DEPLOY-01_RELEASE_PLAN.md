@@ -124,9 +124,11 @@ deployed merge SHA может отличаться от PR head: записат�
 
 ## Воспроизведение и CI
 
-Producer, fresh clone approved branch:
+Producer, fresh clone branch после разрешённого Gate A push; выбрать новую review directory:
 
 ```powershell
+git clone --branch codex/map-02b-producer-integration https://github.com/barbalatv/utm-curs-i-orar-2027.git "$env:TEMP\fcim-producer-review"
+Set-Location "$env:TEMP\fcim-producer-review"
 npm ci
 npm test
 npm run typecheck
@@ -147,6 +149,8 @@ Hosted CI также запускает DB migrations/tests в изолиров�
 Consumer, fresh clone task branch после разрешённого push:
 
 ```powershell
+git clone --branch codex/map-02b-consumer-integration https://github.com/barbalatv/fcim-indoor-map.git "$env:TEMP\fcim-consumer-review"
+Set-Location "$env:TEMP\fcim-consumer-review"
 node --test tests/deploy01-contract.cjs tests/map02b-api.cjs tests/map02b-data.cjs
 $env:PLAYWRIGHT_MODULE='C:\path\to\producer\node_modules\@playwright\test'
 # Prerequisite: Chrome installed; app dependencies карты не добавляются.
