@@ -1,0 +1,816 @@
+{
+  "baselineCommit": "e14273370cc419e5acd21b78cd2ea51a3d6d4127",
+  "baselineLfSha256": {
+    "tests/room01b-data.cjs": "99be77fec6d72b054953857c05c4146c467a65caa6afa1e5502659a194167a38",
+    "ROOM-01A_CHANGES.json": "8f9f8f55906dcd2a71d39b22b27171bf4a4882943dbe12a48f367052ed9d815d",
+    "tests/room01c-data.cjs": "d520fc4a2bbbfe10e28035d4a480b425a28525030727ba62a535470e284177bc",
+    "tests/ui01-source-pixels.cjs": "97e8d1c062a22cf5ce9d6a776ad4d595afff74434d14fbbdd41309a49cc798fc",
+    "MAP-01_REPORT.md": "3a0212e39cdb54ef1b5206b251d31dc9f0b4d8648ea807cb9d5a770ae5d48387",
+    "tests/room01-contract.cjs": "398e9b5579e9d3eb4125551c43327eded2a3245a6aaaedec8addf705fafdc898",
+    "GEO-02_UNCERTAINTIES.json": "94137b02711eb861827f2c0c486cb70982c974453e63b956599982b75476e36a",
+    "tests/fix01.cjs": "4d7acff7a2333ff755ac25e9dc5157f73528b372f19be5df2200f1164ad2dad3",
+    "tests/room01b-browser.cjs": "8b1765518466f7a271ef5900e4b85a88fccd1edfeeada97803f867a41afb7fbd",
+    "README.md": "bbd5e929b4c6b3475f774872d704f88856a8ed56f60a4ce27c3260246d13a66d",
+    "room-identification.js": "f3c05bb5772b05d2e1bead774d6d809598d2b367d6dd6f202fe23af7a2d9b8a9",
+    "GEO-02_CHANGES.json": "d1201748d90dc4e10001f79fedbb764089fa8835c0f6f6f454e2e79edd280e4f",
+    "schedule-fixture.js": "6e6cc46215f6e51e638240481c711f5013544bc460faa048d30134b6ee410323",
+    "schematic-layout.js": "cf42d069dfdd28fb307a91cb1fb7f6bb9a6a7ae0d8fd3eafc3e7930184f51d1c",
+    "index.html": "380dc7fa8ca6584c09af247960f4d34e45409b95faa34ae6aa8e88c7cfd5ab6a",
+    "tests/geo02-contract.cjs": "8ccdd341d2c375f763ea925c077a04523ca4158db5edff87a37177f60a5e917a",
+    "map-data.js": "50a004532a920f1ae6336a871f04c860ad162de876221b2346bcf606b9d77193",
+    "MAP-02A_REPORT.md": "b2e6a81e4dbf135c03d056502ec8a4e6979afe3af1834c992c1ba01422befdb9",
+    "tests/ui01-fix-a-data.cjs": "2e8d391fb2ff3222fab947413b50ceecdff653ee7fa7b83e849570f8fc245cb2",
+    "tests/room01c-browser.cjs": "086091b92adfb06f28ebd586239fd81cbf1c55cc2bf1fc9a531a95364a61fa91",
+    "UI-01-FIX-A_REPORT.md": "abe9a06159fbc825b38e94d227e3c36137788a460c481c4fa5ddb82a2d8af06e",
+    "UI-01_REPORT.md": "db205da263715e961d2baae23a38352049748475d7e656427caf0ee3e09fdd5e",
+    "GEO-02_REPORT.md": "fd551e85249d66f8e0351f01373c87cf75bce35cbc4bf1cec7fae00b321fd0ae",
+    "GEO-01-FIX-A_REPORT.md": "a863c55da1fc84dc79d31e116afb1e660be8ba7a6e9de0a7531cc49b1701d25d",
+    "TIMETABLE_CONTRACT.md": "36dd3f97b80dddfa0f749cacf79b60e7731d66fbe11cfb17ec8fd45e0762fd47",
+    "tests/geo01-browser.cjs": "90564ae7f42649768b1b0a94f58ef7c1e2d1a6a41b4b7aa718eebf30b784add3",
+    "map-semantics.js": "ac9f112e858df48fc52cf8d24c2b73f18dc45f937dab8618f040ae4fcedb5abb",
+    "tests/geo02-data.cjs": "9719ffd6b1dfa010740fd4dbcb2d8f195c0e3988f0451430c8b2309885f9bd17",
+    "ROOM-01C_CHANGES.json": "b9e9885edf7dc2a0ab180c1b7b9719bf0fe3e2ce9a66a7f22b41815da9d20230",
+    "UI-01_CHANGES.json": "335b08d9795231b7510dc4f9ab16cfe77fefc86cf2c47dc43e301fa1d17ec5b1",
+    "tests/geo02-browser.cjs": "56b45d0c2f5b0312830dc6522821ce67b92fee9655d11caeb0cf40cb270f62fc",
+    "tests/room01-browser.cjs": "da0204c13095bfb4dd36c01076cbda3bf4d23c68af360ee6ceffba11f2b81011",
+    "FIX-01_REPORT.md": "882d8d9d9ce99193430e838e397f4b04dde65db4fa1991c32145f2e855c2648f",
+    "tests/ui01-fix-b-contract.cjs": "64a2705d4de2ad2e6ab64a3b71a5c8b91f56e26c882a81d3f4dc1d6a31a024a8",
+    "tests/ui01-fix-b-data.cjs": "ff940d90203f3dd7e739ae531336da1cf736a29098d7c4f0826194b319e28f73",
+    "tests/geo02-geometry.cjs": "8761d20ca22cfe69950f5ddfd1ef05ecc8ec82b48dff27a5f5cd6c949019b63b",
+    "GEO-02_SPACES.json": "347bb1959693479d71ab39d127026ff85eabd8fcd01039aac738cb1b13b97cc5",
+    "GEO-01_FINDINGS.json": "07536d3d2dacb94ec84d414db700eec0ae864e414d7554d4d2263c0f050d81e0",
+    "GEO-01_REPORT.md": "b0d7954336fab198a25c90c68b9f4d29b1661c7d7ba129f137792c7840f30f11",
+    "tests/ui01-fix-b-browser.cjs": "fac98f5440fb73ff61053876ed56fba1417413cd86b47e4ee87374728c5889cf",
+    "tests/ui01-fix-a-browser.cjs": "e203526e82d0870117f8cfea453ade2eabe162fedfa6e6c091296bdb81f0b2cb",
+    "MAP-02A_API_CONTRACT.md": "94d51b24c18733654d87f4bf37a601b757ec435515eeda11035def3049b03fde",
+    "tests/map01-browser.cjs": "8a406fbce1b16048b3926f4b0708474f9432c6344667851fcfc638ef8e32e419",
+    "tests/geo01-changes.json": "f3f776e5120dff91b99bc62b44524d2601954ef8e90d22812283da0d4792134a",
+    "ROOM-01B_CHANGES.json": "ea02540cd483415b05a44bf09a42a5cd4da2524a405a1268da715797503355a9",
+    "ROOM-01C_REPORT.md": "f26d3653287b88ce2b986693ae6af66f868548cb0c1ab0b8f430cf848c57c626",
+    "tests/geo01-data.cjs": "13f282f0d670482d9f1627874606babea7c69f97d66ece2feef7c6f31c8e133a",
+    "tests/ui01-contract.cjs": "d1ec449c4eadfb62dcec4c56c1191596b17bf0536a7ad7ccc682e3be4431838c",
+    "tests/geo01-fix-b-browser.cjs": "39ba38295bc642b5cd56f42f05974307b17bd0b09aacc3e2fe3bd0c83d62a4e3",
+    "tests/preserve-map.cjs": "cb9563e29bedf5033ed4596518b943fe2e8425597c43ca15570c9c8785ab4812",
+    "tests/room01c-contract.cjs": "62cd8a86881afaa60be63d7a8af1175e81803a44fa2c383e4c481537ee3b131d",
+    "tests/ui01-browser.cjs": "07e154ffcd3bd4037ba102eaab7ebf18f65b2c1bc32214e9cd5617fd3316cf3a",
+    "ROOM-01A_REPORT.md": "95b15cacbd7e6e7a15be47cfaf48598d60cf6b79fcef38051ac9b0c2f5287128",
+    "MAP-02A_DECISION_PACKET.md": "5f5b10e8fc40e081793893563096505a615c1046210bb8ab8def15cd3bfde54e",
+    "schedule-engine.js": "5a9844201990925f42b6c97bd0c831386857f4352dedd669b430807a79865eb4",
+    "ROOM-01B_REPORT.md": "c55106379ec57cd881df44176cb90f98db1376ab4659339256156e45a2b69ddd",
+    "tests/room01-data.cjs": "3a882b6d5d2d65bc57e81dcb1b1d3e9acba48f6022b2dacf3ed5cfabda3a55bc",
+    "UI-01-FIX-B_CHANGES.json": "66d47d02a1f76ff523b2fcf93c5ff22c82648777575cc437fa7aa9bc27f0f5fd",
+    "UI-01-FIX-A_CHANGES.json": "15468819f5c4cb129c406ad04beb47b6f7e868d14feed7571e651ffc8d5dfe8c",
+    "UI-01-FIX-B_REPORT.md": "80807e7dba4588aedf0a3173f22392915d21090a9a7e7ba949c097ee5aa9f0a2",
+    "GEO-01-FIX-B_CHANGES.json": "b6ad2df1b371bbceb81a5c3d64ffb48e21669b95d5ff9d6acc6726190938bab6",
+    "tests/room01b-contract.cjs": "b7e1c7ebf1c0ee1f2921de17844f8c1aec6134b23f4c6b863a3c400022a8cd1f",
+    "tests/geo01-contract.cjs": "a0c22c3ca6328e1f2f61722b770153a996e7f0f2c7db8c3804aa24e9e8291a1b",
+    "tests/ui01-data.cjs": "766f7e63cc0dfe1757ceced0daed9d63dfdaa9fb1443ff2aa5a62d27e659aee4",
+    "tests/geo01-fix-b-data.cjs": "d9618968f47c62b980db5c532179691b3653cb8696493b3b3a54aa7039a2a4e8",
+    "tests/map01-data.cjs": "fb1cca46de5dd13ae614893774b0e67facf9a398b4d17b804c7f95a734364496",
+    "GEO-01-FIX-B_REPORT.md": "5783da6e4be119390c6e53423764e89b8b45db073c6110f6decec6144516853e",
+    "tests/map01-preserve.cjs": "5266ccac686a6deb39f8b7de8ccc84dbcd4fd31508b8bfa35f208631900672cd",
+    "MAP-02A_ROOM_COVERAGE.json": "3c019ffcebc1931d1361aa733b3ab4205f620d7479a00a2c15411fce38e57d68",
+    "tests/ui01-fix-a-contract.cjs": "cbb05568bdc316a45011e56a6039fc6a4397f7fc4fd9a715135ddb5d48d02e07",
+    "room-contract.js": "762a5370520dad858b9911cea2dc358f94fc205488926d2fa3475793cca7a6a6"
+  },
+  "spatialIds": [
+    {
+      "level": 1,
+      "ids": [
+        "B3-F1-N01",
+        "B3-F1-N02",
+        "B3-F1-N03",
+        "B3-F1-N04",
+        "B3-F1-N05",
+        "B3-F1-N06",
+        "B3-F1-N07",
+        "B3-F1-N08",
+        "B3-F1-N09",
+        "B3-F1-N10",
+        "B3-F1-S01",
+        "B3-F1-S02",
+        "B3-F1-S03",
+        "B3-F1-S04",
+        "B3-F1-S05",
+        "B3-F1-S06",
+        "B3-F1-S07",
+        "B3-F1-S08",
+        "B3-F1-S09",
+        "B3-F1-S10",
+        "B3-F1-S11",
+        "B3-F1-S12",
+        "B3-F1-S13",
+        "B3-F1-S14",
+        "B3-F1-HW",
+        "B3-F1-LH",
+        "B3-F1-HC",
+        "B3-F1-HE"
+      ]
+    },
+    {
+      "level": 2,
+      "ids": [
+        "B3-F2-N01",
+        "B3-F2-N02",
+        "B3-F2-N03",
+        "B3-F2-N04",
+        "B3-F2-N05",
+        "B3-F2-N06",
+        "B3-F2-N07",
+        "B3-F2-N08",
+        "B3-F2-N09",
+        "B3-F2-N10",
+        "B3-F2-N11",
+        "B3-F2-LH",
+        "B3-F2-N12",
+        "B3-F2-N13",
+        "B3-F2-S01",
+        "B3-F2-S02",
+        "B3-F2-HW",
+        "B3-F2-S03",
+        "B3-F2-S04",
+        "B3-F2-S05",
+        "B3-F2-S06",
+        "B3-F2-S07",
+        "B3-F2-S08",
+        "B3-F2-S09",
+        "B3-F2-S10",
+        "B3-F2-S11",
+        "B3-F2-S12",
+        "B3-F2-S13",
+        "B3-F2-S14",
+        "B3-F2-S15",
+        "B3-F2-S16",
+        "B3-F2-S17"
+      ]
+    },
+    {
+      "level": 3,
+      "ids": [
+        "B3-F3-N01",
+        "B3-F3-N02",
+        "B3-F3-N03",
+        "B3-F3-N04",
+        "B3-F3-N05",
+        "B3-F3-N06",
+        "B3-F3-N07",
+        "B3-F3-N08",
+        "B3-F3-N09",
+        "B3-F3-N10",
+        "B3-F3-N11",
+        "B3-F3-LH",
+        "B3-F3-N12",
+        "B3-F3-N13",
+        "B3-F3-S01",
+        "B3-F3-S02",
+        "B3-F3-S03",
+        "B3-F3-S04",
+        "B3-F3-S05",
+        "B3-F3-HW",
+        "B3-F3-S06",
+        "B3-F3-S07",
+        "B3-F3-S08",
+        "B3-F3-S09",
+        "B3-F3-S10",
+        "B3-F3-S11",
+        "B3-F3-S12",
+        "B3-F3-S13",
+        "B3-F3-S14",
+        "B3-F3-S15",
+        "B3-F3-S16",
+        "B3-F3-S17",
+        "B3-F3-S18"
+      ]
+    },
+    {
+      "level": 4,
+      "ids": [
+        "B3-F4-N01",
+        "B3-F4-N02",
+        "B3-F4-N03",
+        "B3-F4-N04",
+        "B3-F4-N05",
+        "B3-F4-N06",
+        "B3-F4-N07",
+        "B3-F4-N08",
+        "B3-F4-N09",
+        "B3-F4-N10",
+        "B3-F4-N11",
+        "B3-F4-N12",
+        "B3-F4-N13",
+        "B3-F4-LH",
+        "B3-F4-N14",
+        "B3-F4-N15",
+        "B3-F4-S01",
+        "B3-F4-S02",
+        "B3-F4-S03",
+        "B3-F4-S04",
+        "B3-F4-HW",
+        "B3-F4-S05",
+        "B3-F4-S06",
+        "B3-F4-S07",
+        "B3-F4-S08",
+        "B3-F4-S09",
+        "B3-F4-S10",
+        "B3-F4-S11",
+        "B3-F4-S12",
+        "B3-F4-S13",
+        "B3-F4-S14",
+        "B3-F4-S15",
+        "B3-F4-S16"
+      ]
+    },
+    {
+      "level": 5,
+      "ids": [
+        "B3-F5-N01",
+        "B3-F5-N02",
+        "B3-F5-N03",
+        "B3-F5-N04",
+        "B3-F5-N05",
+        "B3-F5-N06",
+        "B3-F5-N07",
+        "B3-F5-N08",
+        "B3-F5-N09",
+        "B3-F5-N10",
+        "B3-F5-N11",
+        "B3-F5-LH",
+        "B3-F5-N12",
+        "B3-F5-N13",
+        "B3-F5-S01",
+        "B3-F5-S02",
+        "B3-F5-S03",
+        "B3-F5-HW",
+        "B3-F5-S04",
+        "B3-F5-S05",
+        "B3-F5-S06",
+        "B3-F5-S07",
+        "B3-F5-S08",
+        "B3-F5-S09",
+        "B3-F5-S10",
+        "B3-F5-S11",
+        "B3-F5-S12",
+        "B3-F5-S13",
+        "B3-F5-S14",
+        "B3-F5-S15"
+      ]
+    },
+    {
+      "level": 6,
+      "ids": [
+        "B3-F6-N01",
+        "B3-F6-N02",
+        "B3-F6-N03",
+        "B3-F6-N04",
+        "B3-F6-N05",
+        "B3-F6-N06",
+        "B3-F6-N07",
+        "B3-F6-N08",
+        "B3-F6-N09",
+        "B3-F6-N10",
+        "B3-F6-N11",
+        "B3-F6-N12",
+        "B3-F6-N13",
+        "B3-F6-LH",
+        "B3-F6-N14",
+        "B3-F6-N15",
+        "B3-F6-N16",
+        "B3-F6-S01",
+        "B3-F6-S02",
+        "B3-F6-S03",
+        "B3-F6-HW",
+        "B3-F6-S04",
+        "B3-F6-S05",
+        "B3-F6-S06",
+        "B3-F6-S07",
+        "B3-F6-S08",
+        "B3-F6-S09",
+        "B3-F6-S10",
+        "B3-F6-S11",
+        "B3-F6-S12",
+        "B3-F6-S13",
+        "B3-F6-S14",
+        "B3-F6-S15",
+        "B3-F6-S16",
+        "B3-F6-S17",
+        "B3-F6-S18"
+      ]
+    },
+    {
+      "level": 7,
+      "ids": [
+        "B3-F7-N01",
+        "B3-F7-N02",
+        "B3-F7-N03",
+        "B3-F7-N04",
+        "B3-F7-N05",
+        "B3-F7-N06",
+        "B3-F7-N07",
+        "B3-F7-N08",
+        "B3-F7-N09",
+        "B3-F7-N10",
+        "B3-F7-N11",
+        "B3-F7-N12",
+        "B3-F7-N13",
+        "B3-F7-S01",
+        "B3-F7-S02",
+        "B3-F7-S03",
+        "B3-F7-HW",
+        "B3-F7-S04",
+        "B3-F7-S05",
+        "B3-F7-S06",
+        "B3-F7-S07",
+        "B3-F7-S08",
+        "B3-F7-S09",
+        "B3-F7-S10",
+        "B3-F7-S11",
+        "B3-F7-S12",
+        "B3-F7-S13",
+        "B3-F7-S14",
+        "B3-F7-S15",
+        "B3-F7-S16"
+      ]
+    }
+  ],
+  "roomMappings": [
+    {
+      "roomCode": "3-114",
+      "candidateSpaceIds": [
+        "B3-F1-N01"
+      ],
+      "spaceIds": [
+        "B3-F1-N01"
+      ],
+      "primarySpaceId": "B3-F1-N01",
+      "spaceId": "B3-F1-N01",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "north",
+      "notes": "Три широких северных отсека до выемки фасада: западный.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-112",
+      "candidateSpaceIds": [
+        "B3-F1-N02"
+      ],
+      "spaceIds": [
+        "B3-F1-N02"
+      ],
+      "primarySpaceId": "B3-F1-N02",
+      "spaceId": "B3-F1-N02",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "north",
+      "notes": "Средний из трёх широких северных отсеков.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-110",
+      "candidateSpaceIds": [
+        "B3-F1-N03"
+      ],
+      "spaceIds": [
+        "B3-F1-N03"
+      ],
+      "primarySpaceId": "B3-F1-N03",
+      "spaceId": "B3-F1-N03",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "north",
+      "notes": "Восточный из трёх широких северных отсеков перед выемкой.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-108",
+      "candidateSpaceIds": [
+        "B3-F1-N04"
+      ],
+      "spaceIds": [
+        "B3-F1-N04"
+      ],
+      "primarySpaceId": "B3-F1-N04",
+      "spaceId": "B3-F1-N04",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "north",
+      "notes": "Узкий отсек с выемкой северного фасада.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-106",
+      "candidateSpaceIds": [
+        "B3-F1-N05",
+        "B3-F1-N06"
+      ],
+      "spaceIds": [
+        "B3-F1-N05",
+        "B3-F1-N06"
+      ],
+      "primarySpaceId": "B3-F1-N05",
+      "spaceId": null,
+      "status": "mapped",
+      "internalPartition": "wall-with-door",
+      "labelPoint": [
+        525,
+        36
+      ],
+      "side": "north",
+      "notes": "Одна аудитория; перегородка и наблюдаемый проём N05-D1 сохранены.",
+      "confidence": "user-confirmed",
+      "oneToOne": false,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-104",
+      "candidateSpaceIds": [
+        "B3-F1-N07"
+      ],
+      "spaceIds": [
+        "B3-F1-N07"
+      ],
+      "primarySpaceId": "B3-F1-N07",
+      "spaceId": "B3-F1-N07",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "north",
+      "notes": "Широкое помещение с лестничным уступом, перед узким отсеком у шахт.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-102",
+      "candidateSpaceIds": [
+        "B3-F1-N08"
+      ],
+      "spaceIds": [
+        "B3-F1-N08"
+      ],
+      "primarySpaceId": "B3-F1-N08",
+      "spaceId": "B3-F1-N08",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "north",
+      "notes": "Узкий отсек непосредственно западнее ограждения двух шахт.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-115",
+      "candidateSpaceIds": [
+        "B3-F1-S01"
+      ],
+      "spaceIds": [
+        "B3-F1-S01"
+      ],
+      "primarySpaceId": "B3-F1-S01",
+      "spaceId": "B3-F1-S01",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "south",
+      "notes": "Узкое юго-западное помещение.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-113",
+      "candidateSpaceIds": [
+        "B3-F1-S02"
+      ],
+      "spaceIds": [
+        "B3-F1-S02"
+      ],
+      "primarySpaceId": "B3-F1-S02",
+      "spaceId": "B3-F1-S02",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "south",
+      "notes": "Широкое помещение непосредственно западнее западной лестницы.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-111",
+      "candidateSpaceIds": [
+        "B3-F1-S03"
+      ],
+      "spaceIds": [
+        "B3-F1-S03"
+      ],
+      "primarySpaceId": "B3-F1-S03",
+      "spaceId": "B3-F1-S03",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "south",
+      "notes": "Первый узкий отсек восточнее открытого западного холла.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-109",
+      "candidateSpaceIds": [
+        "B3-F1-S04"
+      ],
+      "spaceIds": [
+        "B3-F1-S04"
+      ],
+      "primarySpaceId": "B3-F1-S04",
+      "spaceId": "B3-F1-S04",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "south",
+      "notes": "Второй узкий отсек восточнее западного холла.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-107",
+      "candidateSpaceIds": [
+        "B3-F1-S05"
+      ],
+      "spaceIds": [
+        "B3-F1-S05"
+      ],
+      "primarySpaceId": "B3-F1-S05",
+      "spaceId": "B3-F1-S05",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "south",
+      "notes": "Широкий отсек перед блоком двух WC.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-105",
+      "candidateSpaceIds": [
+        "B3-F1-S09"
+      ],
+      "spaceIds": [
+        "B3-F1-S09"
+      ],
+      "primarySpaceId": "B3-F1-S09",
+      "spaceId": "B3-F1-S09",
+      "status": "mapped",
+      "internalPartition": "single",
+      "labelPoint": null,
+      "side": "south",
+      "notes": "Одно помещение S09; S10 относится к 103.",
+      "confidence": "user-confirmed",
+      "oneToOne": true,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-103",
+      "candidateSpaceIds": [
+        "B3-F1-S10",
+        "B3-F1-S11"
+      ],
+      "spaceIds": [
+        "B3-F1-S10",
+        "B3-F1-S11"
+      ],
+      "primarySpaceId": "B3-F1-S10",
+      "spaceId": null,
+      "status": "mapped",
+      "internalPartition": "wall-with-door",
+      "labelPoint": [
+        555,
+        140
+      ],
+      "side": "south",
+      "notes": "Одна аудитория с перегородкой и внутренней дверью по заявлению пользователя. Положение двери неизвестно; историческая S11-D2 ведёт к S12 и не считается этой дверью.",
+      "confidence": "user-confirmed",
+      "oneToOne": false,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    },
+    {
+      "roomCode": "3-101",
+      "candidateSpaceIds": [
+        "B3-F1-S12",
+        "B3-F1-S13"
+      ],
+      "spaceIds": [
+        "B3-F1-S12",
+        "B3-F1-S13"
+      ],
+      "primarySpaceId": "B3-F1-S12",
+      "spaceId": null,
+      "status": "mapped",
+      "internalPartition": "none",
+      "labelPoint": [
+        688,
+        140
+      ],
+      "side": "south",
+      "notes": "Одна аудитория без перегородки между S12 и S13; ложная линия исключена из визуальных стен.",
+      "confidence": "user-confirmed",
+      "oneToOne": false,
+      "cleanupRequired": false,
+      "evidence": {
+        "file": "floor1кабинеты.png",
+        "sha256": "488159f6243075d6cd0a8a0cef2c0632ec4508f8554404de536beac483f7759a",
+        "identityEvidence": "user-confirmed",
+        "geometrySource": "floor1.jpg",
+        "geometrySha256": "fa2e31d1d0fc14f554bddfef8a6226425e1f6d780f28689a7882beb646dbd5b9",
+        "onSiteVerification": "unknown",
+        "proportions": "simplified-do-not-measure",
+        "correction": "ROOM-01B user contract",
+        "correctionSha256": "f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2"
+      }
+    }
+  ],
+  "releaseAdditions": [
+    ".gitattributes",
+    ".github/workflows/ci.yml",
+    ".github/workflows/pages.yml",
+    "scripts/prepare-pages.mjs",
+    "tests/deploy01-contract.cjs",
+    "tests/deploy01-browser.cjs",
+    "DEPLOY-01_CHANGES.json",
+    "DEPLOY-01_RELEASE_PLAN.md",
+    "DEPLOY-01_CHECKLIST.md",
+    "DEPLOY-01_ACCEPTANCE_REPORT.md",
+    "DEPLOY-01_PR_PACKET.md"
+  ],
+  "qualification": "Hashes freeze accepted source text after Git CRLF/LF normalization; original raw-byte MAP-02B and historical gates remain unchanged and local-only. No baseline evidence directory is reconstructed."
+}

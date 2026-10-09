@@ -1,0 +1,55 @@
+name: Publish approved Pages revision
+# No push/PR deployment. Gate C (or an approved rollback) precedes manual dispatch.
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: 'Approved full 40-character source commit SHA (release or UI rollback)'
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  package:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          path: controller
+      - name: Validate immutable approved revision
+        env:
+          SOURCE_SHA: ${{ inputs.source_sha }}
+        run: |
+          [[ "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
+          git -C controller cat-file -e "$SOURCE_SHA^{commit}"
+          git -C controller merge-base --is-ancestor "$SOURCE_SHA" HEAD
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.source_sha }}
+          path: approved-source
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Package only approved static runtime
+        run: node controller/scripts/prepare-pages.mjs approved-source "$RUNNER_TEMP/fcim-pages"
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/fcim-pages
+  deploy:
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - uses: actions/deploy-pages@v4
+        id: deployment
