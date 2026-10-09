@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="data:,">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FCIM Indoor Map — корпус №3 UTM</title>
 <style>
@@ -87,6 +88,9 @@
   .schedule-fields label,.period-label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);min-width:0}
   .schedule-fields input,.schedule-fields select,.period-label select{width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-size:14px}
   #scheduleContext{margin-top:8px}
+  [hidden]{display:none!important}
+  #sourceStatus,.lesson{overflow-wrap:anywhere}
+  #apiBaseInput{width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:8px}
   #scheduleSummary .card{margin:0}
   .lesson{margin:10px 0;padding:9px;border-left:3px solid var(--accent);background:var(--bg);border-radius:6px;font-size:13px}
   .lesson p{margin:3px 0}
@@ -160,7 +164,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><b>FCIM · Корпус №3 UTM</b><span>Академическая карта · синтетическое расписание</span></div>
+    <div class="brand"><b>FCIM · Корпус №3 UTM</b><span id="appSubtitle">Академическая карта · синтетическое расписание</span></div>
     <form class="search" id="searchForm" autocomplete="off">
       <input id="searchInput" type="search" inputmode="text" placeholder="Аудитория: 3-405 или 405" aria-label="Поиск аудитории">
       <button type="submit" aria-label="Найти">Найти</button>
@@ -191,8 +195,11 @@
     <aside class="sheet" id="sheet">
       <button class="grip" id="grip" aria-expanded="true" aria-label="Свернуть или развернуть панель">Расписание и помещение ↕</button>
       <div class="card schedule-controls" id="scheduleControls">
-        <div class="pill warn">Синтетическое демо · не расписание UTM</div>
-        <p class="small muted">Планируемые занятия, а не посещаемость. Номера демо не проверены на месте.</p>
+        <label class="period-label">Источник<select id="sourceSelect"><option value="real">Реальное расписание FCIM</option><option value="demo">Демо · синтетическое расписание</option></select></label>
+        <div class="pill warn" id="demoQualification">Синтетическое демо · не расписание UTM</div>
+        <p class="small muted" id="demoDescription">Планируемые занятия, а не посещаемость. Номера демо не проверены на месте.</p>
+        <p class="small muted" id="liveQualification" hidden></p>
+        <div id="liveSourceControls" hidden><div class="schedule-fields"><label>Курс<select id="courseSelect"><option value="1">Anul I</option><option value="2">Anul II</option></select></label><button class="btn" id="refreshTimetable" type="button">Обновить расписание</button></div></div>
         <div class="row modes" aria-label="Режим расписания">
           <button class="btn on" id="myMode" aria-pressed="true">Моя группа</button>
           <button class="btn" id="allMode" aria-pressed="false">Все занятия</button>
@@ -211,6 +218,7 @@
         </div>
         <label class="period-label">Демо-интервал<select id="periodSelect" aria-label="Демо-интервал"></select></label>
         <div class="small muted" id="scheduleContext" role="status" aria-live="polite"></div>
+        <details id="sourceDetails" hidden><summary>Источник и состояние данных</summary><div id="sourceStatus"></div><label class="period-label">API origin<input id="apiBaseInput" type="url" aria-label="API origin"></label><button class="btn small" id="applyApiBase" type="button">Применить API</button><p class="small" id="apiConfigError" role="status"></p></details>
       </div>
       <div id="scheduleSummary" aria-live="polite"></div>
       <div id="panel"></div>
@@ -226,6 +234,10 @@
 <script src="schedule-fixture.js"></script>
 <script src="map-semantics.js"></script>
 <script src="schematic-layout.js"></script>
+<script src="timetable-room-policy.js"></script>
+<script src="timetable-adapter.js"></script>
+<script src="timetable-api.js"></script>
+<script src="timetable-ui.js"></script>
 <script>
 (function () {
   "use strict";
@@ -238,6 +250,8 @@
   var fixture = window.FCIM_SCHEDULE_FIXTURE;
   var roomCatalog = window.FCIM_ROOM_IDENTIFICATION.createCatalog(DATA, parseRoomInput);
   var resolveRoom = window.FCIM_ROOM_CONTRACT.createResolver(DATA, parseRoomInput, roomCatalog);
+  var timetablePolicy = window.FCIM_TIMETABLE_ROOM_POLICY.createPolicy(DATA, parseRoomInput, resolveRoom);
+  var live = null, scheduleClock = null;
   var facilityLayer = window.FCIM_MAP_SEMANTICS.facilities(DATA, roomCatalog);
 
   // ---------- индексы данных ----------
@@ -262,7 +276,7 @@
     view: null
   };
 
-  var schedule = { mode: "my", group: fixture.groups[0].id, subgroup: "", timeMode: "selected", date: fixture.initialSelection.date,
+  var schedule = { source: "demo", courseYear: 1, mode: "my", group: fixture.groups[0].id, subgroup: "", timeMode: "selected", date: fixture.initialSelection.date,
     time: fixture.initialSelection.time, evaluation: null, occupancy: [], focus: [], focusLocations: [], upcoming: false };
 
   // ---------- хранилище привязок ----------
@@ -493,7 +507,7 @@
       var demo=schedule.occupancy.filter(function(o){return locationContains(o,s.id)&&scheduleClasses(s.id);})[0];
       if(!demo&&schedule.mode==="my"&&schedule.upcoming)demo=schedule.focusLocations.filter(function(o){return locationContains(o,s.id);})[0];
       if(demo&&(demo.primarySpaceId||demo.spaceId)===s.id&&!(f.level===1&&logical&&n)){
-        el("text",{x:labelPoint[0],y:labelPoint[1]+(n?13:0),"class":"lbl demo-label",style:"font-size:8px"},L.labels).textContent="демо "+demo.roomCode.replace(/^3-/,"");
+        el("text",{x:labelPoint[0],y:labelPoint[1]+(n?13:0),"class":"lbl demo-label",style:"font-size:8px"},L.labels).textContent=(live && live.real() ? "план " : "демо ")+demo.roomCode.replace(/^3-/,"");
       }
     });
     if(f.level===1){
@@ -737,6 +751,7 @@
     h += sourceConflictsHtml() + recoveryHtml() + legendHtml();
     panel.innerHTML = h;
     wirePanel();
+    if (live && live.real() && spaceById[id] && !roomCatalog.identity(id)) live.roomPanel(panel, id);
     wireScheduleLinks(panel);
     document.getElementById("modeBanner").className = "mode-banner" + (state.edit ? " show" : "");
     document.getElementById("modeBanner").textContent = "Режим разметки: нажмите на помещение";
@@ -1005,13 +1020,14 @@
 
   // ---------- расписание: state -> evaluation -> room resolution -> highlight ----------
   function demoResolve(lesson) {
+    if (live && live.real()) return timetablePolicy.locate(lesson, manualRecords());
     var location = resolveRoom(lesson, { demoAssociations: fixture.demoAssociations });
     var ids=location.spaceIds || (location.spaceId ? [location.spaceId] : []);
     var partial=ids.some(function (id) { var r=roomCatalog.roomForSpace(id); return r && r.spaceIds.length > 1 && JSON.stringify(r.spaceIds.slice().sort()) !== JSON.stringify(ids.slice().sort()); });
     if (partial || ids.some(function (id) { return !roomCatalog.classroomCandidate(id); })) return Object.assign({}, location, { spaceId: null, spaceIds:[], primarySpaceId:null, floorLevel: null, status: "invalid-binding" });
     return location;
   }
-  function isMyLesson(lesson) { return lesson.group === schedule.group && (!schedule.subgroup || !lesson.subgroup || lesson.subgroup === schedule.subgroup); }
+  function isMyLesson(lesson) { return (live && live.real() ? lesson.courseYear === schedule.courseYear && lesson.groups.includes(schedule.group) : lesson.group === schedule.group) && (!schedule.subgroup || !lesson.subgroup || lesson.subgroup === schedule.subgroup); }
   function scheduleClasses(id) {
     if (roomCatalog.identity(id)) return "";
     var active = schedule.occupancy.filter(function (o) { return locationContains(o,id); })[0];
@@ -1047,6 +1063,7 @@
     });
   }
   function scheduledSpaceHtml(id) {
+    if (live && live.real()) return "";
     if (roomCatalog.identity(id)) return "";
     var occupants = schedule.occupancy.filter(function (o) { return locationContains(o,id); });
     var h = "<div class='schedule-room'><b>План занятий на выбранное время</b>";
@@ -1062,6 +1079,7 @@
     return h + "</div>";
   }
   function renderScheduleSummary() {
+    if (live && live.real()) { live.render(); return; }
     var e = schedule.evaluation, h = "<div class='card'><h3>" + (schedule.mode === "my" ? "Моя группа · " + esc(schedule.group) : "Все занятия · корпус 3") + "</h3>";
     if (e.contextStatus === "outside-coverage") h += "<div class='msg warn'>Дата вне заданного периода демо. Записей для неё нет.</div>";
     else if (e.contextStatus === "invalid") h += "<div class='msg warn'>Выберите корректные день и время. Контекст расписания недоступен.</div>";
@@ -1091,9 +1109,9 @@
     }
     document.getElementById("scheduleDate").value = schedule.date;
     document.getElementById("scheduleTime").value = schedule.time;
-    schedule.evaluation = window.FCIM_SCHEDULE.evaluate(fixture, schedule);
+    schedule.evaluation = live && live.real() ? live.evaluate() : window.FCIM_SCHEDULE.evaluate(fixture, schedule);
     schedule.occupancy = window.FCIM_SCHEDULE.aggregate(schedule.evaluation.active, demoResolve).rooms;
-    schedule.upcoming = !schedule.evaluation.groupActive.length && schedule.evaluation.next.length > 0;
+    schedule.upcoming = !(live && live.real()) && !schedule.evaluation.groupActive.length && schedule.evaluation.next.length > 0;
     schedule.focus = schedule.upcoming ? schedule.evaluation.next : schedule.evaluation.groupActive.map(function (lesson) { return { date: schedule.date, lesson: lesson }; });
     schedule.focusLocations = schedule.focus.map(function (entry) { return demoResolve(entry.lesson); });
     if (autoSelect && schedule.mode === "my" && !state.edit) {
@@ -1120,13 +1138,13 @@
       subgroups.disabled = !group.subgroups.length;
     }
     fillSubgroups();
-    groups.onchange = function () { schedule.group = groups.value; schedule.subgroup = ""; fillSubgroups(); updateSchedule(true); };
+    groups.onchange = function () { schedule.group = groups.value; schedule.subgroup = ""; if (live && live.real()) live.fillSubgroups(); else fillSubgroups(); updateSchedule(true); };
     subgroups.onchange = function () { schedule.subgroup = subgroups.value; updateSchedule(true); };
     ["my", "all"].forEach(function (mode) {
       document.getElementById(mode + "Mode").onclick = function () {
         schedule.mode = mode;
         ["my", "all"].forEach(function (m) { var button = document.getElementById(m + "Mode"); button.classList.toggle("on", m === mode); button.setAttribute("aria-pressed", String(m === mode)); });
-        updateSchedule(true);
+        if (live && live.real()) live.load(false); else updateSchedule(true);
       };
     });
     document.getElementById("currentTime").onclick = function () { setTimeMode("current"); };
@@ -1135,7 +1153,7 @@
     document.getElementById("scheduleTime").onchange = function () { schedule.time = this.value; updateSchedule(true); };
     document.getElementById("periodSelect").innerHTML = "<option value=''>Произвольное время</option>" + fixture.periods.map(function (p, i) { return "<option value='" + i + "'>" + p.startTime + "–" + p.endTime + "</option>"; }).join("");
     document.getElementById("periodSelect").onchange = function () { if (this.value !== "") { schedule.time = fixture.periods[Number(this.value)].startTime; updateSchedule(true); } };
-    setInterval(function () {
+    if (!scheduleClock) scheduleClock = setInterval(function () {
       if (schedule.timeMode !== "current") return;
       var local = window.FCIM_SCHEDULE.localTime(Date.now(), fixture.context.timeZone);
       if (local.date !== schedule.date || local.time !== schedule.time) updateSchedule(true);
@@ -1149,9 +1167,14 @@
   // ---------- старт ----------
   var startLevel = parseInt((location.hash.match(/floor=(-?\d+)/) || [])[1], 10);
   initScheduleControls();
+  schedule.source = location.protocol === "file:" ? "demo" : "real";
+  live = window.FCIM_TIMETABLE_UI.createController({ schedule: schedule, policy: timetablePolicy, bindings: manualRecords, update: updateSchedule, selectSpace: selectSpace,
+    initDemo: function () { schedule.group = fixture.groups[0].id; schedule.subgroup = ""; schedule.date = fixture.initialSelection.date; schedule.time = fixture.initialSelection.time; document.getElementById("groupSelect").disabled = false; initScheduleControls(); } });
+  if (live.real()) { var initialLocal = window.FCIM_SCHEDULE.localTime(Date.now(), "Europe/Chisinau"); schedule.date = initialLocal.date; schedule.time = initialLocal.time; schedule.group = ""; }
   updateSchedule(false);
   setLevel(floorsByLevel[startLevel] ? startLevel : 4);
   if (!floorsByLevel[startLevel]) updateSchedule(true);
+  if (live.real()) live.load(false);
   window.addEventListener("hashchange", function () { var m = location.hash.match(/floor=(-?\d+)/); if (m && floorsByLevel[+m[1]]) setLevel(+m[1]); });
   // минимальный API для отладки/будущей интеграции
   window.FCIM_MAP_APP = { selectSpace: selectSpace, setLevel: setLevel, parseRoomInput: parseRoomInput, getBindings: function () { return JSON.parse(JSON.stringify(store)); },

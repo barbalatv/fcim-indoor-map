@@ -1,0 +1,45 @@
+{
+  "basis": "Recorded public production GET; replay fixtures, not a deployed integration",
+  "responses": [
+    {
+      "file": "course1-schedule.json",
+      "url": "https://utm-curs-i-orar-2027.onrender.com/api/schedule?course=1",
+      "capturedAt": "2026-10-09T20:03:21.527505+00:00",
+      "sha256": "f90fef7658fd5a45fd376a21dce0fae679db87bece926d5418abb4c370fd0c63",
+      "httpStatus": 200,
+      "cors": null,
+      "course": 1,
+      "lessons": 454
+    },
+    {
+      "file": "course1-status.json",
+      "url": "https://utm-curs-i-orar-2027.onrender.com/api/status?course=1",
+      "capturedAt": "2026-10-09T20:03:21.603510+00:00",
+      "sha256": "554b9d07b93cd577cfa49bd25a06e846267463dc0936d3cd17e8115cc26ebf00",
+      "httpStatus": 200,
+      "cors": null,
+      "course": 1,
+      "lessons": null
+    },
+    {
+      "file": "course2-schedule.json",
+      "url": "https://utm-curs-i-orar-2027.onrender.com/api/schedule?course=2",
+      "capturedAt": "2026-10-09T20:03:21.655030+00:00",
+      "sha256": "2692b3883b9136822e1dde6e0b65185b31616a14e17da9b6ae39479e1ac9af6d",
+      "httpStatus": 200,
+      "cors": null,
+      "course": 2,
+      "lessons": 291
+    },
+    {
+      "file": "course2-status.json",
+      "url": "https://utm-curs-i-orar-2027.onrender.com/api/status?course=2",
+      "capturedAt": "2026-10-09T20:03:21.503943+00:00",
+      "sha256": "5c4084ecd2e2f37c13b79e323bc97335e88b5b0c69586a720a4d80214264b319",
+      "httpStatus": 200,
+      "cors": null,
+      "course": 2,
+      "lessons": null
+    }
+  ]
+}
