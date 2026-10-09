@@ -105,7 +105,12 @@
       if (!key) { unresolved.push({ lesson: lesson, location: location }); return; }
       if (!rooms.has(key)) rooms.set(key, { roomCode: key, spaceId: location.spaceId, floorLevel: location.floorLevel, status: location.status, provenance: location.provenance, lessons: [], locations: [] });
       var occupancy = rooms.get(key);
-      if (occupancy.spaceId !== location.spaceId) { occupancy.spaceId = null; occupancy.floorLevel = null; occupancy.status = "ambiguous-binding"; }
+      if (!occupancy.locations.length && location.spaceIds) { occupancy.spaceIds=location.spaceIds.slice().sort(); occupancy.primarySpaceId=location.primarySpaceId; }
+      var componentKey=function (x) { return JSON.stringify((x.spaceIds || (x.spaceId ? [x.spaceId] : [])).slice().sort()); };
+      if (componentKey(occupancy) !== componentKey(location) || occupancy.floorLevel !== location.floorLevel || occupancy.status !== location.status) {
+        occupancy.spaceId = null; occupancy.floorLevel = null; occupancy.status = "ambiguous-binding";
+        if (occupancy.spaceIds) { occupancy.spaceIds=[]; occupancy.primarySpaceId=null; }
+      }
       occupancy.lessons.push(lesson); // no last-write-wins, including duplicate records
       occupancy.locations.push(location);
     });

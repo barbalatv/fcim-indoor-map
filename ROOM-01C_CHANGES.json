@@ -1,0 +1,1104 @@
+{
+  "baselineCommit": "573d0e168ebc7de88a55f8589c3d37a7ca404693",
+  "baselineDescription": "Exact frozen uncommitted ROOM-01B working tree; prior final 277 PASS / 0 FAIL; preservation and data rechecked before C",
+  "userContractSha256": "431afa9788ea79ec9bd98631f074e4d9ed231dc242f94486da3ed93795c2d346",
+  "baselineFiles": {
+    "FIX-01_REPORT.md": {
+      "sha256": "882d8d9d9ce99193430e838e397f4b04dde65db4fa1991c32145f2e855c2648f",
+      "bytes": 19172
+    },
+    "GEO-01-FIX-A_REPORT.md": {
+      "sha256": "40af402dd6161fe6b133fc9c1b7dc3d64ad7afc8800636f1750fe95c0b07f801",
+      "bytes": 35350
+    },
+    "GEO-01-FIX-B_CHANGES.json": {
+      "sha256": "8018febdfe54905079e2f5ae7a44fc3de900e968773a4c98751732766a202ae9",
+      "bytes": 4462
+    },
+    "GEO-01-FIX-B_REPORT.md": {
+      "sha256": "5783da6e4be119390c6e53423764e89b8b45db073c6110f6decec6144516853e",
+      "bytes": 41142
+    },
+    "GEO-01_FINDINGS.json": {
+      "sha256": "1ccf4c56ac1adbef5dfc97a13f558b0ad8b96571e5304d29f1d6a870e9e968c1",
+      "bytes": 503145
+    },
+    "GEO-01_REPORT.md": {
+      "sha256": "4fc5bba81ec6893017e1a38a9fe97780d82a43480f7d2bdddca338f6b87254bf",
+      "bytes": 126128
+    },
+    "GEO-02_CHANGES.json": {
+      "sha256": "04559813726c0362399e6c3fa1063932aa1c2f355a2c7734bb09062b59e4d76e",
+      "bytes": 113893
+    },
+    "GEO-02_REPORT.md": {
+      "sha256": "a0bf8353030db36dfe7f2fdcc85ee64ef365ad31bc058e815c5fe070f8424014",
+      "bytes": 43399
+    },
+    "GEO-02_SPACES.json": {
+      "sha256": "57a8ea2889bc3fa76946750595be85983ec1e8bcfdecbe67e34e95e38b719f92",
+      "bytes": 18714
+    },
+    "GEO-02_UNCERTAINTIES.json": {
+      "sha256": "a907c4fd710ce634e58f152c97c6371d705464466f9c48a601dfbd9a3d7cfeee",
+      "bytes": 2116
+    },
+    "index.html": {
+      "sha256": "b678ef3feb93a85de8bd02dda5f56b9a5aeb64b16abdd67ec7aebd8b38b78971",
+      "bytes": 97787
+    },
+    "MAP-01_REPORT.md": {
+      "sha256": "3a0212e39cdb54ef1b5206b251d31dc9f0b4d8648ea807cb9d5a770ae5d48387",
+      "bytes": 25686
+    },
+    "map-data.js": {
+      "sha256": "50a004532a920f1ae6336a871f04c860ad162de876221b2346bcf606b9d77193",
+      "bytes": 280843
+    },
+    "map-semantics.js": {
+      "sha256": "50e4c842b30638783dd2de28cb7ea63fe75b246056aee727482c0973d27c69a9",
+      "bytes": 4942
+    },
+    "README.md": {
+      "sha256": "19cd26edcad7fd4ee59ba8a6b8632ea9e110b9aa49e4ff655e258f38f6f6331d",
+      "bytes": 35745
+    },
+    "ROOM-01A_CHANGES.json": {
+      "sha256": "8f9f8f55906dcd2a71d39b22b27171bf4a4882943dbe12a48f367052ed9d815d",
+      "bytes": 91850
+    },
+    "ROOM-01A_REPORT.md": {
+      "sha256": "95b15cacbd7e6e7a15be47cfaf48598d60cf6b79fcef38051ac9b0c2f5287128",
+      "bytes": 37116
+    },
+    "ROOM-01B_CHANGES.json": {
+      "sha256": "ea02540cd483415b05a44bf09a42a5cd4da2524a405a1268da715797503355a9",
+      "bytes": 135407
+    },
+    "ROOM-01B_REPORT.md": {
+      "sha256": "c55106379ec57cd881df44176cb90f98db1376ab4659339256156e45a2b69ddd",
+      "bytes": 29872
+    },
+    "room-contract.js": {
+      "sha256": "762a5370520dad858b9911cea2dc358f94fc205488926d2fa3475793cca7a6a6",
+      "bytes": 6063
+    },
+    "room-identification.js": {
+      "sha256": "cca1b7ed084413df1ee222025a23a701d6780c349495b2dafe1eba2be01830c8",
+      "bytes": 15581
+    },
+    "schedule-engine.js": {
+      "sha256": "5a9844201990925f42b6c97bd0c831386857f4352dedd669b430807a79865eb4",
+      "bytes": 9529
+    },
+    "schedule-fixture.js": {
+      "sha256": "6e6cc46215f6e51e638240481c711f5013544bc460faa048d30134b6ee410323",
+      "bytes": 3396
+    },
+    "tests/fix01.cjs": {
+      "sha256": "d04665c9d6403f013251e5f08577b76400645b97bb17dbfee066b7f5e178f176",
+      "bytes": 20343
+    },
+    "tests/geo01-browser.cjs": {
+      "sha256": "e3890e894158faf6b716a54cd2ede5da02a8a6046d76772131974a85944d23a7",
+      "bytes": 9263
+    },
+    "tests/geo01-changes.json": {
+      "sha256": "34c5302ecc4ba62aeccc190360a35b1cde815ff2d46d2497b8708ede97ad6bf2",
+      "bytes": 9843
+    },
+    "tests/geo01-contract.cjs": {
+      "sha256": "a0c22c3ca6328e1f2f61722b770153a996e7f0f2c7db8c3804aa24e9e8291a1b",
+      "bytes": 2972
+    },
+    "tests/geo01-data.cjs": {
+      "sha256": "13f282f0d670482d9f1627874606babea7c69f97d66ece2feef7c6f31c8e133a",
+      "bytes": 7905
+    },
+    "tests/geo01-fix-b-browser.cjs": {
+      "sha256": "ca25a86b97fa2c5881b202ab6ecbb42846bc010a0fb476062c39f566f46471c1",
+      "bytes": 8542
+    },
+    "tests/geo01-fix-b-data.cjs": {
+      "sha256": "d9618968f47c62b980db5c532179691b3653cb8696493b3b3a54aa7039a2a4e8",
+      "bytes": 9152
+    },
+    "tests/geo02-browser.cjs": {
+      "sha256": "0fe765b35dbe00189265873b965847e68d389b7a779fe5568e3c85ba6cb41a18",
+      "bytes": 12855
+    },
+    "tests/geo02-contract.cjs": {
+      "sha256": "8ccdd341d2c375f763ea925c077a04523ca4158db5edff87a37177f60a5e917a",
+      "bytes": 2433
+    },
+    "tests/geo02-data.cjs": {
+      "sha256": "9719ffd6b1dfa010740fd4dbcb2d8f195c0e3988f0451430c8b2309885f9bd17",
+      "bytes": 7306
+    },
+    "tests/geo02-geometry.cjs": {
+      "sha256": "8761d20ca22cfe69950f5ddfd1ef05ecc8ec82b48dff27a5f5cd6c949019b63b",
+      "bytes": 2375
+    },
+    "tests/map01-browser.cjs": {
+      "sha256": "37baff503b67efd0444020bdb24b291c61bb4509d71ccad76105ce9671d3e7b4",
+      "bytes": 22206
+    },
+    "tests/map01-data.cjs": {
+      "sha256": "fb1cca46de5dd13ae614893774b0e67facf9a398b4d17b804c7f95a734364496",
+      "bytes": 13375
+    },
+    "tests/map01-preserve.cjs": {
+      "sha256": "5266ccac686a6deb39f8b7de8ccc84dbcd4fd31508b8bfa35f208631900672cd",
+      "bytes": 6943
+    },
+    "tests/preserve-map.cjs": {
+      "sha256": "cb9563e29bedf5033ed4596518b943fe2e8425597c43ca15570c9c8785ab4812",
+      "bytes": 2219
+    },
+    "tests/room01-browser.cjs": {
+      "sha256": "4c136ceb0c1fba6160eaf176122c5da29ac45fac5d792aa134ecadce377f2c79",
+      "bytes": 14749
+    },
+    "tests/room01-contract.cjs": {
+      "sha256": "398e9b5579e9d3eb4125551c43327eded2a3245a6aaaedec8addf705fafdc898",
+      "bytes": 1708
+    },
+    "tests/room01-data.cjs": {
+      "sha256": "3a882b6d5d2d65bc57e81dcb1b1d3e9acba48f6022b2dacf3ed5cfabda3a55bc",
+      "bytes": 7040
+    },
+    "tests/room01b-browser.cjs": {
+      "sha256": "105b1829d4a449533a1bed73444a40359920aa0ab08ba3e40cb342fed9c48c08",
+      "bytes": 19348
+    },
+    "tests/room01b-contract.cjs": {
+      "sha256": "e3285ac735cb186010a8ad1a370719df9b3b3cf9b75663cfd8ea3d03e34ebc1f",
+      "bytes": 1790
+    },
+    "tests/room01b-data.cjs": {
+      "sha256": "99be77fec6d72b054953857c05c4146c467a65caa6afa1e5502659a194167a38",
+      "bytes": 9878
+    },
+    "TIMETABLE_CONTRACT.md": {
+      "sha256": "36dd3f97b80dddfa0f749cacf79b60e7731d66fbe11cfb17ec8fd45e0762fd47",
+      "bytes": 10640
+    }
+  },
+  "sourcePatches": {
+    "index.html": [
+      {
+        "old": "  .room01-floor .vert.stair.sel .box{stroke:var(--sel);stroke-width:3}\n  .room01-floor .geo-landing,.room01-floor .geo-flight{stroke:none}\n  .physical-wall{stroke:var(--wall);stroke-width:1.6;fill:none}\n  .room01-floor .facility-label{fill:#584a35}\n  .entrance-label{font-size:12px;font-weight:600;fill:var(--accent);paint-order:stroke;stroke:#fff;stroke-width:3;pointer-events:none}\n  .sp{stroke:var(--wall);stroke-width:1.6;stroke-linejoin:round;cursor:pointer;transition:fill .12s}\r\n",
+        "new": "  .room01-floor .vert.stair.sel .box{stroke:var(--sel);stroke-width:3}\n  .room01-floor .geo-landing,.room01-floor .geo-flight{stroke:none}\n  .physical-wall{stroke:var(--wall);stroke-width:1.6;fill:none}\n  .room01-floor .outline{stroke:none}\n  .exterior-wall,.back-wc-wall{fill:none;stroke:var(--wall);stroke-width:4;stroke-linejoin:round;pointer-events:none}\n  .back-wc-wall{stroke-width:1.6}\n  .room01-floor .facility-label{fill:#584a35}\n  .entrance-label{font-size:12px;font-weight:600;fill:var(--accent);paint-order:stroke;stroke:#fff;stroke-width:3;pointer-events:none}\n  .sp{stroke:var(--wall);stroke-width:1.6;stroke-linejoin:round;cursor:pointer;transition:fill .12s}\r\n",
+        "baselineStartLine": 101,
+        "currentStartLine": 101
+      },
+      {
+        "old": "      }\r\n    });\r\n    el(\"polygon\", { points: pts(g.outline), \"class\": \"outline\" }, L.base);\r\n    el(\"polygon\", { points: pts(g.corridor), \"class\": \"corr\" }, L.base);\r\n    var compass = g.compassPoints || [[2, g.corridorBand[0] - (g.corridorBand[0] - g.corridorBand[1]) / 2 + 3], [998, g.corridorBand[1] - 4]];\n    var t1 = el(\"text\", { x: compass[0][0], y: compass[0][1], \"class\": \"compass\" }, L.base);\n",
+        "new": "      }\r\n    });\r\n    el(\"polygon\", { points: pts(g.outline), \"class\": \"outline\" }, L.base);\r\n    if (f.level === 1) {\n      var backWc=g.features.find(function (ft) { return ft.id === roomCatalog.presentation.backWcFeatureId; });\n      el(\"polygon\",{points:pts(backWc.polygon),fill:\"var(--corridor)\",\"pointer-events\":\"none\",\"data-neutral-back-wc\":\"true\"},L.base);\n      window.FCIM_ROOM_IDENTIFICATION.exteriorWallPaths(f).forEach(function (path) { el(\"polyline\",{points:pts(path.points),\"class\":path.kind},L.base); });\n    }\n    el(\"polygon\", { points: pts(g.corridor), \"class\": \"corr\" }, L.base);\r\n    var compass = g.compassPoints || [[2, g.corridorBand[0] - (g.corridorBand[0] - g.corridorBand[1]) / 2 + 3], [998, g.corridorBand[1] - 4]];\n    var t1 = el(\"text\", { x: compass[0][0], y: compass[0][1], \"class\": \"compass\" }, L.base);\n",
+        "baselineStartLine": 461,
+        "currentStartLine": 464
+      },
+      {
+        "old": "      el(\"line\", { x1: line[0][0], y1: line[0][1], x2: line[1][0], y2: line[1][1], \"class\": \"physical-wall\" }, L.walls);\n    });\n    // двери: разрыв в стене + засечки\r\n    g.doors.forEach(function (d) {\r\n      var qualification=window.FCIM_ROOM_IDENTIFICATION.doorQualifications.find(function (q) { return q.id === d.id; });\n      var doorGroup=el(\"g\",{\"data-door-id\":d.id,\"data-connectivity-status\":qualification ? qualification.connectivityStatus : null},L.doors);\n      if (qualification) el(\"title\",null,doorGroup).textContent=qualification.notes;\n      var w = 7, internal = !!d.internal, vertical = d.orientation ? d.orientation === \"vertical\" : internal || d.y !== g.corridorBand[0] && d.y !== g.corridorBand[1];\n      if (!vertical) {\r\n        el(\"rect\", { x: d.x - w / 2, y: d.y - 1.6, width: w, height: 3.2, \"class\": \"door-gap\" }, doorGroup);\n        el(\"line\", { x1: d.x - w / 2, y1: d.y - 2.2, x2: d.x - w / 2, y2: d.y + 2.2, \"class\": \"door-mk\" }, doorGroup);\n",
+        "new": "      el(\"line\", { x1: line[0][0], y1: line[0][1], x2: line[1][0], y2: line[1][1], \"class\": \"physical-wall\" }, L.walls);\n    });\n    // двери: разрыв в стене + засечки\r\n    (f.level === 1 ? roomCatalog.displayDoors(f) : g.doors).forEach(function (d) {\n      if (f.level === 1 && !roomCatalog.showDoor(d)) return;\n      var qualification=d.coordinateAccuracy ? d : window.FCIM_ROOM_IDENTIFICATION.doorQualifications.find(function (q) { return q.id === d.id; });\n      var doorGroup=el(\"g\",{\"data-door-id\":d.id,\"data-coordinate-accuracy\":d.coordinateAccuracy || null,\"data-connectivity-status\":qualification ? qualification.connectivityStatus : null},L.doors);\n      if (qualification) el(\"title\",null,doorGroup).textContent=qualification.notes;\n      var w = d.gapLength || 7, internal = !!d.internal, vertical = d.orientation ? d.orientation === \"vertical\" : internal || d.y !== g.corridorBand[0] && d.y !== g.corridorBand[1];\n      if (!vertical) {\r\n        el(\"rect\", { x: d.x - w / 2, y: d.y - 1.6, width: w, height: 3.2, \"class\": \"door-gap\" }, doorGroup);\n        el(\"line\", { x1: d.x - w / 2, y1: d.y - 2.2, x2: d.x - w / 2, y2: d.y + 2.2, \"class\": \"door-mk\" }, doorGroup);\n",
+        "baselineStartLine": 481,
+        "currentStartLine": 489
+      },
+      {
+        "old": "      } else if (ft.type === \"wallLine\") {\n        if (f.level !== 1) el(\"polyline\", { points: pts(ft.line), fill: \"none\", stroke: \"var(--wall)\", \"stroke-width\": 1.6, \"pointer-events\": \"none\" }, L.feat);\n      } else if (ft.type === \"opening\") {\n        el(\"line\", { x1: ft.line[0][0], y1: ft.line[0][1], x2: ft.line[1][0], y2: ft.line[1][1], stroke: \"var(--corridor)\", \"stroke-width\": 3.4, \"pointer-events\": \"none\" }, L.feat);\n      } else if (ft.type === \"stairGlyph\") {\n        if (f.level !== 1) drawStairBox(L.feat, ft.polygon, \"v\", true);\n      }\r\n",
+        "new": "      } else if (ft.type === \"wallLine\") {\n        if (f.level !== 1) el(\"polyline\", { points: pts(ft.line), fill: \"none\", stroke: \"var(--wall)\", \"stroke-width\": 1.6, \"pointer-events\": \"none\" }, L.feat);\n      } else if (ft.type === \"opening\") {\n        if (f.level === 1 && !roomCatalog.showOpening(ft)) return;\n        el(\"line\", { x1: ft.line[0][0], y1: ft.line[0][1], x2: ft.line[1][0], y2: ft.line[1][1], stroke: \"var(--corridor)\", \"stroke-width\": 3.4, \"pointer-events\": \"none\", \"data-opening-id\":ft.id }, L.feat);\n      } else if (ft.type === \"stairGlyph\") {\n        if (f.level !== 1) drawStairBox(L.feat, ft.polygon, \"v\", true);\n      }\r\n",
+        "baselineStartLine": 559,
+        "currentStartLine": 568
+      },
+      {
+        "old": "    var identity = roomCatalog.identity(s.id), sourceMapping = roomCatalog.roomForSpace(s.id);\n    var canBind = roomCatalog.classroomCandidate(s.id);\n    var h = \"<div class='card'><h3>\" + (identity && identity.label ? esc(identity.label) : n ? \"Аудитория \" + esc(BUILDING_PREFIX + \"-\" + n) : (s.label ? esc(s.label) : \"Номер не установлен\")) + \"</h3>\";\n    if (identity || sourceMapping) h += \"<details class='small'><summary>Источник идентификации</summary><p>Подтверждено пользователем: \" + esc(roomCatalog.source.file) + \"; уточнения ROOM-01B. Геометрия: floor1.jpg. Осмотр на месте: неизвестен.</p><p>\" + esc((identity || sourceMapping).notes) + \"</p><code>SHA-256: \" + esc(roomCatalog.source.sha256) + \"</code><p class='small'>Уточнение: \" + esc(roomCatalog.source.correctionSha256) + \"</p></details>\";\n    if (!state.edit) h += scheduledSpaceHtml(s.id);\r\n    h += \"<dl class='kv'>\" +\r\n      \"<dt>ID</dt><dd><code>\" + esc(sourceMapping ? sourceMapping.spaceIds.join(\" + \") : s.id) + \"</code></dd>\" +\n",
+        "new": "    var identity = roomCatalog.identity(s.id), sourceMapping = roomCatalog.roomForSpace(s.id);\n    var canBind = roomCatalog.classroomCandidate(s.id);\n    var h = \"<div class='card'><h3>\" + (identity && identity.label ? esc(identity.label) : n ? \"Аудитория \" + esc(BUILDING_PREFIX + \"-\" + n) : (s.label ? esc(s.label) : \"Номер не установлен\")) + \"</h3>\";\n    if (identity || sourceMapping) h += \"<details class='small'><summary>Источник идентификации</summary><p>Подтверждено пользователем: \" + esc(identity && identity.evidenceSource || roomCatalog.source.file) + \"; уточнения ROOM-01B/C. Геометрия: floor1.jpg. Осмотр на месте: неизвестен.</p><p>\" + esc(sourceMapping && sourceMapping.roomCode === \"3-103\" ? roomCatalog.presentation.room103Notes : (identity || sourceMapping).notes) + \"</p><code>SHA-256: \" + esc(identity && identity.evidenceSource ? roomCatalog.presentation.sha256 : roomCatalog.source.sha256) + \"</code><p class='small'>Уточнение: \" + esc(roomCatalog.source.correctionSha256) + \"</p>\" + (sourceMapping && sourceMapping.roomCode === \"3-103\" ? \"<p class='small'>Фрагмент 103: \" + esc(roomCatalog.presentation.room103Source.sha256) + \"</p>\" : \"\") + \"</details>\";\n    if (!state.edit) h += scheduledSpaceHtml(s.id);\r\n    h += \"<dl class='kv'>\" +\r\n      \"<dt>ID</dt><dd><code>\" + esc(sourceMapping ? sourceMapping.spaceIds.join(\" + \") : s.id) + \"</code></dd>\" +\n",
+        "baselineStartLine": 864,
+        "currentStartLine": 874
+      }
+    ],
+    "map-semantics.js": [
+      {
+        "old": "      if (old >= 0) result[old] = facility; else result.push(facility);\n    });\n    if (catalog) {\n      result.filter(function (x) { return [\"B3-F1-SOUTH-STEPS\",\"B3-F1-MID-STEPS\",\"B3-F1-NORTH-STEPS\"].includes(x.id); }).forEach(function (x) { x.display=\"hidden-user-request\"; x.displaySource=\"ROOM-01B user contract\"; });\n      result.find(function (x) { return x.id === \"B3-TOILETS-UNKNOWN\"; }).notes = \"Кроме двух WC первого этажа, определённых пользователем, расположения и функции WC на других этажах неизвестны; натурного осмотра нет.\";\n      result.find(function (x) { return x.id === \"B3-ENTRANCES-UNKNOWN\"; }).notes = \"Главный вход первого этажа определён пользователем у восточного OPEN-E. Назначение остальных проёмов и доступ неизвестны.\";\n",
+        "new": "      if (old >= 0) result[old] = facility; else result.push(facility);\n    });\n    if (catalog) {\n      if (catalog.presentation) {\n        result.filter(function (x) { return catalog.presentation.storageOpenings.some(function (o) { return o.id === x.id; }); }).forEach(function (x) { x.display=\"hidden-storage-access\"; x.displaySource=catalog.presentation.source; });\n        var backWc=result.find(function (x) { return x.id === catalog.presentation.backWcFeatureId; });\n        backWc.presentationFill=\"neutral-circulation-style\"; backWc.presentationSource=catalog.presentation.source;\n      }\n      result.filter(function (x) { return [\"B3-F1-SOUTH-STEPS\",\"B3-F1-MID-STEPS\",\"B3-F1-NORTH-STEPS\"].includes(x.id); }).forEach(function (x) { x.display=\"hidden-user-request\"; x.displaySource=\"ROOM-01B user contract\"; });\n      result.find(function (x) { return x.id === \"B3-TOILETS-UNKNOWN\"; }).notes = \"Кроме двух WC первого этажа, определённых пользователем, расположения и функции WC на других этажах неизвестны; натурного осмотра нет.\";\n      result.find(function (x) { return x.id === \"B3-ENTRANCES-UNKNOWN\"; }).notes = \"Главный вход первого этажа определён пользователем у восточного OPEN-E. Назначение остальных проёмов и доступ неизвестны.\";\n",
+        "baselineStartLine": 28,
+        "currentStartLine": 28
+      }
+    ],
+    "README.md": [
+      {
+        "old": "Точные обратимые изменения относительно незакоммиченного ROOM-01A дерева перечислены\nв `ROOM-01B_CHANGES.json`; исторические gates дополнительно восстанавливают прежние\nконтракты, а новые тесты проверяют текущее поведение. См. [ROOM-01B_REPORT.md](ROOM-01B_REPORT.md).\n",
+        "new": "Точные обратимые изменения относительно незакоммиченного ROOM-01A дерева перечислены\nв `ROOM-01B_CHANGES.json`; исторические gates дополнительно восстанавливают прежние\nконтракты, а новые тесты проверяют текущее поведение. См. [ROOM-01B_REPORT.md](ROOM-01B_REPORT.md).\n\n## ROOM-01C — локальная очистка отображения F1\n\nS07 между двумя WC подтверждён пользователем как склад: нейтральная заливка,\nбез учебного номера, публичного выбора и дверных маркеров. Двери N10 и боковой\nпроём STEN у восточного склада также скрыты; исходные записи сохранены в истории.\nЗона за WC получает нейтральный фон окружающей циркуляции и обычную толщину трёх\nнаружных линий; исходные polygons и outline не редактируются. Все 15 соответствий,\nлогика расписания и этажи 2–7 сохранены. Фрагмент фото, присланный пользователем,\nуточняет двери 103: один вход из коридора в S10, внутренний проём S10/S11;\nошибочные рисунки S11-D1 и S11-D2 скрыты. Координаты отображения приблизительные,\nточная физическая геометрия не проверена. Подробности и команды: [ROOM-01C_REPORT.md](ROOM-01C_REPORT.md).\n",
+        "baselineStartLine": 304,
+        "currentStartLine": 304
+      }
+    ],
+    "room-identification.js": [
+      {
+        "old": "    [\"N10\",\"storage\",null,\"Непубличная служебная область, объединённая в отображении с историческим STEN.\"]\n  ].map(function (r) { return { id: \"B3-F1-\" + r[0], kind: r[1], label: r[2], notes: r[3],\n    public: r[1] !== \"storage\", identityEvidence: \"user-confirmed\", confidence: \"medium\", evidence: source }; });\n  var structural = [\n    { id: \"B3-F1-SH1\", kind: \"elevator-shaft\", label: \"Лифт\", notes: \"Первый из двух символов лифтов; работа и доступ неизвестны.\" },\n    { id: \"B3-F1-SH2\", kind: \"elevator-shaft\", label: \"Лифт\", notes: \"Второй символ лифта; работа и доступ неизвестны.\" },\n",
+        "new": "    [\"N10\",\"storage\",null,\"Непубличная служебная область, объединённая в отображении с историческим STEN.\"]\n  ].map(function (r) { return { id: \"B3-F1-\" + r[0], kind: r[1], label: r[2], notes: r[3],\n    public: r[1] !== \"storage\", identityEvidence: \"user-confirmed\", confidence: \"medium\", evidence: source }; });\n  var presentation = { source:\"ROOM-01C user contract\",sha256:\"431afa9788ea79ec9bd98631f074e4d9ed231dc242f94486da3ed93795c2d346\",\n    storageOpenings:[{id:\"B3-F1-OPEN-STEN\",spaceId:\"B3-F1-STEN\"}],backWcFeatureId:\"B3-F1-SOUTH-STEPS\",\n    room103Source:{file:\"user-room103-crop.png\",sha256:\"63b940b7fdfff2ba46e44e1cd7339e328d37413c7b0c7cb3bed0ba6971b7913c\",identityEvidence:\"user-confirmed\",geometryEvidence:\"observed-in-user-crop\",coordinateAccuracy:\"approximate\",exactGeometry:\"unknown\"},\n    suppressedDoors:[\"B3-F1-S11-D1\",\"B3-F1-S11-D2\"],\n    qualifiedDoorways:[\n      {id:\"B3-F1-S10-D1\",spaceId:\"B3-F1-S10\",to:\"corridor\",x:555,y:105,orientation:\"horizontal\",coordinateAccuracy:\"approximate\",notes:\"Вход в левую часть 103 показан приблизительно по пользовательскому фрагменту; исходная запись двери сохранена.\"},\n      {id:\"B3-F1-S10-S11-INTERNAL\",spaceId:\"B3-F1-S10\",to:\"B3-F1-S11\",x:570,y:153,orientation:\"vertical\",gapLength:14,coordinateAccuracy:\"approximate\",notes:\"Проём между S10/S11 виден на пользовательском фрагменте ROOM-01C. Положение и длина условные; точная геометрия и доступ неизвестны.\"}\n    ],\n    room103Notes:\"ROOM-01C: по пользовательскому фрагменту вход из коридора находится в левой части S10, а внутренняя дверь — в перегородке S10/S11. Положение показано приблизительно; точная геометрия неизвестна. Ошибочные рисунки входа в S11 и двери к соседней 101 скрыты, архив сохранён.\" };\n  identities.push({id:\"B3-F1-S07\",kind:\"storage\",label:null,public:false,identityEvidence:\"user-confirmed\",\n    evidenceSource:presentation.source,evidence:presentation,confidence:\"user-confirmed\",\n    notes:\"По ROOM-01C область над/между двумя WC — склад. Учебный номер, выбор и видимые двери скрыты; историческая геометрия сохранена.\"});\n  var structural = [\n    { id: \"B3-F1-SH1\", kind: \"elevator-shaft\", label: \"Лифт\", notes: \"Первый из двух символов лифтов; работа и доступ неизвестны.\" },\n    { id: \"B3-F1-SH2\", kind: \"elevator-shaft\", label: \"Лифт\", notes: \"Второй символ лифта; работа и доступ неизвестны.\" },\n",
+        "baselineStartLine": 39,
+        "currentStartLine": 39
+      },
+      {
+        "old": "      var clash=mapped.find(function (r) { return (r.spaceIds.includes(id) && r.roomCode !== p.full) || (r.roomCode === p.full && !r.spaceIds.includes(id)); });\n      return clash ? \"Конфликт с источником: \"+clash.roomCode+\" → \"+clash.spaceIds.join(\" + \")+\". Сначала требуется отдельная проверка соответствия; источник не перезаписывается.\" : null;\n    }\n    return { source:source, inventory:inventory, mappings:mapped, identities:identities, structural:structural,\n      identity:function (id) { return facilityById.get(id) || null; },\n      roomForSpace:roomForSpace,\n      selectionIds:function (id) { var r=roomForSpace(id), facility=facilityById.get(id), parent=facility && facility.displayParentId || id; return r ? r.spaceIds.slice() : [parent].concat(structural.filter(function (x) { return x.displayParentId === parent; }).map(function (x) { return x.id; })); },\n      classroomCandidate:function (id) { var s=spaces.get(id); return !!s && s.kind === \"room\" && !facilityById.has(id); },\n      conflicts:conflicts, effective:effective, checkNewBinding:checkNewBinding };\n  }\n  // Physical walls, independent of space fills/hit regions. No geometric mask.\n",
+        "new": "      var clash=mapped.find(function (r) { return (r.spaceIds.includes(id) && r.roomCode !== p.full) || (r.roomCode === p.full && !r.spaceIds.includes(id)); });\n      return clash ? \"Конфликт с источником: \"+clash.roomCode+\" → \"+clash.spaceIds.join(\" + \")+\". Сначала требуется отдельная проверка соответствия; источник не перезаписывается.\" : null;\n    }\n    function storageOnly(id) { var identity=facilityById.get(id); return !!identity && identity.kind === \"storage\" && identity.public === false; }\n    return { source:source, presentation:presentation, inventory:inventory, mappings:mapped, identities:identities, structural:structural,\n      identity:function (id) { return facilityById.get(id) || null; },\n      roomForSpace:roomForSpace,\n      selectionIds:function (id) { var r=roomForSpace(id), facility=facilityById.get(id), parent=facility && facility.displayParentId || id; return r ? r.spaceIds.slice() : [parent].concat(structural.filter(function (x) { return x.displayParentId === parent; }).map(function (x) { return x.id; })); },\n      classroomCandidate:function (id) { var s=spaces.get(id); return !!s && s.kind === \"room\" && !facilityById.has(id); },\n      storageOnly:storageOnly,\n      showDoor:function (door) { return !storageOnly(door.spaceId) && !storageOnly(door.to) && !presentation.suppressedDoors.includes(door.id); },\n      displayDoors:function (floor) { if (floor.level !== 1) return floor.geometry.doors.slice(); return floor.geometry.doors.map(function (d) { return Object.assign({},d,presentation.qualifiedDoorways.find(function (q) { return q.id === d.id; }) || {}); }).concat(presentation.qualifiedDoorways.filter(function (q) { return !floor.geometry.doors.some(function (d) { return d.id === q.id; }); })); },\n      showOpening:function (feature) { return !presentation.storageOpenings.some(function (x) { return x.id === feature.id && storageOnly(x.spaceId); }); },\n      conflicts:conflicts, effective:effective, checkNewBinding:checkNewBinding };\n  }\n  // Physical walls, independent of space fills/hit regions. No geometric mask.\n",
+        "baselineStartLine": 89,
+        "currentStartLine": 101
+      },
+      {
+        "old": "    });\n    return walls;\n  }\n  // Trace union boundaries without changing or merging any stored polygon.\n  function unionOutline(polygons) {\n    var edges=new Map(), key=function (p) { return p.join(\",\"); };\n",
+        "new": "    });\n    return walls;\n  }\n  // Reuse every exterior vertex; normalize only the three edges of the southern spur.\n  function exteriorWallPaths(floor) {\n    var paths=[];\n    floor.geometry.outline.forEach(function (a,i) {\n      var b=floor.geometry.outline[(i+1)%floor.geometry.outline.length];\n      var normalized=floor.level === 1 && [a,b].every(function (p) { return p[0]>=459 && p[0]<=511 && p[1]>=175; });\n      var kind=normalized ? \"back-wc-wall\" : \"exterior-wall\",last=paths[paths.length-1];\n      if (last && last.kind===kind) last.points.push(b); else paths.push({kind:kind,points:[a,b]});\n    });\n    if (paths.length>1 && paths[0].kind===paths[paths.length-1].kind) { var first=paths.shift(); paths[paths.length-1].points=paths[paths.length-1].points.concat(first.points.slice(1)); }\n    return paths;\n  }\n  // Trace union boundaries without changing or merging any stored polygon.\n  function unionOutline(polygons) {\n    var edges=new Map(), key=function (p) { return p.join(\",\"); };\n",
+        "baselineStartLine": 136,
+        "currentStartLine": 153
+      },
+      {
+        "old": "  }\n  var doorQualifications=[{id:\"B3-F1-S10-S11-INTERNAL\",roomCode:\"3-103\",geometry:null,identityEvidence:\"user-confirmed\",locationStatus:\"unknown\",notes:\"Внутренняя дверь подтверждена пользователем, координаты не установлены.\"},\n    {id:\"B3-F1-S11-D2\",geometryEvidence:\"historical-observed\",connectivityStatus:\"qualification-required\",notes:\"Историческая связь S11→S12 сохранена; после ROOM-01B это граница 103/101, классификация требует проверки.\"}];\n  var api={source:source,inventory:inventory,identities:identities,structural:structural,doorQualifications:doorQualifications,createCatalog:createCatalog,physicalWalls:physicalWalls,unionOutline:unionOutline};\n  global.FCIM_ROOM_IDENTIFICATION=api;\n  if (typeof module !== \"undefined\" && module.exports) module.exports=api;\n})(typeof window !== \"undefined\" ? window : globalThis);\n",
+        "new": "  }\n  var doorQualifications=[{id:\"B3-F1-S10-S11-INTERNAL\",roomCode:\"3-103\",geometry:null,identityEvidence:\"user-confirmed\",locationStatus:\"unknown\",notes:\"Внутренняя дверь подтверждена пользователем, координаты не установлены.\"},\n    {id:\"B3-F1-S11-D2\",geometryEvidence:\"historical-observed\",connectivityStatus:\"qualification-required\",notes:\"Историческая связь S11→S12 сохранена; после ROOM-01B это граница 103/101, классификация требует проверки.\"}];\n  var api={source:source,presentation:presentation,inventory:inventory,identities:identities,structural:structural,doorQualifications:doorQualifications,createCatalog:createCatalog,physicalWalls:physicalWalls,exteriorWallPaths:exteriorWallPaths,unionOutline:unionOutline};\n  global.FCIM_ROOM_IDENTIFICATION=api;\n  if (typeof module !== \"undefined\" && module.exports) module.exports=api;\n})(typeof window !== \"undefined\" ? window : globalThis);\n",
+        "baselineStartLine": 149,
+        "currentStartLine": 178
+      }
+    ],
+    "tests/geo02-browser.cjs": [
+      {
+        "old": "async function exported(source,n,save){const p=await browser.newPage({viewport:{width:2080,height:600}});await p.goto(pathToFileURL(path.join(source,'index.html')).href+'#floor='+n);await p.locator('#scheduleDate').fill('2027-06-28');await p.locator('#scheduleDate').dispatchEvent('change');await p.locator('#floorNav button').filter({hasText:new RegExp('^'+n+'$')}).click();const svg=await p.locator('#map').evaluate((s,n)=>{const c=s.cloneNode(true),a=[s,...s.querySelectorAll('*')],b=[c,...c.querySelectorAll('*')];a.forEach((o,i)=>{const st=getComputedStyle(o);for(const k of ['fill','stroke','stroke-width','stroke-dasharray','opacity','font-family','font-size','font-weight','text-anchor','pointer-events'])b[i].style.setProperty(k,st.getPropertyValue(k));});c.setAttribute('width','2080');c.setAttribute('height','440');c.setAttribute('viewBox',n===1?'-20 -15 1040 220':'-30 -45 1100 285');c.setAttribute('xmlns','http://www.w3.org/2000/svg');c.style='width:2080px;height:440px';return c.outerHTML;},n);await p.setContent('<body style=\"margin:0\">'+svg+'</body>');const png=await p.locator('svg').screenshot({omitBackground:true});if(save){fs.writeFileSync(path.join(out,'floor'+n+'.svg'),svg);fs.writeFileSync(path.join(out,'floor'+n+'.png'),png);}await p.close();return png;}\n(async()=>{try{browser=await chromium.launch({channel:'chrome',headless:true});\nawait test('Standalone first-floor deep link, seven ready selectors and basement pending',async()=>{await fresh();assert.equal(await page.locator('#floorNav .active').innerText(),'1');assert.equal(await page.locator('#layerSpaces polygon').count(),28);for(let n=1;n<=7;n++){await floor(n);assert.equal(await page.locator('#floorNav .active').innerText(),String(n));assert.equal(await page.locator('#layerSpaces polygon').count(),map.floors.find(f=>f.level===n).spaces.length);}await floor('D');assert.equal(await page.locator('#floorNav .active').innerText(),'7');assert.equal(await page.locator('#floorNav button.pending').count(),1);await floor(1);await page.screenshot({path:path.join(out,'desktop-overview.png')});});\nawait test('North, south, irregular cells and halls support keyboard, hover and real pointer hits',async()=>{await fresh();for(const id of ['N01','N07','S06','S07','S08','S14','HW','LH','HC','HE']){const s=f.spaces.find(s=>s.id==='B3-F1-'+id);await select(s.id);if(s.kind==='hall'){assert.equal(await page.locator('[data-id=\"'+s.id+'\"]').evaluate(e=>getComputedStyle(e).pointerEvents),'none');continue;}const p=await point(s.labelPoint);await page.mouse.move(p.x,p.y);assert.equal(await page.locator('[data-id=\"'+s.id+'\"]:hover').count(),1);await page.mouse.click(p.x,p.y);assert.equal(await page.locator('[data-id=\"'+s.id+'\"].sel').count(),1);assert.match(await page.locator('#panel').innerText(),new RegExp(s.id));}await page.screenshot({path:path.join(out,'desktop-selected.png')});});\nawait test('First-floor shafts disclose user identity and unknown operation; halls cannot receive classroom numbers',async()=>{await fresh();await select('B3-F1-SH1');assert.match(await page.locator('#panel').innerText(),/Лифт/);assert.match(await page.locator('#panel').innerText(),/operation: unknown/);await page.locator('#editToggle').click();await select('B3-F1-HC');assert.equal(await page.locator('#numInput').count(),0);assert.equal(await page.locator('[data-facility=\"toilet\"]').count(),2);assert.ok((await page.locator('[data-stair-art]').evaluateAll(gs=>gs.flatMap(g=>[g,...g.querySelectorAll('*')].map(e=>getComputedStyle(e).pointerEvents)))).every(x=>x==='none'));});\nawait test('No fabricated first-floor schedule; confirmed search and composite grouping',async()=>{await fresh();await page.locator('#allMode').click();await floor(1);assert.equal(await page.locator('.sp.scheduled-mine,.sp.scheduled-other,.sp.schedule-next').count(),0);await search('3-101');assert.equal(await page.locator('[data-id=\"B3-F1-S13\"].sel').count(),1);await search('3-106');assert.equal(await page.locator('.sp.sel').count(),2);assert.equal(await page.locator('[data-id=\"B3-F1-N05\"].sel,[data-id=\"B3-F1-N06\"].sel').count(),2);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),null);});\nawait test('Old raw storage survives first-floor load; manual F1 binding persists and is searchable',async()=>{await fresh();const old={schemaVersion:1,buildingId:map.id,mapDataVersion:map.dataVersion,bindings:{'B3-F4-N01':{spaceId:'B3-F4-N01',floorLevel:4,roomNumber:'405',fullNumber:'3-405',method:'manual',updatedAt:'2026-10-08T05:00:00Z'}}},raw=JSON.stringify(old);await page.evaluate(({KEY,raw})=>localStorage.setItem(KEY,raw),{KEY,raw});await page.reload();assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);await bind('B3-F1-N05','106');const stored=JSON.parse(await page.evaluate(k=>localStorage.getItem(k),KEY));assert.deepEqual(stored.bindings['B3-F4-N01'],old.bindings['B3-F4-N01']);await page.reload();await search('3-106');assert.equal(await page.locator('[data-id=\"B3-F1-N05\"].sel.bound,[data-id=\"B3-F1-N06\"].sel.bound').count(),2);assert.equal(await page.locator('.sp.scheduled-mine').count(),0);});\n",
+        "new": "async function exported(source,n,save){const p=await browser.newPage({viewport:{width:2080,height:600}});await p.goto(pathToFileURL(path.join(source,'index.html')).href+'#floor='+n);await p.locator('#scheduleDate').fill('2027-06-28');await p.locator('#scheduleDate').dispatchEvent('change');await p.locator('#floorNav button').filter({hasText:new RegExp('^'+n+'$')}).click();const svg=await p.locator('#map').evaluate((s,n)=>{const c=s.cloneNode(true),a=[s,...s.querySelectorAll('*')],b=[c,...c.querySelectorAll('*')];a.forEach((o,i)=>{const st=getComputedStyle(o);for(const k of ['fill','stroke','stroke-width','stroke-dasharray','opacity','font-family','font-size','font-weight','text-anchor','pointer-events'])b[i].style.setProperty(k,st.getPropertyValue(k));});c.setAttribute('width','2080');c.setAttribute('height','440');c.setAttribute('viewBox',n===1?'-20 -15 1040 220':'-30 -45 1100 285');c.setAttribute('xmlns','http://www.w3.org/2000/svg');c.style='width:2080px;height:440px';return c.outerHTML;},n);await p.setContent('<body style=\"margin:0\">'+svg+'</body>');const png=await p.locator('svg').screenshot({omitBackground:true});if(save){fs.writeFileSync(path.join(out,'floor'+n+'.svg'),svg);fs.writeFileSync(path.join(out,'floor'+n+'.png'),png);}await p.close();return png;}\n(async()=>{try{browser=await chromium.launch({channel:'chrome',headless:true});\nawait test('Standalone first-floor deep link, seven ready selectors and basement pending',async()=>{await fresh();assert.equal(await page.locator('#floorNav .active').innerText(),'1');assert.equal(await page.locator('#layerSpaces polygon').count(),28);for(let n=1;n<=7;n++){await floor(n);assert.equal(await page.locator('#floorNav .active').innerText(),String(n));assert.equal(await page.locator('#layerSpaces polygon').count(),map.floors.find(f=>f.level===n).spaces.length);}await floor('D');assert.equal(await page.locator('#floorNav .active').innerText(),'7');assert.equal(await page.locator('#floorNav button.pending').count(),1);await floor(1);await page.screenshot({path:path.join(out,'desktop-overview.png')});});\nawait test('North, south, irregular cells and halls support keyboard, hover and real pointer hits',async()=>{await fresh();for(const id of ['N01','N07','S06','S07','S08','S14','HW','LH','HC','HE']){const s=f.spaces.find(s=>s.id==='B3-F1-'+id);if(id==='S07'){const storage=page.locator('[data-id=\"'+s.id+'\"]');assert.equal(await storage.getAttribute('tabindex'),null);assert.equal(await storage.evaluate(e=>getComputedStyle(e).pointerEvents),'none');continue;}await select(s.id);if(s.kind==='hall'){assert.equal(await page.locator('[data-id=\"'+s.id+'\"]').evaluate(e=>getComputedStyle(e).pointerEvents),'none');continue;}const p=await point(s.labelPoint);await page.mouse.move(p.x,p.y);assert.equal(await page.locator('[data-id=\"'+s.id+'\"]:hover').count(),1);await page.mouse.click(p.x,p.y);assert.equal(await page.locator('[data-id=\"'+s.id+'\"].sel').count(),1);assert.match(await page.locator('#panel').innerText(),new RegExp(s.id));}await page.screenshot({path:path.join(out,'desktop-selected.png')});});\nawait test('First-floor shafts disclose user identity and unknown operation; halls cannot receive classroom numbers',async()=>{await fresh();await select('B3-F1-SH1');assert.match(await page.locator('#panel').innerText(),/Лифт/);assert.match(await page.locator('#panel').innerText(),/operation: unknown/);await page.locator('#editToggle').click();await select('B3-F1-HC');assert.equal(await page.locator('#numInput').count(),0);assert.equal(await page.locator('[data-facility=\"toilet\"]').count(),2);assert.ok((await page.locator('[data-stair-art]').evaluateAll(gs=>gs.flatMap(g=>[g,...g.querySelectorAll('*')].map(e=>getComputedStyle(e).pointerEvents)))).every(x=>x==='none'));});\nawait test('No fabricated first-floor schedule; confirmed search and composite grouping',async()=>{await fresh();await page.locator('#allMode').click();await floor(1);assert.equal(await page.locator('.sp.scheduled-mine,.sp.scheduled-other,.sp.schedule-next').count(),0);await search('3-101');assert.equal(await page.locator('[data-id=\"B3-F1-S13\"].sel').count(),1);await search('3-106');assert.equal(await page.locator('.sp.sel').count(),2);assert.equal(await page.locator('[data-id=\"B3-F1-N05\"].sel,[data-id=\"B3-F1-N06\"].sel').count(),2);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),null);});\nawait test('Old raw storage survives first-floor load; manual F1 binding persists and is searchable',async()=>{await fresh();const old={schemaVersion:1,buildingId:map.id,mapDataVersion:map.dataVersion,bindings:{'B3-F4-N01':{spaceId:'B3-F4-N01',floorLevel:4,roomNumber:'405',fullNumber:'3-405',method:'manual',updatedAt:'2026-10-08T05:00:00Z'}}},raw=JSON.stringify(old);await page.evaluate(({KEY,raw})=>localStorage.setItem(KEY,raw),{KEY,raw});await page.reload();assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);await bind('B3-F1-N05','106');const stored=JSON.parse(await page.evaluate(k=>localStorage.getItem(k),KEY));assert.deepEqual(stored.bindings['B3-F4-N01'],old.bindings['B3-F4-N01']);await page.reload();await search('3-106');assert.equal(await page.locator('[data-id=\"B3-F1-N05\"].sel.bound,[data-id=\"B3-F1-N06\"].sel.bound').count(),2);assert.equal(await page.locator('.sp.scheduled-mine').count(),0);});\n",
+        "baselineStartLine": 15,
+        "currentStartLine": 15
+      }
+    ],
+    "tests/room01-browser.cjs": [
+      {
+        "old": "await test('Persisted source conflict keeps raw bytes, blocks false search and cancellation is atomic',async()=>{await fresh();const raw=await store([{spaceId:'B3-F1-N01',roomNumber:'101'},{spaceId:'B3-F4-N01',roomNumber:'405'}]);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);await search('114');assert.equal(await page.locator('.sp.sel').count(),0);assert.match(await page.locator('#panel').innerText(),/Конфликт ручной привязки/);assert.equal((await exportData()).count,2);accept=false;await page.locator('[data-remove-conflict]').first().click();assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);accept=true;await page.locator('[data-remove-conflict]').first().click();await search('114');assert.equal(await page.locator('[data-id=\"B3-F1-N01\"].sel').count(),1);assert.equal((await exportData()).bindings[0].roomNumber,'405');});\nawait test('Legacy storage assignment survives as explicit conflict, never as classroom',async()=>{await fresh();const raw=await store([{spaceId:'B3-F1-N10',roomNumber:'116'}]);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);await search('116');assert.equal(await page.locator('.sp.sel').count(),0);assert.match(await page.locator('#panel').innerText(),/Конфликт ручной привязки/);assert.equal((await exportData()).count,1);});\nawait test('Import source conflicts, facilities and prototype records are rejected atomically',async()=>{await fresh();const raw=await store([{spaceId:'B3-F4-N01',roomNumber:'405'}]);for(const b of [{spaceId:'B3-F1-N01',roomNumber:'116'},{spaceId:'B3-F4-N02',roomNumber:'114'},{spaceId:'B3-F1-S06',roomNumber:'116'},{spaceId:'B3-F1-N10',roomNumber:'116'},{spaceId:'__proto__',roomNumber:'116'}]){await upload([{spaceId:'B3-F4-N03',roomNumber:'407'},b]);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);}});\nawait test('Manual binding of unknown space still imports/exports and leaves source layer separate',async()=>{await fresh();await upload([{spaceId:'B3-F1-S07',roomNumber:'116'}]);assert.equal((await exportData()).count,1);await search('116');assert.equal(await page.locator('[data-id=\"B3-F1-S07\"].sel').count(),1);await page.reload();await search('114');assert.equal(await page.locator('[data-id=\"B3-F1-N01\"].sel').count(),1);});\nawait test('Desktop zoom/pan, narrow labels fit their polygons, no schedule in facilities',async()=>{await fresh();await search('102');const label=page.locator('#layerLabels .lbl').filter({hasText:/^102$/});assert.ok((await label.evaluate(e=>e.getBBox().width))<30);const start=await page.locator('#map').getAttribute('viewBox');await page.locator('#zoomIn').click();assert.notEqual(await page.locator('#map').getAttribute('viewBox'),start);await page.mouse.move(500,500);await page.mouse.down();await page.mouse.move(560,530);await page.mouse.up();assert.ok((await page.locator('#map').getAttribute('viewBox')).split(' ').every(x=>Number.isFinite(+x)));assert.equal(await page.locator('[data-facility].scheduled-mine,[data-facility].scheduled-other,[data-facility].schedule-next').count(),0);});\nawait test('390x844 overview and selected room, real touch pan/pinch and no horizontal overflow',async()=>{await fresh(true);assert.ok(await page.locator('[data-main-entrance]').evaluate(e=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a)>=8.9);await page.screenshot({path:path.join(out,'mobile-overview.png')});await search('114');await page.waitForTimeout(250);await page.screenshot({path:path.join(out,'mobile-selected.png')});const s=map.floors[0].spaces.find(s=>s.id==='B3-F1-N01'),p=await point(s.labelPoint);await page.touchscreen.tap(p.x,p.y);assert.equal(await page.locator('[data-id=\"B3-F1-N01\"].sel').count(),1);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);const cdp=await context.newCDPSession(page),r=await page.locator('#mapwrap').boundingBox(),x=r.x+r.width*.5,y=r.y+r.height*.55,start=await page.locator('#map').getAttribute('viewBox');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x-25,y,id:1},{x:x+25,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-40,y,id:1},{x:x+40,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.ok(+(await page.locator('#map').getAttribute('viewBox')).split(' ')[2]<+start.split(' ')[2]);const zoom=await page.locator('#map').getAttribute('viewBox');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+30,y:y+15,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.notEqual(await page.locator('#map').getAttribute('viewBox'),zoom);});\nawait test('Six upper-floor SVGs are pixel-identical to current accepted GEO-02',async()=>{for(let n=2;n<=7;n++)assert.deepEqual(await artwork(root,n,'-30 -45 1100 285'),await artwork(baseline,n,'-30 -45 1100 285'),'floor '+n);});\n",
+        "new": "await test('Persisted source conflict keeps raw bytes, blocks false search and cancellation is atomic',async()=>{await fresh();const raw=await store([{spaceId:'B3-F1-N01',roomNumber:'101'},{spaceId:'B3-F4-N01',roomNumber:'405'}]);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);await search('114');assert.equal(await page.locator('.sp.sel').count(),0);assert.match(await page.locator('#panel').innerText(),/Конфликт ручной привязки/);assert.equal((await exportData()).count,2);accept=false;await page.locator('[data-remove-conflict]').first().click();assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);accept=true;await page.locator('[data-remove-conflict]').first().click();await search('114');assert.equal(await page.locator('[data-id=\"B3-F1-N01\"].sel').count(),1);assert.equal((await exportData()).bindings[0].roomNumber,'405');});\nawait test('Legacy storage assignment survives as explicit conflict, never as classroom',async()=>{await fresh();const raw=await store([{spaceId:'B3-F1-N10',roomNumber:'116'}]);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);await search('116');assert.equal(await page.locator('.sp.sel').count(),0);assert.match(await page.locator('#panel').innerText(),/Конфликт ручной привязки/);assert.equal((await exportData()).count,1);});\nawait test('Import source conflicts, facilities and prototype records are rejected atomically',async()=>{await fresh();const raw=await store([{spaceId:'B3-F4-N01',roomNumber:'405'}]);for(const b of [{spaceId:'B3-F1-N01',roomNumber:'116'},{spaceId:'B3-F4-N02',roomNumber:'114'},{spaceId:'B3-F1-S06',roomNumber:'116'},{spaceId:'B3-F1-N10',roomNumber:'116'},{spaceId:'__proto__',roomNumber:'116'}]){await upload([{spaceId:'B3-F4-N03',roomNumber:'407'},b]);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);}});\nawait test('Manual binding of unknown upper-floor space still imports/exports and leaves F1 source separate',async()=>{await fresh();await upload([{spaceId:'B3-F4-N02',roomNumber:'406'}]);assert.equal((await exportData()).count,1);await search('406');assert.equal(await page.locator('[data-id=\"B3-F4-N02\"].sel').count(),1);await page.reload();await search('114');assert.equal(await page.locator('[data-id=\"B3-F1-N01\"].sel').count(),1);});\nawait test('Desktop zoom/pan, narrow labels fit their polygons, no schedule in facilities',async()=>{await fresh();await search('102');const label=page.locator('#layerLabels .lbl').filter({hasText:/^102$/});assert.ok((await label.evaluate(e=>e.getBBox().width))<30);const start=await page.locator('#map').getAttribute('viewBox');await page.locator('#zoomIn').click();assert.notEqual(await page.locator('#map').getAttribute('viewBox'),start);await page.mouse.move(500,500);await page.mouse.down();await page.mouse.move(560,530);await page.mouse.up();assert.ok((await page.locator('#map').getAttribute('viewBox')).split(' ').every(x=>Number.isFinite(+x)));assert.equal(await page.locator('[data-facility].scheduled-mine,[data-facility].scheduled-other,[data-facility].schedule-next').count(),0);});\nawait test('390x844 overview and selected room, real touch pan/pinch and no horizontal overflow',async()=>{await fresh(true);assert.ok(await page.locator('[data-main-entrance]').evaluate(e=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a)>=8.9);await page.screenshot({path:path.join(out,'mobile-overview.png')});await search('114');await page.waitForTimeout(250);await page.screenshot({path:path.join(out,'mobile-selected.png')});const s=map.floors[0].spaces.find(s=>s.id==='B3-F1-N01'),p=await point(s.labelPoint);await page.touchscreen.tap(p.x,p.y);assert.equal(await page.locator('[data-id=\"B3-F1-N01\"].sel').count(),1);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);const cdp=await context.newCDPSession(page),r=await page.locator('#mapwrap').boundingBox(),x=r.x+r.width*.5,y=r.y+r.height*.55,start=await page.locator('#map').getAttribute('viewBox');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x-25,y,id:1},{x:x+25,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-40,y,id:1},{x:x+40,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.ok(+(await page.locator('#map').getAttribute('viewBox')).split(' ')[2]<+start.split(' ')[2]);const zoom=await page.locator('#map').getAttribute('viewBox');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+30,y:y+15,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.notEqual(await page.locator('#map').getAttribute('viewBox'),zoom);});\nawait test('Six upper-floor SVGs are pixel-identical to current accepted GEO-02',async()=>{for(let n=2;n<=7;n++)assert.deepEqual(await artwork(root,n,'-30 -45 1100 285'),await artwork(baseline,n,'-30 -45 1100 285'),'floor '+n);});\n",
+        "baselineStartLine": 24,
+        "currentStartLine": 24
+      }
+    ],
+    "tests/room01b-browser.cjs": [
+      {
+        "old": "await test('All fifteen searches select complete component sets with one canonical card',async()=>{await fresh();for(const r of ident.inventory){await search(r.roomCode);await selected(r.spaceIds);for(const id of r.spaceIds)assert.equal(await page.locator('[data-id=\"'+id+'\"].flash').count(),1);assert.equal((await page.evaluate(()=>FCIM_MAP_APP.getLogicalSelection())).roomCode,r.roomCode);assert.match(await page.locator('#panel h3').first().innerText(),new RegExp(r.roomCode));for(const id of r.spaceIds)assert.match(await page.locator('#panel').innerText(),new RegExp(id));}assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),null);});\nawait test('Every composite component supports keyboard and real pointer selection',async()=>{await fresh();for(const r of ident.inventory.filter(r=>r.spaceIds.length>1))for(const id of r.spaceIds){await select(id);await selected(r.spaceIds);const s=map.floors[0].spaces.find(s=>s.id===id),p=await point(s.labelPoint);await page.mouse.click(p.x,p.y);await selected(r.spaceIds);const selection=await page.evaluate(()=>FCIM_MAP_APP.getLogicalSelection());assert.equal(selection.clickedSpaceId,id);assert.equal(selection.roomCode,r.roomCode);}await page.screenshot({path:path.join(out,'desktop-composite-selected.png')});});\nawait test('101 union selection outline has no shared divider; 103 and 106 walls retained',async()=>{await fresh();await search('101');assert.equal(await page.locator('[data-logical-room=\"3-101\"]').count(),1);const points=await page.locator('[data-logical-room=\"3-101\"]').getAttribute('points');assert.ok(!points.includes('631,105 631,175'));for(const id of ['S12','S13'])assert.equal(await page.locator('[data-id=\"B3-F1-'+id+'\"]').evaluate(e=>getComputedStyle(e).stroke),'none');const walls=await page.locator('#layerWalls line').evaluateAll(es=>es.map(e=>[+e.getAttribute('x1'),+e.getAttribute('y1'),+e.getAttribute('x2'),+e.getAttribute('y2')]));assert.ok(!walls.some(a=>a[0]===631&&a[2]===631));assert.ok(walls.some(a=>a[0]===570&&a[2]===570));assert.ok(walls.some(a=>a[0]===540&&a[2]===540));});\nawait test('103 doorway remains unlocated; historic S11/S12 warning and 106 gap stay separate',async()=>{await fresh();await search('103');await page.locator('#panel details summary').first().click();assert.match(await page.locator('#panel').innerText(),/Положение двери неизвестно/);assert.equal(await page.locator('[data-door-id=\"B3-F1-S11-D2\"]').getAttribute('data-connectivity-status'),'qualification-required');const gap=page.locator('[data-door-id=\"B3-F1-N05-D1\"] .door-gap');assert.equal(+await gap.getAttribute('x'),538.4);assert.equal(+await gap.getAttribute('y'),53.5);assert.equal(await page.locator('[data-door-id=\"B3-F1-S10-S11-INTERNAL\"]').count(),0);});\nawait test('F1 main stairs and elevators have flat solid polygons without labels, X or treads',async()=>{await fresh();assert.equal(await page.locator('#layerVert text,#layerVert line,#layerVert .treads,#layerVert .x,[data-stair-art]').count(),0);assert.equal(await page.locator('#layerVert [role=\"button\"]').count(),5);for(const id of ['STW','STM','SH1','SH2','STW-INNER']){const p=page.locator('[data-id=\"B3-F1-'+id+'\"] polygon');assert.equal(await p.count(),1);assert.equal(await p.evaluate(e=>getComputedStyle(e).stroke),'none');assert.ok(!((await p.evaluate(e=>getComputedStyle(e).fill)).includes('url(')));}assert.equal(await page.locator('#layerFeat .box,#layerFeat .treads').count(),0);});\nawait test('Western elevator detail discloses reported outage alone; existing shaft reused',async()=>{await fresh();await select('B3-F1-STW-INNER');assert.match(await page.locator('#panel').innerText(),/reported-out-of-service/);assert.match(await page.locator('#panel').innerText(),/независимая проверка не проводилась/);const records=await page.evaluate(()=>FCIM_MAP_APP.getFacilities());assert.deepEqual(records.find(x=>x.id==='B3-F1-STW-INNER').polygon,map.floors[0].geometry.verticals.find(v=>v.id==='B3-F1-STW').innerShaft);for(const id of ['SH1','SH2']){await select('B3-F1-'+id);assert.match(await page.locator('#panel').innerText(),/operation: unknown/);}});\nawait test('Eastern regions share fill, boundary absent and STES selects reception',async()=>{await fresh();for(const id of ['STES','STEN']){const p=page.locator('[data-id=\"B3-F1-'+id+'\"]');assert.equal(await p.getAttribute('role'),null);assert.equal(await p.getAttribute('tabindex'),null);}const fill=async id=>page.locator('[data-id=\"B3-F1-'+id+'\"]'+(id.startsWith('ST')?' polygon':'')).evaluate(e=>getComputedStyle(e).fill);assert.equal(await fill('STES'),await fill('S14'));assert.equal(await fill('STEN'),await fill('N10'));await page.evaluate(()=>FCIM_MAP_APP.selectSpace('B3-F1-STES'));assert.equal(await page.locator('#panel h3').first().innerText(),'Вахта');assert.deepEqual((await page.evaluate(()=>FCIM_MAP_APP.getLogicalSelection())).spaceIds,['B3-F1-S14','B3-F1-STES']);const p=await point([965,155]);await page.mouse.click(p.x,p.y);assert.equal(await page.locator('#panel h3').first().innerText(),'Вахта');});\n",
+        "new": "await test('All fifteen searches select complete component sets with one canonical card',async()=>{await fresh();for(const r of ident.inventory){await search(r.roomCode);await selected(r.spaceIds);for(const id of r.spaceIds)assert.equal(await page.locator('[data-id=\"'+id+'\"].flash').count(),1);assert.equal((await page.evaluate(()=>FCIM_MAP_APP.getLogicalSelection())).roomCode,r.roomCode);assert.match(await page.locator('#panel h3').first().innerText(),new RegExp(r.roomCode));for(const id of r.spaceIds)assert.match(await page.locator('#panel').innerText(),new RegExp(id));}assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),null);});\nawait test('Every composite component supports keyboard and real pointer selection',async()=>{await fresh();for(const r of ident.inventory.filter(r=>r.spaceIds.length>1))for(const id of r.spaceIds){await select(id);await selected(r.spaceIds);const s=map.floors[0].spaces.find(s=>s.id===id),p=await point(s.labelPoint);await page.mouse.click(p.x,p.y);await selected(r.spaceIds);const selection=await page.evaluate(()=>FCIM_MAP_APP.getLogicalSelection());assert.equal(selection.clickedSpaceId,id);assert.equal(selection.roomCode,r.roomCode);}await page.screenshot({path:path.join(out,'desktop-composite-selected.png')});});\nawait test('101 union selection outline has no shared divider; 103 and 106 walls retained',async()=>{await fresh();await search('101');assert.equal(await page.locator('[data-logical-room=\"3-101\"]').count(),1);const points=await page.locator('[data-logical-room=\"3-101\"]').getAttribute('points');assert.ok(!points.includes('631,105 631,175'));for(const id of ['S12','S13'])assert.equal(await page.locator('[data-id=\"B3-F1-'+id+'\"]').evaluate(e=>getComputedStyle(e).stroke),'none');const walls=await page.locator('#layerWalls line').evaluateAll(es=>es.map(e=>[+e.getAttribute('x1'),+e.getAttribute('y1'),+e.getAttribute('x2'),+e.getAttribute('y2')]));assert.ok(!walls.some(a=>a[0]===631&&a[2]===631));assert.ok(walls.some(a=>a[0]===570&&a[2]===570));assert.ok(walls.some(a=>a[0]===540&&a[2]===540));});\nawait test('103 doorway qualified approximately by C crop; archive preserved and 106 gap unchanged',async()=>{await fresh();await search('103');await page.locator('#panel details summary').first().click();assert.match(await page.locator('#panel').innerText(),/точная геометрия неизвестна/);assert.equal(await page.locator('[data-door-id=\"B3-F1-S11-D2\"]').count(),0);assert.equal(await page.evaluate(()=>FCIM_ROOM_IDENTIFICATION.doorQualifications.find(q=>q.id==='B3-F1-S11-D2').connectivityStatus),'qualification-required');const gap=page.locator('[data-door-id=\"B3-F1-N05-D1\"] .door-gap');assert.equal(+await gap.getAttribute('x'),538.4);assert.equal(+await gap.getAttribute('y'),53.5);assert.equal(await page.locator('[data-door-id=\"B3-F1-S10-S11-INTERNAL\"]').count(),1);assert.equal(await page.locator('[data-door-id=\"B3-F1-S10-S11-INTERNAL\"]').getAttribute('data-coordinate-accuracy'),'approximate');});\nawait test('F1 main stairs and elevators have flat solid polygons without labels, X or treads',async()=>{await fresh();assert.equal(await page.locator('#layerVert text,#layerVert line,#layerVert .treads,#layerVert .x,[data-stair-art]').count(),0);assert.equal(await page.locator('#layerVert [role=\"button\"]').count(),5);for(const id of ['STW','STM','SH1','SH2','STW-INNER']){const p=page.locator('[data-id=\"B3-F1-'+id+'\"] polygon');assert.equal(await p.count(),1);assert.equal(await p.evaluate(e=>getComputedStyle(e).stroke),'none');assert.ok(!((await p.evaluate(e=>getComputedStyle(e).fill)).includes('url(')));}assert.equal(await page.locator('#layerFeat .box,#layerFeat .treads').count(),0);});\nawait test('Western elevator detail discloses reported outage alone; existing shaft reused',async()=>{await fresh();await select('B3-F1-STW-INNER');assert.match(await page.locator('#panel').innerText(),/reported-out-of-service/);assert.match(await page.locator('#panel').innerText(),/независимая проверка не проводилась/);const records=await page.evaluate(()=>FCIM_MAP_APP.getFacilities());assert.deepEqual(records.find(x=>x.id==='B3-F1-STW-INNER').polygon,map.floors[0].geometry.verticals.find(v=>v.id==='B3-F1-STW').innerShaft);for(const id of ['SH1','SH2']){await select('B3-F1-'+id);assert.match(await page.locator('#panel').innerText(),/operation: unknown/);}});\nawait test('Eastern regions share fill, boundary absent and STES selects reception',async()=>{await fresh();for(const id of ['STES','STEN']){const p=page.locator('[data-id=\"B3-F1-'+id+'\"]');assert.equal(await p.getAttribute('role'),null);assert.equal(await p.getAttribute('tabindex'),null);}const fill=async id=>page.locator('[data-id=\"B3-F1-'+id+'\"]'+(id.startsWith('ST')?' polygon':'')).evaluate(e=>getComputedStyle(e).fill);assert.equal(await fill('STES'),await fill('S14'));assert.equal(await fill('STEN'),await fill('N10'));await page.evaluate(()=>FCIM_MAP_APP.selectSpace('B3-F1-STES'));assert.equal(await page.locator('#panel h3').first().innerText(),'Вахта');assert.deepEqual((await page.evaluate(()=>FCIM_MAP_APP.getLogicalSelection())).spaceIds,['B3-F1-S14','B3-F1-STES']);const p=await point([965,155]);await page.mouse.click(p.x,p.y);assert.equal(await page.locator('#panel h3').first().innerText(),'Вахта');});\n",
+        "baselineStartLine": 20,
+        "currentStartLine": 20
+      }
+    ],
+    "tests/room01b-contract.cjs": [
+      {
+        "old": "// Exact reversible ROOM-01B hunks against the frozen, uncommitted ROOM-01A tree.\nconst fs=require('fs'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto');\nconst root=path.resolve(__dirname,'..'),hash=b=>crypto.createHash('sha256').update(b).digest('hex');\nfunction baselineBytes(file){let text=fs.readFileSync(path.join(root,file),'utf8');const m=require('../ROOM-01B_CHANGES.json');for(const p of [...(m.sourcePatches[file]||[])].reverse()){assert.equal(text.split(p.new).length,2,file+' unique ROOM-01B hunk');text=text.replace(p.new,()=>p.old);}return Buffer.from(text,'utf8');}\nfunction baselineText(file){return baselineBytes(file).toString('utf8').replaceAll('\\r\\n','\\n');}\nfunction baselineModule(file){const localModule={exports:{}};Function('module','window','globalThis',baselineText(file))(localModule,undefined,{});return localModule.exports;}\nfunction validatePreservation(){const m=require('../ROOM-01B_CHANGES.json');assert.equal(m.baselineCommit,'573d0e168ebc7de88a55f8589c3d37a7ca404693');assert.equal(m.userContractSha256,'f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2');assert.deepEqual(Object.keys(m.sourcePatches).sort(),['README.md','index.html','map-semantics.js','room-contract.js','room-identification.js','schedule-engine.js','tests/geo02-browser.cjs','tests/room01-browser.cjs','tests/room01-contract.cjs','tests/room01-data.cjs'].sort());for(const [file,h] of Object.entries(m.baselineFiles)){assert.equal(hash(baselineBytes(file)),h.sha256,file+' exact pre-ROOM-01B bytes');}return {protectedFiles:Object.keys(m.baselineFiles).length,changedFiles:Object.keys(m.sourcePatches),geometrySha256:m.baselineFiles['map-data.js'].sha256};}\nmodule.exports={baselineBytes,baselineText,baselineModule,validatePreservation};\n",
+        "new": "// Exact reversible ROOM-01B hunks against the frozen, uncommitted ROOM-01A tree.\nconst fs=require('fs'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto');\nconst root=path.resolve(__dirname,'..'),hash=b=>crypto.createHash('sha256').update(b).digest('hex');\nfunction baselineBytes(file){let text=require('./room01c-contract.cjs').baselineBytes(file).toString('utf8');const m=require('../ROOM-01B_CHANGES.json');for(const p of [...(m.sourcePatches[file]||[])].reverse()){assert.equal(text.split(p.new).length,2,file+' unique ROOM-01B hunk');text=text.replace(p.new,()=>p.old);}return Buffer.from(text,'utf8');}\nfunction baselineText(file){return baselineBytes(file).toString('utf8').replaceAll('\\r\\n','\\n');}\nfunction baselineModule(file){const localModule={exports:{}};Function('module','window','globalThis',baselineText(file))(localModule,undefined,{});return localModule.exports;}\nfunction validatePreservation(){require('./room01c-contract.cjs').validatePreservation();const m=require('../ROOM-01B_CHANGES.json');assert.equal(m.baselineCommit,'573d0e168ebc7de88a55f8589c3d37a7ca404693');assert.equal(m.userContractSha256,'f5b594e1c70d5304081a22bfead32189c15b147a72d04016af576cd88f5e75f2');assert.deepEqual(Object.keys(m.sourcePatches).sort(),['README.md','index.html','map-semantics.js','room-contract.js','room-identification.js','schedule-engine.js','tests/geo02-browser.cjs','tests/room01-browser.cjs','tests/room01-contract.cjs','tests/room01-data.cjs'].sort());for(const [file,h] of Object.entries(m.baselineFiles)){assert.equal(hash(baselineBytes(file)),h.sha256,file+' exact pre-ROOM-01B bytes');}return {protectedFiles:Object.keys(m.baselineFiles).length,changedFiles:Object.keys(m.sourcePatches),geometrySha256:m.baselineFiles['map-data.js'].sha256};}\nmodule.exports={baselineBytes,baselineText,baselineModule,validatePreservation};\n",
+        "baselineStartLine": 1,
+        "currentStartLine": 1
+      }
+    ]
+  },
+  "userRoom103CropSha256": "63b940b7fdfff2ba46e44e1cd7339e328d37413c7b0c7cb3bed0ba6971b7913c",
+  "currentLineEndings": {
+    "FIX-01_REPORT.md": [
+      {
+        "eol": "\n",
+        "count": 153
+      }
+    ],
+    "GEO-01-FIX-A_REPORT.md": [
+      {
+        "eol": "\r\n",
+        "count": 237
+      }
+    ],
+    "GEO-01-FIX-B_CHANGES.json": [
+      {
+        "eol": "\r\n",
+        "count": 88
+      }
+    ],
+    "GEO-01-FIX-B_REPORT.md": [
+      {
+        "eol": "\n",
+        "count": 311
+      }
+    ],
+    "GEO-01_FINDINGS.json": [
+      {
+        "eol": "\r\n",
+        "count": 7993
+      }
+    ],
+    "GEO-01_REPORT.md": [
+      {
+        "eol": "\r\n",
+        "count": 611
+      }
+    ],
+    "GEO-02_CHANGES.json": [
+      {
+        "eol": "\r\n",
+        "count": 326
+      }
+    ],
+    "GEO-02_REPORT.md": [
+      {
+        "eol": "\r\n",
+        "count": 254
+      }
+    ],
+    "GEO-02_SPACES.json": [
+      {
+        "eol": "\r\n",
+        "count": 651
+      }
+    ],
+    "GEO-02_UNCERTAINTIES.json": [
+      {
+        "eol": "\r\n",
+        "count": 59
+      }
+    ],
+    "index.html": [
+      {
+        "eol": "\r\n",
+        "count": 93
+      },
+      {
+        "eol": "\n",
+        "count": 15
+      },
+      {
+        "eol": "\r\n",
+        "count": 17
+      },
+      {
+        "eol": "\n",
+        "count": 9
+      },
+      {
+        "eol": "\r\n",
+        "count": 70
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 43
+      },
+      {
+        "eol": "\n",
+        "count": 2
+      },
+      {
+        "eol": "\r\n",
+        "count": 13
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 8
+      },
+      {
+        "eol": "\n",
+        "count": 2
+      },
+      {
+        "eol": "\r\n",
+        "count": 128
+      },
+      {
+        "eol": "\n",
+        "count": 7
+      },
+      {
+        "eol": "\r\n",
+        "count": 3
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 5
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 20
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 3
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 14
+      },
+      {
+        "eol": "\n",
+        "count": 5
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 5
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 12
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 6
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 4
+      },
+      {
+        "eol": "\n",
+        "count": 14
+      },
+      {
+        "eol": "\r\n",
+        "count": 4
+      },
+      {
+        "eol": "\n",
+        "count": 14
+      },
+      {
+        "eol": "\r\n",
+        "count": 15
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 3
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 8
+      },
+      {
+        "eol": "\n",
+        "count": 7
+      },
+      {
+        "eol": "\r\n",
+        "count": 18
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 2
+      },
+      {
+        "eol": "\n",
+        "count": 13
+      },
+      {
+        "eol": "\r\n",
+        "count": 3
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 3
+      },
+      {
+        "eol": "\n",
+        "count": 8
+      },
+      {
+        "eol": "\r\n",
+        "count": 4
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 2
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 7
+      },
+      {
+        "eol": "\r\n",
+        "count": 21
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 26
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 56
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 6
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 4
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 4
+      },
+      {
+        "eol": "\r\n",
+        "count": 36
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 2
+      },
+      {
+        "eol": "\r\n",
+        "count": 25
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 6
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 6
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 5
+      },
+      {
+        "eol": "\n",
+        "count": 9
+      },
+      {
+        "eol": "\r\n",
+        "count": 2
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 2
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 6
+      },
+      {
+        "eol": "\r\n",
+        "count": 2
+      },
+      {
+        "eol": "\n",
+        "count": 2
+      },
+      {
+        "eol": "\r\n",
+        "count": 2
+      },
+      {
+        "eol": "\n",
+        "count": 2
+      },
+      {
+        "eol": "\r\n",
+        "count": 13
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 5
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 2
+      },
+      {
+        "eol": "\n",
+        "count": 2
+      },
+      {
+        "eol": "\r\n",
+        "count": 4
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 2
+      },
+      {
+        "eol": "\r\n",
+        "count": 14
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 21
+      },
+      {
+        "eol": "\n",
+        "count": 4
+      },
+      {
+        "eol": "\r\n",
+        "count": 4
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 36
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 3
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 3
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 35
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 11
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 46
+      },
+      {
+        "eol": "\n",
+        "count": 7
+      },
+      {
+        "eol": "\r\n",
+        "count": 1
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 3
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 27
+      },
+      {
+        "eol": "\n",
+        "count": 3
+      },
+      {
+        "eol": "\r\n",
+        "count": 8
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 98
+      },
+      {
+        "eol": "\n",
+        "count": 1
+      },
+      {
+        "eol": "\r\n",
+        "count": 5
+      }
+    ],
+    "MAP-01_REPORT.md": [
+      {
+        "eol": "\n",
+        "count": 246
+      }
+    ],
+    "map-data.js": [
+      {
+        "eol": "\n",
+        "count": 2673
+      }
+    ],
+    "map-semantics.js": [
+      {
+        "eol": "\n",
+        "count": 45
+      }
+    ],
+    "README.md": [
+      {
+        "eol": "\n",
+        "count": 318
+      }
+    ],
+    "ROOM-01A_CHANGES.json": [
+      {
+        "eol": "\n",
+        "count": 315
+      }
+    ],
+    "ROOM-01A_REPORT.md": [
+      {
+        "eol": "\n",
+        "count": 226
+      }
+    ],
+    "ROOM-01B_CHANGES.json": [
+      {
+        "eol": "\n",
+        "count": 441
+      }
+    ],
+    "ROOM-01B_REPORT.md": [
+      {
+        "eol": "\n",
+        "count": 232
+      }
+    ],
+    "room-contract.js": [
+      {
+        "eol": "\n",
+        "count": 72
+      }
+    ],
+    "room-identification.js": [
+      {
+        "eol": "\n",
+        "count": 184
+      }
+    ],
+    "schedule-engine.js": [
+      {
+        "eol": "\n",
+        "count": 122
+      }
+    ],
+    "schedule-fixture.js": [
+      {
+        "eol": "\n",
+        "count": 34
+      }
+    ],
+    "tests/fix01.cjs": [
+      {
+        "eol": "\n",
+        "count": 224
+      }
+    ],
+    "tests/geo01-browser.cjs": [
+      {
+        "eol": "\r\n",
+        "count": 30
+      }
+    ],
+    "tests/geo01-changes.json": [
+      {
+        "eol": "\r\n",
+        "count": 41
+      }
+    ],
+    "tests/geo01-contract.cjs": [
+      {
+        "eol": "\n",
+        "count": 41
+      }
+    ],
+    "tests/geo01-data.cjs": [
+      {
+        "eol": "\n",
+        "count": 26
+      }
+    ],
+    "tests/geo01-fix-b-browser.cjs": [
+      {
+        "eol": "\n",
+        "count": 24
+      }
+    ],
+    "tests/geo01-fix-b-data.cjs": [
+      {
+        "eol": "\n",
+        "count": 31
+      }
+    ],
+    "tests/geo02-browser.cjs": [
+      {
+        "eol": "\n",
+        "count": 27
+      }
+    ],
+    "tests/geo02-contract.cjs": [
+      {
+        "eol": "\n",
+        "count": 11
+      }
+    ],
+    "tests/geo02-data.cjs": [
+      {
+        "eol": "\n",
+        "count": 16
+      }
+    ],
+    "tests/geo02-geometry.cjs": [
+      {
+        "eol": "\n",
+        "count": 11
+      }
+    ],
+    "tests/map01-browser.cjs": [
+      {
+        "eol": "\n",
+        "count": 78
+      }
+    ],
+    "tests/map01-data.cjs": [
+      {
+        "eol": "\n",
+        "count": 56
+      }
+    ],
+    "tests/map01-preserve.cjs": [
+      {
+        "eol": "\n",
+        "count": 35
+      }
+    ],
+    "tests/preserve-map.cjs": [
+      {
+        "eol": "\n",
+        "count": 22
+      }
+    ],
+    "tests/room01-browser.cjs": [
+      {
+        "eol": "\n",
+        "count": 33
+      }
+    ],
+    "tests/room01-contract.cjs": [
+      {
+        "eol": "\n",
+        "count": 7
+      }
+    ],
+    "tests/room01-data.cjs": [
+      {
+        "eol": "\n",
+        "count": 21
+      }
+    ],
+    "tests/room01b-browser.cjs": [
+      {
+        "eol": "\n",
+        "count": 38
+      }
+    ],
+    "tests/room01b-contract.cjs": [
+      {
+        "eol": "\n",
+        "count": 8
+      }
+    ],
+    "tests/room01b-data.cjs": [
+      {
+        "eol": "\n",
+        "count": 27
+      }
+    ],
+    "TIMETABLE_CONTRACT.md": [
+      {
+        "eol": "\n",
+        "count": 129
+      }
+    ]
+  }
+}

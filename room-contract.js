@@ -21,7 +21,7 @@
 
   // Resolving a room is separate from evaluating whether its lesson is active.
   // Demo associations are passed explicitly and NEVER merged with real bindings.
-  function createResolver(map, parse) {
+  function createResolver(map, parse, catalog) {
     var spaces = new Map();
     map.floors.forEach(function (f) { f.spaces.forEach(function (s) { spaces.set(s.id, { space: s, level: f.level }); }); });
     return function resolveRoom(lesson, options) {
@@ -38,6 +38,13 @@
       result.roomCode = p.full;
       if (p.basement) return Object.assign(result, { status: "pending-floor" });
       var mock = lesson.source === "mock";
+      // An explicit source catalog resolves real codes, with user evidence kept
+      // distinct from independent verification and from fictional demo data.
+      if (!mock && catalog) {
+        if (catalog.conflicts(options.bindings || []).some(function (c) { return c.roomCode === p.full || c.sourceRoomCode === p.full; })) return Object.assign(result, { status: "ambiguous-binding" });
+        var source = catalog.mappings.find(function (r) { return r.roomCode === p.full; });
+        if (source) return Object.assign(result, { spaceId: source.primarySpaceId, primarySpaceId: source.primarySpaceId, spaceIds: source.spaceIds.slice(), floorLevel: spaces.get(source.primarySpaceId).level, status: "mapped", provenance: "user-confirmed", onSiteVerification: "unknown" });
+      }
       // The synthetic dataset cannot borrow a user's real room annotation.
       var candidates = mock ? (options.demoAssociations || []) : (options.bindings || []);
       var matches = candidates.filter(function (b) {
@@ -46,11 +53,16 @@
       });
       if (matches.length > 1) return Object.assign(result, { status: "ambiguous-binding" });
       if (!matches.length) return result; // floorGuess is deliberately never used for association.
-      var entry = spaces.get(matches[0].spaceId);
+      var binding=matches[0], expanded=Object.prototype.hasOwnProperty.call(binding,"spaceIds");
+      var ids=expanded ? binding.spaceIds : [binding.spaceId];
+      if (!Array.isArray(ids) || !ids.length || new Set(ids).size !== ids.length || ids.some(function (id) { return typeof id !== "string" || !spaces.has(id) || spaces.get(id).space.kind !== "room"; })) return Object.assign(result, { status: "invalid-binding" });
+      var primary=expanded ? ids.slice().sort()[0] : binding.spaceId, entry = spaces.get(primary);
       if (!entry || entry.space.kind !== "room") return Object.assign(result, { status: "invalid-binding" });
+      if (ids.some(function (id) { return spaces.get(id).level !== entry.level; }) || expanded && (binding.primarySpaceId && binding.primarySpaceId !== primary || binding.spaceId && binding.spaceId !== primary)) return Object.assign(result, { status: "invalid-binding" });
       // A real adapter must supply verified evidence. Manual FIX-01 records retain
       // their existing provenance; they are not silently promoted to verified.
       if (!mock && matches[0].verification !== "verified") return Object.assign(result, { status: "unverified-binding" });
+      if (expanded) Object.assign(result,{spaceIds:ids.slice().sort(),primarySpaceId:primary});
       return Object.assign(result, { spaceId: entry.space.id, floorLevel: entry.level, status: "mapped", provenance: mock ? "temporary-demo" : "verified-binding" });
     };
   }

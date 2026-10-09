@@ -4,7 +4,7 @@ const {pathToFileURL}=require('url');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const root=path.resolve(__dirname,'..'),out=path.resolve(process.argv[2]),baseline=path.resolve(process.argv[3]);
 fs.mkdirSync(out,{recursive:true});
-const files=['index.html','map-data.js','room-contract.js','schedule-engine.js','schedule-fixture.js','map-semantics.js'];
+const files=['index.html','map-data.js','room-contract.js','schedule-engine.js','schedule-fixture.js','map-semantics.js','room-identification.js'];
 const results=[],errors=[],KEY='fcim-indoor-map/utm-b3/bindings';let browser,page,context,url;
 async function fresh(mobile=false){if(context)await context.close();context=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:900},isMobile:mobile,hasTouch:mobile,acceptDownloads:true});page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});await page.goto(url);await page.locator('#scheduleDate').fill('2027-06-28');await page.locator('#scheduleDate').dispatchEvent('change');}
 async function floor(n){await page.locator('#floorNav button').filter({hasText:new RegExp('^'+n+'$')}).click();}

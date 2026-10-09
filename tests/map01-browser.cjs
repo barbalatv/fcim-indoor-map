@@ -6,7 +6,7 @@ const root=path.resolve(__dirname,'..'),out=path.resolve(process.argv[2]||path.j
 const fixture=require('../schedule-fixture.js'),map=require('../map-data.js');
 const original=process.argv[3]?require(path.join(path.resolve(process.argv[3]),'map-data.js')):null;
 fs.mkdirSync(out,{recursive:true});
-const files=['index.html','map-data.js','room-contract.js','schedule-engine.js','schedule-fixture.js','map-semantics.js'];
+const files=['index.html','map-data.js','room-contract.js','schedule-engine.js','schedule-fixture.js','map-semantics.js','room-identification.js'];
 const KEY='fcim-indoor-map/utm-b3/bindings',results=[],errors=[],consoleErrors=[],requests=[];
 let browser,context,page,url,tag;
 async function fresh({mobile=false,viewport,overrideFixture,noGraph=false,file=false}={}){

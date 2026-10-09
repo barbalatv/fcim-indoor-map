@@ -50,7 +50,7 @@ async function test(name, fn) {
   const server = http.createServer((req,res) => {
     const file = new URL(req.url,'http://localhost').pathname.slice(1) || 'index.html';
     if (file === 'favicon.ico') { res.writeHead(204); return res.end(); }
-    if (!['index.html','map-data.js','room-contract.js','schedule-engine.js','schedule-fixture.js','map-semantics.js'].includes(file)) { res.writeHead(404); return res.end(); }
+    if (!['index.html','map-data.js','room-contract.js','schedule-engine.js','schedule-fixture.js','map-semantics.js','room-identification.js'].includes(file)) { res.writeHead(404); return res.end(); }
     res.setHeader('Content-Type',file.endsWith('.js') ? 'text/javascript; charset=utf-8' : 'text/html; charset=utf-8'); res.end(fs.readFileSync(path.join(root,file)));
   });
   await new Promise(r => server.listen(0,'127.0.0.1',r)); url = 'http://127.0.0.1:'+server.address().port+'/index.html';

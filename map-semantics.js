@@ -1,7 +1,7 @@
 /* Evidence-qualified facilities overlay; never alters the reconstructed model. */
 (function (global) {
   "use strict";
-  function facilities(map) {
+  function facilities(map, catalog) {
     var result = [];
     map.floors.forEach(function (f) {
       result.push({ id: f.id + "-CORRIDOR", floorId: f.id, kind: "corridor", evidence: "observed", operational: "unknown", source: f.source.photo, polygon: f.geometry.corridor });
@@ -16,6 +16,27 @@
     });
     result.push({ id: "B3-TOILETS-UNKNOWN", floorId: null, kind: "toilet", evidence: "unknown", polygon: null, notes: "Подтверждённые расположения отсутствуют; маркеры туалетов не рисуются." });
     result.push({ id: "B3-ENTRANCES-UNKNOWN", floorId: null, kind: "entrance", evidence: "unknown", polygon: null, notes: "На 1 этаже нанесены наблюдаемые проёмы и возможный южный вход. Подтверждённых входов, их назначения и публичного доступа нет." });
+    if (catalog) catalog.identities.concat(catalog.structural).forEach(function (identity) {
+      var floor = map.floors.find(function (f) { return f.id === "B3-F1"; });
+      var entity = floor.spaces.concat(floor.geometry.verticals, floor.geometry.features).find(function (x) { return x.id === identity.id; });
+      if (identity.parentId) { var parent=floor.geometry.verticals.find(function (v) { return v.id === identity.parentId; }); entity=Object.assign({},parent,{polygon:parent.innerShaft}); }
+      var old = result.findIndex(function (x) { return x.id === identity.id; });
+      var facility = Object.assign({}, identity, { floorId: floor.id, evidence: "user-confirmed", identityEvidence: "user-confirmed",
+        identitySource: identity.evidenceSource || (identity.id === "B3-F1-OPEN-E" ? "user-statement-east" : catalog.source.file),
+        geometryEvidence: entity.verification, geometrySource: floor.source.photo, operational: identity.operational || "unknown", access: "unknown",
+        onSiteVerification: "unknown", source: identity.evidenceSource || catalog.source.file, polygon: entity.polygon || null, line: entity.line || null });
+      if (old >= 0) result[old] = facility; else result.push(facility);
+    });
+    if (catalog) {
+      if (catalog.presentation) {
+        result.filter(function (x) { return catalog.presentation.storageOpenings.some(function (o) { return o.id === x.id; }); }).forEach(function (x) { x.display="hidden-storage-access"; x.displaySource=catalog.presentation.source; });
+        var backWc=result.find(function (x) { return x.id === catalog.presentation.backWcFeatureId; });
+        backWc.presentationFill="neutral-circulation-style"; backWc.presentationSource=catalog.presentation.source;
+      }
+      result.filter(function (x) { return ["B3-F1-SOUTH-STEPS","B3-F1-MID-STEPS","B3-F1-NORTH-STEPS"].includes(x.id); }).forEach(function (x) { x.display="hidden-user-request"; x.displaySource="ROOM-01B user contract"; });
+      result.find(function (x) { return x.id === "B3-TOILETS-UNKNOWN"; }).notes = "Кроме двух WC первого этажа, определённых пользователем, расположения и функции WC на других этажах неизвестны; натурного осмотра нет.";
+      result.find(function (x) { return x.id === "B3-ENTRANCES-UNKNOWN"; }).notes = "Главный вход первого этажа определён пользователем у восточного OPEN-E. Назначение остальных проёмов и доступ неизвестны.";
+    }
     return result;
   }
   var api = { facilities: facilities };
