@@ -1,0 +1,35 @@
+name: Consumer CI
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Portable protected contracts and MAP-02B unit/data tests
+        run: node --test tests/deploy01-contract.cjs tests/map02b-api.cjs tests/map02b-data.cjs
+      - name: Install isolated browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/fcim-browser" --no-save --no-package-lock @playwright/test@1.63.0
+          node "$RUNNER_TEMP/fcim-browser/node_modules/playwright/cli.js" install --with-deps chrome
+          echo "PLAYWRIGHT_MODULE=$RUNNER_TEMP/fcim-browser/node_modules/@playwright/test" >> "$GITHUB_ENV"
+      - name: Recorded real API replay and synthetic browser failures
+        run: node tests/map02b-browser.cjs "$RUNNER_TEMP/fcim-evidence/replay"
+      - name: Project path, navigation and offline demo
+        run: node tests/deploy01-browser.cjs "$RUNNER_TEMP/fcim-evidence/project-path"
+      - name: Keep browser evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: consumer-browser-evidence
+          path: ${{ runner.temp }}/fcim-evidence
+          if-no-files-found: ignore
+          retention-days: 7

@@ -1,0 +1,6 @@
+# Recorded public-response fixtures retain their captured SHA-256 bytes on fresh clones.
+tests/fixtures/map02b/capture.json -text
+tests/fixtures/map02b/course1-schedule.json -text
+tests/fixtures/map02b/course1-status.json -text
+tests/fixtures/map02b/course2-schedule.json -text
+tests/fixtures/map02b/course2-status.json -text

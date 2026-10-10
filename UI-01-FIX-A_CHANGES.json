@@ -1,0 +1,1012 @@
+{
+  "task": "UI-01-FIX-A",
+  "baselineCommit": "8b0a24aec70d51178291a0fd14d1860467e5b607",
+  "baselineBranch": "codex/ui-01-minimalist-floorplan",
+  "branch": "codex/ui-01-fix-a-horizontal-grid",
+  "baselineFiles": {
+    "UI-01_CHANGES.json": {
+      "sha256": "335b08d9795231b7510dc4f9ab16cfe77fefc86cf2c47dc43e301fa1d17ec5b1",
+      "size": 210505,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 1184
+        }
+      ]
+    },
+    "UI-01_REPORT.md": {
+      "sha256": "db205da263715e961d2baae23a38352049748475d7e656427caf0ee3e09fdd5e",
+      "size": 29939,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 235
+        }
+      ]
+    },
+    "schematic-layout.js": {
+      "sha256": "d60d3d2266aef45237f3fe22e555844bab8a30a3fffb8ca405ed200c9dc4d3d2",
+      "size": 5925,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 78
+        }
+      ]
+    },
+    "tests/ui01-browser.cjs": {
+      "sha256": "982fa7bb7fa0d0d1911a962aa9676664f32b2e72de2a64844dce02b767aa1008",
+      "size": 19151,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 39
+        }
+      ]
+    },
+    "tests/ui01-contract.cjs": {
+      "sha256": "561e697687c08688b2245b0ca95eb581b1c5e4737670b3bbb26f885022b6c251",
+      "size": 2938,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 23
+        }
+      ]
+    },
+    "tests/ui01-data.cjs": {
+      "sha256": "dabbbe3d77684c8267de0f6047f3bf3d5e9772b94ae82259cbbdc405eafa084f",
+      "size": 7993,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 24
+        }
+      ]
+    },
+    "tests/ui01-source-pixels.cjs": {
+      "sha256": "f65f02db4279071024d97cba1515d44e6b27cd16bc836deaed0f37c0c39503ef",
+      "size": 1508,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 14
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        }
+      ]
+    },
+    "FIX-01_REPORT.md": {
+      "sha256": "882d8d9d9ce99193430e838e397f4b04dde65db4fa1991c32145f2e855c2648f",
+      "size": 19172,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 153
+        }
+      ]
+    },
+    "GEO-01-FIX-A_REPORT.md": {
+      "sha256": "40af402dd6161fe6b133fc9c1b7dc3d64ad7afc8800636f1750fe95c0b07f801",
+      "size": 35350,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 237
+        }
+      ]
+    },
+    "GEO-01-FIX-B_CHANGES.json": {
+      "sha256": "8018febdfe54905079e2f5ae7a44fc3de900e968773a4c98751732766a202ae9",
+      "size": 4462,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 88
+        }
+      ]
+    },
+    "GEO-01-FIX-B_REPORT.md": {
+      "sha256": "5783da6e4be119390c6e53423764e89b8b45db073c6110f6decec6144516853e",
+      "size": 41142,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 311
+        }
+      ]
+    },
+    "GEO-01_FINDINGS.json": {
+      "sha256": "1ccf4c56ac1adbef5dfc97a13f558b0ad8b96571e5304d29f1d6a870e9e968c1",
+      "size": 503145,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 7993
+        }
+      ]
+    },
+    "GEO-01_REPORT.md": {
+      "sha256": "4fc5bba81ec6893017e1a38a9fe97780d82a43480f7d2bdddca338f6b87254bf",
+      "size": 126128,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 611
+        }
+      ]
+    },
+    "GEO-02_CHANGES.json": {
+      "sha256": "04559813726c0362399e6c3fa1063932aa1c2f355a2c7734bb09062b59e4d76e",
+      "size": 113893,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 326
+        }
+      ]
+    },
+    "GEO-02_REPORT.md": {
+      "sha256": "a0bf8353030db36dfe7f2fdcc85ee64ef365ad31bc058e815c5fe070f8424014",
+      "size": 43399,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 254
+        }
+      ]
+    },
+    "GEO-02_SPACES.json": {
+      "sha256": "57a8ea2889bc3fa76946750595be85983ec1e8bcfdecbe67e34e95e38b719f92",
+      "size": 18714,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 651
+        }
+      ]
+    },
+    "GEO-02_UNCERTAINTIES.json": {
+      "sha256": "a907c4fd710ce634e58f152c97c6371d705464466f9c48a601dfbd9a3d7cfeee",
+      "size": 2116,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 59
+        }
+      ]
+    },
+    "MAP-01_REPORT.md": {
+      "sha256": "3a0212e39cdb54ef1b5206b251d31dc9f0b4d8648ea807cb9d5a770ae5d48387",
+      "size": 25686,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 246
+        }
+      ]
+    },
+    "README.md": {
+      "sha256": "bbd5e929b4c6b3475f774872d704f88856a8ed56f60a4ce27c3260246d13a66d",
+      "size": 40227,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 348
+        }
+      ]
+    },
+    "ROOM-01A_CHANGES.json": {
+      "sha256": "8f9f8f55906dcd2a71d39b22b27171bf4a4882943dbe12a48f367052ed9d815d",
+      "size": 91850,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 315
+        }
+      ]
+    },
+    "ROOM-01A_REPORT.md": {
+      "sha256": "95b15cacbd7e6e7a15be47cfaf48598d60cf6b79fcef38051ac9b0c2f5287128",
+      "size": 37116,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 226
+        }
+      ]
+    },
+    "ROOM-01B_CHANGES.json": {
+      "sha256": "ea02540cd483415b05a44bf09a42a5cd4da2524a405a1268da715797503355a9",
+      "size": 135407,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 441
+        }
+      ]
+    },
+    "ROOM-01B_REPORT.md": {
+      "sha256": "c55106379ec57cd881df44176cb90f98db1376ab4659339256156e45a2b69ddd",
+      "size": 29872,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 232
+        }
+      ]
+    },
+    "ROOM-01C_CHANGES.json": {
+      "sha256": "b9e9885edf7dc2a0ab180c1b7b9719bf0fe3e2ce9a66a7f22b41815da9d20230",
+      "size": 80046,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 1104
+        }
+      ]
+    },
+    "ROOM-01C_REPORT.md": {
+      "sha256": "f26d3653287b88ce2b986693ae6af66f868548cb0c1ab0b8f430cf848c57c626",
+      "size": 25550,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 194
+        }
+      ]
+    },
+    "TIMETABLE_CONTRACT.md": {
+      "sha256": "36dd3f97b80dddfa0f749cacf79b60e7731d66fbe11cfb17ec8fd45e0762fd47",
+      "size": 10640,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 129
+        }
+      ]
+    },
+    "index.html": {
+      "sha256": "5e98beb52e701998b0ea7ee96dc56ba9edf73a334b1c19a93724302270a9e21e",
+      "size": 89455,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 177
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 43
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 14
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 8
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 128
+        },
+        {
+          "eol": "\n",
+          "count": 7
+        },
+        {
+          "eol": "\r\n",
+          "count": 3
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 5
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 20
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 129
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 26
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 56
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 6
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 4
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 4
+        },
+        {
+          "eol": "\r\n",
+          "count": 36
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 25
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 6
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 6
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 5
+        },
+        {
+          "eol": "\n",
+          "count": 9
+        },
+        {
+          "eol": "\r\n",
+          "count": 2
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 7
+        },
+        {
+          "eol": "\r\n",
+          "count": 2
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 2
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 13
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 5
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 2
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 4
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 14
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 21
+        },
+        {
+          "eol": "\n",
+          "count": 4
+        },
+        {
+          "eol": "\r\n",
+          "count": 4
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 36
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 3
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 3
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 35
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 11
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 46
+        },
+        {
+          "eol": "\n",
+          "count": 7
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 3
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 27
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 8
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 98
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 5
+        }
+      ]
+    },
+    "map-data.js": {
+      "sha256": "50a004532a920f1ae6336a871f04c860ad162de876221b2346bcf606b9d77193",
+      "size": 280843,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 2673
+        }
+      ]
+    },
+    "map-semantics.js": {
+      "sha256": "ac9f112e858df48fc52cf8d24c2b73f18dc45f937dab8618f040ae4fcedb5abb",
+      "size": 5441,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 45
+        }
+      ]
+    },
+    "room-contract.js": {
+      "sha256": "762a5370520dad858b9911cea2dc358f94fc205488926d2fa3475793cca7a6a6",
+      "size": 6063,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 72
+        }
+      ]
+    },
+    "room-identification.js": {
+      "sha256": "f3c05bb5772b05d2e1bead774d6d809598d2b367d6dd6f202fe23af7a2d9b8a9",
+      "size": 19582,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 184
+        }
+      ]
+    },
+    "schedule-engine.js": {
+      "sha256": "5a9844201990925f42b6c97bd0c831386857f4352dedd669b430807a79865eb4",
+      "size": 9529,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 122
+        }
+      ]
+    },
+    "schedule-fixture.js": {
+      "sha256": "6e6cc46215f6e51e638240481c711f5013544bc460faa048d30134b6ee410323",
+      "size": 3396,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 34
+        }
+      ]
+    },
+    "tests/fix01.cjs": {
+      "sha256": "4d7acff7a2333ff755ac25e9dc5157f73528b372f19be5df2200f1164ad2dad3",
+      "size": 20365,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 224
+        }
+      ]
+    },
+    "tests/geo01-browser.cjs": {
+      "sha256": "f3e2f897f8ffc546fe4435513d966f07c2c1eb980933139ec5131350fbdd54f7",
+      "size": 9328,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 31
+        }
+      ]
+    },
+    "tests/geo01-changes.json": {
+      "sha256": "34c5302ecc4ba62aeccc190360a35b1cde815ff2d46d2497b8708ede97ad6bf2",
+      "size": 9843,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 41
+        }
+      ]
+    },
+    "tests/geo01-contract.cjs": {
+      "sha256": "a0c22c3ca6328e1f2f61722b770153a996e7f0f2c7db8c3804aa24e9e8291a1b",
+      "size": 2972,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 41
+        }
+      ]
+    },
+    "tests/geo01-data.cjs": {
+      "sha256": "13f282f0d670482d9f1627874606babea7c69f97d66ece2feef7c6f31c8e133a",
+      "size": 7905,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 26
+        }
+      ]
+    },
+    "tests/geo01-fix-b-browser.cjs": {
+      "sha256": "39ba38295bc642b5cd56f42f05974307b17bd0b09aacc3e2fe3bd0c83d62a4e3",
+      "size": 8734,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 25
+        }
+      ]
+    },
+    "tests/geo01-fix-b-data.cjs": {
+      "sha256": "d9618968f47c62b980db5c532179691b3653cb8696493b3b3a54aa7039a2a4e8",
+      "size": 9152,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 31
+        }
+      ]
+    },
+    "tests/geo02-browser.cjs": {
+      "sha256": "56b45d0c2f5b0312830dc6522821ce67b92fee9655d11caeb0cf40cb270f62fc",
+      "size": 13449,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 28
+        }
+      ]
+    },
+    "tests/geo02-contract.cjs": {
+      "sha256": "8ccdd341d2c375f763ea925c077a04523ca4158db5edff87a37177f60a5e917a",
+      "size": 2433,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 11
+        }
+      ]
+    },
+    "tests/geo02-data.cjs": {
+      "sha256": "9719ffd6b1dfa010740fd4dbcb2d8f195c0e3988f0451430c8b2309885f9bd17",
+      "size": 7306,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 16
+        }
+      ]
+    },
+    "tests/geo02-geometry.cjs": {
+      "sha256": "8761d20ca22cfe69950f5ddfd1ef05ecc8ec82b48dff27a5f5cd6c949019b63b",
+      "size": 2375,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 11
+        }
+      ]
+    },
+    "tests/map01-browser.cjs": {
+      "sha256": "8a406fbce1b16048b3926f4b0708474f9432c6344667851fcfc638ef8e32e419",
+      "size": 22483,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 78
+        }
+      ]
+    },
+    "tests/map01-data.cjs": {
+      "sha256": "fb1cca46de5dd13ae614893774b0e67facf9a398b4d17b804c7f95a734364496",
+      "size": 13375,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 56
+        }
+      ]
+    },
+    "tests/map01-preserve.cjs": {
+      "sha256": "5266ccac686a6deb39f8b7de8ccc84dbcd4fd31508b8bfa35f208631900672cd",
+      "size": 6943,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 35
+        }
+      ]
+    },
+    "tests/preserve-map.cjs": {
+      "sha256": "cb9563e29bedf5033ed4596518b943fe2e8425597c43ca15570c9c8785ab4812",
+      "size": 2219,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 22
+        }
+      ]
+    },
+    "tests/room01-browser.cjs": {
+      "sha256": "da0204c13095bfb4dd36c01076cbda3bf4d23c68af360ee6ceffba11f2b81011",
+      "size": 14960,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 34
+        }
+      ]
+    },
+    "tests/room01-contract.cjs": {
+      "sha256": "398e9b5579e9d3eb4125551c43327eded2a3245a6aaaedec8addf705fafdc898",
+      "size": 1708,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 7
+        }
+      ]
+    },
+    "tests/room01-data.cjs": {
+      "sha256": "3a882b6d5d2d65bc57e81dcb1b1d3e9acba48f6022b2dacf3ed5cfabda3a55bc",
+      "size": 7040,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 21
+        }
+      ]
+    },
+    "tests/room01b-browser.cjs": {
+      "sha256": "8b1765518466f7a271ef5900e4b85a88fccd1edfeeada97803f867a41afb7fbd",
+      "size": 19720,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 39
+        }
+      ]
+    },
+    "tests/room01b-contract.cjs": {
+      "sha256": "b7e1c7ebf1c0ee1f2921de17844f8c1aec6134b23f4c6b863a3c400022a8cd1f",
+      "size": 1873,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 8
+        }
+      ]
+    },
+    "tests/room01b-data.cjs": {
+      "sha256": "99be77fec6d72b054953857c05c4146c467a65caa6afa1e5502659a194167a38",
+      "size": 9878,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 27
+        }
+      ]
+    },
+    "tests/room01c-browser.cjs": {
+      "sha256": "086091b92adfb06f28ebd586239fd81cbf1c55cc2bf1fc9a531a95364a61fa91",
+      "size": 13515,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 32
+        }
+      ]
+    },
+    "tests/room01c-contract.cjs": {
+      "sha256": "62cd8a86881afaa60be63d7a8af1175e81803a44fa2c383e4c481537ee3b131d",
+      "size": 2419,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 10
+        }
+      ]
+    },
+    "tests/room01c-data.cjs": {
+      "sha256": "d520fc4a2bbbfe10e28035d4a480b425a28525030727ba62a535470e284177bc",
+      "size": 7122,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 17
+        }
+      ]
+    }
+  },
+  "sourcePatches": {
+    "schematic-layout.js": [
+      {
+        "old": "(function (global) {\n  \"use strict\";\n  var revision = \"2026-10-09.UI-01.1\";\n  // x, y, width, height in diagram units; never physical measurements.\n  var firstFloorRects = {\n    N01:[0,0,154,75], N02:[154,0,153,75], N03:[307,0,154,75], N04:[461,0,49,75],\n    N05:[510,0,30,75], N06:[540,0,30,75], N07:[570,0,150,75], N08:[720,0,30,75],\n    N09:[816,0,114,75], N10:[930,38,70,37],\n    S01:[0,105,62,70], S02:[62,105,124,70], S03:[307,105,33,70], S04:[340,105,28,70],\n    S05:[368,105,59,70], S06:[427,105,31.5,70], S08:[458.5,105,31.5,70],\n    S09:[511,105,29,70], S10:[540,105,30,70], S11:[570,105,30,70],\n    S12:[600,105,31,70], S13:[631,105,119,70], S14:[930,100,70,37],\n    HW:[247,105,60,70], LH:[780,0,36,75], HC:[490,105,21,70], HE:[815,100,115,75],\n    STW:[186,105,61,70], \"STW-INNER\":[210,127,24,26], STM:[750,100,65,75],\n    STEN:[930,0,70,38], STES:[930,137,70,38], SH1:[750,0,30,30], SH2:[750,30,30,30]\n  };\n  function rectPolygon(r) { return [[r[0],r[1]],[r[0]+r[2],r[1]],[r[0]+r[2],r[1]+r[3]],[r[0],r[1]+r[3]]]; }\n  function edges(p) { return p.map(function(a,i){return [a,p[(i+1)%p.length]];}); }\n",
+        "new": "(function (global) {\n  \"use strict\";\n  var revision = \"2026-10-09.UI-01-FIX-A.1\";\n  // Diagram units only. Every Y edge derives from these shared display rails.\n  var firstFloorRails = {outerTop:0, upperBottom:75, lowerTop:105, outerBottom:175};\n  firstFloorRails.upperSplit = (firstFloorRails.outerTop + firstFloorRails.upperBottom) / 2;\n  firstFloorRails.lowerSplit = (firstFloorRails.lowerTop + firstFloorRails.outerBottom) / 2;\n  firstFloorRails.lowerInsetTop = firstFloorRails.lowerTop + (firstFloorRails.outerBottom-firstFloorRails.lowerTop) / 4;\n  firstFloorRails.lowerInsetBottom = firstFloorRails.outerBottom - (firstFloorRails.outerBottom-firstFloorRails.lowerTop) / 4;\n  var rails=firstFloorRails, liftSize=rails.upperSplit-rails.outerTop, westLiftSize=rails.lowerInsetBottom-rails.lowerInsetTop;\n  function band(x,width,top,bottom) { return [x,top,width,bottom-top]; }\n  function upper(x,width) { return band(x,width,rails.outerTop,rails.upperBottom); }\n  function lower(x,width) { return band(x,width,rails.lowerTop,rails.outerBottom); }\n  var firstFloorRects = {\n    N01:upper(0,154), N02:upper(154,153), N03:upper(307,154), N04:upper(461,49),\n    N05:upper(510,30), N06:upper(540,30), N07:upper(570,150), N08:upper(720,30),\n    N09:upper(816,114), N10:band(930,70,rails.upperSplit,rails.upperBottom),\n    S01:lower(0,62), S02:lower(62,124), S03:lower(307,33), S04:lower(340,28),\n    S05:lower(368,59), S06:lower(427,31.5), S08:lower(458.5,31.5),\n    S09:lower(511,29), S10:lower(540,30), S11:lower(570,30),\n    S12:lower(600,31), S13:lower(631,119), S14:band(930,70,rails.lowerTop,rails.lowerSplit),\n    HW:lower(247,60), LH:upper(750+liftSize,816-750-liftSize), HC:lower(490,21), HE:lower(815,115),\n    STW:lower(186,61), \"STW-INNER\":band(186+(61-westLiftSize)/2,westLiftSize,rails.lowerInsetTop,rails.lowerInsetBottom), STM:lower(750,65),\n    STEN:band(930,70,rails.outerTop,rails.upperSplit), STES:band(930,70,rails.lowerSplit,rails.outerBottom),\n    SH1:band(750,liftSize,rails.outerTop,rails.upperSplit), SH2:band(750,liftSize,rails.upperSplit,rails.upperBottom)\n  };\n  // These component IDs retain their source ownership but paint one aligned block.\n  var firstFloorEnclosures={elevators:[\"SH1\",\"SH2\"],service:[\"STEN\",\"N10\"],reception:[\"S14\",\"STES\"]};\n  function enclosure(name) {\n    var ids=firstFloorEnclosures[name];if(!ids)return null;\n    var rects=ids.map(function(id){return firstFloorRects[id];});\n    var left=Math.min.apply(null,rects.map(function(r){return r[0];})),top=Math.min.apply(null,rects.map(function(r){return r[1];}));\n    var right=Math.max.apply(null,rects.map(function(r){return r[0]+r[2];})),bottom=Math.max.apply(null,rects.map(function(r){return r[1]+r[3];}));\n    return rectPolygon([left,top,right-left,bottom-top]);\n  }\n  function rectPolygon(r) { return [[r[0],r[1]],[r[0]+r[2],r[1]],[r[0]+r[2],r[1]+r[3]],[r[0],r[1]+r[3]]]; }\n  function edges(p) { return p.map(function(a,i){return [a,p[(i+1)%p.length]];}); }\n"
+      },
+      {
+        "old": "  }\n  function createFloor(floor,catalog) {\n    var schematic=floor.level===1,polygons=Object.create(null),walls=[],outline=schematic?rectPolygon([0,0,1000,175]):floor.geometry.outline;\n    floor.spaces.concat(floor.geometry.verticals).forEach(function(s){\n      if(schematic){var r=firstFloorRects[s.id.replace('B3-F1-','')];if(r)polygons[s.id]=rectPolygon(r);}\n",
+        "new": "  }\n  function createFloor(floor,catalog) {\n    var schematic=floor.level===1,polygons=Object.create(null),walls=[],outline=schematic?rectPolygon([0,rails.outerTop,1000,rails.outerBottom-rails.outerTop]):floor.geometry.outline;\n    floor.spaces.concat(floor.geometry.verticals).forEach(function(s){\n      if(schematic){var r=firstFloorRects[s.id.replace('B3-F1-','')];if(r)polygons[s.id]=rectPolygon(r);}\n"
+      },
+      {
+        "old": "    if(schematic){\n      // S14/STES share their public reception presentation; no interior seam.\n      walls=walls.filter(function(l){return !([38,137].includes(l[0][1])&&l[1][1]===l[0][1]&&Math.min(l[0][0],l[1][0])===930&&Math.max(l[0][0],l[1][0])===1000);});\n    }else floor.geometry.features.forEach(function(ft){\n      if(ft.type==='wallLine')walls=walls.concat(ft.line.slice(1).map(function(b,i){return [ft.line[i],b];}));\n",
+        "new": "    if(schematic){\n      // S14/STES share their public reception presentation; no interior seam.\n      walls=walls.filter(function(l){return !([rails.upperSplit,rails.lowerSplit].includes(l[0][1])&&l[1][1]===l[0][1]&&Math.min(l[0][0],l[1][0])===930&&Math.max(l[0][0],l[1][0])===1000);});\n    }else floor.geometry.features.forEach(function(ft){\n      if(ft.type==='wallLine')walls=walls.concat(ft.line.slice(1).map(function(b,i){return [ft.line[i],b];}));\n"
+      },
+      {
+        "old": "    var api={floorId:floor.id,displayMode:schematic?'rectangular-schematic':'source-layout',revision:revision,outline:outline,polygons:polygons,walls:deduplicate(walls),\n      polygon:function(id){return polygons[id]||null;},\n      labelPoint:function(id){var p=polygons[id];if(!p)return null;var xs=p.map(function(a){return a[0];}),ys=p.map(function(a){return a[1];});return [(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2,(Math.min.apply(null,ys)+Math.max.apply(null,ys))/2];},\n      roomOutline:function(room){return schematic?rectPolygon([Math.min.apply(null,room.spaceIds.map(function(id){return polygons[id][0][0];})),polygons[room.primarySpaceId][0][1],room.spaceIds.reduce(function(w,id){return w+firstFloorRects[id.replace('B3-F1-','')][2];},0),firstFloorRects[room.primarySpaceId.replace('B3-F1-','')][3]]):null;}\n    };return api;\n  }\n  var api={revision:revision,firstFloorRects:firstFloorRects,rectPolygon:rectPolygon,deduplicate:deduplicate,createFloor:createFloor};\n  global.FCIM_SCHEMATIC_LAYOUT=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;\n})(typeof window!=='undefined'?window:globalThis);\n",
+        "new": "    var api={floorId:floor.id,displayMode:schematic?'rectangular-schematic':'source-layout',revision:revision,outline:outline,polygons:polygons,walls:deduplicate(walls),\n      polygon:function(id){return polygons[id]||null;},\n      rails:schematic?firstFloorRails:null, corridor:schematic?rectPolygon([0,rails.upperBottom,1000,rails.lowerTop-rails.upperBottom]):null,\n      enclosure:function(name){return schematic?enclosure(name):null;},\n      labelPoint:function(id){var p=polygons[id];if(!p)return null;var xs=p.map(function(a){return a[0];}),ys=p.map(function(a){return a[1];});return [(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2,(Math.min.apply(null,ys)+Math.max.apply(null,ys))/2];},\n      roomOutline:function(room){return schematic?rectPolygon([Math.min.apply(null,room.spaceIds.map(function(id){return polygons[id][0][0];})),polygons[room.primarySpaceId][0][1],room.spaceIds.reduce(function(w,id){return w+firstFloorRects[id.replace('B3-F1-','')][2];},0),firstFloorRects[room.primarySpaceId.replace('B3-F1-','')][3]]):null;}\n    };return api;\n  }\n  var api={revision:revision,firstFloorRects:firstFloorRects,firstFloorRails:firstFloorRails,rectPolygon:rectPolygon,deduplicate:deduplicate,createFloor:createFloor};\n  global.FCIM_SCHEMATIC_LAYOUT=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;\n})(typeof window!=='undefined'?window:globalThis);\n"
+      }
+    ],
+    "tests/ui01-browser.cjs": [
+      {
+        "old": "await test('Actual raster wall thickness stays within 1\u20133 pixels at three zoom levels',async()=>{await fresh();const widths=[];for(const delta of [0,-260,-260]){await page.locator('#zoomReset').click();const pt=await point([154,30]);await page.mouse.move(pt.x,pt.y);if(delta)await page.mouse.wheel(0,delta);if(widths.length===2)await page.mouse.wheel(0,delta);const p=await point([154,30]);const png=PNG.sync.read(await page.screenshot());const y=Math.round(p.y);let count=0;for(let x=Math.round(p.x)-6;x<=Math.round(p.x)+6;x++){const i=(y*png.width+x)*4;if(png.data[i]<110&&png.data[i+1]<110&&png.data[i+2]<110)count++;}assert.ok(count>=1&&count<=3,'raster width '+count);widths.push(count);assert.equal((await walls()).width,'2px');}assert.ok(Math.max(...widths)-Math.min(...widths)<=1);return {rasterWidths:widths};});\nawait test('No stair art, door overlays, storage labels or artificial hall dividers on F1',async()=>{await fresh();assert.equal(await page.locator('#map').getByText(/\u0441\u043a\u043b\u0430\u0434|\u043b\u0435\u0441\u0442\u043d\u0438\u0446|\u043b\u0438\u0444\u0442|\u0445\u043e\u043b\u043b/i).count(),0);assert.equal(await page.locator('[data-main-entrance]').textContent(),'\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u0432\u0445\u043e\u0434');assert.equal(await page.locator('[data-entrance-leader]').count(),0);for(const id of ['S07','N10','STEN']){await page.evaluate(id=>FCIM_MAP_APP.selectSpace('B3-F1-'+id),id);await selected([]);}await search('116');assert.equal(await page.locator('#panel [data-room-search]').count(),15);});\nawait test('Eastern service stair regions share storage/reception fills without seams or stair symbols',async()=>{await fresh();const fill=async id=>page.locator('[data-id=\"B3-F1-'+id+'\"]').evaluate(e=>getComputedStyle(e.tagName==='rect'?e:e.querySelector('.box')).fill);assert.equal(await fill('STEN'),await fill('N10'));assert.equal(await fill('N10'),await page.locator('#layerBase .outline').evaluate(e=>getComputedStyle(e).fill));assert.equal(await fill('STES'),await fill('S14'));assert.ok(!display.walls.some(([a,b])=>a[1]===b[1]&&[38,137].includes(a[1])&&Math.min(a[0],b[0])===930&&Math.max(a[0],b[0])===1000));await select('B3-F1-S14');const p=await point([965,155]);await page.mouse.click(p.x,p.y);assert.equal(await page.locator('#panel h3').first().innerText(),'\u0412\u0430\u0445\u0442\u0430');assert.equal(await page.locator('[data-facility-label=\"reception\"]').count(),1);});\nawait test('Synthetic All/My/Next highlights every composite once without duplicated lessons',async()=>{await fresh(undefined,'complete');await page.locator('#allMode').click();const state=await page.evaluate(()=>FCIM_MAP_APP.getScheduleState());assert.equal(state.occupancy.length,4);assert.equal(state.occupancy.flatMap(o=>o.lessons).length,8);for(const r of catalog.mappings.filter(r=>r.spaceIds.length>1)){assert.equal(state.occupancy.filter(o=>o.roomCode===r.roomCode).length,1);for(const id of r.spaceIds)assert.equal(await page.locator('[data-id=\"'+id+'\"].scheduled-mine').count(),1);}assert.equal(await page.locator('.demo-label').count(),0);await page.locator('#myMode').click();await search('101');await selected(['B3-F1-S12','B3-F1-S13']);await page.screenshot({path:path.join(out,'isolated-synthetic-composites.png')});await fresh(undefined,'next');assert.equal(await page.locator('.sp.schedule-next').count(),7);assert.equal(await page.locator('[data-logical-room]').count(),4);});\nawait test('Compatible manual records survive load, search and export without a display-version migration',async()=>{await fresh();const raw=await store([{spaceId:'B3-F1-S13',roomNumber:'101'},{spaceId:'B3-F4-N01',roomNumber:'405'}]);await search('101');await selected(['B3-F1-S12','B3-F1-S13']);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);const data=await exportData();assert.equal(data.count,2);assert.equal(data.mapDataVersion,map.dataVersion);assert.ok(data.bindings.some(b=>b.spaceId==='B3-F1-S13'));await upload([{spaceId:'B3-F1-S07',roomNumber:'116'},{spaceId:'B3-F4-N02',roomNumber:'406'}]);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);});\nawait test('Upper floors render all 194 original hit polygons at unchanged coordinates',async()=>{await fresh();for(const f of map.floors.slice(1)){await floor(f.level);const polygons=await page.locator('#layerSpaces polygon').evaluateAll(es=>es.map(e=>[e.dataset.id,[...e.points].map(p=>[p.x,p.y])]));assert.deepEqual(polygons,f.spaces.map(s=>[s.id,s.polygon]));for(const s of f.spaces.slice(0,2)){await select(s.id);const p=await point(s.labelPoint);await page.mouse.click(p.x,p.y);assert.equal(await page.locator('[data-id=\"'+s.id+'\"].sel').count(),1);}}});\nfor(const viewport of [{width:1440,height:900},{width:390,height:844},{width:320,height:740},{width:844,height:390}])await test('Viewport '+viewport.width+'x'+viewport.height+' selection, hover/touch, zoom, pan and floor navigation',async()=>{await fresh(viewport);await page.screenshot({path:path.join(out,'after-'+viewport.width+'x'+viewport.height+'-overview.png')});await search('103');await page.waitForTimeout(350);await selected(['B3-F1-S10','B3-F1-S11']);for(const pt of [[541,106],[599,174],[585,140]]){const p=await point(pt);if(viewport.width<900)await page.touchscreen.tap(p.x,p.y);else {await page.mouse.move(p.x,p.y);assert.ok(await page.locator('[data-id=\"B3-F1-S10\"]:hover,[data-id=\"B3-F1-S11\"]:hover').count());await page.mouse.click(p.x,p.y);}await selected(['B3-F1-S10','B3-F1-S11']);}assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.screenshot({path:path.join(out,'after-'+viewport.width+'x'+viewport.height+'-selected.png')});const start=await page.locator('#map').getAttribute('viewBox');await page.locator('#zoomIn').click();assert.notEqual(await page.locator('#map').getAttribute('viewBox'),start);const box=await page.locator('#mapwrap').boundingBox(),x=box.x+box.width*.5,y=box.y+box.height*.45;if(viewport.width<900){const cdp=await context.newCDPSession(page),before=await page.locator('#map').getAttribute('viewBox');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x-25,y,id:1},{x:x+25,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-40,y,id:1},{x:x+40,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.ok(+(await page.locator('#map').getAttribute('viewBox')).split(' ')[2]<+before.split(' ')[2]);const zoom=await page.locator('#map').getAttribute('viewBox');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+30,y:y+15,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.notEqual(await page.locator('#map').getAttribute('viewBox'),zoom);}else {const before=await page.locator('#map').getAttribute('viewBox');await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+40,y+20);await page.mouse.up();assert.notEqual(await page.locator('#map').getAttribute('viewBox'),before);}await floor(7);assert.equal(await page.locator('#floorNav .active').innerText(),'7');await floor(1);return {viewport,touch:viewport.width<900?'Chrome CDP emulation':'desktop pointer'};});\nawait test('Required before/after floor and detail screenshots exported from actual rendered SVG',async()=>{for(const [name,n,box] of [['floor1',1,'-20 -15 1160 220'],['wc',1,'420 98 100 85'],['elevators',1,'742 -6 45 72'],['room101',1,'590 98 170 85'],['room103',1,'532 98 76 85'],['room106',1,'502 -7 76 89'],['west-stair-elevator',1,'178 98 77 85'],['entrance-reception',1,'810 -8 310 191'],['floor2',2,'-30 -85 1120 345'],['floor4',4,'-30 -45 1100 285'],['floor7',7,'-30 -45 1100 285']]){await artwork(baseline,n,box,'before-'+name);await artwork(root,n,box,'after-'+name);}for(const viewport of [{width:1440,height:900},{width:390,height:844},{width:320,height:740},{width:844,height:390}]){const p=await browser.newPage({viewport,isMobile:viewport.width<900,hasTouch:viewport.width<900});await p.goto(pathToFileURL(path.join(baseline,'index.html')).href+'#floor=1');await p.screenshot({path:path.join(out,'before-'+viewport.width+'x'+viewport.height+'-overview.png')});await p.close();}});\nawait test('Zero console/runtime errors and no mutation of production fixture or historical model',async()=>{await fresh();assert.deepEqual(await page.evaluate(()=>FCIM_MAP_DATA),map);assert.deepEqual(await page.evaluate(()=>FCIM_SCHEDULE_FIXTURE),require('../schedule-fixture.js'));assert.equal((await exportData()).count,0);assert.deepEqual(errors,[]);});\n}finally{const counts=results.reduce((a,r)=>(a[r.status]=(a[r.status]||0)+1,a),{});fs.writeFileSync(path.join(out,'browser-results.json'),JSON.stringify({counts,results,errors,browser:browser?.version()},null,2)+'\\n');console.log('TOTAL',JSON.stringify(counts));if(context)await context.close();if(browser)await browser.close();}process.exitCode=results.some(r=>r.status==='FAIL')?1:0;})().catch(e=>{console.error(e);process.exitCode=2;});\n",
+        "new": "await test('Actual raster wall thickness stays within 1\u20133 pixels at three zoom levels',async()=>{await fresh();const widths=[];for(const delta of [0,-260,-260]){await page.locator('#zoomReset').click();const pt=await point([154,30]);await page.mouse.move(pt.x,pt.y);if(delta)await page.mouse.wheel(0,delta);if(widths.length===2)await page.mouse.wheel(0,delta);const p=await point([154,30]);const png=PNG.sync.read(await page.screenshot());const y=Math.round(p.y);let count=0;for(let x=Math.round(p.x)-6;x<=Math.round(p.x)+6;x++){const i=(y*png.width+x)*4;if(png.data[i]<110&&png.data[i+1]<110&&png.data[i+2]<110)count++;}assert.ok(count>=1&&count<=3,'raster width '+count);widths.push(count);assert.equal((await walls()).width,'2px');}assert.ok(Math.max(...widths)-Math.min(...widths)<=1);return {rasterWidths:widths};});\nawait test('No stair art, door overlays, storage labels or artificial hall dividers on F1',async()=>{await fresh();assert.equal(await page.locator('#map').getByText(/\u0441\u043a\u043b\u0430\u0434|\u043b\u0435\u0441\u0442\u043d\u0438\u0446|\u043b\u0438\u0444\u0442|\u0445\u043e\u043b\u043b/i).count(),0);assert.equal(await page.locator('[data-main-entrance]').textContent(),'\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u0432\u0445\u043e\u0434');assert.equal(await page.locator('[data-entrance-leader]').count(),0);for(const id of ['S07','N10','STEN']){await page.evaluate(id=>FCIM_MAP_APP.selectSpace('B3-F1-'+id),id);await selected([]);}await search('116');assert.equal(await page.locator('#panel [data-room-search]').count(),15);});\nawait test('Eastern service stair regions share storage/reception fills without seams or stair symbols',async()=>{await fresh();const fill=async id=>page.locator('[data-id=\"B3-F1-'+id+'\"]').evaluate(e=>getComputedStyle(e.tagName==='rect'?e:e.querySelector('.box')).fill);assert.equal(await fill('STEN'),await fill('N10'));assert.equal(await fill('N10'),await page.locator('#layerBase .outline').evaluate(e=>getComputedStyle(e).fill));assert.equal(await fill('STES'),await fill('S14'));assert.ok(!display.walls.some(([a,b])=>a[1]===b[1]&&[layout.firstFloorRails.upperSplit,layout.firstFloorRails.lowerSplit].includes(a[1])&&Math.min(a[0],b[0])===930&&Math.max(a[0],b[0])===1000));await select('B3-F1-S14');const p=await point([965,155]);await page.mouse.click(p.x,p.y);assert.equal(await page.locator('#panel h3').first().innerText(),'\u0412\u0430\u0445\u0442\u0430');assert.equal(await page.locator('[data-facility-label=\"reception\"]').count(),1);});\nawait test('Synthetic All/My/Next highlights every composite once without duplicated lessons',async()=>{await fresh(undefined,'complete');await page.locator('#allMode').click();const state=await page.evaluate(()=>FCIM_MAP_APP.getScheduleState());assert.equal(state.occupancy.length,4);assert.equal(state.occupancy.flatMap(o=>o.lessons).length,8);for(const r of catalog.mappings.filter(r=>r.spaceIds.length>1)){assert.equal(state.occupancy.filter(o=>o.roomCode===r.roomCode).length,1);for(const id of r.spaceIds)assert.equal(await page.locator('[data-id=\"'+id+'\"].scheduled-mine').count(),1);}assert.equal(await page.locator('.demo-label').count(),0);await page.locator('#myMode').click();await search('101');await selected(['B3-F1-S12','B3-F1-S13']);await page.screenshot({path:path.join(out,'isolated-synthetic-composites.png')});await fresh(undefined,'next');assert.equal(await page.locator('.sp.schedule-next').count(),7);assert.equal(await page.locator('[data-logical-room]').count(),4);});\nawait test('Compatible manual records survive load, search and export without a display-version migration',async()=>{await fresh();const raw=await store([{spaceId:'B3-F1-S13',roomNumber:'101'},{spaceId:'B3-F4-N01',roomNumber:'405'}]);await search('101');await selected(['B3-F1-S12','B3-F1-S13']);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);const data=await exportData();assert.equal(data.count,2);assert.equal(data.mapDataVersion,map.dataVersion);assert.ok(data.bindings.some(b=>b.spaceId==='B3-F1-S13'));await upload([{spaceId:'B3-F1-S07',roomNumber:'116'},{spaceId:'B3-F4-N02',roomNumber:'406'}]);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),raw);});\nawait test('Upper floors render all 194 original hit polygons at unchanged coordinates',async()=>{await fresh();for(const f of map.floors.slice(1)){await floor(f.level);const polygons=await page.locator('#layerSpaces polygon').evaluateAll(es=>es.map(e=>[e.dataset.id,[...e.points].map(p=>[p.x,p.y])]));assert.deepEqual(polygons,f.spaces.map(s=>[s.id,s.polygon]));for(const s of f.spaces.slice(0,2)){await select(s.id);const p=await point(s.labelPoint);await page.mouse.click(p.x,p.y);assert.equal(await page.locator('[data-id=\"'+s.id+'\"].sel').count(),1);}}});\nfor(const viewport of [{width:1440,height:900},{width:390,height:844},{width:320,height:740},{width:844,height:390}])await test('Viewport '+viewport.width+'x'+viewport.height+' selection, hover/touch, zoom, pan and floor navigation',async()=>{await fresh(viewport);await page.screenshot({path:path.join(out,'after-'+viewport.width+'x'+viewport.height+'-overview.png')});await search('103');await page.waitForTimeout(350);await selected(['B3-F1-S10','B3-F1-S11']);for(const pt of [[541,106],[599,174],[585,140]]){const p=await point(pt);if(viewport.width<900)await page.touchscreen.tap(p.x,p.y);else {await page.mouse.move(p.x,p.y);assert.ok(await page.locator('[data-id=\"B3-F1-S10\"]:hover,[data-id=\"B3-F1-S11\"]:hover').count());await page.mouse.click(p.x,p.y);}await selected(['B3-F1-S10','B3-F1-S11']);}assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.screenshot({path:path.join(out,'after-'+viewport.width+'x'+viewport.height+'-selected.png')});const start=await page.locator('#map').getAttribute('viewBox');await page.locator('#zoomIn').click();assert.notEqual(await page.locator('#map').getAttribute('viewBox'),start);const box=await page.locator('#mapwrap').boundingBox(),x=box.x+box.width*.5,y=box.y+box.height*.45;if(viewport.width<900){const cdp=await context.newCDPSession(page),before=await page.locator('#map').getAttribute('viewBox');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x-25,y,id:1},{x:x+25,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-40,y,id:1},{x:x+40,y,id:2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.ok(+(await page.locator('#map').getAttribute('viewBox')).split(' ')[2]<+before.split(' ')[2]);const zoom=await page.locator('#map').getAttribute('viewBox');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+30,y:y+15,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.notEqual(await page.locator('#map').getAttribute('viewBox'),zoom);}else {const before=await page.locator('#map').getAttribute('viewBox');await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+40,y+20);await page.mouse.up();assert.notEqual(await page.locator('#map').getAttribute('viewBox'),before);}await floor(7);assert.equal(await page.locator('#floorNav .active').innerText(),'7');await floor(1);return {viewport,touch:viewport.width<900?'Chrome CDP emulation':'desktop pointer'};});\nawait test('Required before/after floor and detail screenshots exported from actual rendered SVG',async()=>{for(const [name,n,box] of [['floor1',1,'-20 -15 1160 220'],['wc',1,'420 98 100 85'],['elevators',1,'742 -6 54 88'],['room101',1,'590 98 170 85'],['room103',1,'532 98 76 85'],['room106',1,'502 -7 76 89'],['west-stair-elevator',1,'178 98 77 85'],['entrance-reception',1,'810 -8 310 191'],['floor2',2,'-30 -85 1120 345'],['floor4',4,'-30 -45 1100 285'],['floor7',7,'-30 -45 1100 285']]){await artwork(baseline,n,box,'before-'+name);await artwork(root,n,box,'after-'+name);}for(const viewport of [{width:1440,height:900},{width:390,height:844},{width:320,height:740},{width:844,height:390}]){const p=await browser.newPage({viewport,isMobile:viewport.width<900,hasTouch:viewport.width<900});await p.goto(pathToFileURL(path.join(baseline,'index.html')).href+'#floor=1');await p.screenshot({path:path.join(out,'before-'+viewport.width+'x'+viewport.height+'-overview.png')});await p.close();}});\nawait test('Zero console/runtime errors and no mutation of production fixture or historical model',async()=>{await fresh();assert.deepEqual(await page.evaluate(()=>FCIM_MAP_DATA),map);assert.deepEqual(await page.evaluate(()=>FCIM_SCHEDULE_FIXTURE),require('../schedule-fixture.js'));assert.equal((await exportData()).count,0);assert.deepEqual(errors,[]);});\n}finally{const counts=results.reduce((a,r)=>(a[r.status]=(a[r.status]||0)+1,a),{});fs.writeFileSync(path.join(out,'browser-results.json'),JSON.stringify({counts,results,errors,browser:browser?.version()},null,2)+'\\n');console.log('TOTAL',JSON.stringify(counts));if(context)await context.close();if(browser)await browser.close();}process.exitCode=results.some(r=>r.status==='FAIL')?1:0;})().catch(e=>{console.error(e);process.exitCode=2;});\n"
+      }
+    ],
+    "tests/ui01-contract.cjs": [
+      {
+        "old": "const root=path.resolve(__dirname,'..'),hash=b=>crypto.createHash('sha256').update(b).digest('hex');\nfunction baselineBytes(file,bytes=fs.readFileSync(path.join(root,file))){\n const m=require('../UI-01_CHANGES.json'),meta=m.baselineFiles[file];assert.ok(meta,file+' UI-01 baseline');\n let text=bytes.toString('utf8').replaceAll('\\r\\n','\\n');\n",
+        "new": "const root=path.resolve(__dirname,'..'),hash=b=>crypto.createHash('sha256').update(b).digest('hex');\nfunction baselineBytes(file,bytes=fs.readFileSync(path.join(root,file))){\n bytes=require('./ui01-fix-a-contract.cjs').restoreUI01(file,bytes);\n const m=require('../UI-01_CHANGES.json'),meta=m.baselineFiles[file];assert.ok(meta,file+' UI-01 baseline');\n let text=bytes.toString('utf8').replaceAll('\\r\\n','\\n');\n"
+      },
+      {
+        "old": " const tracked=execFileSync('git',['ls-tree','-r','--name-only',m.baselineCommit],{cwd:root,encoding:'utf8'}).trim().split('\\n');assert.deepEqual(Object.keys(m.baselineFiles).sort(),tracked.sort());\n for(const file of tracked){const b=baselineBytes(file),git=execFileSync('git',['show',m.baselineCommit+':'+file],{cwd:root,maxBuffer:3e6});assert.equal(b.toString().replaceAll('\\r\\n','\\n'),git.toString().replaceAll('\\r\\n','\\n'),file+' immutable Git content');assert.equal(hash(git),m.baselineFiles[file].gitSha256);}\n for(const [file,h] of Object.entries(m.newFiles))assert.equal(hash(Buffer.from(fs.readFileSync(path.join(root,file),'utf8').replaceAll('\\r\\n','\\n'))),h,file+' recorded UI-01 source');\n for(const file of ['map-data.js','room-identification.js','map-semantics.js','room-contract.js','schedule-engine.js','schedule-fixture.js'])assert.equal(hash(fs.readFileSync(path.join(root,file))),m.baselineFiles[file].sha256,file+' byte protected');\n return {baselineCommit:m.baselineCommit,protectedFiles:tracked.length,sourceChanges:Object.keys(m.sourcePatches)};\n",
+        "new": " const tracked=execFileSync('git',['ls-tree','-r','--name-only',m.baselineCommit],{cwd:root,encoding:'utf8'}).trim().split('\\n');assert.deepEqual(Object.keys(m.baselineFiles).sort(),tracked.sort());\n for(const file of tracked){const b=baselineBytes(file),git=execFileSync('git',['show',m.baselineCommit+':'+file],{cwd:root,maxBuffer:3e6});assert.equal(b.toString().replaceAll('\\r\\n','\\n'),git.toString().replaceAll('\\r\\n','\\n'),file+' immutable Git content');assert.equal(hash(git),m.baselineFiles[file].gitSha256);}\n for(const [file,h] of Object.entries(m.newFiles))assert.equal(hash(Buffer.from(require('./ui01-fix-a-contract.cjs').restoreUI01(file,fs.readFileSync(path.join(root,file))).toString('utf8').replaceAll('\\r\\n','\\n'))),h,file+' recorded UI-01 source');\n for(const file of ['map-data.js','room-identification.js','map-semantics.js','room-contract.js','schedule-engine.js','schedule-fixture.js'])assert.equal(hash(fs.readFileSync(path.join(root,file))),m.baselineFiles[file].sha256,file+' byte protected');\n return {baselineCommit:m.baselineCommit,protectedFiles:tracked.length,sourceChanges:Object.keys(m.sourcePatches)};\n"
+      }
+    ],
+    "tests/ui01-data.cjs": [
+      {
+        "old": "test('Every label anchor lies inside its displayed shape',()=>{for(const id of Object.keys(d.polygons))assert.ok(geometry.inside(d.labelPoint(id),d.polygon(id)),id);});\ntest('Exactly two balanced WC rectangles fill their block; S07 has no display region',()=>{assert.equal(d.polygon('B3-F1-S07'),null);assert.deepEqual(rect('S06'),[427,105,31.5,70]);assert.deepEqual(rect('S08'),[458.5,105,31.5,70]);assert.equal(rect('S06')[0]+rect('S06')[2],rect('S08')[0]);assert.equal(catalog.identity('B3-F1-S07').public,false);});\ntest('Two elevator squares share one edge and fill a 30 by 60 display enclosure',()=>{for(const id of ['SH1','SH2'])assert.equal(rect(id)[2],rect(id)[3]);assert.deepEqual(rect('SH1'),[750,0,30,30]);assert.deepEqual(rect('SH2'),[750,30,30,30]);});\ntest('Fifteen identities resolve without display coordinates influencing assignment',()=>{const resolve=room.createResolver(map,parse,catalog);assert.equal(catalog.mappings.length,15);for(const r of catalog.mappings){const result=resolve({room:r.roomCode,source:'timetable',buildingId:map.id});assert.equal(result.status,'mapped');assert.deepEqual(result.spaceIds,r.spaceIds);assert.ok(r.spaceIds.every(id=>d.polygon(id)));}});\ntest('101 has no display partition; 103 and 106 retain full-height partitions without door gaps',()=>{const crosses=(x,lo,hi)=>d.walls.some(([a,b])=>a[0]===x&&b[0]===x&&Math.min(a[1],b[1])<=lo&&Math.max(a[1],b[1])>=hi);assert.equal(crosses(631,105,175),false);assert.ok(crosses(570,105,175));assert.ok(crosses(540,0,75));});\n",
+        "new": "test('Every label anchor lies inside its displayed shape',()=>{for(const id of Object.keys(d.polygons))assert.ok(geometry.inside(d.labelPoint(id),d.polygon(id)),id);});\ntest('Exactly two balanced WC rectangles fill their block; S07 has no display region',()=>{assert.equal(d.polygon('B3-F1-S07'),null);assert.deepEqual(rect('S06'),[427,105,31.5,70]);assert.deepEqual(rect('S08'),[458.5,105,31.5,70]);assert.equal(rect('S06')[0]+rect('S06')[2],rect('S08')[0]);assert.equal(catalog.identity('B3-F1-S07').public,false);});\ntest('Two elevator squares share one edge and fill the aligned upper band enclosure',()=>{for(const id of ['SH1','SH2'])assert.equal(rect(id)[2],rect(id)[3]);assert.deepEqual(rect('SH1'),[750,0,37.5,37.5]);assert.deepEqual(rect('SH2'),[750,37.5,37.5,37.5]);});\ntest('Fifteen identities resolve without display coordinates influencing assignment',()=>{const resolve=room.createResolver(map,parse,catalog);assert.equal(catalog.mappings.length,15);for(const r of catalog.mappings){const result=resolve({room:r.roomCode,source:'timetable',buildingId:map.id});assert.equal(result.status,'mapped');assert.deepEqual(result.spaceIds,r.spaceIds);assert.ok(r.spaceIds.every(id=>d.polygon(id)));}});\ntest('101 has no display partition; 103 and 106 retain full-height partitions without door gaps',()=>{const crosses=(x,lo,hi)=>d.walls.some(([a,b])=>a[0]===x&&b[0]===x&&Math.min(a[1],b[1])<=lo&&Math.max(a[1],b[1])>=hi);assert.equal(crosses(631,105,175),false);assert.ok(crosses(570,105,175));assert.ok(crosses(540,0,75));});\n"
+      }
+    ],
+    "index.html": [
+      {
+        "old": "        if(f.level===1&&bbox(poly).w<40)t.style.fontSize=\"8px\";\n      }else if(identity&&identity.public){\n        if(identity.kind===\"reception\")labelPoint=[965,137.5];\n        var facility=el(\"text\",{x:labelPoint[0],y:labelPoint[1],\"class\":\"lbl facility-label\",\"data-facility-label\":identity.kind},L.labels);\n        facility.textContent=identity.label;facility.style.fontSize=identity.kind===\"toilet\"?\"8px\":\"10px\";\n",
+        "new": "        if(f.level===1&&bbox(poly).w<40)t.style.fontSize=\"8px\";\n      }else if(identity&&identity.public){\n        if(f.level===1&&identity.kind===\"reception\"){var reception=bbox(displayLayout.enclosure(\"reception\"));labelPoint=[reception.cx,reception.cy];}\n        var facility=el(\"text\",{x:labelPoint[0],y:labelPoint[1],\"class\":\"lbl facility-label\",\"data-facility-label\":identity.kind},L.labels);\n        facility.textContent=identity.label;facility.style.fontSize=identity.kind===\"toilet\"?\"8px\":\"10px\";\n"
+      },
+      {
+        "old": "      roomCatalog.mappings.forEach(function(r){highlight(displayLayout.roomOutline(r),r.spaceIds.includes(state.selected),scheduleClasses(r.primarySpaceId),r.roomCode);});\n      if(state.selected&&!roomCatalog.roomForSpace(state.selected)){\n        var poly=state.selected===\"B3-F1-S14\"?window.FCIM_SCHEMATIC_LAYOUT.rectPolygon([930,100,70,75]):displayPolygon(state.selected);\n        highlight(poly,true,\"\");\n      }\n",
+        "new": "      roomCatalog.mappings.forEach(function(r){highlight(displayLayout.roomOutline(r),r.spaceIds.includes(state.selected),scheduleClasses(r.primarySpaceId),r.roomCode);});\n      if(state.selected&&!roomCatalog.roomForSpace(state.selected)){\n        var poly=state.selected===\"B3-F1-S14\"?displayLayout.enclosure(\"reception\"):displayPolygon(state.selected);\n        highlight(poly,true,\"\");\n      }\n"
+      }
+    ]
+  },
+  "currentSources": {
+    "schematic-layout.js": "716651976e9c28a6b0f854914d8275ec56aba3518f5359d83a93bb09e8400dfd",
+    "tests/ui01-browser.cjs": "1205af3624d5d378417ac32797c6f977cbce19ff3a8453da03f5ef3b3c1d6775",
+    "tests/ui01-contract.cjs": "d1ec449c4eadfb62dcec4c56c1191596b17bf0536a7ad7ccc682e3be4431838c",
+    "tests/ui01-data.cjs": "9382ca9f639c457c1d96ca6110af8a58ffe80ebeaf7e28efe732bd04dfc4d84d",
+    "index.html": "37ab282a865b169fcdca0428c62d678f6813384de8f17ba53fe8549fab9ee136",
+    "tests/ui01-fix-a-contract.cjs": "f6d04840f9821feb35035f86650dd7dcf1ddfbe8fc410febba0a284112208e16",
+    "tests/ui01-fix-a-data.cjs": "b68858320316fffc2e04c32a723cf6f837ca3ae6492e8db1b53d78f31d51b03a",
+    "tests/ui01-fix-a-browser.cjs": "cd9ed6f792be0c60197229e825feb0a0eb3ea6fa77aa2fc5e8556c6036112790"
+  }
+}

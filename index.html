@@ -2,14 +2,16 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="data:,">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FCIM Indoor Map — корпус №3 UTM</title>
 <style>
   :root{
     --bg:#f4f6f8; --panel:#ffffff; --ink:#1d2733; --muted:#6b7785; --line:#dfe4ea;
     --accent:#0f7b5f; --accent-soft:#e3f3ee; --warn:#b35c00; --warn-soft:#fff3e2; --danger:#b42318;
-    --room:#ffffff; --room-service:#eef1f4; --room-hall:#f1f6fb; --corridor:#e9eef3; --wall:#3b4652;
-    --stair:#dbe7ff; --stair-ink:#2f5bd3; --lift:#f3e8ff; --lift-ink:#7a3fc4;
+    --room:#dce8dc; --room-service:#f1f2f0; --corridor:#f1f2f0; --wall:#38434f;
+    --map-wall-width:2px; --map-wall-color:#38434f; --wc:#e4e1d9; --cafe:#eee3d2; --reception:#e6e6e1;
+    --stair:#d4dee3; --lift:#b7cddd;
     --sel:#0f7b5f; --sel-fill:#c9ecdf; --bound:#e9f7f1; --scheduled:#dbeafe; --mine:#a7e7ce;
     --radius:14px; --shadow:0 6px 24px rgba(20,30,45,.10);
   }
@@ -38,7 +40,7 @@
   .zoom .ic{width:20px;height:20px;vertical-align:middle}
   main{position:relative;flex:1;min-height:0;display:flex}
   .mapwrap{position:relative;flex:1;min-width:0;overflow:hidden;touch-action:none;
-    background:radial-gradient(circle at 1px 1px,#dfe5eb 1px,transparent 0) 0 0/22px 22px}
+    background:#fafbf9}
   svg#map{width:100%;height:100%;display:block;user-select:none;-webkit-user-select:none;cursor:grab}
   svg#map.dragging{cursor:grabbing}
   .floors{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px;z-index:5;
@@ -86,78 +88,54 @@
   .schedule-fields label,.period-label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);min-width:0}
   .schedule-fields input,.schedule-fields select,.period-label select{width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-size:14px}
   #scheduleContext{margin-top:8px}
+  [hidden]{display:none!important}
+  #sourceStatus,.lesson{overflow-wrap:anywhere}
+  #apiBaseInput{width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:8px}
   #scheduleSummary .card{margin:0}
   .lesson{margin:10px 0;padding:9px;border-left:3px solid var(--accent);background:var(--bg);border-radius:6px;font-size:13px}
   .lesson p{margin:3px 0}
   .schedule-room{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
   .demo-label{fill:#145e9c;stroke:#fff}
-  /* SVG */
-  .room01-floor .sp{stroke:none}
-  .room01-floor .sp.sel{stroke:var(--sel);stroke-width:3}
-  .room01-floor .sp.t-circulation{fill:var(--corridor);pointer-events:none}
-  .room01-floor .sp[data-facility]{fill:#f3f1ec}
-  .room01-floor .sp[data-facility="storage"]{fill:var(--room-service);pointer-events:none}
-  .room01-floor .vert.stair .box{stroke:none}
-  .room01-floor .vert.stair.sel .box{stroke:var(--sel);stroke-width:3}
-  .room01-floor .geo-landing,.room01-floor .geo-flight{stroke:none}
-  .physical-wall{stroke:var(--wall);stroke-width:1.6;fill:none}
-  .room01-floor .outline{stroke:none}
-  .exterior-wall,.back-wc-wall{fill:none;stroke:var(--wall);stroke-width:4;stroke-linejoin:round;pointer-events:none}
-  .back-wc-wall{stroke-width:1.6}
-  .room01-floor .facility-label{fill:#584a35}
-  .entrance-label{font-size:12px;font-weight:600;fill:var(--accent);paint-order:stroke;stroke:#fff;stroke-width:3;pointer-events:none}
-  .sp{stroke:var(--wall);stroke-width:1.6;stroke-linejoin:round;cursor:pointer;transition:fill .12s}
-  .sp.t-unknown,.sp.t-classroom,.sp.t-office{fill:var(--room)}
+  /* UI-01: fills/hit regions and the deduplicated wall network are separate. */
+  .outline,.corr{fill:var(--corridor);stroke:none}
+  .sp,.vert .box,.lift-cell,.logical-fill{stroke:none;stroke-dasharray:none;cursor:pointer}
+  .sp{transition:fill .12s}
+  .sp,.vert{-webkit-tap-highlight-color:transparent}
+  .sp:focus,.vert:focus{outline:none}
+  .sp:focus-visible,.vert:focus-visible{outline:2px solid var(--sel);outline-offset:-4px}
+  .sp.t-unknown,.sp.t-classroom,.sp.t-office,.sp.bound,.logical-fill{fill:var(--room)}
   .sp.t-service{fill:var(--room-service)}
-  .sp.t-circulation{fill:var(--room-hall);stroke-dasharray:0}
-  .sp.bound{fill:var(--bound)}
-  .sp.lowconf{stroke-dasharray:5 2.5}
-  .sp:hover{fill:#f0faf6}
-  .sp.sel{fill:var(--sel-fill)!important;stroke:var(--sel);stroke-width:3}
+  .sp.t-circulation{fill:var(--corridor)}
+  .room01-floor .sp.t-circulation{pointer-events:none}
+  .sp[data-facility="toilet"]{fill:var(--wc)}
+  .sp[data-facility="cafe"]{fill:var(--cafe)}
+  .sp[data-facility="reception"],.vert.integrated .box{fill:var(--reception)}
+  .sp[data-facility="storage"],.vert.integrated-hidden .box{fill:var(--room-service);pointer-events:none}
+  .vert.integrated-hidden{pointer-events:none}
+  .sp:hover{fill:#c7dfce}
+  .sp.sel,.logical-fill.sel{fill:var(--sel-fill)!important}
+  .sp.scheduled-other,.logical-fill.scheduled-other{fill:var(--scheduled)}
+  .sp.scheduled-mine,.logical-fill.scheduled-mine{fill:var(--mine)}
+  .sp.schedule-next,.logical-fill.schedule-next{fill:#eefbf6}
+  .sp.sel.scheduled-other,.logical-fill.sel.scheduled-other{fill:var(--scheduled)!important}
+  .sp.sel.scheduled-mine,.logical-fill.sel.scheduled-mine{fill:var(--mine)!important}
+  .sp.sel.schedule-next,.logical-fill.sel.schedule-next{fill:#eefbf6!important}
   .sp.flash{animation:flash 1.1s ease-in-out 2}
-  /* Schedule fills follow the base room styles so unselected highlights remain visible. */
-  .sp.scheduled-other{fill:var(--scheduled)}
-  .sp.scheduled-mine{fill:var(--mine)}
-  .sp.schedule-next{fill:#eefbf6;stroke:var(--accent);stroke-width:2.5;stroke-dasharray:6 3}
-  .sp.schedule-shared{stroke:#b35c00;stroke-width:2.5}
-  .sp.sel.scheduled-other{fill:var(--scheduled)!important}
-  .sp.sel.scheduled-mine{fill:var(--mine)!important}
-  .sp.sel.schedule-next{fill:#eefbf6!important}
-  .room01-floor .sp.logical-component,.room01-floor .vert.flat .box{stroke:none}
-  .room01-floor .vert.flat.sel .box{stroke:var(--sel);stroke-width:3}
-  .room01-floor .vert.integrated .box{fill:#f3f1ec;stroke:none}
-  .room01-floor .vert.integrated-hidden{pointer-events:none}
-  .room01-floor .vert.integrated-hidden .box{fill:var(--room-service);stroke:none}
-  .logical-outline{fill:none;stroke:var(--sel);stroke-width:3;stroke-linejoin:round;pointer-events:none}
-  .logical-outline.schedule-shared{stroke:#b35c00;stroke-width:2.5}
-  .logical-outline.schedule-next{stroke:var(--accent);stroke-width:2.5;stroke-dasharray:6 3}
-  .room01-floor .vert.integrated.sel .box,.room01-floor .sp.sel[data-facility="reception"]{stroke:none}
   @keyframes flash{50%{fill:#9ddcc5}}
-  .outline{fill:#fff;stroke:var(--wall);stroke-width:4;stroke-linejoin:round}
-  .corr{fill:var(--corridor);stroke:none}
-  .door-gap{fill:var(--corridor)}
-  .door-gap.int{fill:#fff}
-  .door-mk{stroke:#7f8a96;stroke-width:1}
-  .vert{cursor:pointer}
-  .vert .box{stroke:var(--wall);stroke-width:1.6}
   .vert.stair .box{fill:var(--stair)}
-  .vert.elevator .box{fill:var(--lift)}
-  .vert.sel .box{stroke:var(--sel);stroke-width:3}
-  .vert .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.55}
-  .vert .geo-enclosure{fill:transparent;stroke:none}
-  .vert.sel .geo-enclosure{stroke:var(--sel);stroke-width:3}
-  .geo-stair-art{pointer-events:none}
-  .geo-flight,.geo-landing{fill:var(--stair);stroke:var(--stair-ink);stroke-width:.8}
-  .geo-stair-art .treads{stroke:var(--stair-ink);stroke-width:.7;opacity:.85}
-  .vert .x{stroke:var(--lift-ink);stroke-width:1.1}
-  .vlabel{font-size:8.5px;font-weight:700;fill:var(--stair-ink);pointer-events:none;text-anchor:middle}
-  .vlabel.el{fill:var(--lift-ink)}
-  .lbl{font-size:10.5px;font-weight:700;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:central;paint-order:stroke;stroke:#fff;stroke-width:3px}
-  .lbl.hall{font-size:7px;font-weight:500;fill:var(--muted);stroke-width:2px}
-  .feat{fill:none;stroke:#5a7fa8;stroke-width:1.2;stroke-dasharray:3 2}
-  .feat-gal{fill:#f6f8fa;stroke:var(--wall);stroke-width:1.6}
-  .feat-note{font-size:7px;fill:var(--muted);text-anchor:middle;pointer-events:none}
-  .compass{font-size:9px;fill:var(--muted)}
+  .vert.elevator .box,.vert.shaft .box,.lift-cell{fill:var(--lift)}
+  .vert.integrated .box{fill:var(--reception)}
+  .vert.integrated-hidden .box{fill:var(--room-service)}
+  .vert.sel .box{fill:var(--sel-fill)}
+  .map-walls{fill:none;stroke:var(--map-wall-color);stroke-width:var(--map-wall-width);stroke-linecap:butt;stroke-linejoin:miter;vector-effect:non-scaling-stroke;pointer-events:none}
+  .logical-outline{fill:none;stroke:var(--sel);stroke-width:var(--map-wall-width);stroke-linejoin:miter;vector-effect:non-scaling-stroke;pointer-events:none}
+  .logical-outline.schedule-shared{stroke:#b35c00}
+  .logical-outline.schedule-next{stroke:var(--accent);stroke-dasharray:6 3}
+  .lbl{font-size:10.5px;font-weight:600;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:central;stroke:none}
+  .room01-floor [data-room-label]{font-size:10px;font-family:inherit;font-weight:600;fill:var(--ink);text-anchor:start;dominant-baseline:hanging}
+  .lbl.hall{font-size:7px;font-weight:500;fill:var(--muted)}
+  .entrance-label{font-size:12px;font-weight:600;fill:var(--accent);pointer-events:none}
+  .demo-label{fill:#145e9c}
   @media (max-width:900px){
     main{flex-direction:column}
     .mapwrap{min-height:0}
@@ -186,7 +164,7 @@
 <body>
 <div class="app">
   <header>
-    <div class="brand"><b>FCIM · Корпус №3 UTM</b><span>Академическая карта · синтетическое расписание</span></div>
+    <div class="brand"><b>FCIM · Корпус №3 UTM</b><span id="appSubtitle">Академическая карта · синтетическое расписание</span></div>
     <form class="search" id="searchForm" autocomplete="off">
       <input id="searchInput" type="search" inputmode="text" placeholder="Аудитория: 3-405 или 405" aria-label="Поиск аудитории">
       <button type="submit" aria-label="Найти">Найти</button>
@@ -217,8 +195,11 @@
     <aside class="sheet" id="sheet">
       <button class="grip" id="grip" aria-expanded="true" aria-label="Свернуть или развернуть панель">Расписание и помещение ↕</button>
       <div class="card schedule-controls" id="scheduleControls">
-        <div class="pill warn">Синтетическое демо · не расписание UTM</div>
-        <p class="small muted">Планируемые занятия, а не посещаемость. Номера демо не проверены на месте.</p>
+        <label class="period-label">Источник<select id="sourceSelect"><option value="real">Реальное расписание FCIM</option><option value="demo">Демо · синтетическое расписание</option></select></label>
+        <div class="pill warn" id="demoQualification">Синтетическое демо · не расписание UTM</div>
+        <p class="small muted" id="demoDescription">Планируемые занятия, а не посещаемость. Номера демо не проверены на месте.</p>
+        <p class="small muted" id="liveQualification" hidden></p>
+        <div id="liveSourceControls" hidden><div class="schedule-fields"><label>Курс<select id="courseSelect"><option value="1">Anul I</option><option value="2">Anul II</option></select></label><button class="btn" id="refreshTimetable" type="button">Обновить расписание</button></div></div>
         <div class="row modes" aria-label="Режим расписания">
           <button class="btn on" id="myMode" aria-pressed="true">Моя группа</button>
           <button class="btn" id="allMode" aria-pressed="false">Все занятия</button>
@@ -237,6 +218,7 @@
         </div>
         <label class="period-label">Демо-интервал<select id="periodSelect" aria-label="Демо-интервал"></select></label>
         <div class="small muted" id="scheduleContext" role="status" aria-live="polite"></div>
+        <details id="sourceDetails" hidden><summary>Источник и состояние данных</summary><div id="sourceStatus"></div><label class="period-label">API origin<input id="apiBaseInput" type="url" aria-label="API origin"></label><button class="btn small" id="applyApiBase" type="button">Применить API</button><p class="small" id="apiConfigError" role="status"></p></details>
       </div>
       <div id="scheduleSummary" aria-live="polite"></div>
       <div id="panel"></div>
@@ -251,6 +233,11 @@
 <script src="schedule-engine.js"></script>
 <script src="schedule-fixture.js"></script>
 <script src="map-semantics.js"></script>
+<script src="schematic-layout.js"></script>
+<script src="timetable-room-policy.js"></script>
+<script src="timetable-adapter.js"></script>
+<script src="timetable-api.js"></script>
+<script src="timetable-ui.js"></script>
 <script>
 (function () {
   "use strict";
@@ -263,6 +250,8 @@
   var fixture = window.FCIM_SCHEDULE_FIXTURE;
   var roomCatalog = window.FCIM_ROOM_IDENTIFICATION.createCatalog(DATA, parseRoomInput);
   var resolveRoom = window.FCIM_ROOM_CONTRACT.createResolver(DATA, parseRoomInput, roomCatalog);
+  var timetablePolicy = window.FCIM_TIMETABLE_ROOM_POLICY.createPolicy(DATA, parseRoomInput, resolveRoom);
+  var live = null, scheduleClock = null;
   var facilityLayer = window.FCIM_MAP_SEMANTICS.facilities(DATA, roomCatalog);
 
   // ---------- индексы данных ----------
@@ -287,7 +276,7 @@
     view: null
   };
 
-  var schedule = { mode: "my", group: fixture.groups[0].id, subgroup: "", timeMode: "selected", date: fixture.initialSelection.date,
+  var schedule = { source: "demo", courseYear: 1, mode: "my", group: fixture.groups[0].id, subgroup: "", timeMode: "selected", date: fixture.initialSelection.date,
     time: fixture.initialSelection.time, evaluation: null, occupancy: [], focus: [], focusLocations: [], upcoming: false };
 
   // ---------- хранилище привязок ----------
@@ -444,201 +433,120 @@
     feat: document.getElementById("layerFeat"), labels: document.getElementById("layerLabels"), walls: document.getElementById("layerWalls")
   };
   L.highlights=el("g",{id:"layerLogicalHighlights","pointer-events":"none"},svg);
+  L.fills=el("g",{id:"layerLogicalFills","pointer-events":"none"},svg);
+  svg.insertBefore(L.fills,L.spaces);
   function clear(g) { while (g.firstChild) g.removeChild(g.firstChild); }
 
-  // ---------- рендер этажа ----------
+  // ---------- UI-01 display geometry, independent of the historical model ----------
+  var displayLayout;
+  function displayPolygon(id) { return displayLayout.polygon(id); }
+  function displayShape(parent, poly, attrs) {
+    if (state.level !== 1) return el("polygon", Object.assign({points:pts(poly)},attrs), parent);
+    var b=bbox(poly);
+    return el("rect", Object.assign({x:b.x,y:b.y,width:b.w,height:b.h,"data-display-rect":"true"},attrs), parent);
+  }
   function renderFloor() {
-    var f = floorsByLevel[state.level];
-    svg.classList.toggle("room01-floor", f.level === 1);
-    Object.keys(L).forEach(function (k) { clear(L[k]); });
-    var g = f.geometry;
-    // особенности за контуром (галерея 2 этажа) рисуются под контуром
-    g.features.forEach(function (ft) {
-      if (ft.type === "gallery") {
-        var gg = el("g", null, L.base);
-        el("polygon", { points: pts(ft.polygon), "class": "feat-gal" }, gg);
-        ft.flights.forEach(function (fl) { drawStairBox(gg, fl, "h"); });
-        var b = bbox(ft.polygon);
-        var t = el("text", { x: b.cx, y: b.y + b.h / 2 - 50, "class": "feat-note" }, gg);
-        t.textContent = "переход?";
+    var f=floorsByLevel[state.level],g=f.geometry;
+    displayLayout=window.FCIM_SCHEMATIC_LAYOUT.createFloor(f,roomCatalog);
+    svg.classList.toggle("room01-floor",f.level===1);
+    svg.setAttribute("data-display-mode",displayLayout.displayMode);
+    svg.setAttribute("data-layout-revision",displayLayout.revision);
+    Object.keys(L).forEach(function(k){clear(L[k]);});
+    // One continuous neutral canvas, without corridor seams or decorative dots.
+    el("polygon",{points:pts(displayLayout.outline),"class":"outline"},L.base);
+    if(f.level!==1) g.features.filter(function(ft){return ft.type==="gallery";}).forEach(function(ft){
+      el("polygon",{points:pts(ft.polygon),"class":"corr"},L.base);
+      (ft.flights||[]).forEach(function(p){el("polygon",{points:pts(p),fill:"var(--stair)"},L.base);});
+    });
+    f.spaces.forEach(function(s){
+      var poly=displayPolygon(s.id);if(!poly)return;
+      var identity=roomCatalog.identity(s.id);
+      var p=displayShape(L.spaces,poly,{"class":"sp t-"+s.type,"data-id":s.id,"data-facility":identity?identity.kind:null,
+        tabindex:"0",role:"button","aria-label":numberOf(s.id)?"Аудитория 3-"+numberOf(s.id):identity&&identity.label?identity.label:"Помещение "+s.id});
+      if(identity&&!identity.public){p.removeAttribute("tabindex");p.removeAttribute("role");p.removeAttribute("aria-label");p.setAttribute("aria-hidden","true");}
+      p.__id=s.id;
+    });
+    g.verticals.forEach(function(v){
+      var poly=displayPolygon(v.id);if(!poly)return;
+      var identity=roomCatalog.identity(v.id),integrated=identity&&identity.displayParentId;
+      var group=el("g",{"class":"vert "+v.type,"data-id":v.id,"data-display-parent":integrated||null,
+        tabindex:integrated?null:"0",role:integrated?null:"button","aria-label":integrated?null:identity&&identity.label||v.label||"Вертикальная связь "+v.id},L.vert);
+      group.__id=v.id;
+      displayShape(group,poly,{"class":"box"});
+      if(integrated)group.setAttribute("aria-hidden","true");
+      if(v.innerShaft){
+        if(f.level===1){
+          var inner=el("g",{"class":"vert elevator","data-id":v.id+"-INNER",tabindex:"0",role:"button","aria-label":"Западный лифт: по сообщению пользователя не работает"},L.vert);
+          inner.__id=v.id+"-INNER";displayShape(inner,displayPolygon(v.id+"-INNER"),{"class":"box"});
+        }else el("polygon",{points:pts(v.innerShaft),"class":"lift-cell"},group);
       }
     });
-    el("polygon", { points: pts(g.outline), "class": "outline" }, L.base);
-    if (f.level === 1) {
-      var backWc=g.features.find(function (ft) { return ft.id === roomCatalog.presentation.backWcFeatureId; });
-      el("polygon",{points:pts(backWc.polygon),fill:"var(--corridor)","pointer-events":"none","data-neutral-back-wc":"true"},L.base);
-      window.FCIM_ROOM_IDENTIFICATION.exteriorWallPaths(f).forEach(function (path) { el("polyline",{points:pts(path.points),"class":path.kind},L.base); });
-    }
-    el("polygon", { points: pts(g.corridor), "class": "corr" }, L.base);
-    var compass = g.compassPoints || [[2, g.corridorBand[0] - (g.corridorBand[0] - g.corridorBand[1]) / 2 + 3], [998, g.corridorBand[1] - 4]];
-    var t1 = el("text", { x: compass[0][0], y: compass[0][1], "class": "compass" }, L.base);
-    t1.textContent = f.level === 1 ? "" : "◄ запад (усл.)";
-    var t2 = el("text", { x: compass[1][0], y: compass[1][1], "class": "compass", "text-anchor": "end" }, L.base);
-    t2.textContent = f.level === 1 ? "" : "восток (усл.) ►";
-
-    f.spaces.forEach(function (s) {
-      var identity = roomCatalog.identity(s.id);
-      var cls = "sp t-" + s.type + (s.confidence === "low" ? " lowconf" : "") + (numberOf(s.id) ? " bound" : "") + (state.selected === s.id ? " sel" : "");
-      var p = el("polygon", { points: pts(s.polygon), "class": cls, "data-id": s.id, tabindex: "0", role: "button",
-        "data-facility": identity ? identity.kind : null,
-        "aria-label": (numberOf(s.id) ? "Аудитория 3-" + numberOf(s.id) : identity && identity.label ? identity.label : "Помещение " + s.id) }, L.spaces);
-      if (identity && !identity.public) { p.removeAttribute("tabindex"); p.removeAttribute("role"); p.removeAttribute("aria-label"); p.setAttribute("aria-hidden", "true"); }
-      p.__id = s.id;
-    });
-    if (f.level === 1) window.FCIM_ROOM_IDENTIFICATION.physicalWalls(f).forEach(function (line) {
-      el("line", { x1: line[0][0], y1: line[0][1], x2: line[1][0], y2: line[1][1], "class": "physical-wall" }, L.walls);
-    });
-    // двери: разрыв в стене + засечки
-    (f.level === 1 ? roomCatalog.displayDoors(f) : g.doors).forEach(function (d) {
-      if (f.level === 1 && !roomCatalog.showDoor(d)) return;
-      var qualification=d.coordinateAccuracy ? d : window.FCIM_ROOM_IDENTIFICATION.doorQualifications.find(function (q) { return q.id === d.id; });
-      var doorGroup=el("g",{"data-door-id":d.id,"data-coordinate-accuracy":d.coordinateAccuracy || null,"data-connectivity-status":qualification ? qualification.connectivityStatus : null},L.doors);
-      if (qualification) el("title",null,doorGroup).textContent=qualification.notes;
-      var w = d.gapLength || 7, internal = !!d.internal, vertical = d.orientation ? d.orientation === "vertical" : internal || d.y !== g.corridorBand[0] && d.y !== g.corridorBand[1];
-      if (!vertical) {
-        el("rect", { x: d.x - w / 2, y: d.y - 1.6, width: w, height: 3.2, "class": "door-gap" }, doorGroup);
-        el("line", { x1: d.x - w / 2, y1: d.y - 2.2, x2: d.x - w / 2, y2: d.y + 2.2, "class": "door-mk" }, doorGroup);
-        el("line", { x1: d.x + w / 2, y1: d.y - 2.2, x2: d.x + w / 2, y2: d.y + 2.2, "class": "door-mk" }, doorGroup);
-      } else {
-        el("rect", { x: d.x - 1.6, y: d.y - w / 2, width: 3.2, height: w, "class": "door-gap int" }, doorGroup);
-      }
-    });
-    // вертикальные связи
-    g.verticals.forEach(function (v) {
-      if (f.level === 1) {
-        var identity=roomCatalog.identity(v.id), integrated=identity && identity.displayParentId;
-        var flat=el("g",{"class":"vert flat "+v.type+(integrated ? " "+identity.display : ""),"data-id":v.id,"data-display-parent":integrated || null,tabindex:integrated ? null : "0",role:integrated ? null : "button","aria-label":integrated ? null : identity && identity.label},L.vert);
-        flat.__id=v.id;
-        el("polygon",{points:pts(v.polygon),"class":"box",fill: v.type === "stair" ? "var(--stair)" : "var(--lift)"},flat);
-        if (integrated) flat.setAttribute("aria-hidden","true");
-        if (v.innerShaft) {
-          var inner=el("g",{"class":"vert flat elevator","data-id":v.id+"-INNER",tabindex:"0",role:"button","aria-label":"Западный лифт: по сообщению пользователя не работает"},L.vert); inner.__id=v.id+"-INNER";
-          el("polygon",{points:pts(v.innerShaft),"class":"box",fill:"var(--lift)"},inner);
-        }
-        if (v.entries) v.entries.forEach(function (x) { el("rect",{x:x-6,y:bbox(v.polygon).y-1.6,width:12,height:3.2,fill:"var(--corridor)"},L.doors); });
-        if (v.entry && !v.visualStair) el("rect",{x:v.entry[0]-1.6,y:v.entry[1]-7,width:3.2,height:14,fill:"var(--room-hall)"},L.doors);
-        return;
-      }
-      var gg = el("g", { "class": "vert " + v.type + (state.selected === v.id ? " sel" : ""), "data-id": v.id, tabindex: "0", role: "button" }, L.vert);
-      gg.__id = v.id;
-      var b = bbox(v.polygon);
-      if (v.type === "stair") {
-        if (v.stairDrawing) {
-          el("polygon", { points: pts(v.polygon), "class": "box", fill: "var(--stair)", stroke: "var(--wall)", "stroke-width": 1.6 }, gg);
-          var drawing = el("g", { "class": "geo-stair-art", "data-stair-art": v.id, "aria-hidden": "true", "pointer-events": "none" }, gg);
-          el("polygon", { points: pts(v.stairDrawing.landing), "class": "geo-landing" }, drawing);
-          v.stairDrawing.flights.forEach(function (flight, index) {
-            el("polygon", { points: pts(flight), "class": "geo-flight" }, drawing);
-            var fb = bbox(flight), axis = v.stairDrawing.treadAxes[index];
-            if (axis === "y") {
-              for (var sy = fb.y + 3; sy < fb.y + fb.h; sy += 3) el("line", { x1: fb.x, y1: sy, x2: fb.x + fb.w, y2: sy, "class": "treads" }, drawing);
-            } else {
-              for (var sx = fb.x + 3; sx < fb.x + fb.w; sx += 3) el("line", { x1: sx, y1: fb.y, x2: sx, y2: fb.y + fb.h, "class": "treads" }, drawing);
-            }
-          });
-        } else if (v.visualStair) {
-          // Identity hit region stays unchanged; photo artwork may extend into the hall.
-          el("polygon", { points: pts(v.polygon), "class": "geo-enclosure" }, gg);
-          var art = el("g", { "class": "geo-stair-art", "data-stair-art": v.id, "aria-hidden": "true", "pointer-events": "none" }, L.feat);
-          el("polygon", { points: pts(v.visualStair.landing), "class": "geo-landing" }, art);
-          v.visualStair.flights.forEach(function (flight) {
-            el("polygon", { points: pts(flight), "class": "geo-flight" }, art);
-            var fb = bbox(flight);
-            for (var sx = fb.x + 3; sx < fb.x + fb.w; sx += 3) el("line", { x1: sx, y1: fb.y, x2: sx, y2: fb.y + fb.h, "class": "treads" }, art);
-          });
-        } else drawStairBox(gg, v.polygon, "v");
-        if (v.innerShaft) { var ib = bbox(v.innerShaft); drawX(gg, ib, "#fff"); }
-        // проём входа
-        if (v.entries) v.entries.forEach(function (x) { el("rect", { x: x - 6, y: b.y - 1.6, width: 12, height: 3.2, fill: "var(--corridor)" }, L.doors); });
-        if (v.entry && !v.visualStair) el("rect", { x: v.entry[0] - 1.6, y: v.entry[1] - 7, width: 3.2, height: 14, fill: "var(--room-hall)" }, L.doors);
-        var lbl = el("text", { x: b.cx, y: v.visualStair ? b.y + 15 : b.y + b.h - 4, "class": "vlabel" }, v.visualStair ? art : gg);
-        lbl.textContent = f.level === 1 && (v.id === "B3-F1-STEN" || v.id === "B3-F1-STES") ? "" : f.level === 1 && v.id === "B3-F1-STW" ? "Лестница" : f.level === 1 && v.id === "B3-F1-STM" ? "Главная" : v.mapLabel || v.label || (v.shaft === "B3-STAIR-W" ? "Лестница W" : "Лестница M");
-      } else {
-        drawX(gg, b, "var(--lift)");
-        var l2 = el("text", { x: b.cx, y: b.cy + 3, "class": "vlabel el", style: "font-size:6.5px" }, gg);
-        l2.textContent = roomCatalog.identity(v.id) ? "лифт" : "шахта";
-      }
-    });
-    g.features.forEach(function (ft) {
-      if (ft.type === "corridorDoor" || ft.type === "corridorMarker") {
-        el("line", { x1: ft.x, y1: g.corridorBand[0] + 1, x2: ft.x, y2: g.corridorBand[1] - 1, "class": "feat",
-          style: ft.type === "corridorMarker" ? "stroke:#9aa5b1" : null }, L.feat);
-        var t = el("text", { x: ft.x + 3, y: g.corridorBand[1] - 3, "class": "feat-note", "text-anchor": "start" }, L.feat);
-        t.textContent = ft.type === "corridorDoor" ? "перегородка?" : "метка?";
-      } else if (ft.type === "wallLine") {
-        if (f.level !== 1) el("polyline", { points: pts(ft.line), fill: "none", stroke: "var(--wall)", "stroke-width": 1.6, "pointer-events": "none" }, L.feat);
-      } else if (ft.type === "opening") {
-        if (f.level === 1 && !roomCatalog.showOpening(ft)) return;
-        el("line", { x1: ft.line[0][0], y1: ft.line[0][1], x2: ft.line[1][0], y2: ft.line[1][1], stroke: "var(--corridor)", "stroke-width": 3.4, "pointer-events": "none", "data-opening-id":ft.id }, L.feat);
-      } else if (ft.type === "stairGlyph") {
-        if (f.level !== 1) drawStairBox(L.feat, ft.polygon, "v", true);
-      }
-    });
-    renderLabels();
-    refreshClasses();
-    applyView();
-  }
-  function drawStairBox(parent, poly, dir, light) {
-    var b = bbox(poly);
-    el("rect", { x: b.x, y: b.y, width: b.w, height: b.h, "class": "box", fill: light ? "#eef3ff" : "var(--stair)", stroke: light ? "#7c93c9" : "var(--wall)", "stroke-width": light ? 0.8 : 1.6 }, parent);
-    var step = 4.2, i;
-    if (dir === "v") for (i = b.x + step; i < b.x + b.w - 1; i += step) el("line", { x1: i, y1: b.y + 2, x2: i, y2: b.y + b.h - (light ? 2 : 14), "class": "treads" }, parent);
-    else for (i = b.y + step; i < b.y + b.h - 1; i += step) el("line", { x1: b.x + 2, y1: i, x2: b.x + b.w - 2, y2: i, "class": "treads" }, parent);
-  }
-  function drawX(parent, b, fill) {
-    el("rect", { x: b.x, y: b.y, width: b.w, height: b.h, "class": "box", fill: fill, stroke: "var(--wall)", "stroke-width": 1.2 }, parent);
-    el("line", { x1: b.x + 1.5, y1: b.y + 1.5, x2: b.x + b.w - 1.5, y2: b.y + b.h - 1.5, "class": "x", stroke: "var(--lift-ink)" }, parent);
-    el("line", { x1: b.x + b.w - 1.5, y1: b.y + 1.5, x2: b.x + 1.5, y2: b.y + b.h - 1.5, "class": "x", stroke: "var(--lift-ink)" }, parent);
+    // No doors, cutouts, flights, X symbols or uncertain hall markers in public view.
+    el("path",{d:displayLayout.walls.map(function(l){return "M"+l[0].join(",")+"L"+l[1].join(",");}).join(" "),
+      "class":"map-walls","vector-effect":"non-scaling-stroke","data-wall-count":displayLayout.walls.length},L.walls);
+    renderLabels();refreshClasses();applyView();
   }
   function renderLabels() {
+    if (!displayLayout) return;
     clear(L.labels);
-    var f = floorsByLevel[state.level];
-    f.spaces.forEach(function (s) {
-      var n = numberOf(s.id), identity = roomCatalog.identity(s.id);
-      var logical=roomCatalog.roomForSpace(s.id), labelPoint=logical && logical.labelPoint || s.labelPoint;
-      if (n && (!logical || logical.primarySpaceId === s.id)) {
-        var t = el("text", { x: labelPoint[0], y: labelPoint[1], "class": "lbl", "data-room-label":logical ? logical.roomCode : null }, L.labels);
-        t.textContent = n;
-        if (f.level === 1) t.style.fontSize = bbox(s.polygon).w < 40 ? "7px" : "10px";
-      } else if (identity && identity.public) {
-        var facilityText = el("text", { x: s.labelPoint[0], y: identity.kind === "reception" ? 139 : s.labelPoint[1] + 2, "class": "lbl facility-label", "data-facility-label": identity.kind }, L.labels);
-        facilityText.textContent = identity.label;
-        facilityText.style.fontSize = identity.kind === "toilet" ? "8px" : "10px";
-      } else if (s.kind === "hall" && s.label) {
-        if (f.level === 1 && s.id !== "B3-F1-HE") return;
-        var t2 = el("text", { x: s.labelPoint[0], y: s.labelPoint[1] + 2, "class": "lbl hall" }, L.labels);
-        t2.textContent = "холл";
+    var f=floorsByLevel[state.level];
+    f.spaces.forEach(function(s){
+      var poly=displayPolygon(s.id);if(!poly)return;
+      var n=numberOf(s.id),identity=roomCatalog.identity(s.id),logical=roomCatalog.roomForSpace(s.id);
+      var labelPoint=f.level===1?displayLayout.labelPoint(s.id):s.labelPoint;
+      if(f.level===1&&logical)labelPoint=displayLayout.roomLabelPoint(logical);
+      if(n&&(!logical||logical.primarySpaceId===s.id)){
+        var t=el("text",{x:labelPoint[0],y:labelPoint[1],"class":"lbl","data-room-label":logical?logical.roomCode:null},L.labels);t.textContent=n;
+      }else if(identity&&identity.public){
+        if(f.level===1&&identity.kind==="reception"){var reception=bbox(displayLayout.enclosure("reception"));labelPoint=[reception.cx,reception.cy];}
+        var facility=el("text",{x:labelPoint[0],y:labelPoint[1],"class":"lbl facility-label","data-facility-label":identity.kind},L.labels);
+        facility.textContent=identity.label;facility.style.fontSize=identity.kind==="toilet"?"8px":"10px";
+      }else if(f.level!==1&&s.kind==="hall"&&s.label){
+        el("text",{x:labelPoint[0],y:labelPoint[1],"class":"lbl hall"},L.labels).textContent="холл";
       }
-      var demo = schedule.occupancy.filter(function (o) { return locationContains(o,s.id) && scheduleClasses(s.id); })[0];
-      if (!demo && schedule.mode === "my" && schedule.upcoming) demo = schedule.focusLocations.filter(function (o) { return locationContains(o,s.id); })[0];
-      if (demo && (demo.primarySpaceId || demo.spaceId) === s.id && !(f.level === 1 && logical && n)) {
-        var dt = el("text", { x: s.labelPoint[0], y: s.labelPoint[1] + (n ? 13 : 0), "class": "lbl demo-label", style: "font-size:8px" }, L.labels);
-        dt.textContent = "демо " + demo.roomCode.replace(/^3-/, "");
+      var demo=schedule.occupancy.filter(function(o){return locationContains(o,s.id)&&scheduleClasses(s.id);})[0];
+      if(!demo&&schedule.mode==="my"&&schedule.upcoming)demo=schedule.focusLocations.filter(function(o){return locationContains(o,s.id);})[0];
+      if(demo&&(demo.primarySpaceId||demo.spaceId)===s.id&&!(f.level===1&&logical&&n)){
+        el("text",{x:labelPoint[0],y:labelPoint[1]+(n?13:0),"class":"lbl demo-label",style:"font-size:8px"},L.labels).textContent=(live && live.real() ? "план " : "демо ")+demo.roomCode.replace(/^3-/,"");
       }
     });
-    if (f.level === 1) {
-      var entrance = roomCatalog.identity("B3-F1-OPEN-E");
-      var mobileEntrance = window.matchMedia("(max-width:900px)").matches;
-      if (mobileEntrance) el("polyline", { points: "1000,88 1030,88 1030,222 1000,222", fill: "none", stroke: "var(--accent)", "stroke-width": 1.4, "pointer-events": "none", "data-entrance-leader": "true" }, L.labels);
-      var entranceText = el("text", { x: mobileEntrance ? 1000 : entrance.labelPoint[0], y: mobileEntrance ? 250 : entrance.labelPoint[1], "class": "entrance-label", "data-main-entrance": entrance.id, "text-anchor": mobileEntrance ? "end" : "start" }, L.labels);
-      entranceText.textContent = "↤ " + entrance.label;
+    if(f.level===1){
+      var entrance=roomCatalog.identity("B3-F1-OPEN-E"),mobile=window.matchMedia("(max-width:900px)").matches;
+      // Label only: no doorway dimensions, leader or route.
+      el("text",{x:mobile?990:1010,y:mobile?218:90,"class":"entrance-label","data-main-entrance":entrance.id,"text-anchor":mobile?"end":"start"},L.labels).textContent="Главный вход";
     }
   }
   function refreshClasses() {
-    Array.prototype.forEach.call(L.spaces.children, function (p) {
-      var s = spaceById[p.__id];
-      p.setAttribute("class", "sp t-" + s.type + (s.confidence === "low" ? " lowconf" : "") + (numberOf(s.id) ? " bound" : "") + (selectedIds().includes(s.id) ? " sel" : "") + (roomCatalog.roomForSpace(s.id) ? " logical-component" : "") + scheduleClasses(s.id));
+    if (!displayLayout) return;
+    Array.prototype.forEach.call(L.spaces.children,function(p){
+      var s=spaceById[p.__id];
+      p.setAttribute("class","sp t-"+s.type+(s.confidence==="low"?" lowconf":"")+(numberOf(s.id)?" bound":"")+(selectedIds().includes(s.id)?" sel":"")+(roomCatalog.roomForSpace(s.id)?" logical-component":"")+scheduleClasses(s.id));
     });
-    Array.prototype.forEach.call(L.vert.children, function (g) {
-      var v = vertById[g.__id], identity=roomCatalog.identity(v.id); g.setAttribute("class", "vert " + v.type + (state.level === 1 ? " flat" : "") + (identity && identity.display ? " "+identity.display : "") + (selectedIds().includes(v.id) ? " sel" : ""));
+    Array.prototype.forEach.call(L.vert.children,function(g){
+      var v=vertById[g.__id],identity=roomCatalog.identity(v.id);
+      g.setAttribute("class","vert "+v.type+(identity&&identity.display?" "+identity.display:"")+(selectedIds().includes(v.id)?" sel":""));
+    });
+    clear(L.fills);
+    if(state.level===1)roomCatalog.mappings.filter(function(r){return r.spaceIds.length>1;}).forEach(function(r){
+      // Matching underpaint removes fractional-pixel seams between hit rectangles.
+      displayShape(L.fills,displayLayout.roomOutline(r),{"class":"logical-fill"+(r.spaceIds.includes(state.selected)?" sel":"")+scheduleClasses(r.primarySpaceId),"data-room-fill":r.roomCode});
     });
     clear(L.highlights);
-    if (state.level === 1) roomCatalog.mappings.forEach(function (r) {
-      var selected=r.spaceIds.includes(state.selected), classes=scheduleClasses(r.primarySpaceId);
-      var outlineClass=selected ? "" : classes.includes("schedule-shared") ? " schedule-shared" : classes.includes("schedule-next") ? " schedule-next" : null;
-      if (selected || outlineClass !== null) window.FCIM_ROOM_IDENTIFICATION.unionOutline(r.spaceIds.map(function (id) { return spaceById[id].polygon; })).forEach(function (p) { el("polygon",{points:pts(p),"class":"logical-outline"+(outlineClass || ""),"data-logical-room":r.roomCode},L.highlights); });
-    });
-    if (state.level === 1 && state.selected === "B3-F1-S14") window.FCIM_ROOM_IDENTIFICATION.unionOutline(selectedIds().map(function (id) { return (spaceById[id] || vertById[id]).polygon; })).forEach(function (p) { el("polygon",{points:pts(p),"class":"logical-outline"},L.highlights); });
+    function highlight(poly,selected,classes,roomCode){
+      if(!poly)return;
+      var extra=selected?"":classes.includes("schedule-shared")?" schedule-shared":classes.includes("schedule-next")?" schedule-next":null;
+      if(selected||extra!==null)el("polygon",{points:pts(poly),"class":"logical-outline"+(extra||""),"data-logical-room":roomCode||null,"vector-effect":"non-scaling-stroke"},L.highlights);
+    }
+    if(state.level===1){
+      roomCatalog.mappings.forEach(function(r){highlight(displayLayout.roomOutline(r),r.spaceIds.includes(state.selected),scheduleClasses(r.primarySpaceId),r.roomCode);});
+      if(state.selected&&!roomCatalog.roomForSpace(state.selected)){
+        var poly=state.selected==="B3-F1-S14"?displayLayout.enclosure("reception"):displayPolygon(state.selected);
+        highlight(poly,true,"");
+      }
+    }else{
+      Array.prototype.forEach.call(L.spaces.children,function(p){highlight(displayPolygon(p.__id),p.__id===state.selected,scheduleClasses(p.__id));});
+      if(vertById[state.selected])highlight(displayPolygon(state.selected),true,"");
+    }
   }
 
   // ---------- масштаб и перемещение ----------
@@ -689,7 +597,7 @@
   }
   function centerSelected() {
     var selected = spaceById[state.selected] || vertById[state.selected];
-    if (selected) centerOn(state.level === 1 ? selectedIds().flatMap(function (id) { return (spaceById[id] || vertById[id]).polygon; }) : selected.polygon);
+    if (selected) centerOn(state.level === 1 ? selectedIds().flatMap(function (id) { return displayPolygon(id) || []; }) : displayPolygon(selected.id));
   }
   wrap.addEventListener("wheel", function (e) { e.preventDefault(); zoomAt(Math.pow(1.0018, -e.deltaY), e.clientX, e.clientY); }, { passive: false });
   var pointers = {}, drag = null, pinch = null, moved = false;
@@ -843,6 +751,7 @@
     h += sourceConflictsHtml() + recoveryHtml() + legendHtml();
     panel.innerHTML = h;
     wirePanel();
+    if (live && live.real() && spaceById[id] && !roomCatalog.identity(id)) live.roomPanel(panel, id);
     wireScheduleLinks(panel);
     document.getElementById("modeBanner").className = "mode-banner" + (state.edit ? " show" : "");
     document.getElementById("modeBanner").textContent = "Режим разметки: нажмите на помещение";
@@ -874,6 +783,7 @@
     var identity = roomCatalog.identity(s.id), sourceMapping = roomCatalog.roomForSpace(s.id);
     var canBind = roomCatalog.classroomCandidate(s.id);
     var h = "<div class='card'><h3>" + (identity && identity.label ? esc(identity.label) : n ? "Аудитория " + esc(BUILDING_PREFIX + "-" + n) : (s.label ? esc(s.label) : "Номер не установлен")) + "</h3>";
+    if (state.level === 1) h += "<p class='small muted'>Условная прямоугольная схема: пропорции приблизительные, двери не показаны.</p>";
     if (identity || sourceMapping) h += "<details class='small'><summary>Источник идентификации</summary><p>Подтверждено пользователем: " + esc(identity && identity.evidenceSource || roomCatalog.source.file) + "; уточнения ROOM-01B/C. Геометрия: floor1.jpg. Осмотр на месте: неизвестен.</p><p>" + esc(sourceMapping && sourceMapping.roomCode === "3-103" ? roomCatalog.presentation.room103Notes : (identity || sourceMapping).notes) + "</p><code>SHA-256: " + esc(identity && identity.evidenceSource ? roomCatalog.presentation.sha256 : roomCatalog.source.sha256) + "</code><p class='small'>Уточнение: " + esc(roomCatalog.source.correctionSha256) + "</p>" + (sourceMapping && sourceMapping.roomCode === "3-103" ? "<p class='small'>Фрагмент 103: " + esc(roomCatalog.presentation.room103Source.sha256) + "</p>" : "") + "</details>";
     if (!state.edit) h += scheduledSpaceHtml(s.id);
     h += "<dl class='kv'>" +
@@ -922,11 +832,11 @@
       "<div class='sw' style='background:var(--scheduled)'></div><div>Занятия других групп по плану</div>" +
       "<div class='sw' style='border-color:#b35c00;border-width:2.5px'></div><div>Общий слот или возможный конфликт записей</div>" +
       "<div class='sw' style='background:#eefbf6;border-style:dashed;border-color:var(--accent)'></div><div>Следующее занятие моей группы</div>" +
-      "<div class='sw' style='background:#fff'></div><div>Нет известного занятия; доступность неизвестна</div>" +
+      "<div class='sw' style='background:var(--room)'></div><div>Нет известного занятия; доступность неизвестна</div>" +
       "<div class='pill warn'>?</div><div>Не нанесённый номер: без подсветки</div>" +
-      "<div class='sw' style='background:var(--bound)'></div><div>Номер привязан вручную</div>" +
-      "<div class='sw' style='background:var(--room-service);border-style:dashed'></div><div>Малые/служебные помещения (низкая точность)</div>" +
-      "<div class='sw' style='background:var(--room-hall)'></div><div>Холл, открытый в коридор</div>" +
+      "<div class='sw' style='background:var(--room)'></div><div>Ручной номер указан в карточке</div>" +
+      "<div class='sw' style='background:var(--room-service)'></div><div>Служебные области; сведения в карточке</div>" +
+      "<div class='sw' style='background:var(--corridor)'></div><div>Холл, открытый в коридор</div>" +
       "<div class='sw' style='background:var(--stair)'></div><div>Лестница</div>" +
       "<div class='sw' style='background:var(--lift)'></div><div>Лифтовая шахта</div>" +
       "</div><div class='small muted' style='margin-top:8px'>Пожарная символика с планов намеренно не воспроизводится. Карта показывает план занятий. " + (state.level === 1 ? "WC, Orange Cafe, Вахта и восточный главный вход определены пользователем. Осмотр, работа лифтов и доступ не проверены." : "Туалеты, входы и работа лифтов не подтверждены. Фото сейчас отсутствуют; физическая точность не проверена.") + "</div></div>";
@@ -1110,13 +1020,14 @@
 
   // ---------- расписание: state -> evaluation -> room resolution -> highlight ----------
   function demoResolve(lesson) {
+    if (live && live.real()) return timetablePolicy.locate(lesson, manualRecords());
     var location = resolveRoom(lesson, { demoAssociations: fixture.demoAssociations });
     var ids=location.spaceIds || (location.spaceId ? [location.spaceId] : []);
     var partial=ids.some(function (id) { var r=roomCatalog.roomForSpace(id); return r && r.spaceIds.length > 1 && JSON.stringify(r.spaceIds.slice().sort()) !== JSON.stringify(ids.slice().sort()); });
     if (partial || ids.some(function (id) { return !roomCatalog.classroomCandidate(id); })) return Object.assign({}, location, { spaceId: null, spaceIds:[], primarySpaceId:null, floorLevel: null, status: "invalid-binding" });
     return location;
   }
-  function isMyLesson(lesson) { return lesson.group === schedule.group && (!schedule.subgroup || !lesson.subgroup || lesson.subgroup === schedule.subgroup); }
+  function isMyLesson(lesson) { return (live && live.real() ? lesson.courseYear === schedule.courseYear && lesson.groups.includes(schedule.group) : lesson.group === schedule.group) && (!schedule.subgroup || !lesson.subgroup || lesson.subgroup === schedule.subgroup); }
   function scheduleClasses(id) {
     if (roomCatalog.identity(id)) return "";
     var active = schedule.occupancy.filter(function (o) { return locationContains(o,id); })[0];
@@ -1152,6 +1063,7 @@
     });
   }
   function scheduledSpaceHtml(id) {
+    if (live && live.real()) return "";
     if (roomCatalog.identity(id)) return "";
     var occupants = schedule.occupancy.filter(function (o) { return locationContains(o,id); });
     var h = "<div class='schedule-room'><b>План занятий на выбранное время</b>";
@@ -1167,6 +1079,7 @@
     return h + "</div>";
   }
   function renderScheduleSummary() {
+    if (live && live.real()) { live.render(); return; }
     var e = schedule.evaluation, h = "<div class='card'><h3>" + (schedule.mode === "my" ? "Моя группа · " + esc(schedule.group) : "Все занятия · корпус 3") + "</h3>";
     if (e.contextStatus === "outside-coverage") h += "<div class='msg warn'>Дата вне заданного периода демо. Записей для неё нет.</div>";
     else if (e.contextStatus === "invalid") h += "<div class='msg warn'>Выберите корректные день и время. Контекст расписания недоступен.</div>";
@@ -1196,9 +1109,9 @@
     }
     document.getElementById("scheduleDate").value = schedule.date;
     document.getElementById("scheduleTime").value = schedule.time;
-    schedule.evaluation = window.FCIM_SCHEDULE.evaluate(fixture, schedule);
+    schedule.evaluation = live && live.real() ? live.evaluate() : window.FCIM_SCHEDULE.evaluate(fixture, schedule);
     schedule.occupancy = window.FCIM_SCHEDULE.aggregate(schedule.evaluation.active, demoResolve).rooms;
-    schedule.upcoming = !schedule.evaluation.groupActive.length && schedule.evaluation.next.length > 0;
+    schedule.upcoming = !(live && live.real()) && !schedule.evaluation.groupActive.length && schedule.evaluation.next.length > 0;
     schedule.focus = schedule.upcoming ? schedule.evaluation.next : schedule.evaluation.groupActive.map(function (lesson) { return { date: schedule.date, lesson: lesson }; });
     schedule.focusLocations = schedule.focus.map(function (entry) { return demoResolve(entry.lesson); });
     if (autoSelect && schedule.mode === "my" && !state.edit) {
@@ -1225,13 +1138,13 @@
       subgroups.disabled = !group.subgroups.length;
     }
     fillSubgroups();
-    groups.onchange = function () { schedule.group = groups.value; schedule.subgroup = ""; fillSubgroups(); updateSchedule(true); };
+    groups.onchange = function () { schedule.group = groups.value; schedule.subgroup = ""; if (live && live.real()) live.fillSubgroups(); else fillSubgroups(); updateSchedule(true); };
     subgroups.onchange = function () { schedule.subgroup = subgroups.value; updateSchedule(true); };
     ["my", "all"].forEach(function (mode) {
       document.getElementById(mode + "Mode").onclick = function () {
         schedule.mode = mode;
         ["my", "all"].forEach(function (m) { var button = document.getElementById(m + "Mode"); button.classList.toggle("on", m === mode); button.setAttribute("aria-pressed", String(m === mode)); });
-        updateSchedule(true);
+        if (live && live.real()) live.load(false); else updateSchedule(true);
       };
     });
     document.getElementById("currentTime").onclick = function () { setTimeMode("current"); };
@@ -1240,7 +1153,7 @@
     document.getElementById("scheduleTime").onchange = function () { schedule.time = this.value; updateSchedule(true); };
     document.getElementById("periodSelect").innerHTML = "<option value=''>Произвольное время</option>" + fixture.periods.map(function (p, i) { return "<option value='" + i + "'>" + p.startTime + "–" + p.endTime + "</option>"; }).join("");
     document.getElementById("periodSelect").onchange = function () { if (this.value !== "") { schedule.time = fixture.periods[Number(this.value)].startTime; updateSchedule(true); } };
-    setInterval(function () {
+    if (!scheduleClock) scheduleClock = setInterval(function () {
       if (schedule.timeMode !== "current") return;
       var local = window.FCIM_SCHEDULE.localTime(Date.now(), fixture.context.timeZone);
       if (local.date !== schedule.date || local.time !== schedule.time) updateSchedule(true);
@@ -1254,9 +1167,14 @@
   // ---------- старт ----------
   var startLevel = parseInt((location.hash.match(/floor=(-?\d+)/) || [])[1], 10);
   initScheduleControls();
+  schedule.source = location.protocol === "file:" ? "demo" : "real";
+  live = window.FCIM_TIMETABLE_UI.createController({ schedule: schedule, policy: timetablePolicy, bindings: manualRecords, update: updateSchedule, selectSpace: selectSpace,
+    initDemo: function () { schedule.group = fixture.groups[0].id; schedule.subgroup = ""; schedule.date = fixture.initialSelection.date; schedule.time = fixture.initialSelection.time; document.getElementById("groupSelect").disabled = false; initScheduleControls(); } });
+  if (live.real()) { var initialLocal = window.FCIM_SCHEDULE.localTime(Date.now(), "Europe/Chisinau"); schedule.date = initialLocal.date; schedule.time = initialLocal.time; schedule.group = ""; }
   updateSchedule(false);
   setLevel(floorsByLevel[startLevel] ? startLevel : 4);
   if (!floorsByLevel[startLevel]) updateSchedule(true);
+  if (live.real()) live.load(false);
   window.addEventListener("hashchange", function () { var m = location.hash.match(/floor=(-?\d+)/); if (m && floorsByLevel[+m[1]]) setLevel(+m[1]); });
   // минимальный API для отладки/будущей интеграции
   window.FCIM_MAP_APP = { selectSpace: selectSpace, setLevel: setLevel, parseRoomInput: parseRoomInput, getBindings: function () { return JSON.parse(JSON.stringify(store)); },

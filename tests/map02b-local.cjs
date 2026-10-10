@@ -1,0 +1,21 @@
+// Real local producer handlers + direct browser CORS; cached data may be recorded replay.
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const mapOrigin=process.env.MAP_ORIGIN||'http://127.0.0.1:8765',apiOrigin=process.env.TIMETABLE_API_ORIGIN||'http://127.0.0.1:3001';
+const out=path.resolve(process.argv[2]||'map02b-local-evidence');fs.mkdirSync(out,{recursive:true});
+(async()=>{let browser;const evidence={basis:'Local Next.js producer and HTTP map; isolated cache imported from recorded real public JSON; no browser route mocking',requests:[],errors:[]};try{
+ for(const course of [1,2]){
+  const allowed=await fetch(apiOrigin+'/api/schedule?course='+course,{headers:{Origin:mapOrigin}});assert.equal(allowed.status,200);assert.equal(allowed.headers.get('Access-Control-Allow-Origin'),mapOrigin);assert.equal(allowed.headers.get('Access-Control-Allow-Credentials'),null);
+  const denied=await fetch(apiOrigin+'/api/status?course='+course,{headers:{Origin:'http://127.0.0.1:9999'}});assert.equal(denied.status,200);assert.equal(denied.headers.get('Access-Control-Allow-Origin'),null);
+  const options=await fetch(apiOrigin+'/api/schedule?course='+course,{method:'OPTIONS',headers:{Origin:mapOrigin,'Access-Control-Request-Method':'GET'}});assert.equal(options.status,204);
+ }
+ browser=await chromium.launch({channel:'chrome',headless:true});const page=await browser.newPage({viewport:{width:1440,height:900}});
+ page.on('pageerror',e=>evidence.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')evidence.errors.push(m.text());});page.on('request',r=>{if(r.url().startsWith(apiOrigin))evidence.requests.push(r.url());});
+ await page.addInitScript(apiBaseUrl=>{window.FCIM_TIMETABLE_CONFIG={apiBaseUrl};document.addEventListener('DOMContentLoaded',()=>{const badge=document.createElement('div');badge.textContent='LOCAL PRODUCER · recorded real JSON cache replay · direct browser CORS';badge.style='position:fixed;top:0;left:0;background:#fff2bf;z-index:99;font-size:10px;padding:2px 6px';document.body.appendChild(badge);});},apiOrigin);
+ await page.goto(mapOrigin+'/#floor=1');await page.waitForFunction(()=>document.querySelector('#groupSelect').options.length===41);
+ await page.locator('#groupSelect').selectOption('IA-261');await page.locator('#scheduleDate').fill('2026-10-05');await page.locator('#scheduleDate').dispatchEvent('change');await page.locator('#scheduleTime').fill('10:00');await page.locator('#scheduleTime').dispatchEvent('change');
+ assert.equal((await page.evaluate(()=>FCIM_MAP_APP.getScheduleState())).evaluation.groupActive.length,1);assert.deepEqual(await page.evaluate(()=>FCIM_MAP_APP.getLogicalSelection().spaceIds),['B3-F1-S12','B3-F1-S13']);await page.locator('#zoomReset').click();await page.screenshot({path:path.join(out,'local-producer-course1.png')});
+ await page.locator('#courseSelect').selectOption('2');await page.waitForFunction(()=>document.querySelector('#groupSelect').options.length===26);await page.locator('#groupSelect').selectOption('FAF-251');await page.locator('#scheduleTime').fill('13:40');await page.locator('#scheduleTime').dispatchEvent('change');await page.locator('#zoomReset').click();await page.screenshot({path:path.join(out,'local-producer-course2.png')});
+ await page.locator('#allMode').click();await page.waitForFunction(()=>document.querySelector('#sourceStatus').textContent.includes('Курс 1')&&document.querySelector('#sourceStatus').textContent.includes('Курс 2'));assert.ok((await page.evaluate(()=>FCIM_MAP_APP.getScheduleState())).evaluation.active.some(e=>e.courseYear===1));
+ assert.ok(evidence.requests.every(url=>/^\/api\/(schedule|status)$/.test(new URL(url).pathname)));assert.deepEqual(evidence.errors,[]);evidence.browser=browser.version();evidence.status='PASS';console.log('PASS local producer boundary, courses 1/2, direct browser CORS, composites, All Classes, zero runtime/console errors');
+}finally{fs.writeFileSync(path.join(out,'local-results.json'),JSON.stringify(evidence,null,2)+'\n');if(browser)await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

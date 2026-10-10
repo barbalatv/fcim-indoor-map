@@ -1,0 +1,1096 @@
+{
+  "task": "UI-01-FIX-B",
+  "baselineCommit": "8b0a24aec70d51178291a0fd14d1860467e5b607",
+  "baselineBranch": "codex/ui-01-fix-a-horizontal-grid",
+  "branch": "Vladimir/ui-01-fix-b-final-cleanup",
+  "baselineFiles": {
+    "UI-01-FIX-A_CHANGES.json": {
+      "sha256": "a89cf1c0f6fef43b9541565c26c49b150667f878f8e5f4765460cb1147f765ae",
+      "size": 57189,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 1012
+        }
+      ]
+    },
+    "UI-01-FIX-A_REPORT.md": {
+      "sha256": "abe9a06159fbc825b38e94d227e3c36137788a460c481c4fa5ddb82a2d8af06e",
+      "size": 20800,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 163
+        }
+      ]
+    },
+    "UI-01_CHANGES.json": {
+      "sha256": "335b08d9795231b7510dc4f9ab16cfe77fefc86cf2c47dc43e301fa1d17ec5b1",
+      "size": 210505,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 1184
+        }
+      ]
+    },
+    "UI-01_REPORT.md": {
+      "sha256": "db205da263715e961d2baae23a38352049748475d7e656427caf0ee3e09fdd5e",
+      "size": 29939,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 235
+        }
+      ]
+    },
+    "schematic-layout.js": {
+      "sha256": "716651976e9c28a6b0f854914d8275ec56aba3518f5359d83a93bb09e8400dfd",
+      "size": 8092,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 99
+        }
+      ]
+    },
+    "tests/ui01-browser.cjs": {
+      "sha256": "1205af3624d5d378417ac32797c6f977cbce19ff3a8453da03f5ef3b3c1d6775",
+      "size": 19212,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 39
+        }
+      ]
+    },
+    "tests/ui01-contract.cjs": {
+      "sha256": "d1ec449c4eadfb62dcec4c56c1191596b17bf0536a7ad7ccc682e3be4431838c",
+      "size": 3072,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 24
+        }
+      ]
+    },
+    "tests/ui01-data.cjs": {
+      "sha256": "9382ca9f639c457c1d96ca6110af8a58ffe80ebeaf7e28efe732bd04dfc4d84d",
+      "size": 8007,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 24
+        }
+      ]
+    },
+    "tests/ui01-fix-a-browser.cjs": {
+      "sha256": "ef0c78f267b80064c5545c45ce270c7532ef956afd0559074a9cdff28eb20e49",
+      "size": 12536,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 33
+        }
+      ]
+    },
+    "tests/ui01-fix-a-contract.cjs": {
+      "sha256": "f6d04840f9821feb35035f86650dd7dcf1ddfbe8fc410febba0a284112208e16",
+      "size": 2739,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 29
+        }
+      ]
+    },
+    "tests/ui01-fix-a-data.cjs": {
+      "sha256": "5850d0b141da26269209a34f02827df0f0d773266f2202e4c555ccd87b779815",
+      "size": 7230,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 21
+        }
+      ]
+    },
+    "tests/ui01-source-pixels.cjs": {
+      "sha256": "f65f02db4279071024d97cba1515d44e6b27cd16bc836deaed0f37c0c39503ef",
+      "size": 1508,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 14
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        }
+      ]
+    },
+    "FIX-01_REPORT.md": {
+      "sha256": "882d8d9d9ce99193430e838e397f4b04dde65db4fa1991c32145f2e855c2648f",
+      "size": 19172,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 153
+        }
+      ]
+    },
+    "GEO-01-FIX-A_REPORT.md": {
+      "sha256": "40af402dd6161fe6b133fc9c1b7dc3d64ad7afc8800636f1750fe95c0b07f801",
+      "size": 35350,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 237
+        }
+      ]
+    },
+    "GEO-01-FIX-B_CHANGES.json": {
+      "sha256": "8018febdfe54905079e2f5ae7a44fc3de900e968773a4c98751732766a202ae9",
+      "size": 4462,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 88
+        }
+      ]
+    },
+    "GEO-01-FIX-B_REPORT.md": {
+      "sha256": "5783da6e4be119390c6e53423764e89b8b45db073c6110f6decec6144516853e",
+      "size": 41142,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 311
+        }
+      ]
+    },
+    "GEO-01_FINDINGS.json": {
+      "sha256": "1ccf4c56ac1adbef5dfc97a13f558b0ad8b96571e5304d29f1d6a870e9e968c1",
+      "size": 503145,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 7993
+        }
+      ]
+    },
+    "GEO-01_REPORT.md": {
+      "sha256": "4fc5bba81ec6893017e1a38a9fe97780d82a43480f7d2bdddca338f6b87254bf",
+      "size": 126128,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 611
+        }
+      ]
+    },
+    "GEO-02_CHANGES.json": {
+      "sha256": "04559813726c0362399e6c3fa1063932aa1c2f355a2c7734bb09062b59e4d76e",
+      "size": 113893,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 326
+        }
+      ]
+    },
+    "GEO-02_REPORT.md": {
+      "sha256": "a0bf8353030db36dfe7f2fdcc85ee64ef365ad31bc058e815c5fe070f8424014",
+      "size": 43399,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 254
+        }
+      ]
+    },
+    "GEO-02_SPACES.json": {
+      "sha256": "57a8ea2889bc3fa76946750595be85983ec1e8bcfdecbe67e34e95e38b719f92",
+      "size": 18714,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 651
+        }
+      ]
+    },
+    "GEO-02_UNCERTAINTIES.json": {
+      "sha256": "a907c4fd710ce634e58f152c97c6371d705464466f9c48a601dfbd9a3d7cfeee",
+      "size": 2116,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 59
+        }
+      ]
+    },
+    "MAP-01_REPORT.md": {
+      "sha256": "3a0212e39cdb54ef1b5206b251d31dc9f0b4d8648ea807cb9d5a770ae5d48387",
+      "size": 25686,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 246
+        }
+      ]
+    },
+    "README.md": {
+      "sha256": "bbd5e929b4c6b3475f774872d704f88856a8ed56f60a4ce27c3260246d13a66d",
+      "size": 40227,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 348
+        }
+      ]
+    },
+    "ROOM-01A_CHANGES.json": {
+      "sha256": "8f9f8f55906dcd2a71d39b22b27171bf4a4882943dbe12a48f367052ed9d815d",
+      "size": 91850,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 315
+        }
+      ]
+    },
+    "ROOM-01A_REPORT.md": {
+      "sha256": "95b15cacbd7e6e7a15be47cfaf48598d60cf6b79fcef38051ac9b0c2f5287128",
+      "size": 37116,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 226
+        }
+      ]
+    },
+    "ROOM-01B_CHANGES.json": {
+      "sha256": "ea02540cd483415b05a44bf09a42a5cd4da2524a405a1268da715797503355a9",
+      "size": 135407,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 441
+        }
+      ]
+    },
+    "ROOM-01B_REPORT.md": {
+      "sha256": "c55106379ec57cd881df44176cb90f98db1376ab4659339256156e45a2b69ddd",
+      "size": 29872,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 232
+        }
+      ]
+    },
+    "ROOM-01C_CHANGES.json": {
+      "sha256": "b9e9885edf7dc2a0ab180c1b7b9719bf0fe3e2ce9a66a7f22b41815da9d20230",
+      "size": 80046,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 1104
+        }
+      ]
+    },
+    "ROOM-01C_REPORT.md": {
+      "sha256": "f26d3653287b88ce2b986693ae6af66f868548cb0c1ab0b8f430cf848c57c626",
+      "size": 25550,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 194
+        }
+      ]
+    },
+    "TIMETABLE_CONTRACT.md": {
+      "sha256": "36dd3f97b80dddfa0f749cacf79b60e7731d66fbe11cfb17ec8fd45e0762fd47",
+      "size": 10640,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 129
+        }
+      ]
+    },
+    "index.html": {
+      "sha256": "42234f9c57d74f088e305f06509174d2b6a92745e7a3ece654dc02bbce483051",
+      "size": 89522,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 177
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 43
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 14
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 8
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 128
+        },
+        {
+          "eol": "\n",
+          "count": 7
+        },
+        {
+          "eol": "\r\n",
+          "count": 3
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 5
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 20
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 129
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 26
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 56
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 6
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 4
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 4
+        },
+        {
+          "eol": "\r\n",
+          "count": 36
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 25
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 6
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 6
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 5
+        },
+        {
+          "eol": "\n",
+          "count": 9
+        },
+        {
+          "eol": "\r\n",
+          "count": 2
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 7
+        },
+        {
+          "eol": "\r\n",
+          "count": 2
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 2
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 13
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 5
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 2
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 4
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 2
+        },
+        {
+          "eol": "\r\n",
+          "count": 14
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 21
+        },
+        {
+          "eol": "\n",
+          "count": 4
+        },
+        {
+          "eol": "\r\n",
+          "count": 4
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 36
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 3
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 3
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 35
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 11
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 46
+        },
+        {
+          "eol": "\n",
+          "count": 7
+        },
+        {
+          "eol": "\r\n",
+          "count": 1
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 3
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 27
+        },
+        {
+          "eol": "\n",
+          "count": 3
+        },
+        {
+          "eol": "\r\n",
+          "count": 8
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 98
+        },
+        {
+          "eol": "\n",
+          "count": 1
+        },
+        {
+          "eol": "\r\n",
+          "count": 5
+        }
+      ]
+    },
+    "map-data.js": {
+      "sha256": "50a004532a920f1ae6336a871f04c860ad162de876221b2346bcf606b9d77193",
+      "size": 280843,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 2673
+        }
+      ]
+    },
+    "map-semantics.js": {
+      "sha256": "ac9f112e858df48fc52cf8d24c2b73f18dc45f937dab8618f040ae4fcedb5abb",
+      "size": 5441,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 45
+        }
+      ]
+    },
+    "room-contract.js": {
+      "sha256": "762a5370520dad858b9911cea2dc358f94fc205488926d2fa3475793cca7a6a6",
+      "size": 6063,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 72
+        }
+      ]
+    },
+    "room-identification.js": {
+      "sha256": "f3c05bb5772b05d2e1bead774d6d809598d2b367d6dd6f202fe23af7a2d9b8a9",
+      "size": 19582,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 184
+        }
+      ]
+    },
+    "schedule-engine.js": {
+      "sha256": "5a9844201990925f42b6c97bd0c831386857f4352dedd669b430807a79865eb4",
+      "size": 9529,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 122
+        }
+      ]
+    },
+    "schedule-fixture.js": {
+      "sha256": "6e6cc46215f6e51e638240481c711f5013544bc460faa048d30134b6ee410323",
+      "size": 3396,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 34
+        }
+      ]
+    },
+    "tests/fix01.cjs": {
+      "sha256": "4d7acff7a2333ff755ac25e9dc5157f73528b372f19be5df2200f1164ad2dad3",
+      "size": 20365,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 224
+        }
+      ]
+    },
+    "tests/geo01-browser.cjs": {
+      "sha256": "f3e2f897f8ffc546fe4435513d966f07c2c1eb980933139ec5131350fbdd54f7",
+      "size": 9328,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 31
+        }
+      ]
+    },
+    "tests/geo01-changes.json": {
+      "sha256": "34c5302ecc4ba62aeccc190360a35b1cde815ff2d46d2497b8708ede97ad6bf2",
+      "size": 9843,
+      "lineEndings": [
+        {
+          "eol": "\r\n",
+          "count": 41
+        }
+      ]
+    },
+    "tests/geo01-contract.cjs": {
+      "sha256": "a0c22c3ca6328e1f2f61722b770153a996e7f0f2c7db8c3804aa24e9e8291a1b",
+      "size": 2972,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 41
+        }
+      ]
+    },
+    "tests/geo01-data.cjs": {
+      "sha256": "13f282f0d670482d9f1627874606babea7c69f97d66ece2feef7c6f31c8e133a",
+      "size": 7905,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 26
+        }
+      ]
+    },
+    "tests/geo01-fix-b-browser.cjs": {
+      "sha256": "39ba38295bc642b5cd56f42f05974307b17bd0b09aacc3e2fe3bd0c83d62a4e3",
+      "size": 8734,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 25
+        }
+      ]
+    },
+    "tests/geo01-fix-b-data.cjs": {
+      "sha256": "d9618968f47c62b980db5c532179691b3653cb8696493b3b3a54aa7039a2a4e8",
+      "size": 9152,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 31
+        }
+      ]
+    },
+    "tests/geo02-browser.cjs": {
+      "sha256": "56b45d0c2f5b0312830dc6522821ce67b92fee9655d11caeb0cf40cb270f62fc",
+      "size": 13449,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 28
+        }
+      ]
+    },
+    "tests/geo02-contract.cjs": {
+      "sha256": "8ccdd341d2c375f763ea925c077a04523ca4158db5edff87a37177f60a5e917a",
+      "size": 2433,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 11
+        }
+      ]
+    },
+    "tests/geo02-data.cjs": {
+      "sha256": "9719ffd6b1dfa010740fd4dbcb2d8f195c0e3988f0451430c8b2309885f9bd17",
+      "size": 7306,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 16
+        }
+      ]
+    },
+    "tests/geo02-geometry.cjs": {
+      "sha256": "8761d20ca22cfe69950f5ddfd1ef05ecc8ec82b48dff27a5f5cd6c949019b63b",
+      "size": 2375,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 11
+        }
+      ]
+    },
+    "tests/map01-browser.cjs": {
+      "sha256": "8a406fbce1b16048b3926f4b0708474f9432c6344667851fcfc638ef8e32e419",
+      "size": 22483,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 78
+        }
+      ]
+    },
+    "tests/map01-data.cjs": {
+      "sha256": "fb1cca46de5dd13ae614893774b0e67facf9a398b4d17b804c7f95a734364496",
+      "size": 13375,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 56
+        }
+      ]
+    },
+    "tests/map01-preserve.cjs": {
+      "sha256": "5266ccac686a6deb39f8b7de8ccc84dbcd4fd31508b8bfa35f208631900672cd",
+      "size": 6943,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 35
+        }
+      ]
+    },
+    "tests/preserve-map.cjs": {
+      "sha256": "cb9563e29bedf5033ed4596518b943fe2e8425597c43ca15570c9c8785ab4812",
+      "size": 2219,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 22
+        }
+      ]
+    },
+    "tests/room01-browser.cjs": {
+      "sha256": "da0204c13095bfb4dd36c01076cbda3bf4d23c68af360ee6ceffba11f2b81011",
+      "size": 14960,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 34
+        }
+      ]
+    },
+    "tests/room01-contract.cjs": {
+      "sha256": "398e9b5579e9d3eb4125551c43327eded2a3245a6aaaedec8addf705fafdc898",
+      "size": 1708,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 7
+        }
+      ]
+    },
+    "tests/room01-data.cjs": {
+      "sha256": "3a882b6d5d2d65bc57e81dcb1b1d3e9acba48f6022b2dacf3ed5cfabda3a55bc",
+      "size": 7040,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 21
+        }
+      ]
+    },
+    "tests/room01b-browser.cjs": {
+      "sha256": "8b1765518466f7a271ef5900e4b85a88fccd1edfeeada97803f867a41afb7fbd",
+      "size": 19720,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 39
+        }
+      ]
+    },
+    "tests/room01b-contract.cjs": {
+      "sha256": "b7e1c7ebf1c0ee1f2921de17844f8c1aec6134b23f4c6b863a3c400022a8cd1f",
+      "size": 1873,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 8
+        }
+      ]
+    },
+    "tests/room01b-data.cjs": {
+      "sha256": "99be77fec6d72b054953857c05c4146c467a65caa6afa1e5502659a194167a38",
+      "size": 9878,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 27
+        }
+      ]
+    },
+    "tests/room01c-browser.cjs": {
+      "sha256": "086091b92adfb06f28ebd586239fd81cbf1c55cc2bf1fc9a531a95364a61fa91",
+      "size": 13515,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 32
+        }
+      ]
+    },
+    "tests/room01c-contract.cjs": {
+      "sha256": "62cd8a86881afaa60be63d7a8af1175e81803a44fa2c383e4c481537ee3b131d",
+      "size": 2419,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 10
+        }
+      ]
+    },
+    "tests/room01c-data.cjs": {
+      "sha256": "d520fc4a2bbbfe10e28035d4a480b425a28525030727ba62a535470e284177bc",
+      "size": 7122,
+      "lineEndings": [
+        {
+          "eol": "\n",
+          "count": 17
+        }
+      ]
+    }
+  },
+  "sourcePatches": {
+    "schematic-layout.js": [
+      {
+        "old": "(function (global) {\n  \"use strict\";\n  var revision = \"2026-10-09.UI-01-FIX-A.1\";\n  // Diagram units only. Every Y edge derives from these shared display rails.\n  var firstFloorRails = {outerTop:0, upperBottom:75, lowerTop:105, outerBottom:175};\n",
+        "new": "(function (global) {\n  \"use strict\";\n  var revision = \"2026-10-09.UI-01-FIX-B.1\";\n  var firstFloorOpenRoomCodes=[\"3-101\",\"3-103\",\"3-106\"];\n  var firstFloorRoomLabelInset={left:6,top:8};\n  // Diagram units only. Every Y edge derives from these shared display rails.\n  var firstFloorRails = {outerTop:0, upperBottom:75, lowerTop:105, outerBottom:175};\n"
+      },
+      {
+        "old": "    S12:lower(600,31), S13:lower(631,119), S14:band(930,70,rails.lowerTop,rails.lowerSplit),\n    HW:lower(247,60), LH:upper(750+liftSize,816-750-liftSize), HC:lower(490,21), HE:lower(815,115),\n    STW:lower(186,61), \"STW-INNER\":band(186+(61-westLiftSize)/2,westLiftSize,rails.lowerInsetTop,rails.lowerInsetBottom), STM:lower(750,65),\n    STEN:band(930,70,rails.outerTop,rails.upperSplit), STES:band(930,70,rails.lowerSplit,rails.outerBottom),\n    SH1:band(750,liftSize,rails.outerTop,rails.upperSplit), SH2:band(750,liftSize,rails.upperSplit,rails.upperBottom)\n  };\n  // These component IDs retain their source ownership but paint one aligned block.\n  var firstFloorEnclosures={elevators:[\"SH1\",\"SH2\"],service:[\"STEN\",\"N10\"],reception:[\"S14\",\"STES\"]};\n",
+        "new": "    S12:lower(600,31), S13:lower(631,119), S14:band(930,70,rails.lowerTop,rails.lowerSplit),\n    HW:lower(247,60), LH:upper(750+liftSize,816-750-liftSize), HC:lower(490,21), HE:lower(815,115),\n    STW:lower(186,61), STM:lower(750,65),\n    STEN:band(930,70,rails.outerTop,rails.upperSplit), STES:band(930,70,rails.lowerSplit,rails.outerBottom),\n    SH1:band(750,liftSize,rails.outerTop,rails.upperSplit), SH2:band(750,liftSize,rails.upperSplit,rails.upperBottom)\n  };\n  var westStair=firstFloorRects.STW;\n  firstFloorRects[\"STW-INNER\"]=[westStair[0]+westStair[2]-westLiftSize,westStair[1]+(westStair[3]-westLiftSize)/2,westLiftSize,westLiftSize];\n  // These component IDs retain their source ownership but paint one aligned block.\n  var firstFloorEnclosures={elevators:[\"SH1\",\"SH2\"],service:[\"STEN\",\"N10\"],reception:[\"S14\",\"STES\"]};\n"
+      },
+      {
+        "old": "      edges(polygons[s.id]).forEach(function(line){\n        var logical=schematic&&catalog.roomForSpace(s.id);\n        // No display partition within a room explicitly confirmed without one.\n        if(logical&&logical.internalPartition==='none'&&logical.spaceIds.some(function(id){return id!==s.id&&edges(polygons[id]).some(function(other){return JSON.stringify(other)===JSON.stringify(line)||JSON.stringify(other.slice().reverse())===JSON.stringify(line);});}))return;\n        walls.push(line);\n      });\n",
+        "new": "      edges(polygons[s.id]).forEach(function(line){\n        var logical=schematic&&catalog.roomForSpace(s.id);\n        // Display-only seam removal; historical partition evidence is untouched.\n        if(logical&&firstFloorOpenRoomCodes.includes(logical.roomCode)&&logical.spaceIds.some(function(id){return id!==s.id&&edges(polygons[id]).some(function(other){return JSON.stringify(other)===JSON.stringify(line)||JSON.stringify(other.slice().reverse())===JSON.stringify(line);});}))return;\n        walls.push(line);\n      });\n"
+      },
+      {
+        "old": "      rails:schematic?firstFloorRails:null, corridor:schematic?rectPolygon([0,rails.upperBottom,1000,rails.lowerTop-rails.upperBottom]):null,\n      enclosure:function(name){return schematic?enclosure(name):null;},\n      labelPoint:function(id){var p=polygons[id];if(!p)return null;var xs=p.map(function(a){return a[0];}),ys=p.map(function(a){return a[1];});return [(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2,(Math.min.apply(null,ys)+Math.max.apply(null,ys))/2];},\n      roomOutline:function(room){return schematic?rectPolygon([Math.min.apply(null,room.spaceIds.map(function(id){return polygons[id][0][0];})),polygons[room.primarySpaceId][0][1],room.spaceIds.reduce(function(w,id){return w+firstFloorRects[id.replace('B3-F1-','')][2];},0),firstFloorRects[room.primarySpaceId.replace('B3-F1-','')][3]]):null;}\n    };return api;\n  }\n  var api={revision:revision,firstFloorRects:firstFloorRects,firstFloorRails:firstFloorRails,rectPolygon:rectPolygon,deduplicate:deduplicate,createFloor:createFloor};\n  global.FCIM_SCHEMATIC_LAYOUT=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;\n})(typeof window!=='undefined'?window:globalThis);\n",
+        "new": "      rails:schematic?firstFloorRails:null, corridor:schematic?rectPolygon([0,rails.upperBottom,1000,rails.lowerTop-rails.upperBottom]):null,\n      enclosure:function(name){return schematic?enclosure(name):null;},\n      roomLabelPoint:function(room){var p=api.roomOutline(room);return p?[p[0][0]+firstFloorRoomLabelInset.left,p[0][1]+firstFloorRoomLabelInset.top]:null;},\n      labelPoint:function(id){var p=polygons[id];if(!p)return null;var xs=p.map(function(a){return a[0];}),ys=p.map(function(a){return a[1];});return [(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2,(Math.min.apply(null,ys)+Math.max.apply(null,ys))/2];},\n      roomOutline:function(room){return schematic?rectPolygon([Math.min.apply(null,room.spaceIds.map(function(id){return polygons[id][0][0];})),polygons[room.primarySpaceId][0][1],room.spaceIds.reduce(function(w,id){return w+firstFloorRects[id.replace('B3-F1-','')][2];},0),firstFloorRects[room.primarySpaceId.replace('B3-F1-','')][3]]):null;}\n    };return api;\n  }\n  var api={revision:revision,firstFloorRects:firstFloorRects,firstFloorRails:firstFloorRails,firstFloorRoomLabelInset:firstFloorRoomLabelInset,rectPolygon:rectPolygon,deduplicate:deduplicate,createFloor:createFloor};\n  global.FCIM_SCHEMATIC_LAYOUT=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;\n})(typeof window!=='undefined'?window:globalThis);\n"
+      }
+    ],
+    "tests/ui01-browser.cjs": [
+      {
+        "old": "async function exportData(){const [d]=await Promise.all([page.waitForEvent('download'),page.locator('#exportBtn').click()]);return JSON.parse(fs.readFileSync(await d.path(),'utf8'));}\nasync function upload(bindings){await page.locator('#importFile').setInputFiles({name:'room01b.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'fcim-indoor-map/room-bindings',schemaVersion:1,buildingId:map.id,mapSchemaVersion:map.schemaVersion,mapDataVersion:map.dataVersion,bindings}))});await page.waitForTimeout(150);}\nasync function artwork(source,n,box,name){const [, ,vw,vh]=box.split(' ').map(Number),width=vw>500?2080:Math.round(680*vw/vh),height=vw>500?440:680;const p=await browser.newPage({viewport:{width:Math.max(2080,width),height:Math.max(900,height)}});await p.goto(pathToFileURL(path.join(source,'index.html')).href+'#floor='+n);await p.locator('#scheduleDate').fill('2027-06-28');await p.locator('#scheduleDate').dispatchEvent('change');await p.locator('#floorNav button').filter({hasText:new RegExp('^'+n+'$')}).click();const svg=await p.locator('#map').evaluate((s,{box,width,height})=>{const c=s.cloneNode(true),a=[s,...s.querySelectorAll('*')],b=[c,...c.querySelectorAll('*')];a.forEach((o,i)=>{const st=getComputedStyle(o);for(const k of ['fill','stroke','stroke-width','stroke-dasharray','opacity','font-family','font-size','font-weight','text-anchor','pointer-events','paint-order','vector-effect','stroke-linecap','stroke-linejoin'])b[i].style.setProperty(k,st.getPropertyValue(k));});c.setAttribute('width',String(width));c.setAttribute('height',String(height));c.setAttribute('viewBox',box);c.setAttribute('xmlns','http://www.w3.org/2000/svg');c.style=`width:${width}px;height:${height}px;background:white;overflow:hidden`;return c.outerHTML;},{box,width,height});await p.setContent('<body style=\"margin:0\">'+svg+'</body>');const png=await p.locator('svg').screenshot();if(name){fs.writeFileSync(path.join(out,name+'.svg'),svg);fs.writeFileSync(path.join(out,name+'.png'),png);}await p.close();return png;}\nconst {PNG}=require(process.env.PNGJS_MODULE||'C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pngjs');\nconst catalog=ident.createCatalog(map,require('../room-contract.js').createParser(map,'3')),display=layout.createFloor(map.floors[0],catalog);\n",
+        "new": "async function exportData(){const [d]=await Promise.all([page.waitForEvent('download'),page.locator('#exportBtn').click()]);return JSON.parse(fs.readFileSync(await d.path(),'utf8'));}\nasync function upload(bindings){await page.locator('#importFile').setInputFiles({name:'room01b.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'fcim-indoor-map/room-bindings',schemaVersion:1,buildingId:map.id,mapSchemaVersion:map.schemaVersion,mapDataVersion:map.dataVersion,bindings}))});await page.waitForTimeout(150);}\nasync function artwork(source,n,box,name){const [, ,vw,vh]=box.split(' ').map(Number),width=vw>500?2080:Math.round(680*vw/vh),height=vw>500?440:680;const p=await browser.newPage({viewport:{width:Math.max(2080,width),height:Math.max(900,height)}});await p.goto(pathToFileURL(path.join(source,'index.html')).href+'#floor='+n);await p.locator('#scheduleDate').fill('2027-06-28');await p.locator('#scheduleDate').dispatchEvent('change');await p.locator('#floorNav button').filter({hasText:new RegExp('^'+n+'$')}).click();const svg=await p.locator('#map').evaluate((s,{box,width,height})=>{const c=s.cloneNode(true),a=[s,...s.querySelectorAll('*')],b=[c,...c.querySelectorAll('*')];a.forEach((o,i)=>{const st=getComputedStyle(o);for(const k of ['fill','stroke','stroke-width','stroke-dasharray','opacity','font-family','font-size','font-weight','text-anchor','dominant-baseline','pointer-events','paint-order','vector-effect','stroke-linecap','stroke-linejoin'])b[i].style.setProperty(k,st.getPropertyValue(k));});c.setAttribute('width',String(width));c.setAttribute('height',String(height));c.setAttribute('viewBox',box);c.setAttribute('xmlns','http://www.w3.org/2000/svg');c.style=`width:${width}px;height:${height}px;background:white;overflow:hidden`;return c.outerHTML;},{box,width,height});await p.setContent('<body style=\"margin:0\">'+svg+'</body>');const png=await p.locator('svg').screenshot();if(name){fs.writeFileSync(path.join(out,name+'.svg'),svg);fs.writeFileSync(path.join(out,name+'.png'),png);}await p.close();return png;}\nconst {PNG}=require(process.env.PNGJS_MODULE||'C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pngjs');\nconst catalog=ident.createCatalog(map,require('../room-contract.js').createParser(map,'3')),display=layout.createFloor(map.floors[0],catalog);\n"
+      }
+    ],
+    "tests/ui01-data.cjs": [
+      {
+        "old": "test('Two elevator squares share one edge and fill the aligned upper band enclosure',()=>{for(const id of ['SH1','SH2'])assert.equal(rect(id)[2],rect(id)[3]);assert.deepEqual(rect('SH1'),[750,0,37.5,37.5]);assert.deepEqual(rect('SH2'),[750,37.5,37.5,37.5]);});\ntest('Fifteen identities resolve without display coordinates influencing assignment',()=>{const resolve=room.createResolver(map,parse,catalog);assert.equal(catalog.mappings.length,15);for(const r of catalog.mappings){const result=resolve({room:r.roomCode,source:'timetable',buildingId:map.id});assert.equal(result.status,'mapped');assert.deepEqual(result.spaceIds,r.spaceIds);assert.ok(r.spaceIds.every(id=>d.polygon(id)));}});\ntest('101 has no display partition; 103 and 106 retain full-height partitions without door gaps',()=>{const crosses=(x,lo,hi)=>d.walls.some(([a,b])=>a[0]===x&&b[0]===x&&Math.min(a[1],b[1])<=lo&&Math.max(a[1],b[1])>=hi);assert.equal(crosses(631,105,175),false);assert.ok(crosses(570,105,175));assert.ok(crosses(540,0,75));});\ntest('Logical room rectangles cover every component with one ownership from the catalog',()=>{for(const r of catalog.mappings){const p=d.roomOutline(r);geometry.valid(p);assert.equal(Math.abs(geometry.signedArea(p)),r.spaceIds.reduce((n,id)=>n+Math.abs(geometry.signedArea(d.polygon(id))),0));r.spaceIds.forEach(id=>d.polygon(id).forEach(pt=>assert.ok(geometry.inside(pt,p))));}});\ntest('No duplicate or partially overlapping collinear wall segments on any floor',()=>{for(const floor of map.floors){const ls=layout.createFloor(floor,catalog).walls;for(let i=0;i<ls.length;i++)for(const [c,e] of ls.slice(i+1)){const [a,b]=ls[i],cross=(p,q,r)=>(q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0]);if(Math.abs(cross(a,b,c))>1e-4||Math.abs(cross(a,b,e))>1e-4)continue;const axis=Math.abs(a[0]-b[0])>Math.abs(a[1]-b[1])?0:1;assert.ok(Math.min(Math.max(a[axis],b[axis]),Math.max(c[axis],e[axis]))-Math.max(Math.min(a[axis],b[axis]),Math.min(c[axis],e[axis]))<1e-5,'floor '+floor.level);}}});\n",
+        "new": "test('Two elevator squares share one edge and fill the aligned upper band enclosure',()=>{for(const id of ['SH1','SH2'])assert.equal(rect(id)[2],rect(id)[3]);assert.deepEqual(rect('SH1'),[750,0,37.5,37.5]);assert.deepEqual(rect('SH2'),[750,37.5,37.5,37.5]);});\ntest('Fifteen identities resolve without display coordinates influencing assignment',()=>{const resolve=room.createResolver(map,parse,catalog);assert.equal(catalog.mappings.length,15);for(const r of catalog.mappings){const result=resolve({room:r.roomCode,source:'timetable',buildingId:map.id});assert.equal(result.status,'mapped');assert.deepEqual(result.spaceIds,r.spaceIds);assert.ok(r.spaceIds.every(id=>d.polygon(id)));}});\ntest('101, 103 and 106 have no visible internal partitions; their source evidence is preserved',()=>{const crosses=(x,lo,hi)=>d.walls.some(([a,b])=>a[0]===x&&b[0]===x&&Math.min(a[1],b[1])<=lo&&Math.max(a[1],b[1])>=hi);assert.equal(crosses(631,105,175),false);assert.equal(crosses(570,105,175),false);assert.equal(crosses(540,0,75),false);});\ntest('Logical room rectangles cover every component with one ownership from the catalog',()=>{for(const r of catalog.mappings){const p=d.roomOutline(r);geometry.valid(p);assert.equal(Math.abs(geometry.signedArea(p)),r.spaceIds.reduce((n,id)=>n+Math.abs(geometry.signedArea(d.polygon(id))),0));r.spaceIds.forEach(id=>d.polygon(id).forEach(pt=>assert.ok(geometry.inside(pt,p))));}});\ntest('No duplicate or partially overlapping collinear wall segments on any floor',()=>{for(const floor of map.floors){const ls=layout.createFloor(floor,catalog).walls;for(let i=0;i<ls.length;i++)for(const [c,e] of ls.slice(i+1)){const [a,b]=ls[i],cross=(p,q,r)=>(q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0]);if(Math.abs(cross(a,b,c))>1e-4||Math.abs(cross(a,b,e))>1e-4)continue;const axis=Math.abs(a[0]-b[0])>Math.abs(a[1]-b[1])?0:1;assert.ok(Math.min(Math.max(a[axis],b[axis]),Math.max(c[axis],e[axis]))-Math.max(Math.min(a[axis],b[axis]),Math.min(c[axis],e[axis]))<1e-5,'floor '+floor.level);}}});\n"
+      }
+    ],
+    "tests/ui01-fix-a-browser.cjs": [
+      {
+        "old": "async function exportData(){const [d]=await Promise.all([page.waitForEvent('download'),page.locator('#exportBtn').click()]);return JSON.parse(fs.readFileSync(await d.path(),'utf8'));}\nasync function upload(bindings){await page.locator('#importFile').setInputFiles({name:'room01b.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'fcim-indoor-map/room-bindings',schemaVersion:1,buildingId:map.id,mapSchemaVersion:map.schemaVersion,mapDataVersion:map.dataVersion,bindings}))});await page.waitForTimeout(150);}\nasync function artwork(source,n,box,name){const [, ,vw,vh]=box.split(' ').map(Number),width=vw>500?2080:Math.round(680*vw/vh),height=vw>500?440:680;const p=await browser.newPage({viewport:{width:Math.max(2080,width),height:Math.max(900,height)}});await p.goto(pathToFileURL(path.join(source,'index.html')).href+'#floor='+n);await p.locator('#scheduleDate').fill('2027-06-28');await p.locator('#scheduleDate').dispatchEvent('change');await p.locator('#floorNav button').filter({hasText:new RegExp('^'+n+'$')}).click();const svg=await p.locator('#map').evaluate((s,{box,width,height})=>{const c=s.cloneNode(true),a=[s,...s.querySelectorAll('*')],b=[c,...c.querySelectorAll('*')];a.forEach((o,i)=>{const st=getComputedStyle(o);for(const k of ['fill','stroke','stroke-width','stroke-dasharray','opacity','font-family','font-size','font-weight','text-anchor','pointer-events','paint-order','vector-effect','stroke-linecap','stroke-linejoin'])b[i].style.setProperty(k,st.getPropertyValue(k));});c.setAttribute('width',String(width));c.setAttribute('height',String(height));c.setAttribute('viewBox',box);c.setAttribute('xmlns','http://www.w3.org/2000/svg');c.style=`width:${width}px;height:${height}px;background:white;overflow:hidden`;return c.outerHTML;},{box,width,height});await p.setContent('<body style=\"margin:0\">'+svg+'</body>');const png=await p.locator('svg').screenshot();if(name){fs.writeFileSync(path.join(out,name+'.svg'),svg);fs.writeFileSync(path.join(out,name+'.png'),png);}await p.close();return png;}\nconst {PNG}=require(process.env.PNGJS_MODULE||'C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pngjs');\nconst catalog=ident.createCatalog(map,require('../room-contract.js').createParser(map,'3')),display=layout.createFloor(map.floors[0],catalog);\n",
+        "new": "async function exportData(){const [d]=await Promise.all([page.waitForEvent('download'),page.locator('#exportBtn').click()]);return JSON.parse(fs.readFileSync(await d.path(),'utf8'));}\nasync function upload(bindings){await page.locator('#importFile').setInputFiles({name:'room01b.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'fcim-indoor-map/room-bindings',schemaVersion:1,buildingId:map.id,mapSchemaVersion:map.schemaVersion,mapDataVersion:map.dataVersion,bindings}))});await page.waitForTimeout(150);}\nasync function artwork(source,n,box,name){const [, ,vw,vh]=box.split(' ').map(Number),width=vw>500?2080:Math.round(680*vw/vh),height=vw>500?440:680;const p=await browser.newPage({viewport:{width:Math.max(2080,width),height:Math.max(900,height)}});await p.goto(pathToFileURL(path.join(source,'index.html')).href+'#floor='+n);await p.locator('#scheduleDate').fill('2027-06-28');await p.locator('#scheduleDate').dispatchEvent('change');await p.locator('#floorNav button').filter({hasText:new RegExp('^'+n+'$')}).click();const svg=await p.locator('#map').evaluate((s,{box,width,height})=>{const c=s.cloneNode(true),a=[s,...s.querySelectorAll('*')],b=[c,...c.querySelectorAll('*')];a.forEach((o,i)=>{const st=getComputedStyle(o);for(const k of ['fill','stroke','stroke-width','stroke-dasharray','opacity','font-family','font-size','font-weight','text-anchor','dominant-baseline','pointer-events','paint-order','vector-effect','stroke-linecap','stroke-linejoin'])b[i].style.setProperty(k,st.getPropertyValue(k));});c.setAttribute('width',String(width));c.setAttribute('height',String(height));c.setAttribute('viewBox',box);c.setAttribute('xmlns','http://www.w3.org/2000/svg');c.style=`width:${width}px;height:${height}px;background:white;overflow:hidden`;return c.outerHTML;},{box,width,height});await p.setContent('<body style=\"margin:0\">'+svg+'</body>');const png=await p.locator('svg').screenshot();if(name){fs.writeFileSync(path.join(out,name+'.svg'),svg);fs.writeFileSync(path.join(out,name+'.png'),png);}await p.close();return png;}\nconst {PNG}=require(process.env.PNGJS_MODULE||'C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/pngjs');\nconst catalog=ident.createCatalog(map,require('../room-contract.js').createParser(map,'3')),display=layout.createFloor(map.floors[0],catalog);\n"
+      },
+      {
+        "old": "async function walls(){return page.locator('.map-walls').evaluate(e=>({width:getComputedStyle(e).strokeWidth,color:getComputedStyle(e).stroke,vector:getComputedStyle(e).vectorEffect,cap:getComputedStyle(e).strokeLinecap,events:getComputedStyle(e).pointerEvents}));}\n(async()=>{try{browser=await chromium.launch({channel:'chrome',headless:true});\nawait test('All visible F1 rectangles obey main bands or the declared nested cell rails',async()=>{await fresh();const actual=await page.locator('[data-display-rect]').evaluateAll(es=>es.map(e=>[e.closest('[data-id]').dataset.id,...['y','height'].map(k=>+e.getAttribute(k))]));for(const [id,y,h] of actual){const suffix=id.replace('B3-F1-','');const expected=['SH1','STEN'].includes(suffix)?[0,37.5]:['SH2','N10'].includes(suffix)?[37.5,37.5]:suffix==='S14'?[105,35]:suffix==='STES'?[140,35]:suffix==='STW-INNER'?[122.5,35]:suffix.startsWith('N')||suffix==='LH'?[0,75]:[105,70];assert.deepEqual([y,h],expected,id);}return {rectangles:actual.length};});\nawait test('Cafe, reception, WC and all fifteen labels fit inside their display enclosures with margins',async()=>{await fresh();const labels=await page.locator('#layerLabels .lbl:not(.demo-label)').evaluateAll(es=>es.map(e=>({room:e.dataset.roomLabel,facility:e.dataset.facilityLabel,text:e.textContent,box:[e.getBBox().x,e.getBBox().y,e.getBBox().width,e.getBBox().height],x:+e.getAttribute('x'),y:+e.getAttribute('y')})));assert.equal(labels.filter(l=>l.room).length,15);assert.equal(new Set(labels.filter(l=>l.room).map(l=>l.room)).size,15);for(const l of labels){let p;if(l.room){const r=catalog.mappings.find(r=>r.roomCode===l.room);p=r.internalPartition==='none'?display.roomOutline(r):display.polygon(r.primarySpaceId);}else {if(l.facility==='reception')p=display.enclosure('reception');else {const ids=l.facility==='toilet'?['B3-F1-S06','B3-F1-S08']:['B3-F1-N09'];p=ids.map(id=>display.polygon(id)).find(p=>Math.abs((p[0][0]+p[1][0])/2-l.x)<.01);}}assert.ok(p,l.text);const xs=p.map(p=>p[0]),ys=p.map(p=>p[1]),[x,y,w,h]=l.box;assert.ok(x>=Math.min(...xs)+1&&x+w<=Math.max(...xs)-1,l.text+' horizontal margins');assert.ok(y>=Math.min(...ys)+1&&y+h<=Math.max(...ys)-1,l.text+' vertical margins');}assert.deepEqual(labels.find(l=>l.facility==='reception').y,140);assert.deepEqual(labels.find(l=>l.facility==='cafe').y,37.5);return {labels:labels.length};});\nawait test('New elevator width and nested west lift corners hit the displayed cell and preserve status',async()=>{await fresh();for(const id of ['SH1','SH2','STW-INNER']){await select('B3-F1-'+id);const q=shape('B3-F1-'+id);for(const pt of [[q[0][0]+1,q[0][1]+1],[q[2][0]-1,q[2][1]-1]]){const h=await point(pt);assert.equal(await page.evaluate(h=>document.elementFromPoint(h.x,h.y)?.closest('[data-id]')?.dataset.id,h),'B3-F1-'+id);await page.mouse.click(h.x,h.y);assert.match(await page.locator('#panel').innerText(),id==='STW-INNER'?/reported-out-of-service/:/operation: unknown/);}}});\nawait test('Both reception halves select one public facility and one full-band highlight',async()=>{await fresh();for(const pt of [[931,106],[999,174]]){await select('B3-F1-S14');const h=await point(pt);await page.mouse.click(h.x,h.y);assert.equal(await page.locator('#panel h3').first().innerText(),'\u0412\u0430\u0445\u0442\u0430');const p=await page.locator('#layerLogicalHighlights polygon').evaluate(e=>[...e.points].map(p=>[p.x,p.y]));assert.deepEqual(p,[[930,105],[1000,105],[1000,175],[930,175]]);}assert.equal(await page.locator('[data-facility-label=\"reception\"]').count(),1);});\n",
+        "new": "async function walls(){return page.locator('.map-walls').evaluate(e=>({width:getComputedStyle(e).strokeWidth,color:getComputedStyle(e).stroke,vector:getComputedStyle(e).vectorEffect,cap:getComputedStyle(e).strokeLinecap,events:getComputedStyle(e).pointerEvents}));}\n(async()=>{try{browser=await chromium.launch({channel:'chrome',headless:true});\nawait test('All visible F1 rectangles obey main bands or the declared nested cell rails',async()=>{await fresh();const actual=await page.locator('[data-id][data-display-rect],[data-id] > [data-display-rect]').evaluateAll(es=>es.map(e=>[e.closest('[data-id]').dataset.id,...['y','height'].map(k=>+e.getAttribute(k))]));for(const [id,y,h] of actual){const suffix=id.replace('B3-F1-','');const expected=['SH1','STEN'].includes(suffix)?[0,37.5]:['SH2','N10'].includes(suffix)?[37.5,37.5]:suffix==='S14'?[105,35]:suffix==='STES'?[140,35]:suffix==='STW-INNER'?[122.5,35]:suffix.startsWith('N')||suffix==='LH'?[0,75]:[105,70];assert.deepEqual([y,h],expected,id);}return {rectangles:actual.length};});\nawait test('Cafe, reception, WC and all fifteen labels fit inside their display enclosures with margins',async()=>{await fresh();const labels=await page.locator('#layerLabels .lbl:not(.demo-label)').evaluateAll(es=>es.map(e=>({room:e.dataset.roomLabel,facility:e.dataset.facilityLabel,text:e.textContent,box:[e.getBBox().x,e.getBBox().y,e.getBBox().width,e.getBBox().height],x:+e.getAttribute('x'),y:+e.getAttribute('y')})));assert.equal(labels.filter(l=>l.room).length,15);assert.equal(new Set(labels.filter(l=>l.room).map(l=>l.room)).size,15);for(const l of labels){let p;if(l.room){const r=catalog.mappings.find(r=>r.roomCode===l.room);p=display.roomOutline(r);}else {if(l.facility==='reception')p=display.enclosure('reception');else {const ids=l.facility==='toilet'?['B3-F1-S06','B3-F1-S08']:['B3-F1-N09'];p=ids.map(id=>display.polygon(id)).find(p=>Math.abs((p[0][0]+p[1][0])/2-l.x)<.01);}}assert.ok(p,l.text);const xs=p.map(p=>p[0]),ys=p.map(p=>p[1]),[x,y,w,h]=l.box;assert.ok(x>=Math.min(...xs)+1&&x+w<=Math.max(...xs)-1,l.text+' horizontal margins');assert.ok(y>=Math.min(...ys)+1&&y+h<=Math.max(...ys)-1,l.text+' vertical margins');}assert.deepEqual(labels.find(l=>l.facility==='reception').y,140);assert.deepEqual(labels.find(l=>l.facility==='cafe').y,37.5);return {labels:labels.length};});\nawait test('New elevator width and nested west lift corners hit the displayed cell and preserve status',async()=>{await fresh();for(const id of ['SH1','SH2','STW-INNER']){await select('B3-F1-'+id);const q=shape('B3-F1-'+id);for(const pt of [[q[0][0]+1,q[0][1]+1],[q[2][0]-1,q[2][1]-1]]){const h=await point(pt);assert.equal(await page.evaluate(h=>document.elementFromPoint(h.x,h.y)?.closest('[data-id]')?.dataset.id,h),'B3-F1-'+id);await page.mouse.click(h.x,h.y);assert.match(await page.locator('#panel').innerText(),id==='STW-INNER'?/reported-out-of-service/:/operation: unknown/);}}});\nawait test('Both reception halves select one public facility and one full-band highlight',async()=>{await fresh();for(const pt of [[931,106],[999,174]]){await select('B3-F1-S14');const h=await point(pt);await page.mouse.click(h.x,h.y);assert.equal(await page.locator('#panel h3').first().innerText(),'\u0412\u0430\u0445\u0442\u0430');const p=await page.locator('#layerLogicalHighlights polygon').evaluate(e=>[...e.points].map(p=>[p.x,p.y]));assert.deepEqual(p,[[930,105],[1000,105],[1000,175],[930,175]]);}assert.equal(await page.locator('[data-facility-label=\"reception\"]').count(),1);});\n"
+      }
+    ],
+    "tests/ui01-fix-a-contract.cjs": [
+      {
+        "old": "const changed=['index.html','schematic-layout.js','tests/ui01-contract.cjs','tests/ui01-data.cjs','tests/ui01-browser.cjs'];\nfunction restoreUI01(file,bytes){\n const m=require('../UI-01-FIX-A_CHANGES.json'),patches=m.sourcePatches[file];if(!patches)return bytes;\n let text=bytes.toString('utf8').replaceAll('\\r\\n','\\n');\n",
+        "new": "const changed=['index.html','schematic-layout.js','tests/ui01-contract.cjs','tests/ui01-data.cjs','tests/ui01-browser.cjs'];\nfunction restoreUI01(file,bytes){\n bytes=require('./ui01-fix-b-contract.cjs').restoreFixA(file,bytes);\n const m=require('../UI-01-FIX-A_CHANGES.json'),patches=m.sourcePatches[file];if(!patches)return bytes;\n let text=bytes.toString('utf8').replaceAll('\\r\\n','\\n');\n"
+      },
+      {
+        "old": " assert.deepEqual(Object.keys(m.sourcePatches).sort(),changed.slice().sort());\n const additions=['UI-01-FIX-A_CHANGES.json','UI-01-FIX-A_REPORT.md','tests/ui01-fix-a-contract.cjs','tests/ui01-fix-a-data.cjs','tests/ui01-fix-a-browser.cjs'];\n const files=execFileSync('git',['ls-files','--cached','--others','--exclude-standard'],{cwd:root,encoding:'utf8'}).trim().split('\\n');\n assert.deepEqual(files.sort(),[...Object.keys(m.baselineFiles),...additions].sort(),'no unrelated writes or deletions');\n for(const file of Object.keys(m.baselineFiles))baselineBytes(file);\n for(const [file,h] of Object.entries(m.currentSources))assert.equal(hash(Buffer.from(fs.readFileSync(path.join(root,file),'utf8').replaceAll('\\r\\n','\\n'))),h,file+' recorded FIX-A source');\n return {baselineFiles:57,changedFiles:changed,protectedUnchangedFiles:52};\n}\n",
+        "new": " assert.deepEqual(Object.keys(m.sourcePatches).sort(),changed.slice().sort());\n const additions=['UI-01-FIX-A_CHANGES.json','UI-01-FIX-A_REPORT.md','tests/ui01-fix-a-contract.cjs','tests/ui01-fix-a-data.cjs','tests/ui01-fix-a-browser.cjs'];\n const files=require('./ui01-fix-b-contract.cjs').baselineFileList();\n assert.deepEqual(files.sort(),[...Object.keys(m.baselineFiles),...additions].sort(),'no unrelated writes or deletions');\n for(const file of Object.keys(m.baselineFiles))baselineBytes(file);\n for(const [file,h] of Object.entries(m.currentSources))assert.equal(hash(Buffer.from(require('./ui01-fix-b-contract.cjs').restoreFixA(file,fs.readFileSync(path.join(root,file))).toString('utf8').replaceAll('\\r\\n','\\n'))),h,file+' recorded FIX-A source');\n return {baselineFiles:57,changedFiles:changed,protectedUnchangedFiles:52};\n}\n"
+      }
+    ],
+    "tests/ui01-fix-a-data.cjs": [
+      {
+        "old": "test('Elevator squares jointly fill the complete upper enclosure and meet the adjoining hall exactly',()=>{assert.deepEqual(rect('SH1'),[750,0,37.5,37.5]);assert.deepEqual(rect('SH2'),[750,37.5,37.5,37.5]);for(const id of ['SH1','SH2'])assert.equal(rect(id)[2],rect(id)[3]);assert.equal(rect('LH')[0],787.5);assert.equal(rect('LH')[0]+rect('LH')[2],rect('N09')[0]);assert.equal(rect('SH2')[1]+rect('SH2')[3],75);});\ntest('Reception and service internal halves tile aligned envelopes with no painted internal seam',()=>{for(const [a,b,key,y] of [['STEN','N10','service',37.5],['S14','STES','reception',140]]){const p=rect(a),q=rect(b);assert.equal(p[0],q[0]);assert.equal(p[2],q[2]);assert.equal(p[1]+p[3],q[1]);assert.equal(p[2]*p[3]+q[2]*q[3],Math.abs(geometry.signedArea(display.enclosure(key))));assert.ok(!display.walls.some(([a,b])=>a[1]===y&&b[1]===y&&Math.min(a[0],b[0])===930&&Math.max(a[0],b[0])===1000));}});\ntest('Embedded western lift is a centered square on explicit quarter-band inset rails',()=>{const [x,y,w,h]=rect('STW-INNER'),[sx,sy,sw,sh]=rect('STW');assert.equal(w,h);assert.equal(x+w/2,sx+sw/2);assert.equal(y+h/2,sy+sh/2);assert.equal(y,122.5);assert.equal(y+h,157.5);assert.ok(x>sx&&x+w<sx+sw);});\ntest('Exactly two WC regions and all public label anchors fit their display bands',()=>{assert.equal(display.polygon('B3-F1-S07'),null);assert.deepEqual(rect('S06'),[427,105,31.5,70]);assert.deepEqual(rect('S08'),[458.5,105,31.5,70]);for(const id of Object.keys(display.polygons))assert.ok(geometry.inside(display.labelPoint(id),display.polygon(id)),id);assert.ok(geometry.inside([965,140],display.enclosure('reception')));assert.deepEqual(display.labelPoint('B3-F1-N09'),[873,37.5]);});\ntest('Composite highlight rectangles keep complete ownership, intended divider and common rails',()=>{for(const r of catalog.mappings){const p=display.roomOutline(r);assert.equal(Math.abs(geometry.signedArea(p)),r.spaceIds.reduce((a,id)=>a+Math.abs(geometry.signedArea(display.polygon(id))),0));for(const id of r.spaceIds)display.polygon(id).forEach(pt=>assert.ok(geometry.inside(pt,p)));}const wall=x=>display.walls.some(([a,b])=>a[0]===x&&b[0]===x);assert.equal(wall(631),false);assert.ok(wall(570)&&wall(540));});\ntest('Upper floor outline, polygons and wall network equal the completed UI-01 display baseline',()=>{const vm=require('vm'),sandbox={module:{exports:{}}};vm.runInNewContext(gate.baselineBytes('schematic-layout.js').toString(),sandbox);for(const f of map.floors.slice(1)){const before=sandbox.module.exports.createFloor(f,catalog),after=layout.createFloor(f,catalog);for(const key of ['outline','polygons','walls','displayMode'])assert.deepEqual(JSON.parse(JSON.stringify(after[key])),JSON.parse(JSON.stringify(before[key])),'floor '+f.level+' '+key);}});\nconst counts=results.reduce((a,r)=>(a[r.status]=(a[r.status]||0)+1,a),{});if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify({counts,results},null,2)+'\\n');console.log('TOTAL',JSON.stringify(counts));process.exitCode=counts.FAIL?1:0;\n",
+        "new": "test('Elevator squares jointly fill the complete upper enclosure and meet the adjoining hall exactly',()=>{assert.deepEqual(rect('SH1'),[750,0,37.5,37.5]);assert.deepEqual(rect('SH2'),[750,37.5,37.5,37.5]);for(const id of ['SH1','SH2'])assert.equal(rect(id)[2],rect(id)[3]);assert.equal(rect('LH')[0],787.5);assert.equal(rect('LH')[0]+rect('LH')[2],rect('N09')[0]);assert.equal(rect('SH2')[1]+rect('SH2')[3],75);});\ntest('Reception and service internal halves tile aligned envelopes with no painted internal seam',()=>{for(const [a,b,key,y] of [['STEN','N10','service',37.5],['S14','STES','reception',140]]){const p=rect(a),q=rect(b);assert.equal(p[0],q[0]);assert.equal(p[2],q[2]);assert.equal(p[1]+p[3],q[1]);assert.equal(p[2]*p[3]+q[2]*q[3],Math.abs(geometry.signedArea(display.enclosure(key))));assert.ok(!display.walls.some(([a,b])=>a[1]===y&&b[1]===y&&Math.min(a[0],b[0])===930&&Math.max(a[0],b[0])===1000));}});\ntest('Embedded western lift is a right-aligned square centered vertically on quarter-band inset rails',()=>{const [x,y,w,h]=rect('STW-INNER'),[sx,sy,sw,sh]=rect('STW');assert.equal(w,h);assert.equal(x+w,sx+sw);assert.equal(y+h/2,sy+sh/2);assert.equal(y,122.5);assert.equal(y+h,157.5);assert.ok(x>sx&&x+w===sx+sw);});\ntest('Exactly two WC regions and all public label anchors fit their display bands',()=>{assert.equal(display.polygon('B3-F1-S07'),null);assert.deepEqual(rect('S06'),[427,105,31.5,70]);assert.deepEqual(rect('S08'),[458.5,105,31.5,70]);for(const id of Object.keys(display.polygons))assert.ok(geometry.inside(display.labelPoint(id),display.polygon(id)),id);assert.ok(geometry.inside([965,140],display.enclosure('reception')));assert.deepEqual(display.labelPoint('B3-F1-N09'),[873,37.5]);});\ntest('Composite highlight rectangles keep complete ownership, open interiors and common rails',()=>{for(const r of catalog.mappings){const p=display.roomOutline(r);assert.equal(Math.abs(geometry.signedArea(p)),r.spaceIds.reduce((a,id)=>a+Math.abs(geometry.signedArea(display.polygon(id))),0));for(const id of r.spaceIds)display.polygon(id).forEach(pt=>assert.ok(geometry.inside(pt,p)));}const wall=(x,lo,hi)=>display.walls.some(([a,b])=>a[0]===x&&b[0]===x&&Math.min(a[1],b[1])<hi&&Math.max(a[1],b[1])>lo);assert.equal(wall(631,105,175),false);assert.equal(wall(570,105,175),false);assert.equal(wall(540,0,75),false);});\ntest('Upper floor outline, polygons and wall network equal the completed UI-01 display baseline',()=>{const vm=require('vm'),sandbox={module:{exports:{}}};vm.runInNewContext(gate.baselineBytes('schematic-layout.js').toString(),sandbox);for(const f of map.floors.slice(1)){const before=sandbox.module.exports.createFloor(f,catalog),after=layout.createFloor(f,catalog);for(const key of ['outline','polygons','walls','displayMode'])assert.deepEqual(JSON.parse(JSON.stringify(after[key])),JSON.parse(JSON.stringify(before[key])),'floor '+f.level+' '+key);}});\nconst counts=results.reduce((a,r)=>(a[r.status]=(a[r.status]||0)+1,a),{});if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify({counts,results},null,2)+'\\n');console.log('TOTAL',JSON.stringify(counts));process.exitCode=counts.FAIL?1:0;\n"
+      }
+    ],
+    "index.html": [
+      {
+        "old": "  /* UI-01: fills/hit regions and the deduplicated wall network are separate. */\n  .outline,.corr{fill:var(--corridor);stroke:none}\n  .sp,.vert .box,.lift-cell{stroke:none;stroke-dasharray:none;cursor:pointer}\n  .sp{transition:fill .12s}\n  .sp,.vert{-webkit-tap-highlight-color:transparent}\n  .sp:focus,.vert:focus{outline:none}\n  .sp:focus-visible,.vert:focus-visible{outline:2px solid var(--sel);outline-offset:-4px}\n  .sp.t-unknown,.sp.t-classroom,.sp.t-office,.sp.bound{fill:var(--room)}\n  .sp.t-service{fill:var(--room-service)}\n  .sp.t-circulation{fill:var(--corridor)}\n",
+        "new": "  /* UI-01: fills/hit regions and the deduplicated wall network are separate. */\n  .outline,.corr{fill:var(--corridor);stroke:none}\n  .sp,.vert .box,.lift-cell,.logical-fill{stroke:none;stroke-dasharray:none;cursor:pointer}\n  .sp{transition:fill .12s}\n  .sp,.vert{-webkit-tap-highlight-color:transparent}\n  .sp:focus,.vert:focus{outline:none}\n  .sp:focus-visible,.vert:focus-visible{outline:2px solid var(--sel);outline-offset:-4px}\n  .sp.t-unknown,.sp.t-classroom,.sp.t-office,.sp.bound,.logical-fill{fill:var(--room)}\n  .sp.t-service{fill:var(--room-service)}\n  .sp.t-circulation{fill:var(--corridor)}\n"
+      },
+      {
+        "old": "  .vert.integrated-hidden{pointer-events:none}\n  .sp:hover{fill:#c7dfce}\n  .sp.sel{fill:var(--sel-fill)!important}\n  .sp.scheduled-other{fill:var(--scheduled)}\n  .sp.scheduled-mine{fill:var(--mine)}\n  .sp.schedule-next{fill:#eefbf6}\n  .sp.sel.scheduled-other{fill:var(--scheduled)!important}\n  .sp.sel.scheduled-mine{fill:var(--mine)!important}\n  .sp.sel.schedule-next{fill:#eefbf6!important}\n  .sp.flash{animation:flash 1.1s ease-in-out 2}\n  @keyframes flash{50%{fill:#9ddcc5}}\n",
+        "new": "  .vert.integrated-hidden{pointer-events:none}\n  .sp:hover{fill:#c7dfce}\n  .sp.sel,.logical-fill.sel{fill:var(--sel-fill)!important}\n  .sp.scheduled-other,.logical-fill.scheduled-other{fill:var(--scheduled)}\n  .sp.scheduled-mine,.logical-fill.scheduled-mine{fill:var(--mine)}\n  .sp.schedule-next,.logical-fill.schedule-next{fill:#eefbf6}\n  .sp.sel.scheduled-other,.logical-fill.sel.scheduled-other{fill:var(--scheduled)!important}\n  .sp.sel.scheduled-mine,.logical-fill.sel.scheduled-mine{fill:var(--mine)!important}\n  .sp.sel.schedule-next,.logical-fill.sel.schedule-next{fill:#eefbf6!important}\n  .sp.flash{animation:flash 1.1s ease-in-out 2}\n  @keyframes flash{50%{fill:#9ddcc5}}\n"
+      },
+      {
+        "old": "  .logical-outline.schedule-next{stroke:var(--accent);stroke-dasharray:6 3}\n  .lbl{font-size:10.5px;font-weight:600;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:central;stroke:none}\n  .lbl.hall{font-size:7px;font-weight:500;fill:var(--muted)}\n  .entrance-label{font-size:12px;font-weight:600;fill:var(--accent);pointer-events:none}\n",
+        "new": "  .logical-outline.schedule-next{stroke:var(--accent);stroke-dasharray:6 3}\n  .lbl{font-size:10.5px;font-weight:600;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:central;stroke:none}\n  .room01-floor [data-room-label]{font-size:10px;font-family:inherit;font-weight:600;fill:var(--ink);text-anchor:start;dominant-baseline:hanging}\n  .lbl.hall{font-size:7px;font-weight:500;fill:var(--muted)}\n  .entrance-label{font-size:12px;font-weight:600;fill:var(--accent);pointer-events:none}\n"
+      },
+      {
+        "old": "  };\n  L.highlights=el(\"g\",{id:\"layerLogicalHighlights\",\"pointer-events\":\"none\"},svg);\n  function clear(g) { while (g.firstChild) g.removeChild(g.firstChild); }\n\n",
+        "new": "  };\n  L.highlights=el(\"g\",{id:\"layerLogicalHighlights\",\"pointer-events\":\"none\"},svg);\n  L.fills=el(\"g\",{id:\"layerLogicalFills\",\"pointer-events\":\"none\"},svg);\n  svg.insertBefore(L.fills,L.spaces);\n  function clear(g) { while (g.firstChild) g.removeChild(g.firstChild); }\n\n"
+      },
+      {
+        "old": "      var n=numberOf(s.id),identity=roomCatalog.identity(s.id),logical=roomCatalog.roomForSpace(s.id);\n      var labelPoint=f.level===1?displayLayout.labelPoint(s.id):s.labelPoint;\n      if(f.level===1&&logical&&logical.internalPartition===\"none\") {var b=bbox(displayLayout.roomOutline(logical));labelPoint=[b.cx,b.cy];}\n      if(n&&(!logical||logical.primarySpaceId===s.id)){\n        var t=el(\"text\",{x:labelPoint[0],y:labelPoint[1],\"class\":\"lbl\",\"data-room-label\":logical?logical.roomCode:null},L.labels);t.textContent=n;\n        if(f.level===1&&bbox(poly).w<40)t.style.fontSize=\"8px\";\n      }else if(identity&&identity.public){\n        if(f.level===1&&identity.kind===\"reception\"){var reception=bbox(displayLayout.enclosure(\"reception\"));labelPoint=[reception.cx,reception.cy];}\n",
+        "new": "      var n=numberOf(s.id),identity=roomCatalog.identity(s.id),logical=roomCatalog.roomForSpace(s.id);\n      var labelPoint=f.level===1?displayLayout.labelPoint(s.id):s.labelPoint;\n      if(f.level===1&&logical)labelPoint=displayLayout.roomLabelPoint(logical);\n      if(n&&(!logical||logical.primarySpaceId===s.id)){\n        var t=el(\"text\",{x:labelPoint[0],y:labelPoint[1],\"class\":\"lbl\",\"data-room-label\":logical?logical.roomCode:null},L.labels);t.textContent=n;\n      }else if(identity&&identity.public){\n        if(f.level===1&&identity.kind===\"reception\"){var reception=bbox(displayLayout.enclosure(\"reception\"));labelPoint=[reception.cx,reception.cy];}\n"
+      },
+      {
+        "old": "      var v=vertById[g.__id],identity=roomCatalog.identity(v.id);\n      g.setAttribute(\"class\",\"vert \"+v.type+(identity&&identity.display?\" \"+identity.display:\"\")+(selectedIds().includes(v.id)?\" sel\":\"\"));\n    });\n    clear(L.highlights);\n",
+        "new": "      var v=vertById[g.__id],identity=roomCatalog.identity(v.id);\n      g.setAttribute(\"class\",\"vert \"+v.type+(identity&&identity.display?\" \"+identity.display:\"\")+(selectedIds().includes(v.id)?\" sel\":\"\"));\n    });\n    clear(L.fills);\n    if(state.level===1)roomCatalog.mappings.filter(function(r){return r.spaceIds.length>1;}).forEach(function(r){\n      // Matching underpaint removes fractional-pixel seams between hit rectangles.\n      displayShape(L.fills,displayLayout.roomOutline(r),{\"class\":\"logical-fill\"+(r.spaceIds.includes(state.selected)?\" sel\":\"\")+scheduleClasses(r.primarySpaceId),\"data-room-fill\":r.roomCode});\n    });\n    clear(L.highlights);\n"
+      }
+    ]
+  },
+  "currentSources": {
+    "schematic-layout.js": "cf42d069dfdd28fb307a91cb1fb7f6bb9a6a7ae0d8fd3eafc3e7930184f51d1c",
+    "tests/ui01-browser.cjs": "07e154ffcd3bd4037ba102eaab7ebf18f65b2c1bc32214e9cd5617fd3316cf3a",
+    "tests/ui01-data.cjs": "766f7e63cc0dfe1757ceced0daed9d63dfdaa9fb1443ff2aa5a62d27e659aee4",
+    "tests/ui01-fix-a-browser.cjs": "e203526e82d0870117f8cfea453ade2eabe162fedfa6e6c091296bdb81f0b2cb",
+    "tests/ui01-fix-a-contract.cjs": "cbb05568bdc316a45011e56a6039fc6a4397f7fc4fd9a715135ddb5d48d02e07",
+    "tests/ui01-fix-a-data.cjs": "2e8d391fb2ff3222fab947413b50ceecdff653ee7fa7b83e849570f8fc245cb2",
+    "index.html": "380dc7fa8ca6584c09af247960f4d34e45409b95faa34ae6aa8e88c7cfd5ab6a",
+    "tests/ui01-fix-b-contract.cjs": "64a2705d4de2ad2e6ab64a3b71a5c8b91f56e26c882a81d3f4dc1d6a31a024a8",
+    "tests/ui01-fix-b-data.cjs": "ff940d90203f3dd7e739ae531336da1cf736a29098d7c4f0826194b319e28f73",
+    "tests/ui01-fix-b-browser.cjs": "fac98f5440fb73ff61053876ed56fba1417413cd86b47e4ee87374728c5889cf"
+  }
+}
