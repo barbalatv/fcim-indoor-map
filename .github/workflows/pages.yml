@@ -37,9 +37,10 @@ jobs:
           node-version: '22'
       - name: Package only approved static runtime
         run: node controller/scripts/prepare-pages.mjs approved-source "$RUNNER_TEMP/fcim-pages"
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: ${{ runner.temp }}/fcim-pages
+          include-hidden-files: 'true'
   deploy:
     needs: package
     runs-on: ubuntu-latest
